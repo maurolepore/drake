@@ -18,13 +18,28 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Get diagnostic metadata on a target. — diagnose" />
+
+<meta property="og:description" content="Diagnostics include errors, warnings,
+messages, runtimes, and other context/metadata from when a
+target was built or an import was processed.
+If your target's last build succeeded,
+then diagnose(your_target) has the most current information
+from that build.
+But if your target failed, then only
+diagnose(your_target)$error,
+diagnose(your_target)$warnings,
+and diagnose(your_target)$messages correspond to the failure,
+and all the other metadata correspond to the last build that completed
+without an error." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -103,6 +118,9 @@
     <li>
       <a href="../articles/caution.html">Caution</a>
     </li>
+    <li>
+      <a href="../articles/faq.html">Frequently-asked questions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -129,6 +147,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get diagnostic metadata on a target.</h1>
+    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/diagnose.R'><code>R/diagnose.R</code></a></small>
     </div>
 
     
@@ -148,7 +167,7 @@ without an error.</p>
 
     <pre class="usage"><span class='fu'>diagnose</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(),
   <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -186,7 +205,16 @@ If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>whether to print console messages</p></td>
+      <td><p>logical or numeric, control printing to the console.
+Use <code>pkgconfig</code> to set the default value of <code>verbose</code>
+for your R session:
+for example, <code><a href='http://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::verbose" = 2)</a></code>.</p><dl class='dl-horizontal'>
+<dt>0 or <code>FALSE</code>:</dt><dd><p>print nothing.</p></dd>
+<dt>1 or <code>TRUE</code>:</dt><dd><p>print only targets to build.</p></dd>
+<dt>2:</dt><dd><p>in addition, print checks and cache info.</p></dd>
+<dt>3:</dt><dd><p>in addition, print any potentially missing items.</p></dd>
+<dt>4:</dt><dd><p>in addition, print imports. Full verbosity.</p></dd>
+</dl></td>
     </tr>
     </table>
     
@@ -272,3 +300,4 @@ of class <code>"error"</code>.</p>
 
   </body>
 </html>
+

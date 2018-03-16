@@ -8,8 +8,11 @@
 <title>Storage • drake</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Storage">
+<meta property="og:description" content="">
+<meta name="twitter:card" content="summary">
+<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -80,6 +83,9 @@
     <li>
       <a href="../articles/caution.html">Caution</a>
     </li>
+    <li>
+      <a href="../articles/faq.html">Frequently-asked questions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -109,8 +115,11 @@
             <h3 class="subtitle">Caching, hashing, and customization</h3>
                         <h4 class="author">Will Landau</h4>
             
-            <h4 class="date">2018-03-11</h4>
-          </div>
+            <h4 class="date">2018-03-16</h4>
+      
+      <small>Source: <a href="https:/github.com/ropensci/drake/blob/master/vignettes/storage.Rmd"><code>vignettes/storage.Rmd</code></a></small>
+
+    </div>
 
     
     
@@ -200,19 +209,19 @@ larger_data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span cl
 ## [1] "23c80a31c0713176016e6e18d76a5f31"
 
 <span class="kw"><a href="http://www.rdocumentation.org/packages/digest/topics/digest">digest</a></span>(larger_data)
-## [1] "a3ece141a94b8a36d6ff474c592635cc"</code></pre></div>
+## [1] "750a262e1576f02c3e69314c5902bb0f"</code></pre></div>
 <p>However, different hash algorithms vary in length.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/digest/topics/digest">digest</a></span>(larger_data, <span class="dt">algo =</span> <span class="st">"sha512"</span>)
-## [1] "ae597c52ce5281b947ba858cded78642c10f20fe981f021447dba29fc6d7d8a4b4edfed0fc3badd5819ff359e30c2d75429f0007f823ca24519637dc29a1b0b8"
+## [1] "b1ca08d582bdf27e78b3c1a3ddcc3d3e3e044c21318d7a12e90a014ec302cd6c8e9b96790cb951729c08268912fbc6a5bda8bd5baddf3e2517b3baa34c12d3cf"
 
 <span class="kw"><a href="http://www.rdocumentation.org/packages/digest/topics/digest">digest</a></span>(larger_data, <span class="dt">algo =</span> <span class="st">"md5"</span>)
-## [1] "a3ece141a94b8a36d6ff474c592635cc"
+## [1] "750a262e1576f02c3e69314c5902bb0f"
 
 <span class="kw"><a href="http://www.rdocumentation.org/packages/digest/topics/digest">digest</a></span>(larger_data, <span class="dt">algo =</span> <span class="st">"xxhash64"</span>)
-## [1] "1ee6180ab59a6ec0"
+## [1] "3b0544f661f15b5d"
 
 <span class="kw"><a href="http://www.rdocumentation.org/packages/digest/topics/digest">digest</a></span>(larger_data, <span class="dt">algo =</span> <span class="st">"murmur32"</span>)
-## [1] "d2f12a02"</code></pre></div>
+## [1] "6950c81e"</code></pre></div>
 </div>
 <div id="which-hash-algorithm-should-you-choose" class="section level1">
 <h1 class="hasAnchor">
@@ -234,8 +243,7 @@ larger_data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span cl
 <h1 class="hasAnchor">
 <a href="#select-the-hash-algorithms-of-the-default-cache" class="anchor"></a>Select the hash algorithms of the default cache</h1>
 <p>For new projects, use <code><a href="../reference/new_cache.html">new_cache()</a></code> to set the hash algorithms of the default cache.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cache_path.html">cache_path</a></span>(cache) <span class="co"># Default cache from before.</span>
-## [1] "/tmp/Rtmp5WO1rG/articles/.drake"
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cache_path(cache) # Default cache from before. # nolint</span>
 
 <span class="co"># Start from scratch to reset both hash algorithms.</span>
 <span class="kw"><a href="../reference/clean.html">clean</a></span>(<span class="dt">destroy =</span> <span class="ot">TRUE</span>)
@@ -292,11 +300,8 @@ config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/make
   <span class="dt">long_hash_algo =</span> <span class="st">"murmur32"</span>
 )
 
-<span class="kw"><a href="../reference/cache_path.html">cache_path</a></span>(faster_cache)
-## [1] "/tmp/Rtmp5WO1rG/articles/faster_cache"
-
-<span class="kw"><a href="../reference/cache_path.html">cache_path</a></span>(cache) <span class="co"># location of the previous cache</span>
-## [1] "/tmp/Rtmp5WO1rG/articles/.drake"
+<span class="co"># cache_path(faster_cache) # nolint</span>
+<span class="co"># cache_path(cache) # location of the previous cache # nolint</span>
 
 <span class="kw"><a href="../reference/short_hash.html">short_hash</a></span>(faster_cache)
 ## [1] "murmur32"
@@ -378,7 +383,7 @@ cache &lt;-<span class="st"> </span>storr::<span class="kw"><a href="http://www.
 <div id="cleaning-up" class="section level1">
 <h1 class="hasAnchor">
 <a href="#cleaning-up" class="anchor"></a>Cleaning up</h1>
-<p>If you want to start from scratch, you can <code><a href="../reference/clean.html">clean()</a></code> the cache. Use the <code>destroy</code> argument to remove it completely. <code>cache$del()</code> and <code>cache$destroy()</code> are also options, but they leave output file targets dangling. By contrast, <code><a href="../reference/clean.html">clean(destroy = TRUE)</a></code> removes file targets generated by <code><a href="http://www.rdocumentation.org/packages/drake/topics/make">drake::make()</a></code>. <code><a href="../reference/drake_gc.html">drake_gc()</a></code> and <code><a href="../reference/clean.html">clean(..., garbage_collection = TRUE)</a></code> do garbage collection, and <code><a href="../reference/clean.html">clean(purge = TRUE)</a></code> removes all target-level data, not just the final output values.</p>
+<p>If you want to start from scratch, you can <code><a href="../reference/clean.html">clean()</a></code> the cache. Use the <code>destroy</code> argument to remove it completely. <code>cache$del()</code> and <code>cache$destroy()</code> are also options, but they leave output file targets dangling. By contrast, <code><a href="../reference/clean.html">clean(destroy = TRUE)</a></code> removes file targets generated by <code><a href="../reference/make.html">drake::make()</a></code>. <code><a href="../reference/drake_gc.html">drake_gc()</a></code> and <code><a href="../reference/clean.html">clean(..., garbage_collection = TRUE)</a></code> do garbage collection, and <code><a href="../reference/clean.html">clean(purge = TRUE)</a></code> removes all target-level data, not just the final output values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/clean.html">clean</a></span>(small, large)
 
 <span class="kw"><a href="../reference/cached.html">cached</a></span>() <span class="co"># 'small' and 'large' are gone</span>

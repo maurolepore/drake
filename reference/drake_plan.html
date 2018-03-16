@@ -19,13 +19,21 @@ for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Create a workflow plan data frame
+for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code>. — drake_plan" />
+
+<meta property="og:description" content="Turns a named collection of target/command pairs into
+a workflow plan data frame for make(). You can give the commands
+as named expressions, or you can use the list
+argument to supply them as character strings." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -104,6 +112,9 @@ for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code
     <li>
       <a href="../articles/caution.html">Caution</a>
     </li>
+    <li>
+      <a href="../articles/faq.html">Frequently-asked questions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -131,6 +142,7 @@ for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code
     <div class="page-header">
     <h1>Create a workflow plan data frame
 for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code>.</h1>
+    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/workplan.R'><code>R/workplan.R</code></a></small>
     </div>
 
     
@@ -173,6 +185,16 @@ commands specified in the <code>...</code> argument. Defaults to <code>NULL</cod
 compatibility. New code should use <code><a href='file_out.html'>file_out()</a></code>, <code><a href='file_in.html'>file_in()</a></code>, and
 <code><a href='knitr_in.html'>knitr_in()</a></code> to specify file names and set this argument to <code>"literals"</code>,
 which will at some point become the only accepted value.</p>
+<p>To fully embrace the glorious new file API, call
+<code><a href='http://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::strings_in_dots" = "literals")</a></code>
+right when you start your R session.
+That way, <code>drake</code> totally relies on <code><a href='file_in.html'>file_in()</a></code>, <code><a href='file_out.html'>file_out()</a></code>,
+and <code><a href='knitr_in.html'>knitr_in()</a></code> to coordinate input and output files, as
+opposed to deprecated features like single-quotes
+(and in the case of <code>knitr</code> reports,
+explicit calls to <code><a href='http://www.rdocumentation.org/packages/knitr/topics/knit'>knitr::knit()</a></code> and <code><a href='http://www.rdocumentation.org/packages/rmarkdown/topics/render'>rmarkdown::render()</a></code> in commands).
+This is why the default value of <code>strings_in_dots</code> is
+<code><a href='http://www.rdocumentation.org/packages/pkgconfig/topics/get_config'>pkgconfig::get_config("drake::strings_in_dots")</a></code>.</p>
 <p>In the past, this argument was a character scalar denoting
 how to treat quoted character strings in the commands
 specified through <code>...</code>.
@@ -302,3 +324,4 @@ for each worker in <code><a href='make.html'>make(..., parallelism = "future")</
 
   </body>
 </html>
+

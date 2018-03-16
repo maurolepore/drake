@@ -18,13 +18,20 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="List the time it took to build each target/import. — build_times" />
+
+<meta property="og:description" content="Listed times do not include the amount of time
+spent loading and saving objects! See the type
+argument for different versions of the build time.
+(You can choose whether to take storage time into account.)" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -103,6 +110,9 @@
     <li>
       <a href="../articles/caution.html">Caution</a>
     </li>
+    <li>
+      <a href="../articles/faq.html">Frequently-asked questions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -129,6 +139,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>List the time it took to build each target/import.</h1>
+    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/build_times.R'><code>R/build_times.R</code></a></small>
     </div>
 
     
@@ -140,8 +151,8 @@ argument for different versions of the build time.
 
     <pre class="usage"><span class='fu'>build_times</span>(<span class='no'>...</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fu'><a href='get_cache.html'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>),
-  <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"build"</span>,
-  <span class='st'>"command"</span>))</pre>
+  <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"build"</span>, <span class='st'>"command"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -156,13 +167,15 @@ commands such as <code><a href='http://www.rdocumentation.org/packages/tidyselec
       <th>path</th>
       <td><p>Root directory of the drake project,
 or if <code>search</code> is <code>TRUE</code>, either the
-project root or a subdirectory of the project.</p></td>
+project root or a subdirectory of the project.
+Ignored if a <code>cache</code> is supplied.</p></td>
     </tr>
     <tr>
       <th>search</th>
       <td><p>logical. If <code>TRUE</code>, search parent directories
 to find the nearest drake cache. Otherwise, look in the
-current working directory only.</p></td>
+current working directory only.
+Ignored if a <code>cache</code> is supplied.</p></td>
     </tr>
     <tr>
       <th>digits</th>
@@ -170,8 +183,8 @@ current working directory only.</p></td>
     </tr>
     <tr>
       <th>cache</th>
-      <td><p>optional drake cache. If supplied,
-the <code>path</code> and <code>search</code> arguments are ignored.</p></td>
+      <td><p>drake cache. See <code><a href='new_cache.html'>new_cache()</a></code>.
+If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     </tr>
     <tr>
       <th>targets_only</th>
@@ -180,11 +193,20 @@ build times of the targets (exclude the imports).</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>whether to print console messages</p></td>
+      <td><p>logical or numeric, control printing to the console.
+Use <code>pkgconfig</code> to set the default value of <code>verbose</code>
+for your R session:
+for example, <code><a href='http://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::verbose" = 2)</a></code>.</p><dl class='dl-horizontal'>
+<dt>0 or <code>FALSE</code>:</dt><dd><p>print nothing.</p></dd>
+<dt>1 or <code>TRUE</code>:</dt><dd><p>print only targets to build.</p></dd>
+<dt>2:</dt><dd><p>in addition, print checks and cache info.</p></dd>
+<dt>3:</dt><dd><p>in addition, print any potentially missing items.</p></dd>
+<dt>4:</dt><dd><p>in addition, print imports. Full verbosity.</p></dd>
+</dl></td>
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>number of parallel jobs/workers for light parallelism.</p></td>
+      <td><p>number of jobs/workers for parallel processing</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -244,3 +266,4 @@ just to run the command.</p></td>
 
   </body>
 </html>
+

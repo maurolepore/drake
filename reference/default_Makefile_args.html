@@ -19,13 +19,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Return the default value of the
+<code>args</code> argument to <code><a href='make.html'>make()</a></code>. — default_Makefile_args" />
+
+<meta property="og:description" content="For make(..., parallelism = "Makefile"),
+this function configures the default
+arguments to system2().
+It is an internal function, and most users do not need to
+worry about it." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -104,6 +113,9 @@
     <li>
       <a href="../articles/caution.html">Caution</a>
     </li>
+    <li>
+      <a href="../articles/faq.html">Frequently-asked questions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -131,6 +143,7 @@
     <div class="page-header">
     <h1>Return the default value of the
 <code>args</code> argument to <code><a href='make.html'>make()</a></code>.</h1>
+    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/Makefile.R'><code>R/Makefile.R</code></a></small>
     </div>
 
     
@@ -152,7 +165,16 @@ worry about it.</p>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical, whether to be verbose</p></td>
+      <td><p>logical or numeric, control printing to the console.
+Use <code>pkgconfig</code> to set the default value of <code>verbose</code>
+for your R session:
+for example, <code><a href='http://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::verbose" = 2)</a></code>.</p><dl class='dl-horizontal'>
+<dt>0 or <code>FALSE</code>:</dt><dd><p>print nothing.</p></dd>
+<dt>1 or <code>TRUE</code>:</dt><dd><p>print only targets to build.</p></dd>
+<dt>2:</dt><dd><p>in addition, print checks and cache info.</p></dd>
+<dt>3:</dt><dd><p>in addition, print any potentially missing items.</p></dd>
+<dt>4:</dt><dd><p>in addition, print imports. Full verbosity.</p></dd>
+</dl></td>
     </tr>
     </table>
     
@@ -191,3 +213,4 @@ worry about it.</p>
 
   </body>
 </html>
+
