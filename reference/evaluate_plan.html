@@ -22,10 +22,15 @@ workflow plan data frame from a template data frame. — evaluate_plan • drake
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Use wildcard templating to create a
 workflow plan data frame from a template data frame. — evaluate_plan" />
 
@@ -34,6 +39,9 @@ wildcard symbols that can stand for datasets, parameters, function
 arguments, etc. These wildcards can be evaluated over a set of
 possible values using evaluate_plan." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -56,8 +64,12 @@ possible values using evaluate_plan." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">drake</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">drake</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,49 +85,7 @@ possible values using evaluate_plan." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/faq.html">FAQ</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/example-packages.html">Example: R package download trends</a>
-    </li>
-    <li>
-      <a href="../articles/example-gsp.html">Example: gross state products</a>
-    </li>
-    <li>
-      <a href="../articles/example-basic.html">Basic example</a>
-    </li>
-    <li>
-      <a href="../articles/best-practices.html">General best practices for drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/debug.html">Debugging and testing drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graphs with drake</a>
-    </li>
-    <li>
-      <a href="../articles/parallelism.html">Parallel computing</a>
-    </li>
-    <li>
-      <a href="../articles/timing.html">Time logging</a>
-    </li>
-    <li>
-      <a href="../articles/storage.html">Storage</a>
-    </li>
-    <li>
-      <a href="../articles/caution.html">Caution</a>
-    </li>
-    <li>
-      <a href="../articles/faq.html">Frequently-asked questions</a>
-    </li>
-  </ul>
+  <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -130,6 +100,7 @@ possible values using evaluate_plan." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -137,25 +108,28 @@ possible values using evaluate_plan." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Use wildcard templating to create a
 workflow plan data frame from a template data frame.</h1>
-    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/generate.R'><code>R/generate.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/generate.R'><code>R/generate.R</code></a></small>
+    <div class="hidden name"><code>evaluate_plan.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>The commands in workflow plan data frames can have
 wildcard symbols that can stand for datasets, parameters, function
 arguments, etc. These wildcards can be evaluated over a set of
 possible values using <code>evaluate_plan</code>.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='no'>expand</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -192,6 +166,19 @@ If <code>FALSE</code>, each occurrence of the wildcard
 is replaced with the next entry in the <code>values</code> vector,
 and the values are recycled.</p></td>
     </tr>
+    <tr>
+      <th>rename</th>
+      <td><p>logical, whether to rename the targets
+based on the values supplied for the wildcards
+(based on <code>values</code> or <code>rules</code>).</p></td>
+    </tr>
+    <tr>
+      <th>trace</th>
+      <td><p>logical, whether to add columns that
+trace the wildcard expansion process. These new
+columns indicate which targets were evaluated with which
+wildcards.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -225,7 +212,7 @@ as names and vectors of possible values as list elements.</p>
 <span class='fu'>evaluate_plan</span>(<span class='no'>methods</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target            command    
-#&gt;   &lt;chr&gt;             &lt;chr&gt;      
+#&gt; * &lt;chr&gt;             &lt;chr&gt;      
 #&gt; 1 regression1_small reg1(small)
 #&gt; 2 regression1_large reg1(large)
 #&gt; 3 regression2_small reg2(small)
@@ -234,7 +221,7 @@ as names and vectors of possible values as list elements.</p>
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>ans</span></div><div class='output co'>#&gt; # A tibble: 2 x 2
 #&gt;   target      command    
-#&gt;   &lt;chr&gt;       &lt;chr&gt;      
+#&gt; * &lt;chr&gt;       &lt;chr&gt;      
 #&gt; 1 regression1 reg1(small)
 #&gt; 2 regression2 reg2(large)</div><div class='input'><span class='co'># For the complete workflow plan, row bind the pieces together.</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='no'>datasets</span>, <span class='no'>ans</span>)
@@ -250,7 +237,7 @@ as names and vectors of possible values as list elements.</p>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>draws</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>Mean</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>Sd</span>))
 <span class='fu'>evaluate_plan</span>(<span class='no'>x</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>Mean</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>Sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target     command                 
-#&gt;   &lt;chr&gt;      &lt;chr&gt;                   
+#&gt; * &lt;chr&gt;      &lt;chr&gt;                   
 #&gt; 1 draws_1_1  rnorm(mean = 1, sd = 1) 
 #&gt; 2 draws_1_10 rnorm(mean = 1, sd = 10)
 #&gt; 3 draws_2_1  rnorm(mean = 2, sd = 1) 
@@ -284,6 +271,8 @@ as names and vectors of possible values as list elements.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

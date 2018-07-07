@@ -22,17 +22,25 @@ during a <code><a href='make.html'>make()</a></code>. — progress • drake</ti
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Get the build progress of your targets
 during a <code><a href='make.html'>make()</a></code>. — progress" />
 
 <meta property="og:description" content="Objects that drake imported, built, or attempted
-to build are listed as "finished" or "in progress".
+to build are listed as &quot;finished&quot; or &quot;in progress&quot;.
 Skipped objects are not listed." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -55,8 +63,12 @@ Skipped objects are not listed." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">drake</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">drake</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -72,49 +84,7 @@ Skipped objects are not listed." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/faq.html">FAQ</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/example-packages.html">Example: R package download trends</a>
-    </li>
-    <li>
-      <a href="../articles/example-gsp.html">Example: gross state products</a>
-    </li>
-    <li>
-      <a href="../articles/example-basic.html">Basic example</a>
-    </li>
-    <li>
-      <a href="../articles/best-practices.html">General best practices for drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/debug.html">Debugging and testing drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graphs with drake</a>
-    </li>
-    <li>
-      <a href="../articles/parallelism.html">Parallel computing</a>
-    </li>
-    <li>
-      <a href="../articles/timing.html">Time logging</a>
-    </li>
-    <li>
-      <a href="../articles/storage.html">Storage</a>
-    </li>
-    <li>
-      <a href="../articles/caution.html">Caution</a>
-    </li>
-    <li>
-      <a href="../articles/faq.html">Frequently-asked questions</a>
-    </li>
-  </ul>
+  <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -129,6 +99,7 @@ Skipped objects are not listed." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -136,26 +107,29 @@ Skipped objects are not listed." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get the build progress of your targets
 during a <code><a href='make.html'>make()</a></code>.</h1>
-    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/progress.R'><code>R/progress.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/progress.R'><code>R/progress.R</code></a></small>
+    <div class="hidden name"><code>progress.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Objects that drake imported, built, or attempted
 to build are listed as <code>"finished"</code> or <code>"in progress"</code>.
 Skipped objects are not listed.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>progress</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>), <span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>imported_files_only</span> <span class='kw'>=</span> <span class='fu'>logical</span>(<span class='fl'>0</span>), <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>),
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -226,15 +200,15 @@ the current <code><a href='make.html'>make()</a></code> so far.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='diagnose.html'>diagnose()</a></code>, <code><a href='session.html'>session()</a></code>,
+    <div class='dont-index'><p><code><a href='diagnose.html'>diagnose()</a></code>, <code><a href='session.html'>session()</a></code>,
 <code><a href='built.html'>built()</a></code>, <code><a href='imported.html'>imported()</a></code>,
-<code><a href='readd.html'>readd()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p>
+<code><a href='readd.html'>readd()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_basic_example.html'>load_basic_example</a></span>() <span class='co'># Get the code with drake_example("basic").</span>
+<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
 <span class='co'># Watch the changing progress() as make() is running.</span>
 <span class='fu'>progress</span>() <span class='co'># List all the targets reached so far.</span>
@@ -270,6 +244,8 @@ the current <code><a href='make.html'>make()</a></code> so far.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

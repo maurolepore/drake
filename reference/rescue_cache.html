@@ -22,10 +22,15 @@ to throwing <code>storr</code>-related errors. — rescue_cache • drake</title
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Try to repair a drake cache that is prone
 to throwing <code>storr</code>-related errors. — rescue_cache" />
 
@@ -34,6 +39,9 @@ dangling orphaned files that prevent you from loading or cleaning.
 This function tries to remove those files so you can use the
 cache normally again." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -56,8 +64,12 @@ cache normally again." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">drake</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">drake</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -73,49 +85,7 @@ cache normally again." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/faq.html">FAQ</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/example-packages.html">Example: R package download trends</a>
-    </li>
-    <li>
-      <a href="../articles/example-gsp.html">Example: gross state products</a>
-    </li>
-    <li>
-      <a href="../articles/example-basic.html">Basic example</a>
-    </li>
-    <li>
-      <a href="../articles/best-practices.html">General best practices for drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/debug.html">Debugging and testing drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graphs with drake</a>
-    </li>
-    <li>
-      <a href="../articles/parallelism.html">Parallel computing</a>
-    </li>
-    <li>
-      <a href="../articles/timing.html">Time logging</a>
-    </li>
-    <li>
-      <a href="../articles/storage.html">Storage</a>
-    </li>
-    <li>
-      <a href="../articles/caution.html">Caution</a>
-    </li>
-    <li>
-      <a href="../articles/faq.html">Frequently-asked questions</a>
-    </li>
-  </ul>
+  <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -130,6 +100,7 @@ cache normally again." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -137,27 +108,30 @@ cache normally again." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Try to repair a drake cache that is prone
 to throwing <code>storr</code>-related errors.</h1>
-    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/clean.R'><code>R/clean.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/clean.R'><code>R/clean.R</code></a></small>
+    <div class="hidden name"><code>rescue_cache.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Sometimes, <code>storr</code> caches may have
 dangling orphaned files that prevent you from loading or cleaning.
 This function tries to remove those files so you can use the
 cache normally again.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rescue_cache</span>(<span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>,
   <span class='kw'>force</span> <span class='kw'>=</span> <span class='no'>force</span>), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -225,14 +199,14 @@ for details.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='get_cache.html'>get_cache()</a></code>, <code><a href='cached.html'>cached()</a></code>,
-<code><a href='drake_gc.html'>drake_gc()</a></code>, <code><a href='clean.html'>clean()</a></code></p>
+    <div class='dont-index'><p><code><a href='get_cache.html'>get_cache()</a></code>, <code><a href='cached.html'>cached()</a></code>,
+<code><a href='drake_gc.html'>drake_gc()</a></code>, <code><a href='clean.html'>clean()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_basic_example.html'>load_basic_example</a></span>() <span class='co'># Get the code with drake_example("basic").</span>
+<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build targets. This creates the cache.</span>
 <span class='co'># Remove dangling cache files that could cause errors.</span>
 <span class='fu'>rescue_cache</span>(<span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>2</span>)
@@ -268,6 +242,8 @@ for details.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

@@ -22,10 +22,15 @@ all the package's nested functions. — expose_imports • drake</title>
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Expose all the imports in a package so <code>make()</code> can detect
 all the package's nested functions. — expose_imports" />
 
@@ -45,6 +50,9 @@ To make all a package's functions available to be tracked
 as dependencies, use the expose_imports() function.
 See the examples in this help file for a demonstration." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -67,8 +75,12 @@ See the examples in this help file for a demonstration." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">drake</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">drake</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -84,49 +96,7 @@ See the examples in this help file for a demonstration." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/faq.html">FAQ</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/example-packages.html">Example: R package download trends</a>
-    </li>
-    <li>
-      <a href="../articles/example-gsp.html">Example: gross state products</a>
-    </li>
-    <li>
-      <a href="../articles/example-basic.html">Basic example</a>
-    </li>
-    <li>
-      <a href="../articles/best-practices.html">General best practices for drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/debug.html">Debugging and testing drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graphs with drake</a>
-    </li>
-    <li>
-      <a href="../articles/parallelism.html">Parallel computing</a>
-    </li>
-    <li>
-      <a href="../articles/timing.html">Time logging</a>
-    </li>
-    <li>
-      <a href="../articles/storage.html">Storage</a>
-    </li>
-    <li>
-      <a href="../articles/caution.html">Caution</a>
-    </li>
-    <li>
-      <a href="../articles/faq.html">Frequently-asked questions</a>
-    </li>
-  </ul>
+  <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -141,6 +111,7 @@ See the examples in this help file for a demonstration." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -148,14 +119,16 @@ See the examples in this help file for a demonstration." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Expose all the imports in a package so <code>make()</code> can detect
 all the package's nested functions.</h1>
-    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/expose_imports.R'><code>R/expose_imports.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/expose_imports.R'><code>R/expose_imports.R</code></a></small>
+    <div class="hidden name"><code>expose_imports.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>When <code>drake</code> analyzes the functions in your environment,
 it understands that some of your functions
@@ -173,11 +146,12 @@ so you want all your functions to be reproducibly tracked.</p>
 as dependencies, use the <code>expose_imports()</code> function.
 See the examples in this help file for a demonstration.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>expose_imports</span>(<span class='no'>package</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(),
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -232,7 +206,7 @@ for the idea that makes this function work.</p>
 <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>plan</span>)
 
 <span class='co'># But the digest() function has dependencies too.</span>
-<span class='fu'>head</span>(<span class='fu'><a href='deps.html'>deps</a></span>(<span class='no'>digest</span>))
+<span class='fu'>head</span>(<span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>digest</span>))
 
 <span class='co'># Why doesn't `drake` import them? Because it knows `digest()`</span>
 <span class='co'># is from a package, and it doesn't usually dive into functions</span>
@@ -294,6 +268,8 @@ for the idea that makes this function work.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

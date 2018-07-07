@@ -21,15 +21,23 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="List the types of supported parallel computing in drake. — parallelism_choices" />
 
 <meta property="og:description" content="These are the possible values of the
 parallelism argument to make()." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -52,8 +60,12 @@ parallelism argument to make()." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">drake</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">drake</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -69,49 +81,7 @@ parallelism argument to make()." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/faq.html">FAQ</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/example-packages.html">Example: R package download trends</a>
-    </li>
-    <li>
-      <a href="../articles/example-gsp.html">Example: gross state products</a>
-    </li>
-    <li>
-      <a href="../articles/example-basic.html">Basic example</a>
-    </li>
-    <li>
-      <a href="../articles/best-practices.html">General best practices for drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/debug.html">Debugging and testing drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graphs with drake</a>
-    </li>
-    <li>
-      <a href="../articles/parallelism.html">Parallel computing</a>
-    </li>
-    <li>
-      <a href="../articles/timing.html">Time logging</a>
-    </li>
-    <li>
-      <a href="../articles/storage.html">Storage</a>
-    </li>
-    <li>
-      <a href="../articles/caution.html">Caution</a>
-    </li>
-    <li>
-      <a href="../articles/faq.html">Frequently-asked questions</a>
-    </li>
-  </ul>
+  <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -126,6 +96,7 @@ parallelism argument to make()." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -133,21 +104,24 @@ parallelism argument to make()." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>List the types of supported parallel computing in drake.</h1>
-    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/parallel_ui.R'><code>R/parallel_ui.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/parallel_ui.R'><code>R/parallel_ui.R</code></a></small>
+    <div class="hidden name"><code>parallelism_choices.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>These are the possible values of the
 <code>parallelism</code> argument to <code><a href='make.html'>make()</a></code>.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>parallelism_choices</span>(<span class='kw'>distributed_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -165,72 +139,22 @@ computing supported.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Run <code><a href='make.html'>make(..., parallelism = x, jobs = n)</a></code> for any of
-the following values of <code>x</code> to distribute targets over parallel
-units of execution.</p><dl class='dl-horizontal'>
-<dt>'parLapply'</dt><dd><p>launches multiple processes in a single R session
-using <code><a href='http://www.rdocumentation.org/packages/parallel/topics/clusterApply'>parallel::parLapply()</a></code>.
-This is single-node, (potentially) multicore computing.
-It requires more overhead than the <code>'mclapply'</code> option,
-but it works on Windows. If <code>jobs</code> is <code>1</code> in
-<code><a href='make.html'>make()</a></code>, then no 'cluster' is created and
-no parallelism is used.</p></dd>
-    <dt>'mclapply'</dt><dd><p>uses multiple processes in a single R session.
-This is single-node, (potentially) multicore computing.
-Does not work on Windows for <code>jobs &gt; 1</code>
-because <code>mclapply()</code> is based on forking.</p></dd>
-    <dt>'future_lapply'</dt><dd><p>opens up a whole trove of parallel backends
-powered by the <code>future</code> and <code>future.batchtools</code>
-packages. First, set the parallel backend globally using
-<code><a href='http://www.rdocumentation.org/packages/future/topics/plan'>future::plan()</a></code>.
-Then, apply the backend to your drake_plan
-using <code><a href='make.html'>make(..., parallelism = "future_lapply", jobs = ...)</a></code>.
-But be warned: the environment for each target needs to be set up
-from scratch, so this backend type is higher overhead than either
-<code>mclapply</code> or <code>parLapply</code>.
-Also, the <code>jobs</code> argument only applies to the imports.
-To set the max number of jobs, set the <code>workers</code>
-argument where it exists. For example, call
-<code><a href='http://www.rdocumentation.org/packages/future/topics/plan'>future::plan(multisession(workers = 4))</a></code>,
-then call <code><a href='make.html'>make</a>(your_plan, parallelism = "future_lapply")</code>.
-You might also try options(mc.cores = jobs),
-or see future::.options
-for environment variables that set the max number of jobs.</p></dd>
-    <dt>'Makefile'</dt><dd><p>uses multiple R sessions
-by creating and running a Makefile.
-For distributed computing on a cluster or supercomputer,
-try <code><a href='make.html'>make</a>(..., parallelism = 'Makefile',
-  prepend = 'SHELL=./shell.sh')</code>.
-You need an auxiliary <code>shell.sh</code> file for this,
-and <code><a href='shell_file.html'>shell_file()</a></code>
-writes an example.
-    Here, Makefile-level parallelism is only used for
-targets in your workflow plan
-data frame, not imports. To process imported objects and files,
-drake selects the best parallel
-backend for your system and uses
-the number of jobs you give to the <code>jobs</code>
-argument to <code><a href='make.html'>make()</a></code>.
-To use at most 2 jobs for imports and at most 4 jobs
-for targets, run
-<code><a href='make.html'>make(..., parallelism = 'Makefile', jobs = 2, args = '--jobs=4')</a></code>
-    Caution: the Makefile generated by
-<code><a href='make.html'>make</a>(..., parallelism = 'Makefile')</code>
-is NOT standalone. DO NOT run it outside of
-<code><a href='make.html'>make()</a></code> or <code><a href='make.html'>make()</a></code>.
-Also, Windows users will need to download and install Rtools.</p></dd>
-</dl>
+    <p>See the
+<a href='https://ropenscilabs.github.io/drake-manual/hpc.html'>high-performance computing guide</a> # nolint
+for details on the parallel backends.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='make.html'>make()</a></code>, <code><a href='shell_file.html'>shell_file()</a></code></p>
+    <div class='dont-index'><p><code><a href='make.html'>make()</a></code>, <code><a href='shell_file.html'>shell_file()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># See all the parallel computing options.</span>
-<span class='fu'>parallelism_choices</span>()</div><div class='output co'>#&gt; [1] "mclapply"      "parLapply"     "future"        "future_lapply"
-#&gt; [5] "Makefile"     </div><div class='input'><span class='co'># See just the distributed computing options.</span>
-<span class='fu'>parallelism_choices</span>(<span class='kw'>distributed_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "future"        "future_lapply" "Makefile"     </div></pre>
+<span class='fu'>parallelism_choices</span>()</div><div class='output co'>#&gt; [1] "mclapply"             "parLapply"            "mclapply_staged"     
+#&gt; [4] "parLapply_staged"     "clustermq_staged"     "future"              
+#&gt; [7] "future_lapply"        "future_lapply_staged" "Makefile"            </div><div class='input'><span class='co'># See just the distributed computing options.</span>
+<span class='fu'>parallelism_choices</span>(<span class='kw'>distributed_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "clustermq_staged"     "future"               "future_lapply"       
+#&gt; [4] "future_lapply_staged" "Makefile"            </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -260,6 +184,8 @@ Also, Windows users will need to download and install Rtools.</p></dd>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

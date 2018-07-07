@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List the dependencies of a function, workflow plan command,
+<title>Deprecated.
+List the dependencies of a function, workflow plan command,
 or knitr report source file. — deps • drake</title>
 
 <!-- jquery -->
@@ -22,17 +23,27 @@ or knitr report source file. — deps • drake</title>
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="List the dependencies of a function, workflow plan command,
+
+
+
+<meta property="og:title" content="Deprecated.
+List the dependencies of a function, workflow plan command,
 or knitr report source file. — deps" />
 
-<meta property="og:description" content="Intended for debugging and checking your project.
+<meta property="og:description" content="Deprecated. Use deps_code() or deps_targets() instead.
+These functions are intended for debugging and checking your project.
 The dependency structure of the components of your analysis
 decides which targets are built and when." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -55,8 +66,12 @@ decides which targets are built and when." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">drake</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">drake</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -72,49 +87,7 @@ decides which targets are built and when." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/faq.html">FAQ</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/example-packages.html">Example: R package download trends</a>
-    </li>
-    <li>
-      <a href="../articles/example-gsp.html">Example: gross state products</a>
-    </li>
-    <li>
-      <a href="../articles/example-basic.html">Basic example</a>
-    </li>
-    <li>
-      <a href="../articles/best-practices.html">General best practices for drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/debug.html">Debugging and testing drake projects</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graphs with drake</a>
-    </li>
-    <li>
-      <a href="../articles/parallelism.html">Parallel computing</a>
-    </li>
-    <li>
-      <a href="../articles/timing.html">Time logging</a>
-    </li>
-    <li>
-      <a href="../articles/storage.html">Storage</a>
-    </li>
-    <li>
-      <a href="../articles/caution.html">Caution</a>
-    </li>
-    <li>
-      <a href="../articles/faq.html">Frequently-asked questions</a>
-    </li>
-  </ul>
+  <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -129,6 +102,7 @@ decides which targets are built and when." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -136,23 +110,28 @@ decides which targets are built and when." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List the dependencies of a function, workflow plan command,
+    <h1>Deprecated.
+List the dependencies of a function, workflow plan command,
 or knitr report source file.</h1>
-    <small>Source: <a href='https:/github.com/ropensci/drake/blob/master/R/dependencies.R'><code>R/dependencies.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
+    <div class="hidden name"><code>deps.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
-    <p>Intended for debugging and checking your project.
+    <p>Deprecated. Use <code><a href='deps_code.html'>deps_code()</a></code> or <code><a href='deps_targets.html'>deps_targets()</a></code> instead.
+These functions are intended for debugging and checking your project.
 The dependency structure of the components of your analysis
 decides which targets are built and when.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>deps</span>(<span class='no'>x</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -170,16 +149,20 @@ The other names listed are functions or generic R objects.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If the argument is a double-quoted string that points to
-a dynamic knitr report, the dependencies of the expected compiled
+    <p>If the argument is a <code>knitr</code> report
+(for example, <code><a href='file_store.html'>file_store("report.Rmd")</a></code> or <code>"\"report.Rmd\""</code>)
+the the dependencies of the expected compiled
 output will be given. For example, <code>deps(file_store("report.Rmd"))</code>
 will return target names found in calls to <code><a href='loadd.html'>loadd()</a></code>
-and <code><a href='readd.html'>readd()</a></code> in active code chunks. The <code><a href='file_store.html'>file_store()</a></code> function
-(alerts <code>drake</code> utility functions to file names by double-quoting them.)
+and <code><a href='readd.html'>readd()</a></code> in active code chunks.
 These <code><a href='loadd.html'>loadd()</a></code>/<code><a href='readd.html'>readd()</a></code> targets are needed
 in order to run <code>knit(knitr_in("report.Rmd"))</code>
 to produce the output file <code>"report.md"</code>, so technically,
 they are dependencies of <code>"report.md"</code>, not <code>"report.Rmd"</code>.</p>
+<p>The <code><a href='file_store.html'>file_store()</a></code> function
+alerts <code>drake</code> utility functions to file names by
+enclosing them in literal double quotes.
+(For example, <code><a href='file_store.html'>file_store("report.Rmd")</a></code> is just <code>"\"report.Rmd\""</code>.)</p>
 <p><code>Drake</code> takes special precautions so that a target/import
 does not depend on itself. For example, <code>deps(f)`` might return</code>"f"<code>if</code>f()` is a recursive function, but <code><a href='make.html'>make()</a></code> just ignores
 this conflict and runs as expected. In other words, <code><a href='make.html'>make()</a></code>
@@ -188,33 +171,8 @@ network.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Your workflow likely depends on functions in your workspace.</span>
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>){
-  <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> + <span class='no'>y</span> + <span class='fu'>g</span>(<span class='no'>x</span>)
-  <span class='fu'>saveRDS</span>(<span class='no'>out</span>, <span class='st'>'out.rds'</span>)
-}
-<span class='co'># Find the dependencies of f. These could be R objects/functions</span>
-<span class='co'># in your workspace or packages. Any file names or target names</span>
-<span class='co'># will be ignored.</span>
-<span class='fu'>deps</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt; [1] "g"       "saveRDS"</div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
-<span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span> + <span class='no'>some_object</span>,
-  <span class='kw'>my_target</span> <span class='kw'>=</span> <span class='no'>x</span> + <span class='fu'>readRDS</span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"tracked_input_file.rds"</span>)),
-  <span class='kw'>return_value</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='fu'>g</span>(<span class='no'>z</span> + <span class='no'>w</span>)),
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
-)
-<span class='co'># Get the dependencies of workflow plan commands.</span>
-<span class='co'># Here, the dependencies could be R functions/objects from your workspace</span>
-<span class='co'># or packages, imported files, or other targets in the workflow plan.</span>
-<span class='fu'>deps</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; [1] "some_object"</div><div class='input'><span class='fu'>deps</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>2</span>])</div><div class='output co'>#&gt; [1] "readRDS"                    "\"tracked_input_file.rds\""
-#&gt; [3] "x"                         </div><div class='input'><span class='fu'>deps</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>3</span>])</div><div class='output co'>#&gt; [1] "f" "g" "w" "x" "y" "z"</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_basic_example.html'>load_basic_example</a></span>() <span class='co'># Get the code with drake_example("basic").</span>
-<span class='co'># Dependencies of the knitr-generated targets like 'report.md'</span>
-<span class='co'># include targets/imports referenced with `readd()` or `loadd()`.</span>
-<span class='fu'>deps</span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.Rmd"</span>))
-})
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'># See deps_code() for examples.
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -242,6 +200,8 @@ network.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
