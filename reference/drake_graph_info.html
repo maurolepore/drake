@@ -126,7 +126,8 @@ you can plot your own custom <code>visNetwork</code> graph.</p>
   <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>), <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>build_times</span> <span class='kw'>=</span> <span class='st'>"build"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>split_columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>font_size</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -218,6 +219,20 @@ Set to <code>FALSE</code> to increase speed and risk using obsolete information.
 are printed in the legend. If <code>FALSE</code>, only the
 node types used are printed in the legend.</p></td>
     </tr>
+    <tr>
+      <th>group</th>
+      <td><p>optional character scalar, name of the column used to
+group nodes into columns. All the columns names of your <code>config$plan</code>
+are choices. The other choices (such as <code>"status"</code>) are column names
+in the <code>nodes</code> . To group nodes into clusters in the graph,
+you must also supply the <code>clusters</code> argument.</p></td>
+    </tr>
+    <tr>
+      <th>clusters</th>
+      <td><p>optional character vector of values to cluster on.
+These values must be elements of the column of the <code>nodes</code> data frame
+that you specify in the <code>group</code> argument to <code>drake_graph_info()</code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -255,6 +270,18 @@ default title of the graph.</p>
 <span class='fu'>library</span>(<span class='no'>visNetwork</span>)
 <span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='no'>raw_graph</span>$<span class='no'>nodes</span>, <span class='kw'>edges</span> <span class='kw'>=</span> <span class='no'>raw_graph</span>$<span class='no'>edges</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visHierarchicalLayout'>visHierarchicalLayout</a></span>(<span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>'UD'</span>)
+<span class='co'># Optionally visualize clusters.</span>
+<span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>large_data</span> <span class='kw'>&lt;-</span> <span class='fu'>grepl</span>(<span class='st'>"large"</span>, <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>target</span>)
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_graph_info</span>(
+  <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"large_data"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
+<span class='fu'>tail</span>(<span class='no'>graph</span>$<span class='no'>nodes</span>)
+<span class='fu'><a href='render_drake_graph.html'>render_drake_graph</a></span>(<span class='no'>graph</span>)
+<span class='co'># You can even use clusters given to you for free in the `graph$nodes`</span>
+<span class='co'># data frame.</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_graph_info</span>(
+  <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"imported"</span>)
+<span class='fu'>tail</span>(<span class='no'>graph</span>$<span class='no'>nodes</span>)
+<span class='fu'><a href='render_drake_graph.html'>render_drake_graph</a></span>(<span class='no'>graph</span>)
 })
 <span class='co'># }</span></pre>
   </div>
