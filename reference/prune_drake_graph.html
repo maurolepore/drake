@@ -168,11 +168,11 @@ remove the vertices after <code>to</code> from the graph.</p>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='build_drake_graph.html'>build_drake_graph</a></span>(<span class='no'>my_plan</span>)
 <span class='co'># The default plotting is not the greatest,</span>
 <span class='co'># but you will get the idea.</span>
-<span class='co'># plot(graph) # nolint</span>
+<span class='co'># plot(graph)</span>
 <span class='co'># Prune the graph: that is, remove the nodes downstream</span>
 <span class='co'># from 'small' and 'large'</span>
 <span class='no'>pruned</span> <span class='kw'>&lt;-</span> <span class='fu'>prune_drake_graph</span>(<span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"small"</span>, <span class='st'>"large"</span>))
-<span class='co'># plot(pruned) # nolint</span>
+<span class='co'># plot(pruned)</span>
 })
 <span class='co'># }</span></pre>
   </div>
