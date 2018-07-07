@@ -21,11 +21,19 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
 <script src="pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">drake</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="index.html">drake</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -65,49 +77,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="articles/faq.html">FAQ</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="articles/example-packages.html">Example: R package download trends</a>
-    </li>
-    <li>
-      <a href="articles/example-gsp.html">Example: gross state products</a>
-    </li>
-    <li>
-      <a href="articles/example-basic.html">Basic example</a>
-    </li>
-    <li>
-      <a href="articles/best-practices.html">General best practices for drake projects</a>
-    </li>
-    <li>
-      <a href="articles/debug.html">Debugging and testing drake projects</a>
-    </li>
-    <li>
-      <a href="articles/graph.html">Graphs with drake</a>
-    </li>
-    <li>
-      <a href="articles/parallelism.html">Parallel computing</a>
-    </li>
-    <li>
-      <a href="articles/timing.html">Time logging</a>
-    </li>
-    <li>
-      <a href="articles/storage.html">Storage</a>
-    </li>
-    <li>
-      <a href="articles/caution.html">Caution</a>
-    </li>
-    <li>
-      <a href="articles/faq.html">Frequently-asked questions</a>
-    </li>
-  </ul>
+  <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ</a>
 </li>
 <li>
   <a href="news/index.html">News</a>
@@ -122,6 +92,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -129,7 +100,7 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="contents col-md-9">
     <div class="page-header">
       <h1>Summary</h1>
@@ -145,19 +116,14 @@
 <li>pipeline</li>
 <li>workflow</li>
 <li>Make authors:</li>
-<li>name: William Michael Landau orcid: 0000-0003-1878-3253 email: <script type="text/javascript">
-<!--
-h='&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#x77;&#x69;&#108;&#108;&#46;&#108;&#x61;&#110;&#100;&#x61;&#x75;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>will.landau at gmail dot com</noscript> affiliation: 1 affiliations:</li>
+<li>name: William Michael Landau orcid: 0000-0003-1878-3253 email: <a href="mailto:will.landau@gmail.com">will.landau@gmail.com</a> affiliation: 1 affiliations:</li>
 <li>name: Eli Lilly and Company index: 1 date: 4 January 2018 bibliography: paper.bib —</li>
 </ul>
 <div id="summary" class="section level1">
 
-<p>The <a href="https://github.com/ropensci/drake">drake</a> R package [@drake] is a workflow manager and computational engine for data science projects. Its primary objective is to keep results up to date with the underlying code and data. When it runs a project, <a href="https://github.com/ropensci/drake">drake</a> detects any pre-existing output and refreshes the pieces that are outdated or missing. Not every runthrough starts from scratch, and the final answers are reproducible. With a user-friendly R-focused interface, <a href="https://ropensci.github.io/drake">comprehensive documentation</a>, and <a href="https://github.com/ropensci/drake/blob/master/vignettes/parallelism.Rmd">extensive implicit parallel computing support</a>, <a href="https://github.com/ropensci/drake">drake</a> surpasses the analogous functionality in similar tools such as <a href="www.gnu.org/software/make/">Make</a> [@Make], <a href="https://github.com/richfitz/remake">remake</a> [@remake], <a href="https://github.com/r-lib/memoise">memoise</a> [@memoise], and <a href="https://github.com/yihui/knitr">knitr</a> [@knitr].</p>
+<p>The <a href="https://github.com/ropensci/drake">drake</a> R package [@drake] is a workflow manager and computational engine for data science projects. Its primary objective is to keep results up to date with the underlying code and data. When it runs a project, <a href="https://github.com/ropensci/drake">drake</a> detects any pre-existing output and refreshes the pieces that are outdated or missing. Not every runthrough starts from scratch, and the final answers are reproducible. With a user-friendly R-focused interface, <a href="https://ropensci.github.io/drake">comprehensive documentation</a>, and extensive implicit parallel computing support, <a href="https://github.com/ropensci/drake">drake</a> surpasses the analogous functionality in similar tools such as <a href="www.gnu.org/software/make/">Make</a> [@Make], <a href="https://github.com/richfitz/remake">remake</a> [@remake], <a href="https://github.com/r-lib/memoise">memoise</a> [@memoise], and <a href="https://github.com/yihui/knitr">knitr</a> [@knitr].</p>
 <p>In reproducible research, <a href="https://github.com/ropensci/drake">drake</a>’s role is to provide tangible evidence that a project’s results are re-creatable. <a href="https://github.com/ropensci/drake">Drake</a> quickly detects when the code, data, and output are synchronized. In other words, <a href="https://github.com/ropensci/drake">drake</a> helps determine if the starting materials would produce the expected output if the project were to start over and run from scratch. This approach decreases the time and effort it takes to evaluate research projects for reproducibility.</p>
-<p>Regarding high-performance computing, <a href="https://github.com/ropensci/drake">drake</a> interfaces with a <a href="https://github.com/ropensci/drake/blob/master/vignettes/parallelism.Rmd#parallel-backends">wide variety of technologies</a> to deploy the steps of a data analysis project. Options range from local multicore computing to serious distributed computing on a cluster. In addition, the parallel computing is implicit. In other words, <a href="https://github.com/ropensci/drake">drake</a> constructs the directed acyclic network of the workflow and determines which steps can run simultaneously and which need to wait for dependencies. This automation eases the cognitive and computational burdens on the user, enhancing the readability of code and thus reproducibility.</p>
+<p>Regarding high-performance computing, <a href="https://github.com/ropensci/drake">drake</a> interfaces with a variety of technologies and scheduling algorithms to deploy the steps of a data analysis project. Here, the parallel computing is implicit. In other words, <a href="https://github.com/ropensci/drake">drake</a> constructs the directed acyclic network of the workflow and determines which steps can run simultaneously and which need to wait for dependencies. This automation eases the cognitive and computational burdens on the user, enhancing the readability of code and thus reproducibility.</p>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
@@ -181,6 +147,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
