@@ -128,90 +128,55 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>config</th>
-      <td><p>a <code><a href='drake_config.html'>drake_config()</a></code> configuration list.
-You can get one as a return value from <code><a href='make.html'>make()</a></code> as well.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>Optional collection of target/import names.
-If <code>from</code> is nonempty,
-the graph will restrict itself to
-a neighborhood of <code>from</code>.
-Control the neighborhood with
-<code>mode</code> and <code>order</code>.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>mode</th>
-      <td><p>Which direction to branch out in the graph
-to create a neighborhood around <code>from</code>.
-Use <code>"in"</code> to go upstream,
-<code>"out"</code> to go downstream,
-and <code>"all"</code> to go both ways and disregard
-edge direction altogether.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>order</th>
-      <td><p>How far to branch out to create
-a neighborhood around <code>from</code> (measured
-in the number of nodes). Defaults to
-as far as possible.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>subset</th>
-      <td><p>Optional character vector of of target/import names.
-Subset of nodes to display in the graph.
-Applied after <code>from</code>, <code>mode</code>, and <code>order</code>.
-Be advised: edges are only kept for adjacent nodes in <code>subset</code>.
-If you do not select all the intermediate nodes,
-edges will drop from the graph.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>build_times</th>
-      <td><p>character string or logical.
-If character, the choices are
-1. <code>"build"</code>: runtime of the command plus the time
-it take to store the target or import.
-2. <code>"command"</code>: just the runtime of the command.
-3. <code>"none"</code>: no build times.
-If logical, <code>build_times</code> selects whether to show the
-times from `build_times(..., type = "build")`` or use
-no build times at all. See <code><a href='build_times.html'>build_times()</a></code> for details.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>number of digits for rounding the build times</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>targets_only</th>
-      <td><p>logical,
-whether to skip the imports and only include the
-targets in the workflow plan.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>split_columns</th>
-      <td><p>logical, deprecated.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>font_size</th>
-      <td><p>numeric, font size of the node labels in the graph</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>from_scratch</th>
-      <td><p>logical, whether to assume all the targets
-will be made from scratch on the next <code><a href='make.html'>make()</a></code>.
-Makes all targets outdated, but keeps information about
-build progress in previous <code><a href='make.html'>make()</a></code>s.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>make_imports</th>
-      <td><p>logical, whether to make the imports first.
-Set to <code>FALSE</code> to increase speed and risk using obsolete information.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>full_legend</th>
-      <td><p>logical. If <code>TRUE</code>, all the node types
-are printed in the legend. If <code>FALSE</code>, only the
-node types used are printed in the legend.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     </table>
     
@@ -222,10 +187,6 @@ node types used are printed in the legend.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Deprecated on 2018-06-27.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='drake_graph_info.html'>drake_graph_info()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -240,8 +201,6 @@ node types used are printed in the legend.</p></td>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

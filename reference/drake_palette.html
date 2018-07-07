@@ -33,7 +33,7 @@
 <meta property="og:title" content="Show drake's color palette. — drake_palette" />
 
 <meta property="og:description" content="This function is
-used in both the console and vis_drake_graph()
+used in both the console and graph visualizations.
 Your console must have the crayon package enabled." />
 <meta name="twitter:card" content="summary" />
 
@@ -116,7 +116,7 @@ Your console must have the crayon package enabled." />
     <div class="ref-description">
     
     <p>This function is
-used in both the console and <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>
+used in both the console and graph visualizations.
 Your console must have the crayon package enabled.</p>
     
     </div>
@@ -133,7 +133,7 @@ but the actual return value is <code>NULL</code>.</p>
     <p>This palette applies to console output
 (internal functions <code>console()</code> and
 <code>console_many_targets()</code>) and the node colors
-in <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>.
+in the graph visualizations.
 So if you want to contribute improvements to the palette,
 please both <code>drake_palette()</code> and
 <code>visNetwork::visNetwork(nodes = <a href='legend_nodes.html'>legend_nodes</a>())</code></p>
@@ -161,7 +161,7 @@ please both <code>drake_palette()</code> and
 #&gt; <span class='message'>trigger</span>
 #&gt; <span class='message'>unload</span>
 #&gt; <span class='message'>up_to_date</span></div><div class='input'># Show part of the palette as an interactive visNetwork graph.
-# These are the nodes in the legend of vis_drake_graph().
+# These are the nodes in the legend of the graph visualizations.
 </div><span class='co'># NOT RUN {</span>
 <span class='kw pkg'>visNetwork</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'><a href='legend_nodes.html'>legend_nodes</a></span>())
 <span class='co'># }</span></pre>

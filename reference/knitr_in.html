@@ -156,8 +156,7 @@ source files supplied to a command in your workflow plan data frame.</p></td>
 <span class='co'># The mtcars example (`drake_example("mtcars")`)</span>
 <span class='co'># already has a demonstration</span>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>()
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)
-<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>)
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)
 <span class='co'># Now how did drake magically know that</span>
 <span class='co'># `small`, `large`, and `coef_regression2_small` were</span>
 <span class='co'># dependencies of the output file `report.md`?</span>

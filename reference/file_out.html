@@ -167,9 +167,8 @@ workflow plan data frame.</p></td>
 <span class='no'>plan</span>
 <span class='co'># Drake knows "\"mtcars.csv\"" is the first target</span>
 <span class='co'># and a dependency of `contents`. See for yourself:</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>)
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>)
 <span class='fu'>file.exists</span>(<span class='st'>"mtcars.csv"</span>)
-<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>)
 <span class='co'># See also `knitr_in()`. `knitr_in()` is like `file_in()`</span>
 <span class='co'># except that it analyzes active code chunks in your `knitr`</span>
 <span class='co'># source file and detects non-file dependencies.</span>

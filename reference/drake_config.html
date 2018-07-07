@@ -35,8 +35,8 @@ used internally in <code><a href='make.html'>make()</a></code>. — drake_config
 used internally in <code><a href='make.html'>make()</a></code>. — drake_config" />
 
 <meta property="og:description" content="This configuration list
-is also required for functions such as outdated() and
-vis_drake_graph(). It is meant to be specific to
+is also required for functions such as outdated().
+It is meant to be specific to
 a single call to make(), and you should not modify
 it by hand afterwards. If you later plan to call make()
 with different arguments (especially targets),
@@ -130,8 +130,8 @@ used internally in <code><a href='make.html'>make()</a></code>.</h1>
     <div class="ref-description">
     
     <p>This configuration list
-is also required for functions such as <code><a href='outdated.html'>outdated()</a></code> and
-<code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>. It is meant to be specific to
+is also required for functions such as <code><a href='outdated.html'>outdated()</a></code>.
+It is meant to be specific to
 a single call to <code><a href='make.html'>make()</a></code>, and you should not modify
 it by hand afterwards. If you later plan to call <code><a href='make.html'>make()</a></code>
 with different arguments (especially <code>targets</code>),
@@ -262,7 +262,7 @@ of the user manual.</p></td>
     <tr>
       <th>jobs</th>
       <td><p>number of parallel processes or jobs to run.
-See <code><a href='max_useful_jobs.html'>max_useful_jobs()</a></code> or <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>
+See <code><a href='predict_runtime.html'>predict_runtime()</a></code>
 to help figure out what the number of jobs should be.
 Windows users should not set <code>jobs &gt; 1</code> if
 <code>parallelism</code> is <code>"mclapply"</code> because
@@ -593,7 +593,7 @@ This argument only applies to parallel computing with persistent workers
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='make_with_config.html'>make_with_config()</a></code>, <code><a href='make.html'>make()</a></code>,
-<code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code></p></div>
+<code><a href='drake_plan.html'>drake_plan()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -606,12 +606,6 @@ This argument only applies to parallel computing with persistent workers
 <span class='co'># because they use the configuration list.</span>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>) <span class='co'># Which targets are out of date?</span>
 <span class='fu'><a href='missed.html'>missed</a></span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>) <span class='co'># Which imports are missing?</span>
-<span class='co'># In make(..., jobs = n), it would be silly to set `n` higher than this:</span>
-<span class='fu'><a href='max_useful_jobs.html'>max_useful_jobs</a></span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>)
-<span class='co'># Show a visNetwork graph</span>
-<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>)
-<span class='co'># Get the underlying node/edge data frames of the graph.</span>
-<span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>)
 })
 <span class='co'># }</span></pre>
   </div>

@@ -145,9 +145,9 @@ you can write with <code><a href='drake_hpc_template_file.html'>drake_hpc_templa
 <span class='co'># List the available template files.</span>
 <span class='fu'>drake_hpc_template_files</span>()
 <span class='co'># Write a SLURM template file from the SLURM example.</span>
-<span class='fu'><a href='drake_hpc_template_file.html'>drake_hpc_template_file</a></span>(<span class='st'>"slurm_future.tmpl"</span>) <span class='co'># Writes slurm_future.tmpl.</span>
+<span class='fu'><a href='drake_hpc_template_file.html'>drake_hpc_template_file</a></span>(<span class='st'>"slurm_batchtools.tmpl"</span>) <span class='co'># Writes slurm_batchtools.tmpl.</span>
 <span class='fu'>library</span>(<span class='no'>future.batchtools</span>)
-<span class='co'># future::plan(batchtools_slurm, template = "slurm_future.tmpl") # nolint</span>
+<span class='co'># future::plan(batchtools_slurm, template = "slurm_batchtools.tmpl") # nolint</span>
 <span class='co'># make(my_plan, parallelism = "future", jobs = 2) # nolint</span>
 })
 <span class='co'># }</span></pre>

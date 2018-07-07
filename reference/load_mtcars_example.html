@@ -187,9 +187,10 @@ the file, <code>report.Rmd</code>.</p>
 <span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>4</span>])
 <span class='co'># Plot the interactive network visualization of the workflow.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>)
+<span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Which targets are out of date?</span>
 <span class='co'># Run the workflow to build all the targets in the plan.</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)
+<span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Everything should be up to date.</span>
 <span class='co'># For the reg2() model on the small dataset,</span>
 <span class='co'># the p-value is so small that there may be an association</span>
 <span class='co'># between weight and fuel efficiency after all.</span>
