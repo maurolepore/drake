@@ -254,7 +254,24 @@ as names and vectors of possible values as list elements.</p>
 #&gt; 1 x_1    rnorm(1) 1    
 #&gt; 2 x_2    rnorm(2) 2    
 #&gt; 3 y_1    rexp(1)  1    
-#&gt; 4 y_2    rexp(2)  2    </div></pre>
+#&gt; 4 y_2    rexp(2)  2    </div><div class='input'><span class='co'># With the `trace` argument,</span>
+<span class='co'># you can generate columns that show how the wildcards</span>
+<span class='co'># were evaluated. Then you can visualize the wildcard groups</span>
+<span class='co'># as clusters.</span>
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='no'>n__</span>))
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>print</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 3
+#&gt;   target command  n__  
+#&gt; * &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;
+#&gt; 1 x_1    rnorm(1) 1    
+#&gt; 2 x_2    rnorm(2) 2    
+#&gt; 3 y_1    rexp(1)  1    
+#&gt; 4 y_2    rexp(2)  2    </div><div class='input'><span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
+<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"1"</span>)
+<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>))
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"x_1"</span>, <span class='st'>"y_2"</span>), <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><div class='output co'>#&gt; <span class='message'>target x_1</span></div><div class='output co'>#&gt; <span class='message'>target y_2</span></div><div class='input'><span class='co'># Optionally cluster on columns supplied by `drake_graph_info()$nodes`.</span>
+<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"up to date"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

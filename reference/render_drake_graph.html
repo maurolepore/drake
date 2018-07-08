@@ -207,6 +207,8 @@ To remove the legend entirely, set <code>ncol_legend</code> to <code>NULL</code>
 <span class='co'># Instead of jumpting right to vis_drake_graph(), get the data frames</span>
 <span class='co'># of nodes, edges, and legend nodes.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
+<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># Jump straight to the interactive graph.</span>
+<span class='co'># Get the node and edge info that vis_drake_graph() just plotted:</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='no'>config</span>)
 <span class='co'># You can pass the data frames right to render_drake_graph()</span>
 <span class='co'># (as in vis_drake_graph()) or you can create</span>

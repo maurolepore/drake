@@ -590,11 +590,11 @@ for more details.</p>
 
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>,
 <code><a href='drake_config.html'>drake_config()</a></code>,
+<code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>,
 <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>,
 <code><a href='outdated.html'>outdated()</a></code>,
 <code><a href='parallelism_choices.html'>parallelism_choices()</a></code>,
-<code><a href='triggers.html'>triggers()</a></code>,
-<code><a href='make_with_config.html'>make_with_config()</a></code></p></div>
+<code><a href='triggers.html'>triggers()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -614,7 +614,9 @@ for more details.</p>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Some targets depend on reg2().</span>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>) <span class='co'># Rebuild just the outdated targets.</span>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Everything is up to date again.</span>
+<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See how they fit in an interactive graph.</span>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># Write a text log file this time.</span>
+<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># The colors changed in the graph.</span>
 <span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch.</span>
 <span class='co'># Run with at most 2 jobs at a time for the imports</span>
 <span class='co'># and at most 4 jobs at a time for the targets.</span>
