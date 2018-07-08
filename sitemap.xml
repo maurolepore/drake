@@ -415,6 +415,9 @@
     <loc>https://github.com/ropensci/drake/reference/render_graph.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ropensci/drake/reference/render_static_drake_graph.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ropensci/drake/reference/rescue_cache.html</loc>
   </url>
   <url>
@@ -431,6 +434,9 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/silencer_hook.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/static_drake_graph.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/store_drake_config.html</loc>
