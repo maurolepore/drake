@@ -218,8 +218,7 @@ and <code>function(code){message("Avoiding the code")}</code> is a bad hook.</p>
     <tr>
       <th>cache</th>
       <td><p>drake cache as created by <code><a href='new_cache.html'>new_cache()</a></code>.
-See also <code><a href='get_cache.html'>get_cache()</a></code>, <code><a href='this_cache.html'>this_cache()</a></code>,
-and <code><a href='recover_cache.html'>recover_cache()</a></code></p></td>
+See also <code><a href='get_cache.html'>get_cache()</a></code> and <code><a href='this_cache.html'>this_cache()</a></code>.</p></td>
     </tr>
     <tr>
       <th>fetch_cache</th>
@@ -396,7 +395,7 @@ is always invisibly returned.</p></td>
       <td><p>An <code>igraph</code> object from the previous <code>make()</code>.
 Supplying a pre-built graph could save time.
 The graph is constructed by <code><a href='build_drake_graph.html'>build_drake_graph()</a></code>.
-You can also get one from <code><a href='config.html'>config</a>(my_plan)$graph</code>.
+You can also get one from <code>drake_config(my_plan)$graph</code>.
 Overrides <code>skip_imports</code>.</p></td>
     </tr>
     <tr>
@@ -583,7 +582,7 @@ This argument only applies to parallel computing with persistent workers
 
     <p>The master internal configuration list, mostly
 containing arguments to <code>make()</code> and important objects
-constructed along the way. See <code><a href='config.html'>config()</a></code>
+constructed along the way. See <code><a href='drake_config.html'>drake_config()</a></code>
 for more details.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -603,7 +602,6 @@ for more details.</p>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Which targets need to be (re)built?</span>
-<span class='no'>my_jobs</span> <span class='kw'>=</span> <span class='fu'><a href='max_useful_jobs.html'>max_useful_jobs</a></span>(<span class='no'>config</span>) <span class='co'># Depends on what is up to date.</span>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># Build what needs to be built.</span>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Everything is up to date.</span>
 <span class='co'># Change one of your imported function dependencies.</span>
