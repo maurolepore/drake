@@ -144,7 +144,7 @@ for an overview of the documentation.</p>
   <span class='kw'>caching</span> <span class='kw'>=</span> <span class='st'>"worker"</span>, <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>imports_only</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lookahead"</span>, <span class='st'>"speed"</span>, <span class='st'>"memory"</span>),
   <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='st'>"Makefile"</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -575,6 +575,11 @@ for <code>make(parallelism = "future_lapply", jobs = n)</code>
 This argument only applies to parallel computing with persistent workers
 (<code>make(parallelism = x)</code>, where <code>x</code> could be <code>"mclapply"</code>,
 <code>"parLapply"</code>, or <code>"future_lapply"</code>).</p></td>
+    </tr>
+    <tr>
+      <th>garbage_collection</th>
+      <td><p>logical, whether to call <code>gc()</code> each time
+a target is built during <code>make()</code>.</p></td>
     </tr>
     </table>
     
