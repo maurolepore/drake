@@ -203,7 +203,8 @@ for the idea that makes this function work.</p>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='fl'>1</span>))
 
 <span class='co'># Here are the reproducibly tracked objects in the workflow.</span>
-<span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>plan</span>)
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
+<span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
 
 <span class='co'># But the digest() function has dependencies too.</span>
 <span class='fu'>head</span>(<span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>digest</span>))
@@ -214,7 +215,8 @@ for the idea that makes this function work.</p>
 <span class='co'># a package's inner functions.</span>
 
 <span class='fu'>expose_imports</span>(<span class='no'>digest</span>)
-<span class='no'>new_objects</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>plan</span>)
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
+<span class='no'>new_objects</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
 <span class='fu'>head</span>(<span class='no'>new_objects</span>, <span class='fl'>10</span>)
 <span class='fu'>length</span>(<span class='no'>new_objects</span>)
 
@@ -238,7 +240,8 @@ for the idea that makes this function work.</p>
 <span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>){
   <span class='kw pkg'>digest</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/digest/topics/digest'>digest</a></span>(<span class='no'>x</span>) <span class='co'># Was previously just digest()</span>
 }
-<span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>plan</span>)
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
+<span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
 })
 <span class='co'># }</span></pre>
   </div>

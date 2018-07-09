@@ -127,10 +127,9 @@ for enhanced graph visualization functionality.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>build_drake_graph</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='read_drake_plan.html'>read_drake_plan</a></span>(),
-  <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/possible_targets'>possible_targets</a></span>(<span class='no'>plan</span>), <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sanitize_plan</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>build_drake_graph</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='read_drake_plan.html'>read_drake_plan</a></span>(), <span class='kw'>targets</span> <span class='kw'>=</span> <span class='no'>plan</span>$<span class='no'>target</span>,
+  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>sanitize_plan</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,7 +206,11 @@ most 4 jobs for targets, run
     </tr>
     <tr>
       <th>sanitize_plan</th>
-      <td><p>logical, whether to sanitize the workflow plan first.</p></td>
+      <td><p>logical, deprecated. If you must,
+call <code>drake:::sanitize_plan()</code> to sanitize the plan
+and/or <code>drake:::sanitize_targets()</code> to sanitize the targets
+(or just get <code>plan</code> and <code>targets</code> and <code>graph</code> from
+<code><a href='drake_config.html'>drake_config()</a></code>).</p></td>
     </tr>
     <tr>
       <th>console_log_file</th>
