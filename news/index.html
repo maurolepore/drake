@@ -128,6 +128,7 @@
 <li>Deprecate <code><a href="../reference/drake_batchtools_tmpl_file.html">drake_batchtools_tmpl_file()</a></code> in favor of <code><a href="../reference/drake_hpc_template_file.html">drake_hpc_template_file()</a></code> and <code><a href="../reference/drake_hpc_template_files.html">drake_hpc_template_files()</a></code>.</li>
 <li>Add a <code>garbage_collection</code> argument to <code><a href="../reference/make.html">make()</a></code>. If <code>TRUE</code>, <code>gc()</code> is called after every new build of a target.</li>
 <li>Remove redundant calls to <code>sanitize_plan()</code> in <code><a href="../reference/make.html">make()</a></code>.</li>
+<li>Change <code><a href="../reference/tracked.html">tracked()</a></code> to accept only a <code><a href="../reference/drake_config.html">drake_config()</a></code> object as an argument. Yes, it is technically a breaking change, but it is only a small break, and it is the correct API choice.</li>
 </ul>
 </div>
     <div id="version-5-2-1" class="section level1">
