@@ -412,10 +412,16 @@
     <loc>https://github.com/ropensci/drake/reference/render_graph.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ropensci/drake/reference/render_sankey_drake_graph.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ropensci/drake/reference/render_static_drake_graph.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/rescue_cache.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/sankey_drake_graph.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/session.html</loc>

@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show static graph representation
-of your drake project. — static_drake_graph • drake</title>
+<title>Show a Sankey graph of your drake project. — sankey_drake_graph • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,11 +30,11 @@ of your drake project. — static_drake_graph • drake</title>
 
 
 
-<meta property="og:title" content="Show static graph representation
-of your drake project. — static_drake_graph" />
+<meta property="og:title" content="Show a Sankey graph of your drake project. — sankey_drake_graph" />
 
-<meta property="og:description" content="This function requries packages ggplot2 and ggraph.
-Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))." />
+<meta property="og:description" content="To save time for repeated plotting,
+this function is divided into
+drake_graph_info() and render_sankey_drake_graph()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,25 +108,24 @@ Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))."
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show static graph representation
-of your drake project.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/static_drake_graph.R'><code>R/static_drake_graph.R</code></a></small>
-    <div class="hidden name"><code>static_drake_graph.Rd</code></div>
+    <h1>Show a Sankey graph of your drake project.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/sankey_drake_graph.R'><code>R/sankey_drake_graph.R</code></a></small>
+    <div class="hidden name"><code>sankey_drake_graph.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function requries packages <code>ggplot2</code> and <code>ggraph</code>.
-Install them with <code>install.packages(c("ggplot2", "ggraph"))</code>.</p>
+    <p>To save time for repeated plotting,
+this function is divided into
+<code><a href='drake_graph_info.html'>drake_graph_info()</a></code> and <code><a href='render_sankey_drake_graph.html'>render_sankey_drake_graph()</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>static_drake_graph</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(),
-  <span class='kw'>build_times</span> <span class='kw'>=</span> <span class='st'>"build"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>split_columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>,
-  <span class='st'>"all"</span>), <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>sankey_drake_graph</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(), <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>),
+  <span class='kw'>selfcontained</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>build_times</span> <span class='kw'>=</span> <span class='st'>"build"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>),
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -136,6 +134,20 @@ Install them with <code>install.packages(c("ggplot2", "ggraph"))</code>.</p>
       <th>config</th>
       <td><p>a <code><a href='drake_config.html'>drake_config()</a></code> configuration list.
 You can get one as a return value from <code><a href='make.html'>make()</a></code> as well.</p></td>
+    </tr>
+    <tr>
+      <th>file</th>
+      <td><p>Name of HTML file to save the graph.
+If <code>NULL</code> or <code>character(0)</code>,
+no file is saved and the graph is rendered and displayed within R.</p></td>
+    </tr>
+    <tr>
+      <th>selfcontained</th>
+      <td><p>logical, whether
+to save the <code>file</code> as a self-contained
+HTML file (with external resources base64 encoded) or a file with
+external resources placed in an adjacent directory. If <code>TRUE</code>,
+pandoc is required.</p></td>
     </tr>
     <tr>
       <th>build_times</th>
@@ -158,14 +170,6 @@ no build times at all. See <code><a href='build_times.html'>build_times()</a></c
       <td><p>logical,
 whether to skip the imports and only include the
 targets in the workflow plan.</p></td>
-    </tr>
-    <tr>
-      <th>split_columns</th>
-      <td><p>logical, deprecated.</p></td>
-    </tr>
-    <tr>
-      <th>main</th>
-      <td><p>character string, title of the graph</p></td>
     </tr>
     <tr>
       <th>from</th>
@@ -214,12 +218,6 @@ Makes all targets outdated, but keeps information about
 build progress in previous <code><a href='make.html'>make()</a></code>s.</p></td>
     </tr>
     <tr>
-      <th>full_legend</th>
-      <td><p>logical. If <code>TRUE</code>, all the node types
-are printed in the legend. If <code>FALSE</code>, only the
-node types used are printed in the legend.</p></td>
-    </tr>
-    <tr>
       <th>group</th>
       <td><p>optional character scalar, name of the column used to
 group nodes into columns. All the columns names of your <code>config$plan</code>
@@ -233,17 +231,20 @@ you must also supply the <code>clusters</code> argument.</p></td>
 These values must be elements of the column of the <code>nodes</code> data frame
 that you specify in the <code>group</code> argument to <code><a href='drake_graph_info.html'>drake_graph_info()</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments passed to <code><a href='http://www.rdocumentation.org/packages/networkD3/topics/sankeyNetwork'>networkD3::sankeyNetwork()</a></code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>ggplot2</code> object, which you can modify with more layers,
-show with <code>plot()</code>, or save as a file with <code>ggsave()</code>.</p>
+    <p>A <code>visNetwork</code> graph.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, <code><a href='sankey_drake_graph.html'>sankey_drake_graph()</a></code>,
-<code><a href='render_static_drake_graph.html'>render_static_drake_graph()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='render_sankey_drake_graph.html'>render_sankey_drake_graph()</a></code>, <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>,
+<code><a href='static_drake_graph.html'>static_drake_graph()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -252,7 +253,19 @@ show with <code>plot()</code>, or save as a file with <code>ggsave()</code>.</p>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
 <span class='co'># Plot the network graph representation of the workflow.</span>
-<span class='fu'>static_drake_graph</span>(<span class='no'>config</span>) <span class='co'># Save to a file with `ggplot2::ggsave()`.</span>
+<span class='fu'>sankey_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'100%'</span>) <span class='co'># The width is passed to visNetwork</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
+<span class='fu'>sankey_drake_graph</span>(<span class='no'>config</span>) <span class='co'># The black nodes from before are now green.</span>
+<span class='co'># Plot a subgraph of the workflow.</span>
+<span class='fu'>sankey_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"small"</span>, <span class='st'>"reg2"</span>))
+<span class='co'># Optionally visualize clusters.</span>
+<span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>large_data</span> <span class='kw'>&lt;-</span> <span class='fu'>grepl</span>(<span class='st'>"large"</span>, <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>target</span>)
+<span class='fu'>sankey_drake_graph</span>(
+  <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"large_data"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
+<span class='co'># You can even use clusters given to you for free in the `graph$nodes`</span>
+<span class='co'># data frame of `drake_graph_info()`.</span>
+<span class='fu'>sankey_drake_graph</span>(
+  <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"imported"</span>)
 })
 <span class='co'># }</span></pre>
   </div>
