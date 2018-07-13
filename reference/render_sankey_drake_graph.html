@@ -34,7 +34,11 @@
 
 <meta property="og:description" content="This function is called inside
 sankey_drake_graph(), which typical users
-call more often." />
+call more often. A legend is unfortunately unavailable
+for the graph itself
+(https://github.com/christophergandrud/networkD3/issues/240)
+but you can see what all the colors mean with
+visNetwork::visNetwork(drake::legend_nodes())." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,7 +121,11 @@ call more often." />
     
     <p>This function is called inside
 <code><a href='sankey_drake_graph.html'>sankey_drake_graph()</a></code>, which typical users
-call more often.</p>
+call more often. A legend is unfortunately unavailable
+for the graph itself
+(<a href='https://github.com/christophergandrud/networkD3/issues/240'>https://github.com/christophergandrud/networkD3/issues/240</a>)
+but you can see what all the colors mean with
+<code><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork::visNetwork(drake::legend_nodes())</a></code>.</p>
     
     </div>
 
@@ -172,6 +180,8 @@ pandoc is required.</p></td>
 <span class='co'># of nodes, edges, and legend nodes.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
 <span class='fu'><a href='sankey_drake_graph.html'>sankey_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># Jump straight to the interactive graph.</span>
+<span class='co'># Show the legend separately.</span>
+<span class='kw pkg'>visNetwork</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/legend_nodes'>legend_nodes</a></span>())
 <span class='co'># Get the node and edge info that sankey_drake_graph() just plotted:</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='no'>config</span>)
 <span class='co'># You can pass the data frames right to render_sankey_drake_graph()</span>
