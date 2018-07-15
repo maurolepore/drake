@@ -66,7 +66,7 @@ argument to supply them as character strings." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">drake</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9001</span>
       </span>
     </div>
 
@@ -113,7 +113,7 @@ argument to supply them as character strings." />
     <div class="page-header">
     <h1>Create a workflow plan data frame
 for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/workplan.R'><code>R/workplan.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/plan.R'><code>R/plan.R</code></a></small>
     <div class="hidden name"><code>drake_plan.Rd</code></div>
     </div>
 
@@ -200,9 +200,12 @@ for optional columns you can append manually post-hoc.</p>
 
     <p>A workflow plan data frame is a data frame
 with a <code>target</code> column and a <code>command</code> column.
-Targets are the objects and files that drake generates,
+Targets are the R objects that <code>drake</code> generates,
 and commands are the pieces of R code that produce them.</p>
-<p>To use custom files in your workflow plan,
+<p>The commands that return targets may also depend on
+external files and create multiple external files.
+To signal that you are creating and/or depending on
+custom files in your commands,
 use the <code><a href='file_in.html'>file_in()</a></code>, <code><a href='knitr_in.html'>knitr_in()</a></code>, and
 <code><a href='file_out.html'>file_out()</a></code> functions in your commands.
 the examples in this help file provide some guidance.</p>

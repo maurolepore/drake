@@ -63,7 +63,7 @@ is used to compute the metadata of targets." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">drake</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9001</span>
       </span>
     </div>
 
@@ -142,14 +142,14 @@ by <code><a href='drake_config.html'>drake_config()</a></code>.</p></td>
 
     <p>A list of metadata on a target. Does not include
 the file modification time if the target is a file.
-That piece is provided later in <code><a href='make.html'>make()</a></code> by
-<code>drake:::finish_meta</code>.</p>
+That piece is computed later in <code><a href='make.html'>make()</a></code> by
+<code>drake:::store_outputs()</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Target metadata is computed
 with <code>drake_meta()</code>, and then
-<code>drake:::finish_meta()</code> completes the metadata
+<code>drake:::store_outputs()</code> completes the metadata
 after the target is built.
 In other words, the output of <code>drake_meta()</code> corresponds
 to the state of the target immediately before <code><a href='make.html'>make()</a></code>

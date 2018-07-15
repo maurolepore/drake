@@ -64,7 +64,7 @@ for a full explanation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">drake</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9001</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@ for a full explanation." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Declare the file outputs of a workflow plan command.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/workplan.R'><code>R/workplan.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/plan.R'><code>R/plan.R</code></a></small>
     <div class="hidden name"><code>file_out.Rd</code></div>
     </div>
 
@@ -123,26 +123,20 @@ for a full explanation.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>file_out</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>file_out</span>(<span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>Character string of length 1. File path
-of the file output of a command in your
-workflow plan data frame.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>Do not use. For informative input handling only.</p></td>
+      <td><p>Character vector of output file paths.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character string, the file path of the file output.</p>
+    <p>A character vector of declared output file paths.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -154,7 +148,7 @@ workflow plan data frame.</p></td>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Contain side effects"</span>, {
 <span class='co'># The `file_out()` and `file_in()` functions</span>
 <span class='co'># just takes in strings and returns them.</span>
-<span class='fu'>file_out</span>(<span class='st'>"summaries.txt"</span>)
+<span class='fu'>file_out</span>(<span class='st'>"summaries.txt"</span>, <span class='st'>"output.csv"</span>)
 <span class='co'># Their main purpose is to orchestrate your custom files</span>
 <span class='co'># in your workflow plan data frame.</span>
 <span class='fu'>suppressWarnings</span>(

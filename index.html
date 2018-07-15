@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">drake</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.2.1.9001</span>
       </span>
     </div>
 
@@ -201,7 +201,7 @@ Development
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>X__<span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">hist =</span> <span class="kw">create_plot</span>(data),</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">fit =</span> <span class="kw">lm</span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Width <span class="op">+</span><span class="st"> </span>Species, data),</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  rmarkdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rmarkdown/topics/render">render</a></span>(</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">report =</span> rmarkdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rmarkdown/topics/render">render</a></span>(</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="kw"><a href="reference/knitr_in.html">knitr_in</a></span>(<span class="st">"report.Rmd"</span>),</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">output_file =</span> <span class="kw"><a href="reference/file_out.html">file_out</a></span>(<span class="st">"report.html"</span>),</a>
 <a class="sourceLine" id="cb4-11" data-line-number="11">    <span class="dt">quiet =</span> <span class="ot">TRUE</span></a>
@@ -209,20 +209,20 @@ Development
 <a class="sourceLine" id="cb4-13" data-line-number="13">)</a>
 <a class="sourceLine" id="cb4-14" data-line-number="14">plan</a>
 <a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; # A tibble: 5 x 2</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;   target            command                                               </span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; * &lt;chr&gt;             &lt;chr&gt;                                                 </span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1 raw_data          "readxl::read_excel(file_in(\"raw_data.xlsx\"))"      </span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 data              "raw_data %&gt;% mutate(Species = forcats::fct_inorder(S…</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 hist              create_plot(data)                                     </span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 fit               lm(Sepal.Width ~ Petal.Width + Species, data)         </span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 "\"report.html\"" "rmarkdown::render(knitr_in(\"report.Rmd\"), output_f…</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;   target   command                                                        </span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; * &lt;chr&gt;    &lt;chr&gt;                                                          </span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1 raw_data "readxl::read_excel(file_in(\"raw_data.xlsx\"))"               </span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 data     "raw_data %&gt;% mutate(Species = forcats::fct_inorder(Species)) …</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 hist     create_plot(data)                                              </span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                  </span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 report   "rmarkdown::render(knitr_in(\"report.Rmd\"), output_file = fil…</span></a></code></pre></div>
 <p>So far, we have just been setting the stage. Use <code><a href="reference/make.html">make()</a></code> to do the real work. Targets are built in the correct order regardless of the row order of <code>plan</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; target raw_data</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; target data</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; target fit</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; target hist</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; target file "report.html"</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; target report</span></a></code></pre></div>
 <p>Except for files like <code>report.html</code>, your output is stored in a hidden <code>.drake/</code> folder. Reading it back is easy.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">readd</a></span>(data) <span class="co"># See also loadd().</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; # A tibble: 150 x 5</span></a>
@@ -251,7 +251,7 @@ Development
 <p>The next <code><a href="reference/make.html">make()</a></code> just builds <code>hist</code> and <code>report.html</code>. No point in wasting time on the data or model.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; target hist</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; target file "report.html"</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; target report</span></a></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/loadd.html">loadd</a></span>(hist)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">hist</a></code></pre></div>
 <p><img src="https://ropensci.github.io/drake/images/hist2.png" alt="hist1" align="center" style="border: none; float: center;" width="500px"></p>
@@ -282,7 +282,7 @@ Development
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; target data</span></a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; target fit</span></a>
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; target hist</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; target file "report.html"</span></a></code></pre></div>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; target report</span></a></code></pre></div>
 </div>
 <div id="independent-replication" class="section level2">
 <h2 class="hasAnchor">
