@@ -28,9 +28,6 @@
     <loc>https://github.com/ropensci/drake/reference/bind_plans.html</loc>
   </url>
   <url>
-    <loc>https://github.com/ropensci/drake/reference/build_clustermq_staged.html</loc>
-  </url>
-  <url>
     <loc>https://github.com/ropensci/drake/reference/build_drake_graph.html</loc>
   </url>
   <url>
@@ -62,6 +59,9 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/cleaned_namespaces.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/cmq_staged_build.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/config.html</loc>
