@@ -138,9 +138,7 @@ or imported function to analyze for dependencies.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector, names of dependencies.
-Files wrapped in escaped double quotes.
-The other names listed are functions or generic R objects.</p>
+    <p>Names of dependencies listed by type (object, input file, etc).</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -178,7 +176,9 @@ network.</p>
 <span class='co'># Find the dependencies of f. These could be R objects/functions</span>
 <span class='co'># in your workspace or packages. Any file names or target names</span>
 <span class='co'># will be ignored.</span>
-<span class='fu'>deps_code</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt; [1] "g"       "saveRDS"</div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
+<span class='fu'>deps_code</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt; $globals
+#&gt; [1] "g"       "saveRDS"
+#&gt; </div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span> + <span class='no'>some_object</span>,
   <span class='kw'>my_target</span> <span class='kw'>=</span> <span class='no'>x</span> + <span class='fu'>readRDS</span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"tracked_input_file.rds"</span>)),
@@ -188,9 +188,19 @@ network.</p>
 <span class='co'># Get the dependencies of workflow plan commands.</span>
 <span class='co'># Here, the dependencies could be R functions/objects from your workspace</span>
 <span class='co'># or packages, imported files, or other targets in the workflow plan.</span>
-<span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; [1] "some_object"</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>2</span>])</div><div class='output co'>#&gt; [1] "\"tracked_input_file.rds\"" "readRDS"                   
-#&gt; [3] "x"                         </div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>3</span>])</div><div class='output co'>#&gt; [1] "f" "g" "w" "x" "y" "z"</div><div class='input'><span class='co'># New: you can also supply language objects.</span>
-<span class='fu'>deps_code</span>(<span class='fu'>expression</span>(<span class='no'>x</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; [1] "x"</div><span class='co'># NOT RUN {</span>
+<span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; $globals
+#&gt; [1] "some_object"
+#&gt; </div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>2</span>])</div><div class='output co'>#&gt; $globals
+#&gt; [1] "x"       "readRDS"
+#&gt; 
+#&gt; $file_in
+#&gt; [1] "\"tracked_input_file.rds\""
+#&gt; </div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>3</span>])</div><div class='output co'>#&gt; $globals
+#&gt; [1] "f" "x" "y" "g" "z" "w"
+#&gt; </div><div class='input'><span class='co'># New: you can also supply language objects.</span>
+<span class='fu'>deps_code</span>(<span class='fu'>expression</span>(<span class='no'>x</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; $globals
+#&gt; [1] "x"
+#&gt; </div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='co'># Dependencies of the knitr-generated targets like 'report.md'</span>

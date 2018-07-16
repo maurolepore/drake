@@ -32,9 +32,9 @@
 
 <meta property="og:title" content="List the dependencies of one or more targets — deps_targets" />
 
-<meta property="og:description" content="Intended for debugging and checking your project.
-The dependency structure of the components of your analysis
-decides which targets are built and when." />
+<meta property="og:description" content="Unlike deps_code(), deps_targets() just lists
+the jobs that lie upstream of the targets on the workflow
+graph, and file_out() files are not included." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,9 +115,9 @@ decides which targets are built and when." />
 
     <div class="ref-description">
     
-    <p>Intended for debugging and checking your project.
-The dependency structure of the components of your analysis
-decides which targets are built and when.</p>
+    <p>Unlike <code><a href='deps_code.html'>deps_code()</a></code>, <code>deps_targets()</code> just lists
+the jobs that lie upstream of the <code>targets</code> on the workflow
+graph, and <code><a href='file_out.html'>file_out()</a></code> files are not included.</p>
     
     </div>
 
@@ -147,17 +147,6 @@ decides which targets are built and when.</p>
 Files wrapped in escaped double quotes.
 The other names listed are functions or generic R objects.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Unlike <code><a href='deps_code.html'>deps_code()</a></code>, <code>deps_targets()</code> allows you to
-specify a set of targets and get their dependencies. This assumes
-you have an output list from <code><a href='drake_config.html'>drake_config()</a></code>. which resolves
-the dependency graph.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>deps_code make drake_plan drake_config</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -178,10 +167,6 @@ the dependency graph.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
