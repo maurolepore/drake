@@ -127,7 +127,7 @@ possible values using <code>evaluate_plan</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='no'>expand</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='no'>expand</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>columns</span> <span class='kw'>=</span> <span class='st'>"command"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,6 +178,11 @@ based on the values supplied for the wildcards
 trace the wildcard expansion process. These new
 columns indicate which targets were evaluated with which
 wildcards.</p></td>
+    </tr>
+    <tr>
+      <th>columns</th>
+      <td><p>character vector of names of columns
+to look for and evaluate the wildcards.</p></td>
     </tr>
     </table>
     
@@ -243,7 +248,24 @@ as names and vectors of possible values as list elements.</p>
 #&gt; 3 draws_2_1  rnorm(mean = 2, sd = 1) 
 #&gt; 4 draws_2_10 rnorm(mean = 2, sd = 10)
 #&gt; 5 draws_3_1  rnorm(mean = 3, sd = 1) 
-#&gt; 6 draws_3_10 rnorm(mean = 3, sd = 10)</div><div class='input'><span class='co'># With the `trace` argument,</span>
+#&gt; 6 draws_3_10 rnorm(mean = 3, sd = 10)</div><div class='input'><span class='co'># You can use wildcards on columns other than "command"</span>
+<span class='fu'>evaluate_plan</span>(
+  <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"always"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"any"</span>),
+    <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"any"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"always"</span>),
+    <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"any"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"any"</span>),
+    <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
+  ),
+  <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>always</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>),
+  <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"command"</span>, <span class='st'>"cpu"</span>)
+)</div><div class='output co'>#&gt; # A tibble: 5 x 3
+#&gt;   target command cpu  
+#&gt; * &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;
+#&gt; 1 x_1    1       any  
+#&gt; 2 x_2    2       any  
+#&gt; 3 y_1    any     1    
+#&gt; 4 y_2    any     2    
+#&gt; 5 z      any     any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
 <span class='co'># you can generate columns that show how the wildcards</span>
 <span class='co'># were evaluated.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='no'>n__</span>))
