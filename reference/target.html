@@ -34,7 +34,10 @@
 
 <meta property="og:description" content="The target() function lets you define
 custom columns in a workflow plan data frame, both
-inside and outside calls to drake_plan()." />
+inside and outside calls to drake_plan().
+@details Tidy evaluation is applied to the arguments,
+and the !! operator is evaluated immediately
+for expressions and language objects." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,20 +120,65 @@ inside and outside calls to drake_plan()." />
     
     <p>The <code>target()</code> function lets you define
 custom columns in a workflow plan data frame, both
-inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></code>.</p>
+inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></code>.
+@details Tidy evaluation is applied to the arguments,
+and the <code>!!</code> operator is evaluated immediately
+for expressions and language objects.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>target</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>target</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>worker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>evaluator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>command</th>
+      <td><p>the command to build the target</p></td>
+    </tr>
+    <tr>
+      <th>trigger</th>
+      <td><p>the target's trigger</p></td>
+    </tr>
+    <tr>
+      <th>retries</th>
+      <td><p>number of retries in case of failure</p></td>
+    </tr>
+    <tr>
+      <th>timeout</th>
+      <td><p>overall timeout (in seconds) for building a target</p></td>
+    </tr>
+    <tr>
+      <th>cpu</th>
+      <td><p>cpu timeout (seconds) for building a target</p></td>
+    </tr>
+    <tr>
+      <th>elapsed</th>
+      <td><p>elapsed time (seconds) for building a target</p></td>
+    </tr>
+    <tr>
+      <th>priority</th>
+      <td><p>integer giving the build priority of a target.
+Given two targets about to be built at the same time,
+the one with the lesser priority (numerically speaking)
+will be built first.</p></td>
+    </tr>
+    <tr>
+      <th>worker</th>
+      <td><p>the preferred worker to be assigned the target
+(in parallel computing).</p></td>
+    </tr>
+    <tr>
+      <th>evaluator</th>
+      <td><p>the <code>future</code> evaluator of the target.
+Not yet supported.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>named arguments specifying fields of the workflow plan.
-Tidy evaluation will be applied to them, so the <code>!!</code> operator
-is evaluated immediately for expressions and language objects.</p></td>
+      <td><p>named arguments specifying non-standard
+fields of the workflow plan.</p></td>
     </tr>
     </table>
     
@@ -149,7 +197,7 @@ arguments as columns.</p>
 <span class='co'># See ?triggers for more on triggers.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>website_data</span> <span class='kw'>=</span> <span class='fu'>target</span>(
-    <span class='kw'>command</span> <span class='kw'>=</span> <span class='fu'>download_data</span>(<span class='st'>"www.your_url.com"</span>),
+    <span class='fu'>download_data</span>(<span class='st'>"www.your_url.com"</span>),
     <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"always"</span>,
     <span class='kw'>custom_column</span> <span class='kw'>=</span> <span class='fl'>5</span>
   ),
@@ -163,7 +211,7 @@ arguments as columns.</p>
 #&gt; 2 analysis     analyze(website_data)                 any                NA</div><div class='input'><span class='co'># make(plan) # nolint</span>
 <span class='co'># Call target() inside or outside drake_plan().</span>
 <span class='fu'>target</span>(
-  <span class='kw'>command</span> <span class='kw'>=</span> <span class='fu'>download_data</span>(<span class='st'>"www.your_url.com"</span>),
+  <span class='fu'>download_data</span>(<span class='st'>"www.your_url.com"</span>),
   <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"always"</span>,
   <span class='kw'>custom_column</span> <span class='kw'>=</span> <span class='fl'>5</span>
 )</div><div class='output co'>#&gt; # A tibble: 1 x 3
