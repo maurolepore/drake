@@ -138,7 +138,7 @@ for an overview of the documentation.</p>
   <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_recipe_command'>default_recipe_command</a></span>(), <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>return_config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_trigger'>default_trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
   <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caching</span> <span class='kw'>=</span> <span class='st'>"worker"</span>, <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -402,8 +402,7 @@ Overrides <code>skip_imports</code>.</p></td>
       <th>trigger</th>
       <td><p>Name of the trigger to apply to all targets.
 Ignored if <code>plan</code> has a <code>trigger</code> column.
-Must be in <code><a href='triggers.html'>triggers()</a></code>.
-See <a href='triggers.html'>triggers</a> for explanations of the choices.</p></td>
+See <code><a href='trigger.html'>trigger()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>skip_imports</th>

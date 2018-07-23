@@ -106,9 +106,6 @@
     <loc>https://github.com/ropensci/drake/reference/default_system2_args.html</loc>
   </url>
   <url>
-    <loc>https://github.com/ropensci/drake/reference/default_trigger.html</loc>
-  </url>
-  <url>
     <loc>https://github.com/ropensci/drake/reference/default_verbose.html</loc>
   </url>
   <url>
@@ -464,6 +461,9 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/tracked.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/trigger.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/triggers.html</loc>

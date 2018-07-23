@@ -208,7 +208,7 @@ arguments as columns.</p>
 #&gt;   target       command                               trigger custom_column
 #&gt; * &lt;chr&gt;        &lt;chr&gt;                                 &lt;chr&gt;           &lt;dbl&gt;
 #&gt; 1 website_data "download_data(\"www.your_url.com\")" always              5
-#&gt; 2 analysis     analyze(website_data)                 any                NA</div><div class='input'><span class='co'># make(plan) # nolint</span>
+#&gt; 2 analysis     analyze(website_data)                 &lt;NA&gt;               NA</div><div class='input'><span class='co'># make(plan) # nolint</span>
 <span class='co'># Call target() inside or outside drake_plan().</span>
 <span class='fu'>target</span>(
   <span class='fu'>download_data</span>(<span class='st'>"www.your_url.com"</span>),
