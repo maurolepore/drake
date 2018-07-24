@@ -129,7 +129,8 @@ for enhanced graph visualization functionality.</p>
 
     <pre class="usage"><span class='fu'>build_drake_graph</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='read_drake_plan.html'>read_drake_plan</a></span>(), <span class='kw'>targets</span> <span class='kw'>=</span> <span class='no'>plan</span>$<span class='no'>target</span>,
   <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>sanitize_plan</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>sanitize_plan</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,6 +220,11 @@ If <code>NULL</code>, console output will be printed
 to the R console using <code>message()</code>.
 Otherwise, <code>console_log_file</code> should be the name of a flat file.
 Console output will be appended to that file.</p></td>
+    </tr>
+    <tr>
+      <th>trigger</th>
+      <td><p>optional, a global trigger for building targets
+(see <code><a href='trigger.html'>trigger()</a></code>).</p></td>
     </tr>
     </table>
     
