@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deprecated: render a <code>ggraph</code>/<code>ggplot2</code> representation
-of your drake project. — render_static_drake_graph • drake</title>
+<title>Render a static <code>ggplot2</code>/<code>ggraph</code> visualization from
+<code><a href='drake_graph_info.html'>drake_graph_info()</a></code> output. — render_drake_ggraph • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,10 +31,11 @@ of your drake project. — render_static_drake_graph • drake</title>
 
 
 
-<meta property="og:title" content="Deprecated: render a <code>ggraph</code>/<code>ggplot2</code> representation
-of your drake project. — render_static_drake_graph" />
+<meta property="og:title" content="Render a static <code>ggplot2</code>/<code>ggraph</code> visualization from
+<code><a href='drake_graph_info.html'>drake_graph_info()</a></code> output. — render_drake_ggraph" />
 
-<meta property="og:description" content="Use render_drake_ggraph() instead." />
+<meta property="og:description" content="This function requries packages ggplot2 and ggraph.
+Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,19 +109,20 @@ of your drake project. — render_static_drake_graph" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Deprecated: render a <code>ggraph</code>/<code>ggplot2</code> representation
-of your drake project.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
-    <div class="hidden name"><code>render_static_drake_graph.Rd</code></div>
+    <h1>Render a static <code>ggplot2</code>/<code>ggraph</code> visualization from
+<code><a href='drake_graph_info.html'>drake_graph_info()</a></code> output.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/ggraph.R'><code>R/ggraph.R</code></a></small>
+    <div class="hidden name"><code>render_drake_ggraph.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Use <code><a href='render_drake_ggraph.html'>render_drake_ggraph()</a></code> instead.</p>
+    <p>This function requries packages <code>ggplot2</code> and <code>ggraph</code>.
+Install them with <code>install.packages(c("ggplot2", "ggraph"))</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>render_static_drake_graph</span>(<span class='no'>graph_info</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>graph_info</span>$<span class='no'>default_title</span>)</pre>
+    <pre class="usage"><span class='fu'>render_drake_ggraph</span>(<span class='no'>graph_info</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>graph_info</span>$<span class='no'>default_title</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,18 +145,24 @@ and <code>legend_nodes</code>.</p></td>
     <p>A <code>ggplot2</code> object, which you can modify with more layers,
 show with <code>plot()</code>, or save as a file with <code>ggsave()</code>.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Deprecated on 2018-25-07.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='render_drake_ggraph.html'>render_drake_ggraph()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, <code><a href='sankey_drake_graph.html'>sankey_drake_graph()</a></code>, <code><a href='drake_ggraph.html'>drake_ggraph()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># See render_drake_ggraph()
-</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
+<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
+<span class='co'># Instead of jumpting right to vis_drake_graph(), get the data frames</span>
+<span class='co'># of nodes, edges, and legend nodes.</span>
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
+<span class='fu'><a href='drake_ggraph.html'>drake_ggraph</a></span>(<span class='no'>config</span>) <span class='co'># Jump straight to the static graph.</span>
+<span class='co'># Get the node and edge info that vis_drake_graph() just plotted:</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='no'>config</span>)
+<span class='fu'>render_drake_ggraph</span>(<span class='no'>graph</span>)
+})
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -162,8 +170,6 @@ show with <code>plot()</code>, or save as a file with <code>ggsave()</code>.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

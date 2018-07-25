@@ -141,9 +141,16 @@ and <code>legend_nodes</code>.</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>Name of HTML file to save the graph.
-If <code>NULL</code> or <code>character(0)</code>,
-no file is saved and the graph is rendered and displayed within R.</p></td>
+      <td><p>Name of a file to save the graph.
+If <code>NULL</code> or <code>character(0)</code>, no file is saved and
+the graph is rendered and displayed within R.
+If the file ends in a <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, or <code>.pdf</code> extension,
+then a static image will be saved. In this case,
+the webshot package and PhantomJS are required:
+<code>install.packages("webshot"); webshot::install_phantomjs()</code>.
+If the file does not end in a <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, or <code>.pdf</code>
+extension, an HTML file will be saved, and you can open the
+interactive graph using a web browser.</p></td>
     </tr>
     <tr>
       <th>layout</th>
@@ -177,7 +184,10 @@ change with hovering.</p></td>
 to save the <code>file</code> as a self-contained
 HTML file (with external resources base64 encoded) or a file with
 external resources placed in an adjacent directory. If <code>TRUE</code>,
-pandoc is required.</p></td>
+pandoc is required. The <code>selfcontained</code> argument only applies
+to HTML files. In other words, if <code>file</code> is a
+PNG, PDF, or JPEG file, for instance,
+the point is moot.</p></td>
     </tr>
     <tr>
       <th>navigationButtons</th>
@@ -202,7 +212,7 @@ To remove the legend entirely, set <code>ncol_legend</code> to <code>NULL</code>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, <code><a href='sankey_drake_graph.html'>sankey_drake_graph()</a></code>,
-<code><a href='static_drake_graph.html'>static_drake_graph()</a></code></p></div>
+<code><a href='drake_ggraph.html'>drake_ggraph()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

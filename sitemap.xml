@@ -157,6 +157,9 @@
     <loc>https://github.com/ropensci/drake/reference/drake_gc.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ropensci/drake/reference/drake_ggraph.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ropensci/drake/reference/drake_graph_info.html</loc>
   </url>
   <url>
@@ -401,6 +404,9 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/render_drake_ggraph.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/render_drake_graph.html</loc>

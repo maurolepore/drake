@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show static graph representation
+<title>Deprecated: show a <code>ggraph</code>/<code>ggplot2</code> representation
 of your drake project. — static_drake_graph • drake</title>
 
 <!-- jquery -->
@@ -31,11 +31,10 @@ of your drake project. — static_drake_graph • drake</title>
 
 
 
-<meta property="og:title" content="Show static graph representation
+<meta property="og:title" content="Deprecated: show a <code>ggraph</code>/<code>ggplot2</code> representation
 of your drake project. — static_drake_graph" />
 
-<meta property="og:description" content="This function requries packages ggplot2 and ggraph.
-Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))." />
+<meta property="og:description" content="Use drake_ggraph() instead." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,16 +108,15 @@ Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))."
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show static graph representation
+    <h1>Deprecated: show a <code>ggraph</code>/<code>ggplot2</code> representation
 of your drake project.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/static_drake_graph.R'><code>R/static_drake_graph.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
     <div class="hidden name"><code>static_drake_graph.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function requries packages <code>ggplot2</code> and <code>ggraph</code>.
-Install them with <code>install.packages(c("ggplot2", "ggraph"))</code>.</p>
+    <p>Use <code><a href='drake_ggraph.html'>drake_ggraph()</a></code> instead.</p>
     
     </div>
 
@@ -240,21 +238,18 @@ that you specify in the <code>group</code> argument to <code><a href='drake_grap
     <p>A <code>ggplot2</code> object, which you can modify with more layers,
 show with <code>plot()</code>, or save as a file with <code>ggsave()</code>.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Deprecated on 2018-25-07.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, <code><a href='sankey_drake_graph.html'>sankey_drake_graph()</a></code>,
-<code><a href='render_static_drake_graph.html'>render_static_drake_graph()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='drake_ggraph.html'>drake_ggraph()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='co'># Plot the network graph representation of the workflow.</span>
-<span class='fu'>static_drake_graph</span>(<span class='no'>config</span>) <span class='co'># Save to a file with `ggplot2::ggsave()`.</span>
-})
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'># See drake_ggraph()
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -262,6 +257,8 @@ show with <code>plot()</code>, or save as a file with <code>ggsave()</code>.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
