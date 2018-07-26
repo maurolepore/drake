@@ -121,18 +121,12 @@ in the user manual:
     
     </div>
 
-    <pre class="usage"><span class='fu'>trigger</span>(<span class='kw'>condition</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>depend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <pre class="usage"><span class='fu'>trigger</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>depend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>change</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>condition</th>
-      <td><p>R code (expression or language object)
-that returns a logical. The target will rebuild
-if the code evaluates to <code>TRUE</code>.</p></td>
-    </tr>
     <tr>
       <th>command</th>
       <td><p>logical, whether to rebuild the target if the
@@ -147,6 +141,12 @@ non-file dependency changes.</p></td>
       <th>file</th>
       <td><p>logical, whether to rebuild the target
 if a <code><a href='file_in.html'>file_in()</a></code>/<code><a href='file_out.html'>file_out()</a></code>/<code><a href='knitr_in.html'>knitr_in()</a></code> file changes.</p></td>
+    </tr>
+    <tr>
+      <th>condition</th>
+      <td><p>R code (expression or language object)
+that returns a logical. The target will rebuild
+if the code evaluates to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>change</th>
@@ -169,7 +169,11 @@ whether to build the target.</p>
 in your <code><a href='drake_plan.html'>drake_plan()</a></code>. The target will rebuild if and only if:</p><ul>
 <li><p>Any of <code>command</code>, <code>depend</code>, or <code>file</code> is <code>TRUE</code>, or</p></li>
 <li><p><code>condition</code> evaluates to <code>TRUE</code>, or</p></li>
-<li><p><code>change</code> evaluates to a value different from last time.</p></li>
+<li><p><code>change</code> evaluates to a value different from last time.
+There may be a slight efficiency loss if you set complex
+triggers for <code>change</code> and/or <code>condition</code> because
+<code>drake</code> needs to load any required dependencies
+into memory before evaluating these triggers.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -180,10 +184,7 @@ in your <code><a href='drake_plan.html'>drake_plan()</a></code>. The target will
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># A trigger is just a set of decision rules</span>
 <span class='co'># to decide whether to build a target.</span>
-<span class='fu'>trigger</span>()</div><div class='output co'>#&gt; $condition
-#&gt; [1] FALSE
-#&gt; 
-#&gt; $command
+<span class='fu'>trigger</span>()</div><div class='output co'>#&gt; $command
 #&gt; [1] TRUE
 #&gt; 
 #&gt; $depend
@@ -191,15 +192,15 @@ in your <code><a href='drake_plan.html'>drake_plan()</a></code>. The target will
 #&gt; 
 #&gt; $file
 #&gt; [1] TRUE
+#&gt; 
+#&gt; $condition
+#&gt; NULL
 #&gt; 
 #&gt; $change
 #&gt; NULL
 #&gt; </div><div class='input'><span class='co'># This trigger will build a target on Tuesdays</span>
 <span class='co'># and when the value of an online dataset changes.</span>
-<span class='fu'>trigger</span>(<span class='kw'>condition</span> <span class='kw'>=</span> <span class='fu'>today</span>() <span class='kw'>==</span> <span class='st'>"Tuesday"</span>, <span class='kw'>change</span> <span class='kw'>=</span> <span class='fu'>get_online_dataset</span>())</div><div class='output co'>#&gt; $condition
-#&gt; today() == "Tuesday"
-#&gt; 
-#&gt; $command
+<span class='fu'>trigger</span>(<span class='kw'>condition</span> <span class='kw'>=</span> <span class='fu'>today</span>() <span class='kw'>==</span> <span class='st'>"Tuesday"</span>, <span class='kw'>change</span> <span class='kw'>=</span> <span class='fu'>get_online_dataset</span>())</div><div class='output co'>#&gt; $command
 #&gt; [1] TRUE
 #&gt; 
 #&gt; $depend
@@ -207,6 +208,9 @@ in your <code><a href='drake_plan.html'>drake_plan()</a></code>. The target will
 #&gt; 
 #&gt; $file
 #&gt; [1] TRUE
+#&gt; 
+#&gt; $condition
+#&gt; today() == "Tuesday"
 #&gt; 
 #&gt; $change
 #&gt; get_online_dataset()
