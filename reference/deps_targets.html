@@ -152,10 +152,7 @@ The other names listed are functions or generic R objects.</p>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='co'># Dependencies of the knitr-generated targets like 'report.md'</span>
-<span class='co'># include targets/imports referenced with `readd()` or `loadd()`.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='fu'>deps_targets</span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>), <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
 <span class='fu'>deps_targets</span>(<span class='st'>"regression1_small"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
 <span class='fu'>deps_targets</span>(<span class='fu'>c</span>(<span class='st'>"small"</span>, <span class='st'>"large"</span>), <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 })
