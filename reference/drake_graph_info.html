@@ -127,7 +127,7 @@ you can plot your own custom <code>visNetwork</code> graph.</p>
   <span class='kw'>build_times</span> <span class='kw'>=</span> <span class='st'>"build"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>split_columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>font_size</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -232,6 +232,11 @@ you must also supply the <code>clusters</code> argument.</p></td>
       <td><p>optional character vector of values to cluster on.
 These values must be elements of the column of the <code>nodes</code> data frame
 that you specify in the <code>group</code> argument to <code>drake_graph_info()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>show_output_files</th>
+      <td><p>logical, whether to include
+<code><a href='file_out.html'>file_out()</a></code> files in the graph.</p></td>
     </tr>
     </table>
     
