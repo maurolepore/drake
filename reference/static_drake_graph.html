@@ -186,9 +186,12 @@ edge direction altogether.</p></td>
     <tr>
       <th>order</th>
       <td><p>How far to branch out to create
-a neighborhood around <code>from</code> (measured
-in the number of nodes). Defaults to
-as far as possible.</p></td>
+a neighborhood around <code>from</code>. Defaults to
+as far as possible. If a target is in the neighborhood, then
+so are all of its custom <code><a href='file_out.html'>file_out()</a></code> files if
+<code>show_output_files</code> is <code>TRUE</code>. This is to ensure consistent
+behavior between <code>show_output_files = TRUE</code> and
+<code>show_output_files = FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>subset</th>
