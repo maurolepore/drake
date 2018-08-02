@@ -325,21 +325,6 @@ Development
 <a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a>
 <a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw">library</span>(devtools)</a>
 <a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
-<p>If you are installing the current CRAN version (5.2.1), you may encounter an error due to <a href="https://github.com/duncantl/CodeDepends"><code>CodeDepends</code></a> (ref: <a href="https://github.com/duncantl/CodeDepends/issues/30">duncantl/CodeDepends#30</a>, <a href="https://github.com/duncantl/CodeDepends/issues/34">duncantl/CodeDepends#34</a>).</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"drake"</span>)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="co">#&gt; ...</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#&gt; ERROR: dependency ‘graph’ is not available for package ‘CodeDepends’</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt; ...</span></a></code></pre></div>
-<p>This is because <code>drake</code> 5.2.1 depends on <a href="https://github.com/duncantl/CodeDepends"><code>CodeDepends</code></a>, which depends on <a href="https://www.bioconductor.org/packages/release/bioc/html/graph.html"><code>graph</code></a>, which is not on <a href="https://cran.r-project.org">CRAN</a>. You have two possible solutions.</p>
-<ol style="list-style-type: decimal">
-<li>Install the development version with <code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github("ropensci/drake")</a></code>
-</li>
-<li>Install <a href="https://www.bioconductor.org/packages/release/bioc/html/graph.html"><code>graph</code></a> from <a href="https://www.bioconductor.org">Bioconductor</a> and proceed with the CRAN version of <code>drake</code>.</li>
-</ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">source</span>(<span class="st">"https://bioconductor.org/biocLite.R"</span>)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">biocLite</span>(<span class="st">"graph"</span>)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">install.packages</span>(<span class="st">"CodeDepends"</span>)</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">install.packages</span>(<span class="st">"drake"</span>)</a></code></pre></div>
 <p>A few technical details:</p>
 <ul>
 <li>You must properly install <code>drake</code> using <code>install.packages()</code>, <code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github()</a></code>, or similar. It is not enough to use <code><a href="http://www.rdocumentation.org/packages/devtools/topics/load_all">devtools::load_all()</a></code>, particularly for the parallel computing functionality, in which multiple R sessions initialize and then try to <code>require(drake)</code>.</li>
@@ -462,7 +447,22 @@ Development
 <div id="contributing" class="section level1">
 <h1 class="hasAnchor">
 <a href="#contributing" class="anchor"></a>Contributing</h1>
-<p>Bug reports, suggestions, and especially code contributions are welcome. Please see <a href="https://github.com/ropensci/drake/blob/master/CONTRIBUTING.html">CONTRIBUTING.md</a>. Maintainers and contributors must follow this repository’s <a href="https://github.com/ropensci/drake/blob/master/CONDUCT.html">code of conduct</a>.</p>
+<p>Development is a community effort, and we encourage participation.</p>
+<div id="code-of-conduct" class="section level2">
+<h2 class="hasAnchor">
+<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
+<p>The environment for collaboration should be friendly, inclusive, respectful, and safe for everyone, so all participants must obey <a href="https://github.com/ropensci/drake/blob/master/CONDUCT.html">this repository’s code of conduct</a>.</p>
+</div>
+<div id="issues" class="section level2">
+<h2 class="hasAnchor">
+<a href="#issues" class="anchor"></a>Issues</h2>
+<p><code>drake</code> thrives on the suggestions, questions, and bug reports you submit to the <a href="https://github.com/ropensci/drake/issues">issue tracker</a>. Before posting, please search both the open and closed issues to help us avoid duplication. Usage questions are welcome, but you may also wish to post to <a href="https://stackoverflow.com">Stack Overflow</a> with the <a href="https://stackoverflow.com/tags/drake-r-package"><code>drake-r-package</code> tag</a>.</p>
+</div>
+<div id="development" class="section level2">
+<h2 class="hasAnchor">
+<a href="#development" class="anchor"></a>Development</h2>
+<p>If you would like to work on the code or documentation, please <a href="https://help.github.com/articles/fork-a-repo/">fork this repository</a>, make the changes in your fork, and then submit a <a href="https://github.com/ropensci/drake/pulls">pull request</a>. We will discuss your work and then hopefully merge it into the project.</p>
+</div>
 </div>
 <div id="similar-work" class="section level1">
 <h1 class="hasAnchor">
