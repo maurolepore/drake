@@ -32,8 +32,11 @@
 
 <meta property="og:title" content="List the names of all the drake examples. — drake_examples" />
 
-<meta property="og:description" content="The 'mtcars' example is
-documented at https://ropenscilabs.github.io/drake-manual/mtcars.html." />
+<meta property="og:description" content="You can find the code files of the examples at
+https://github.com/wlandau/drake-examples.
+The drake_examples() function downloads the list of examples
+from https://wlandau.github.io/drake-examples/examples.md,
+so you need an internet connection." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,13 +117,27 @@ documented at https://ropenscilabs.github.io/drake-manual/mtcars.html." />
 
     <div class="ref-description">
     
-    <p>The <code>'mtcars'</code> example is
-documented at https://ropenscilabs.github.io/drake-manual/mtcars.html.</p>
+    <p>You can find the code files of the examples at
+<a href='https://github.com/wlandau/drake-examples'>https://github.com/wlandau/drake-examples</a>.
+The <code>drake_examples()</code> function downloads the list of examples
+from <a href='https://wlandau.github.io/drake-examples/examples.md'>https://wlandau.github.io/drake-examples/examples.md</a>,
+so you need an internet connection.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_examples</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>drake_examples</span>(<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>quiet</th>
+      <td><p>logical, passed to <code><a href='http://www.rdocumentation.org/packages/downloader/topics/download'>downloader::download()</a></code>
+and thus <code><a href='http://www.rdocumentation.org/packages/utils/topics/download.file'>utils::download.file()</a></code>. Whether
+to download quietly or print progress.</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Names of all the drake examples.</p>
@@ -134,7 +151,8 @@ documented at https://ropenscilabs.github.io/drake-manual/mtcars.html.</p>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'>drake_examples</span>() <span class='co'># List all the drake examples.</span>
-<span class='co'># Sets up the same example as https://ropenscilabs.github.io/drake-manual/mtcars.html # nolint</span>
+<span class='co'># Sets up the example from</span>
+<span class='co'># https://ropenscilabs.github.io/drake-manual/mtcars.html</span>
 <span class='fu'><a href='drake_example.html'>drake_example</a></span>(<span class='st'>"mtcars"</span>)
 <span class='co'># Sets up the SLURM example.</span>
 <span class='fu'><a href='drake_example.html'>drake_example</a></span>(<span class='st'>"slurm"</span>)
@@ -144,6 +162,7 @@ documented at https://ropenscilabs.github.io/drake-manual/mtcars.html.</p>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
 

@@ -112,6 +112,7 @@
 <a href="#version-5-3-1-9000" class="anchor"></a>Version 5.3.1.9000<small> Unreleased </small>
 </h1>
 <ul>
+<li>Offload <code>drake</code>’s code examples to <a href="https://github.com/wlandau/drake-examples">this repository</a> and make make <code><a href="../reference/drake_example.html">drake_example()</a></code> and <code><a href="../reference/drake_examples.html">drake_examples()</a></code> download examples from there.</li>
 <li>Optionally show output files in graph visualizations. See the <code>show_output_files</code> argument to <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and friends.</li>
 <li>Internally refactor the <code>igraph</code> attributes of the dependency graph to allow for smarter dependency/memory management during <code><a href="../reference/make.html">make()</a></code>.</li>
 <li>Enable <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/sankey_drake_graph.html">sankey_drake_graph()</a></code> to save static image files via <code>webshot</code>.</li>
