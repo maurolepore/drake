@@ -148,8 +148,16 @@ You can keep them as ordinary data frames.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x"</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='st'>"get_data()"</span>)
-<span class='fu'>class</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>as_drake_plan</span>(<span class='no'>plan</span>)
-<span class='fu'>class</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; [1] "drake_plan" "tbl_df"     "tbl"        "data.frame"</div></pre>
+<span class='fu'>class</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'>print</span>(<span class='no'>plan</span>) <span class='co'># Prints as a list.</span></div><div class='output co'>#&gt; $target
+#&gt; [1] "x"
+#&gt; 
+#&gt; $command
+#&gt; [1] "get_data()"
+#&gt; </div><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>as_drake_plan</span>(<span class='no'>plan</span>)
+<span class='fu'>class</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; [1] "drake_plan" "tbl_df"     "tbl"        "data.frame"</div><div class='input'><span class='fu'>print</span>(<span class='no'>plan</span>) <span class='co'># When we have pretty printing, this will look nicer.</span></div><div class='output co'>#&gt; # A tibble: 1 x 2
+#&gt;   target command   
+#&gt;   &lt;chr&gt;  &lt;chr&gt;     
+#&gt; 1 x      get_data()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
