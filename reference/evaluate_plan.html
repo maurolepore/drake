@@ -243,7 +243,7 @@ as names and vectors of possible values as list elements.</p>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>draws</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>Mean</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>Sd</span>))
 <span class='fu'>evaluate_plan</span>(<span class='no'>x</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>Mean</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>Sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target     command                 
-#&gt; * &lt;chr&gt;      &lt;chr&gt;                   
+#&gt;   &lt;chr&gt;      &lt;chr&gt;                   
 #&gt; 1 draws_1_1  rnorm(mean = 1, sd = 1) 
 #&gt; 2 draws_1_10 rnorm(mean = 1, sd = 10)
 #&gt; 3 draws_2_1  rnorm(mean = 2, sd = 1) 
@@ -261,7 +261,7 @@ as names and vectors of possible values as list elements.</p>
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"command"</span>, <span class='st'>"cpu"</span>)
 )</div><div class='output co'>#&gt; # A tibble: 5 x 3
 #&gt;   target command cpu  
-#&gt; * &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;
+#&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;
 #&gt; 1 x_1    1       any  
 #&gt; 2 x_2    2       any  
 #&gt; 3 y_1    any     1    
