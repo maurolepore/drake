@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">drake</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.3.1.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">5.4.0</span>
       </span>
     </div>
 
@@ -107,20 +107,21 @@
       <small>Source: <a href='https://github.com/ropensci/drake/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="version-5-3-1-9000" class="section level1">
+    <div id="version-5-4-0" class="section level1">
 <h1 class="page-header">
-<a href="#version-5-3-1-9000" class="anchor"></a>Version 5.3.1.9000<small> Unreleased </small>
+<a href="#version-5-4-0" class="anchor"></a>Version 5.4.0<small> Unreleased </small>
 </h1>
 <ul>
+<li>Overhaul the interface for triggers and add new trigger types (“condition” and “change”).</li>
 <li>Offload <code>drake</code>’s code examples to <a href="https://github.com/wlandau/drake-examples">this repository</a> and make make <code><a href="../reference/drake_example.html">drake_example()</a></code> and <code><a href="../reference/drake_examples.html">drake_examples()</a></code> download examples from there.</li>
 <li>Optionally show output files in graph visualizations. See the <code>show_output_files</code> argument to <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and friends.</li>
+<li>Repair output file checksum operations for distributed backends like <code>"clustermq_staged"</code> and <code>"future_lapply"</code>.</li>
 <li>Internally refactor the <code>igraph</code> attributes of the dependency graph to allow for smarter dependency/memory management during <code><a href="../reference/make.html">make()</a></code>.</li>
 <li>Enable <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/sankey_drake_graph.html">sankey_drake_graph()</a></code> to save static image files via <code>webshot</code>.</li>
 <li>Deprecate <code><a href="../reference/static_drake_graph.html">static_drake_graph()</a></code> and <code><a href="../reference/render_static_drake_graph.html">render_static_drake_graph()</a></code> in favor of <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code> and <code><a href="../reference/render_drake_ggraph.html">render_drake_ggraph()</a></code>.</li>
-<li>Overhaul the interface for triggers and add new trigger types (“condition” and “change”).</li>
-<li>Repair output file checksum operations for distributed backends like <code>"clustermq_staged"</code> and <code>"future_lapply"</code>.</li>
 <li>Add a <code>columns</code> argument to <code><a href="../reference/evaluate_plan.html">evaluate_plan()</a></code> so users can evaluate wildcards in columns other than the <code>command</code> column of <code>plan</code>.</li>
 <li>Name the arguments of <code><a href="../reference/target.html">target()</a></code> so users do not have to (explicitly).</li>
+<li>Lay the groundwork for a special pretty print method for workflow plan data frames.</li>
 </ul>
 </div>
     <div id="version-5-3-0" class="section level1">
@@ -432,7 +433,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#version-5-3-1-9000">5.3.1.9000</a></li>
+        <li><a href="#version-5-4-0">5.4.0</a></li>
         <li><a href="#version-5-3-0">5.3.0</a></li>
         <li><a href="#version-5-2-1">5.2.1</a></li>
         <li><a href="#version-5-2-0">5.2.0</a></li>
