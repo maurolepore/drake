@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return the detailed dependency profile
-of the target. — dependency_profile • drake</title>
+<title>Find out why a target is out of date. — dependency_profile • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,14 +30,20 @@ of the target. — dependency_profile • drake</title>
 
 
 
-<meta property="og:title" content="Return the detailed dependency profile
-of the target. — dependency_profile" />
+<meta property="og:title" content="Find out why a target is out of date. — dependency_profile" />
 
-<meta property="og:description" content="Useful for debugging.
-For up to date targets, like elements
-of the returned list should agree: for example,
-cached_dependency_hash and
-current_dependency_hash." />
+<meta property="og:description" content="The dependency profile can give you
+a hint as to why a target is out of date.
+It can tell you if
+at least one input file changed,
+at least one outupt file changed,
+or a non-file dependency changed. For this last part,
+the imports need to be up to date in the cache,
+which you can do with outdated() or
+make(skip_targets = TRUE).
+Unfortunately, dependency_profile() does not
+currently get more specific than that.
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,23 +117,30 @@ current_dependency_hash." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return the detailed dependency profile
-of the target.</h1>
+    <h1>Find out why a target is out of date.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/dependencies.R'><code>R/dependencies.R</code></a></small>
     <div class="hidden name"><code>dependency_profile.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Useful for debugging.
-For up to date targets, like elements
-of the returned list should agree: for example,
-<code>cached_dependency_hash</code> and
-<code>current_dependency_hash</code>.</p>
+    <p>The dependency profile can give you
+a hint as to why a target is out of date.
+It can tell you if</p><ul>
+<li><p>at least one input file changed,</p></li>
+<li><p>at least one outupt file changed,</p></li>
+<li><p>or a non-file dependency changed. For this last part,
+the imports need to be up to date in the cache,
+which you can do with <code><a href='outdated.html'>outdated()</a></code> or
+<code><a href='make.html'>make(skip_targets = TRUE)</a></code>.
+Unfortunately, <code>dependency_profile()</code> does not
+currently get more specific than that.</p></li>
+</ul>
     
     </div>
 
-    <pre class="usage"><span class='fu'>dependency_profile</span>(<span class='no'>target</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>())</pre>
+    <pre class="usage"><span class='fu'>dependency_profile</span>(<span class='no'>target</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(),
+  <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,12 +154,19 @@ of the returned list should agree: for example,
       <td><p>configuration list output by
 <code><a href='drake_config.html'>drake_config()</a></code> or <code><a href='make.html'>make()</a></code></p></td>
     </tr>
+    <tr>
+      <th>character_only</th>
+      <td><p>logical, whether to assume <code>target</code>
+is a character string rather than a symbol</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of information that drake takes into account
-when examining the dependencies of the target.</p>
+    <p>A data frame of the old hashes and
+new hashes of the data frame, along with
+an indication of which hashes changed since
+the last <code><a href='make.html'>make()</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -160,10 +179,17 @@ when examining the dependencies of the target.</p>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Load drake's canonical example.</span>
-<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
 <span class='co'># Get some example dependency profiles of targets.</span>
-<span class='fu'>dependency_profile</span>(<span class='st'>"small"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>)
-<span class='fu'>dependency_profile</span>(<span class='st'>"report"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>)
+<span class='fu'>dependency_profile</span>(<span class='no'>small</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
+<span class='co'># Change a dependency.</span>
+<span class='no'>simulate</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>){}
+<span class='co'># Update the in-memory imports in the cache</span>
+<span class='co'># so dependency_profile can detect changes to them.</span>
+<span class='co'># Changes to targets are already cached.</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>, <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># The dependency hash changed.</span>
+<span class='fu'>dependency_profile</span>(<span class='no'>small</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
 })
 <span class='co'># }</span></pre>
   </div>
