@@ -145,7 +145,8 @@ for an overview of the documentation.</p>
   <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>imports_only</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lookahead"</span>, <span class='st'>"speed"</span>, <span class='st'>"memory"</span>),
   <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='st'>"Makefile"</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'>list</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -580,6 +581,19 @@ This argument only applies to parallel computing with persistent workers
       <th>garbage_collection</th>
       <td><p>logical, whether to call <code>gc()</code> each time
 a target is built during <code>make()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>template</th>
+      <td><p>a named list of values to fill in the <code>{{ ... }}</code>
+placeholders in template files (e.g. from <code><a href='drake_hpc_template_file.html'>drake_hpc_template_file()</a></code>).
+Same as the <code>template</code> argument of <code><a href='http://www.rdocumentation.org/packages/clustermq/topics/Q'>clustermq::Q()</a></code> and
+<code><a href='http://www.rdocumentation.org/packages/clustermq/topics/workers'>clustermq::workers</a></code>.
+Enabled for <code>clustermq</code> only (<code>make(parallelism = "clustermq_staged")</code>),
+not <code>future</code> or <code>batchtools</code> so far.
+For more information, see the <code>clustermq</code> package:
+<a href='https://github.com/mschubert/clustermq'>https://github.com/mschubert/clustermq</a>.
+Some template placeholders such as <code>{{ job_name }}</code> and <code>{{ n_jobs }}</code>
+cannot be set this way.</p></td>
     </tr>
     </table>
     
