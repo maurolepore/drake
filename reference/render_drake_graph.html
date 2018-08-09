@@ -127,7 +127,7 @@ call more often.</p>
     <pre class="usage"><span class='fu'>render_drake_graph</span>(<span class='no'>graph_info</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>),
   <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"layout_with_sugiyama"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"LR"</span>, <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>graph_info</span>$<span class='no'>default_title</span>, <span class='kw'>selfcontained</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>navigationButtons</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ncol_legend</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>navigationButtons</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ncol_legend</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,6 +198,13 @@ the point is moot.</p></td>
       <th>ncol_legend</th>
       <td><p>number of columns in the legend nodes.
 To remove the legend entirely, set <code>ncol_legend</code> to <code>NULL</code> or <code>0</code>.</p></td>
+    </tr>
+    <tr>
+      <th>collapse</th>
+      <td><p>logical, whether to allow nodes to collapse
+if you double click on them.
+Analogous to <code><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visOptions'>visNetwork::visOptions(collapse = TRUE)</a></code> or
+<code><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visOptions'>visNetwork::visOptions(collapse = TRUE)</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

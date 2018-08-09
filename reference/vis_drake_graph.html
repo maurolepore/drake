@@ -132,7 +132,7 @@ this function is divided into
   <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>), <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ncol_legend</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -307,6 +307,13 @@ that you specify in the <code>group</code> argument to <code><a href='drake_grap
       <th>show_output_files</th>
       <td><p>logical, whether to include
 <code><a href='file_out.html'>file_out()</a></code> files in the graph.</p></td>
+    </tr>
+    <tr>
+      <th>collapse</th>
+      <td><p>logical, whether to allow nodes to collapse
+if you double click on them.
+Analogous to <code><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visOptions'>visNetwork::visOptions(collapse = TRUE)</a></code> or
+<code><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visOptions'>visNetwork::visOptions(collapse = TRUE)</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
