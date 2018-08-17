@@ -153,9 +153,9 @@ The other names listed are functions or generic R objects.</p>
 (for example, <code><a href='file_store.html'>file_store("report.Rmd")</a></code> or <code>"\"report.Rmd\""</code>)
 the the dependencies of the expected compiled
 output will be given. For example, <code>deps(file_store("report.Rmd"))</code>
-will return target names found in calls to <code><a href='loadd.html'>loadd()</a></code>
+will return target names found in calls to <code><a href='readd.html'>loadd()</a></code>
 and <code><a href='readd.html'>readd()</a></code> in active code chunks.
-These <code><a href='loadd.html'>loadd()</a></code>/<code><a href='readd.html'>readd()</a></code> targets are needed
+These <code><a href='readd.html'>loadd()</a></code>/<code><a href='readd.html'>readd()</a></code> targets are needed
 in order to run <code>knit(knitr_in("report.Rmd"))</code>
 to produce the output file <code>"report.md"</code>, so technically,
 they are dependencies of <code>"report.md"</code>, not <code>"report.Rmd"</code>.</p>

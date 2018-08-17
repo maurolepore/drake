@@ -119,7 +119,7 @@
 <li>Improve <code><a href="../reference/dependency_profile.html">dependency_profile()</a></code> show major trigger hashes side-by-side to tell the user if the command, a dependency, an input file, or an ouptut file changed since the last <code><a href="../reference/make.html">make()</a></code>.</li>
 <li>Choose more appropriate places to check that the <code>txtq</code> package is installed.</li>
 <li>Expose the <code>template</code> argument of <code>clustermq</code> functions (e.g. <code>Q()</code> and <code>workers()</code>) as an argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
-<li>Fix bug where <code><a href="../reference/loadd.html">loadd(not_a_target)</a></code> would load every target in the cache.</li>
+<li>Fix bug where <code><a href="../reference/readd.html">loadd(not_a_target)</a></code> would load every target in the cache.</li>
 </ul>
 </div>
     <div id="version-5-4-0" class="section level1">
@@ -154,7 +154,7 @@
 <li>Implement <code><a href="../reference/make.html">make(parallelism = "clustermq_staged")</a></code>, a <code>clustermq</code>-based staged parallelism backend (see <a href="https://github.com/ropensci/drake/pull/452" class="uri">https://github.com/ropensci/drake/pull/452</a>).</li>
 <li>Implement <code><a href="../reference/make.html">make(parallelism = "future_lapply_staged")</a></code>, a <code>future</code>-based staged parallelism backend (see <a href="https://github.com/ropensci/drake/pull/450" class="uri">https://github.com/ropensci/drake/pull/450</a>).</li>
 <li>Depend on <code>codetools</code> rather than <code>CodeDepends</code> for finding global variables.</li>
-<li>Detect <code><a href="../reference/loadd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code> dependencies in <code>knitr</code> reports referenced with <code><a href="../reference/knitr_in.html">knitr_in()</a></code> inside imported functions. Previously, this feature was only available in explicit <code><a href="../reference/knitr_in.html">knitr_in()</a></code> calls in commands.</li>
+<li>Detect <code><a href="../reference/readd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code> dependencies in <code>knitr</code> reports referenced with <code><a href="../reference/knitr_in.html">knitr_in()</a></code> inside imported functions. Previously, this feature was only available in explicit <code><a href="../reference/knitr_in.html">knitr_in()</a></code> calls in commands.</li>
 <li>Skip more tests on CRAN. White-list tests instead of blacklisting them in order to try to keep check time under the official 10-minute cap.</li>
 <li>Disallow wildcard names to grep-match other wildcard names or any replacement values. This will prevent careless mistakes and confusion when generating <code><a href="../reference/drake_plan.html">drake_plan()</a></code>s.</li>
 <li>Prevent persistent workers from hanging when a target fails.</li>
@@ -212,7 +212,7 @@
 <li>Add a <code>makefile_path</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code> to avoid potential conflicts between user-side custom <code>Makefile</code>s and the one written by <code><a href="../reference/make.html">make(parallelism = "Makefile")</a></code>.</li>
 <li>Document batch mode for long workflows in the HPC guide.</li>
 <li>Add a <code>console</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code> so users can redirect console output to a file.</li>
-<li>Make it easier for the user to find out where a target in the cache came from: <code><a href="../reference/show_source.html">show_source()</a></code>, <code><a href="../reference/readd.html">readd(show_source = TRUE)</a></code>, <code><a href="../reference/loadd.html">loadd(show_source = TRUE)</a></code>.</li>
+<li>Make it easier for the user to find out where a target in the cache came from: <code><a href="../reference/show_source.html">show_source()</a></code>, <code><a href="../reference/readd.html">readd(show_source = TRUE)</a></code>, <code><a href="../reference/readd.html">loadd(show_source = TRUE)</a></code>.</li>
 </ul>
 </div>
     <div id="version-5-1-2" class="section level1">
@@ -241,13 +241,13 @@
 </ol>
 </li>
 <li>Force <code>drake</code> to only look for imports in environments inheriting from <code>envir</code> in <code><a href="../reference/make.html">make()</a></code> (plus explicitly namespaced functions).</li>
-<li>Force <code><a href="../reference/loadd.html">loadd()</a></code> to ignore foreign imports (imports not explicitly found in <code>envir</code> when <code><a href="../reference/make.html">make()</a></code> last imported them).</li>
+<li>Force <code><a href="../reference/readd.html">loadd()</a></code> to ignore foreign imports (imports not explicitly found in <code>envir</code> when <code><a href="../reference/make.html">make()</a></code> last imported them).</li>
 <li>Reduce default verbosity. Only targets are printed out by default. Verbosity levels are integers ranging from 0 through 4.</li>
-<li>Change <code><a href="../reference/loadd.html">loadd()</a></code> so that only targets (not imports) are loaded if the <code>...</code> and <code>list</code> arguments are empty.</li>
+<li>Change <code><a href="../reference/readd.html">loadd()</a></code> so that only targets (not imports) are loaded if the <code>...</code> and <code>list</code> arguments are empty.</li>
 <li>Add check to drake_plan() to check for duplicate targets</li>
 <li>Add a <code>.gitignore</code> file containing <code>"*"</code> to the default <code>.drake/</code> cache folder every time <code><a href="../reference/new_cache.html">new_cache()</a></code> is called. This means the cache will not be automatically committed to git. Users need to remove <code>.gitignore</code> file to allow unforced commits, and then subsequent <code><a href="../reference/make.html">make()</a></code>s on the same cache will respect the user’s wishes and not add another <code>.gitignore</code>. this only works for the default cache. Not supported for manual <code>storr</code>s.</li>
 <li>Add a new experimental <code>"future"</code> backend with a manual scheduler.</li>
-<li>Implement <code>dplyr</code>-style <code>tidyselect</code> functionality in <code><a href="../reference/loadd.html">loadd()</a></code>, <code><a href="../reference/clean.html">clean()</a></code>, and <code><a href="../reference/build_times.html">build_times()</a></code>. For <code><a href="../reference/build_times.html">build_times()</a></code>, there is an API change: for <code>tidyselect</code> to work, we needed to insert a new <code>...</code> argument as the first argument of <code><a href="../reference/build_times.html">build_times()</a></code>.</li>
+<li>Implement <code>dplyr</code>-style <code>tidyselect</code> functionality in <code><a href="../reference/readd.html">loadd()</a></code>, <code><a href="../reference/clean.html">clean()</a></code>, and <code><a href="../reference/build_times.html">build_times()</a></code>. For <code><a href="../reference/build_times.html">build_times()</a></code>, there is an API change: for <code>tidyselect</code> to work, we needed to insert a new <code>...</code> argument as the first argument of <code><a href="../reference/build_times.html">build_times()</a></code>.</li>
 <li>Deprecate the single-quoting API for files. Users should now use formal API functions in their commands:
 <ul>
 <li>
@@ -255,19 +255,19 @@
 <li>
 <code><a href="../reference/file_out.html">file_out()</a></code> for output file targets (ignored if used in imported functions).</li>
 <li>
-<code><a href="../reference/knitr_in.html">knitr_in()</a></code> for <code>knitr</code>/<code>rmarkdown</code> reports. This tells <code>drake</code> to look inside the source file for target dependencies in code chunks (explicitly referenced with <code><a href="../reference/loadd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code>). Treated as a <code><a href="../reference/file_in.html">file_in()</a></code> if used in imported functions.</li>
+<code><a href="../reference/knitr_in.html">knitr_in()</a></code> for <code>knitr</code>/<code>rmarkdown</code> reports. This tells <code>drake</code> to look inside the source file for target dependencies in code chunks (explicitly referenced with <code><a href="../reference/readd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code>). Treated as a <code><a href="../reference/file_in.html">file_in()</a></code> if used in imported functions.</li>
 </ul>
 </li>
 <li>Change <code><a href="../reference/drake_plan.html">drake_plan()</a></code> so that it automatically fills in any target names that the user does not supply. Also, any <code><a href="../reference/file_out.html">file_out()</a></code>s become the target names automatically (double-quoted internally).</li>
 <li>Make <code><a href="../reference/read_drake_plan.html">read_drake_plan()</a></code> (rather than an empty <code><a href="../reference/drake_plan.html">drake_plan()</a></code>) the default <code>plan</code> argument in all functions that accept a <code>plan</code>.</li>
-<li>Add support for active bindings: <code><a href="../reference/loadd.html">loadd(..., lazy = "bind")</a></code>. That way, when you have a target loaded in one R session and hit <code><a href="../reference/make.html">make()</a></code> in another R session, the target in your first session will automatically update.</li>
+<li>Add support for active bindings: <code><a href="../reference/readd.html">loadd(..., lazy = "bind")</a></code>. That way, when you have a target loaded in one R session and hit <code><a href="../reference/make.html">make()</a></code> in another R session, the target in your first session will automatically update.</li>
 <li>Use tibbles for workflow plan data frames and the output of <code><a href="../reference/dataframes_graph.html">dataframes_graph()</a></code>.</li>
 <li>Return warnings, errors, and other context of each build, all wrapped up with the usual metadata. <code><a href="../reference/diagnose.html">diagnose()</a></code> will take on the role of returning this metadata.</li>
 <li>Deprecate the <code><a href="../reference/read_drake_meta.html">read_drake_meta()</a></code> function in favor of <code><a href="../reference/diagnose.html">diagnose()</a></code>.</li>
 <li>Add a new <code><a href="../reference/expose_imports.html">expose_imports()</a></code> function to optionally force <code>drake</code> detect deeply nested functions inside specific packages.</li>
 <li>Move the “quickstart.Rmd” vignette to “example-basic.Rmd”. The so-called “quickstart” didn’t end up being very quick, and it was all about the basic example anyway.</li>
 <li>Move <code><a href="../reference/drake_build.html">drake_build()</a></code> to be an exclusively user-side function.</li>
-<li>Add a <code>replace</code> argument to <code><a href="../reference/loadd.html">loadd()</a></code> so that objects already in the user’s eOne small thing:nvironment need not be replaced.</li>
+<li>Add a <code>replace</code> argument to <code><a href="../reference/readd.html">loadd()</a></code> so that objects already in the user’s eOne small thing:nvironment need not be replaced.</li>
 <li>When the graph cyclic, print out all the cycles.</li>
 <li>Prune self-referential loops (and duplicate edges) from the workflow graph. That way, recursive functions are allowed.</li>
 <li>Add a <code>seed</code> argument to <code><a href="../reference/make.html">make()</a></code>, <code><a href="../reference/drake_config.html">drake_config()</a></code>, and <code><a href="../reference/load_basic_example.html">load_basic_example()</a></code>. Also hard-code a default seed of <code>0</code>. That way, the pseudo-randomness in projects should be reproducible across R sessions.</li>
@@ -382,7 +382,7 @@
 <li>Add a new <code>next_stage()</code> function to report the targets to be made in the next parallelizable stage.</li>
 <li>Add a new <code>session_info</code> argument to <code><a href="../reference/make.html">make()</a></code>. Apparently, <code>sessionInfo()</code> is a bottleneck for small <code><a href="../reference/make.html">make()</a></code>s, so there is now an option to suppress it. This is mostly for the sake of speeding up unit tests.</li>
 <li>Add a new <code>log_progress</code> argument to <code><a href="../reference/make.html">make()</a></code> to suppress progress logging. This increases storage efficiency and speeds some projects up a tiny bit.</li>
-<li>Add an optional <code>namespace</code> argument to <code><a href="../reference/loadd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code>. You can now load and read from non-default <code>storr</code> namespaces.</li>
+<li>Add an optional <code>namespace</code> argument to <code><a href="../reference/readd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code>. You can now load and read from non-default <code>storr</code> namespaces.</li>
 <li>Add <code><a href="../reference/drake_cache_log.html">drake_cache_log()</a></code>, <code><a href="../reference/drake_cache_log_file.html">drake_cache_log_file()</a></code>, and <code><a href="../reference/make.html">make(..., cache_log_file = TRUE)</a></code> as options to track changes to targets/imports in the drake cache.</li>
 <li>Detect knitr code chunk dependencies in response to commands with <code><a href="http://www.rdocumentation.org/packages/rmarkdown/topics/render">rmarkdown::render()</a></code>, not just <code>knit()</code>.</li>
 <li>Add a new general best practices vignette to clear up misconceptions about how to use <code>drake</code> properly.</li>

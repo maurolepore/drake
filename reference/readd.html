@@ -32,7 +32,10 @@
 
 <meta property="og:title" content="Read and return a drake target/import from the cache. — readd" />
 
-<meta property="og:description" content="Does not delete the item from the cache." />
+<meta property="og:description" content="readd() returns an object from the cache,
+and loadd() loads one or more objects from the cache
+into your environment or session. These objects are usually
+targets built by make()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,14 +116,24 @@
 
     <div class="ref-description">
     
-    <p>Does not delete the item from the cache.</p>
+    <p><code>readd()</code> returns an object from the cache,
+and <code>loadd()</code> loads one or more objects from the cache
+into your environment or session. These objects are usually
+targets built by <code><a href='make.html'>make()</a></code>.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>readd</span>(<span class='no'>target</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span>
   <span class='no'>verbose</span>), <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(),
-  <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>loadd</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>), <span class='kw'>imported_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span>
+  <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>lazy</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
+  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,17 +194,117 @@ for example, <code><a href='http://www.rdocumentation.org/packages/pkgconfig/top
 that produced the target or indicate that the object
 was imported (using <code><a href='show_source.html'>show_source()</a></code>).</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>targets to load from the cache: as names (symbols),
+character strings, or <code>dplyr</code>-style <code>tidyselect</code>
+commands such as <code><a href='http://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>list</th>
+      <td><p>character vector naming targets to be loaded from the
+cache. Similar to the <code>list</code> argument of <code>remove()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>imported_only</th>
+      <td><p>logical, whether only imported objects
+should be loaded.</p></td>
+    </tr>
+    <tr>
+      <th>envir</th>
+      <td><p>environment to load objects into. Defaults to the
+calling environment (current workspace).</p></td>
+    </tr>
+    <tr>
+      <th>jobs</th>
+      <td><p>number of parallel jobs for loading objects. On
+non-Windows systems, the loading process for multiple objects
+can be lightly parallelized via <code><a href='http://www.rdocumentation.org/packages/parallel/topics/mclapply'>parallel::mclapply()</a></code>.
+just set jobs to be an integer greater than 1. On Windows,
+<code>jobs</code> is automatically demoted to 1.</p></td>
+    </tr>
+    <tr>
+      <th>deps</th>
+      <td><p>logical, whether to load any cached
+dependencies of the targets
+instead of the targets themselves.
+This is useful if you know your
+target failed and you want to debug the command in an interactive
+session with the dependencies in your workspace.
+One caveat: to find the dependencies,
+<code>loadd()</code> uses information that was stored
+in a <code><a href='drake_config.html'>drake_config()</a></code> list and cached
+during the last <code><a href='make.html'>make()</a></code>.
+That means you need to have already called <code><a href='make.html'>make()</a></code>
+if you set <code>deps</code> to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>lazy</th>
+      <td><p>either a string or a logical. Choices:</p><ul>
+<li><p><code>"eager"</code>: no lazy loading. The target is loaded right away
+with <code>assign()</code>.</p></li>
+<li><p><code>"promise"</code>: lazy loading with <code>delayedAssign()</code></p></li>
+<li><p><code>"bind"</code>: lazy loading with active bindings:
+<code><a href='http://www.rdocumentation.org/packages/bindr/topics/create_env'>bindr::populate_env()</a></code>.</p></li>
+<li><p><code>TRUE</code>: same as <code>"promise"</code>.</p></li>
+<li><p><code>FALSE</code>: same as <code>"eager"</code>.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>graph</th>
+      <td><p>optional igraph object, representation
+of the workflow network for getting dependencies
+if <code>deps</code> is <code>TRUE</code>. If none is supplied,
+it will be read from the cache.</p></td>
+    </tr>
+    <tr>
+      <th>replace</th>
+      <td><p>logical. If <code>FALSE</code>,
+items already in your environment
+will not be replaced.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The cached value of the <code>target</code>.</p>
+<p><code>NULL</code></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>There are two uses for the
+<code>loadd()</code> and <code>readd()</code> functions:</p><ol>
+<li><p>Exploring the results outside the <code>drake</code>/<code><a href='make.html'>make()</a></code> pipeline.
+When you call <code><a href='make.html'>make()</a></code> to run your project,
+<code>drake</code> puts the targets in a cache, usually a folder called <code>.drake</code>.
+You may want to inspect the targets afterwards, possibly in an
+interactive R session. However, the files in the <code>.drake</code> folder
+are organized in a special format created by the
+<a href='https://github.com/richfitz/storr'>storr</a> package,
+which is not exactly human-readable.
+To retrieve a target for manual viewing, use <code>readd()</code>.
+To load one or more targets into your session, use <code>loadd()</code>.</p></li>
+<li><p>In <code>knitr</code> / R Markdown reports.
+You can borrow <code>drake</code> targets in your active code chunks
+if you have the right calls to <code>loadd()</code> and <code>readd()</code>.
+These reports can either run outside the <code>drake</code> pipeline,
+or better yet, as part of the pipeline itself.
+If you call <code><a href='knitr_in.html'>knitr_in("your_report.Rmd")</a></code> inside a <code><a href='drake_plan.html'>drake_plan()</a></code>
+command, then <code><a href='make.html'>make()</a></code> will scan <code>"your_report.Rmd"</code> for
+calls to <code>loadd()</code> and <code>readd()</code> in active code chunks,
+and then treat those loaded targets as dependencies.
+That way, <code><a href='make.html'>make()</a></code> will automatically (re)run the report if those
+dependencies change.
+Please do not put calls to <code>loadd()</code> or <code>readd()</code> inside
+your custom (imported) functions or the commands in your <code><a href='drake_plan.html'>drake_plan()</a></code>.
+This create confusion inside <code><a href='make.html'>make()</a></code>, which has its own ways of
+interacting with the cache.</p></li>
+</ol>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='loadd.html'>loadd()</a></code>, <code><a href='cached.html'>cached()</a></code>,
-<code><a href='built.html'>built()</a></code>, <code><a href='imported.html'>imported()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>,
-<code><a href='make.html'>make()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='cached.html'>cached()</a></code>, <code><a href='built.html'>built()</a></code>, <code><a href='imported.html'>imported()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p>
+<p><code><a href='cached.html'>cached()</a></code>, <code><a href='built.html'>built()</a></code>, <code><a href='imported.html'>imported()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -205,6 +318,38 @@ was imported (using <code><a href='show_source.html'>show_source()</a></code>).<
 <span class='co'># For external files, only the fingerprint/hash is stored.</span>
 <span class='fu'>readd</span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>), <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 })
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
+<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the projects, build the targets.</span>
+<span class='fu'>loadd</span>(<span class='no'>small</span>) <span class='co'># Load target 'small' into your workspace.</span>
+<span class='no'>small</span>
+<span class='co'># For many targets, you can parallelize loadd()</span>
+<span class='co'># using the 'jobs' argument.</span>
+<span class='fu'>loadd</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"small"</span>, <span class='st'>"large"</span>), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'>ls</span>()
+<span class='co'># How about tidyselect?</span>
+<span class='fu'>loadd</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with</a></span>(<span class='st'>"summ"</span>))
+<span class='fu'>ls</span>()
+<span class='co'># Load the dependencies of the target, coef_regression2_small</span>
+<span class='fu'>loadd</span>(<span class='no'>coef_regression2_small</span>, <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>ls</span>()
+<span class='co'># Load all the imported objects/functions.</span>
+<span class='co'># Note: loadd() excludes foreign imports</span>
+<span class='co'># (R objects not originally defined in `envir`</span>
+<span class='co'># when `make()` last imported them).</span>
+<span class='fu'>loadd</span>(<span class='kw'>imported_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>ls</span>()
+<span class='co'># Load all the targets listed in the workflow plan</span>
+<span class='co'># of the previous `make()`.</span>
+<span class='co'># Be sure your computer has enough memory.</span>
+<span class='fu'>loadd</span>()
+<span class='fu'>ls</span>()
+<span class='co'># With files, you just get the fingerprint.</span>
+<span class='fu'>loadd</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>))
+<span class='fu'>ls</span>() <span class='co'># Should include "\"report.md\"".</span>
+<span class='fu'>get</span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>))
+})
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -213,6 +358,8 @@ was imported (using <code><a href='show_source.html'>show_source()</a></code>).<
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

@@ -127,14 +127,21 @@ It is not actually a user-side function.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>target</th>
+      <td><p>If <code>character_only</code> is <code>TRUE</code>, then
+<code>target</code> is a character string naming the object to read.
+Otherwise, <code>target</code> is an unquoted symbol with the name of the
+object.</p></td>
+    </tr>
+    <tr>
       <th>cache</th>
       <td><p>drake cache. See <code><a href='new_cache.html'>new_cache()</a></code>.
 If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     </tr>
     <tr>
       <th>namespace</th>
-      <td><p>character scalar,
-name of an optional storr namespace to load from.</p></td>
+      <td><p>optional character string,
+name of the <code>storr</code> namespace to read from.</p></td>
     </tr>
     <tr>
       <th>envir</th>
