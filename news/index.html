@@ -119,9 +119,7 @@
 <li>Improve <code><a href="../reference/dependency_profile.html">dependency_profile()</a></code> show major trigger hashes side-by-side to tell the user if the command, a dependency, an input file, or an ouptut file changed since the last <code><a href="../reference/make.html">make()</a></code>.</li>
 <li>Choose more appropriate places to check that the <code>txtq</code> package is installed.</li>
 <li>Expose the <code>template</code> argument of <code>clustermq</code> functions (e.g. <code>Q()</code> and <code>workers()</code>) as an argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
-<li>Improve the help files of <code><a href="../reference/readd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code>, giving specific usage guidance in prose.</li>
-<li>Bugfix: <code><a href="../reference/readd.html">loadd(not_a_target)</a></code> no longer loads every target in the cache.</li>
-<li>Bugfix: exclude each target from its own dependency metadata in the “deps” <code>igraph</code> vertex attribute (fixes <a href="https://github.com/ropensci/drake/issues/503" class="uri">https://github.com/ropensci/drake/issues/503</a>).</li>
+<li>Fix bug where <code><a href="../reference/readd.html">loadd(not_a_target)</a></code> would load every target in the cache.</li>
 </ul>
 </div>
     <div id="version-5-4-0" class="section level1">
