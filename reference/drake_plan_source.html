@@ -170,9 +170,9 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 #&gt;   small_data = download_data("https://some_website.com") %&gt;%
 #&gt;     select_my_columns() %&gt;%
 #&gt;     munge(),
-#&gt;   large_data_raw =target(
+#&gt;   large_data_raw = target(
 #&gt;     command = download_data("https://lots_of_data.com") %&gt;% select_top_columns(),
-#&gt;     trigger =trigger(
+#&gt;     trigger = trigger(
 #&gt;       change = time_last_modified("https://lots_of_data.com"),
 #&gt;       command = FALSE,
 #&gt;       depend = FALSE
