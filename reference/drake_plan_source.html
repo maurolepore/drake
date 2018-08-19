@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the code to produce a given workflow plan data frame — drake_plan_source • drake</title>
+<title>Show the code required to produce a given workflow plan data frame — drake_plan_source • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Get the code to produce a given workflow plan data frame — drake_plan_source" />
+<meta property="og:title" content="Show the code required to produce a given workflow plan data frame — drake_plan_source" />
 
 <meta property="og:description" content="You supply a plan, and drake_plan_source()
 supplies code to generate that plan. If you have the
@@ -110,7 +110,7 @@ when you print it." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the code to produce a given workflow plan data frame</h1>
+    <h1>Show the code required to produce a given workflow plan data frame</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/drake_plan_source.R'><code>R/drake_plan_source.R</code></a></small>
     <div class="hidden name"><code>drake_plan_source.Rd</code></div>
     </div>
@@ -168,15 +168,19 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 #&gt; 2 large_data_raw "download_data(\"https:/… "trigger(change = time_last…    1000</div><div class='input'><span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)
 <span class='fu'>print</span>(<span class='no'>source</span>) <span class='co'># Install the prettycode package for syntax highlighting.</span></div><div class='output co'>#&gt; drake_plan(
 #&gt;   small_data = download_data("https://some_website.com") %&gt;%
-#&gt; select_my_columns() %&gt;% munge(),
-#&gt;   large_data_raw = target(
-#&gt;   command = download_data("https://lots_of_data.com") %&gt;%
-#&gt; select_top_columns,
-#&gt;   trigger = trigger(
-#&gt;   change = time_last_modified("https://lots_of_data.com"),
-#&gt;   command = FALSE,
-#&gt;   depend = FALSE),
-#&gt;   timeout = 1000))</div><span class='co'># NOT RUN {</span>
+#&gt;     select_my_columns() %&gt;%
+#&gt;     munge(),
+#&gt;   large_data_raw =target(
+#&gt;     command = download_data("https://lots_of_data.com") %&gt;% select_top_columns(),
+#&gt;     trigger =trigger(
+#&gt;       change = time_last_modified("https://lots_of_data.com"),
+#&gt;       command = FALSE,
+#&gt;       depend = FALSE
+#&gt;     ),
+#&gt;     timeout = 1000
+#&gt;   ),
+#&gt;   strings_in_dots = "literals"
+#&gt; )</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"suppress side effects"</span>, {
 <span class='fu'>writeLines</span>(<span class='no'>source</span>, <span class='st'>"my_script.R"</span>) <span class='co'># Save the code to an R script.</span>
 })
