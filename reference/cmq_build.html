@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List the types of supported parallel computing in drake. — parallelism_choices • drake</title>
+<title>Build a target using the clustermq backend — cmq_build • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="List the types of supported parallel computing in drake. — parallelism_choices" />
+<meta property="og:title" content="Build a target using the clustermq backend — cmq_build" />
 
-<meta property="og:description" content="These are the possible values of the
-parallelism argument to make()." />
+<meta property="og:description" content="For internal use only" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,69 +106,47 @@ parallelism argument to make()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List the types of supported parallel computing in drake.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/parallel_ui.R'><code>R/parallel_ui.R</code></a></small>
-    <div class="hidden name"><code>parallelism_choices.Rd</code></div>
+    <h1>Build a target using the clustermq backend</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/clustermq.R'><code>R/clustermq.R</code></a></small>
+    <div class="hidden name"><code>cmq_build.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>These are the possible values of the
-<code>parallelism</code> argument to <code><a href='make.html'>make()</a></code>.</p>
+    <p>For internal use only</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>parallelism_choices</span>(<span class='kw'>distributed_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>cmq_build</span>(<span class='no'>target</span>, <span class='no'>meta</span>, <span class='no'>deps</span>, <span class='no'>config</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>distributed_only</th>
-      <td><p>logical, whether to return only
-the distributed backend types, such as <code>Makefile</code> and
-<code>parLapply</code></p></td>
+      <th>target</th>
+      <td><p>target name</p></td>
+    </tr>
+    <tr>
+      <th>meta</th>
+      <td><p>list of metadata</p></td>
+    </tr>
+    <tr>
+      <th>deps</th>
+      <td><p>named list of target dependencies</p></td>
+    </tr>
+    <tr>
+      <th>config</th>
+      <td><p>a <code><a href='drake_config.html'>drake_config()</a></code> list</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Character vector listing the types of parallel
-computing supported.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>See the
-<a href='https://ropenscilabs.github.io/drake-manual/hpc.html'>high-performance computing guide</a> # nolint
-for details on the parallel backends.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='make.html'>make()</a></code>, <code><a href='shell_file.html'>shell_file()</a></code></p></div>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># See all the parallel computing options.</span>
-<span class='fu'>parallelism_choices</span>()</div><div class='output co'>#&gt;  [1] "mclapply"             "parLapply"            "mclapply_staged"     
-#&gt;  [4] "parLapply_staged"     "clustermq"            "clustermq_staged"    
-#&gt;  [7] "future"               "future_lapply"        "future_lapply_staged"
-#&gt; [10] "Makefile"            </div><div class='input'><span class='co'># See just the distributed computing options.</span>
-<span class='fu'>parallelism_choices</span>(<span class='kw'>distributed_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "clustermq"            "clustermq_staged"     "future"              
-#&gt; [4] "future_lapply"        "future_lapply_staged" "Makefile"            </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>
