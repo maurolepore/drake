@@ -126,6 +126,9 @@
 <li>Add a new <code><a href="../reference/code_to_plan.html">code_to_plan()</a></code> function to turn R scripts and R Markdown reports into workflow plan data frames.</li>
 <li>Add a new <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code> function, which generates lines of code for a <code><a href="../reference/drake_plan.html">drake_plan()</a></code> call. This <code><a href="../reference/drake_plan.html">drake_plan()</a></code> call produces the plan passed to <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code>. The main purpose is visual inspection (we even have syntax highlighting via <code>prettycode</code>) but users may also save the output to a script file for the sake of reproducibility or simple reference.</li>
 <li>Memoize all the steps of <code><a href="../reference/build_drake_graph.html">build_drake_graph()</a></code> and print to the console the ones that execute.</li>
+<li>Bug fix: avoid <code>sort(NULL)</code> because it returns <code>NA</code>s on R 3.3.</li>
+<li>Bug fix: work around mysterious <code>codetools</code> failures on R 3.3 (add a <code>tryCatch()</code> statement in <code>find_globals()</code>).</li>
+<li>Skip some tests if <code>txtq</code> is not installed.</li>
 </ul>
 </div>
     <div id="version-5-4-0" class="section level1">
