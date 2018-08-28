@@ -113,6 +113,7 @@
 </h1>
 <ul>
 <li>Add a proper <a href="https://github.com/mschubert/clustermq"><code>clustermq</code></a>-based parallel backend: <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
+<li>Avoid serialization in <code>digest()</code> wherever possible. This puts old <code>drake</code> projects out of date, but it improves speed.</li>
 <li>Smooth the edges in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Make hover text slightly more readable in in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Align hover text properly in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> using the “title” node column.</li>
