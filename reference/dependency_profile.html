@@ -32,18 +32,11 @@
 
 <meta property="og:title" content="Find out why a target is out of date. — dependency_profile" />
 
-<meta property="og:description" content="The dependency profile can give you
-a hint as to why a target is out of date.
-It can tell you if
-at least one input file changed,
-at least one output file changed,
-or a non-file dependency changed. For this last part,
-the imports need to be up to date in the cache,
-which you can do with outdated() or
-make(skip_targets = TRUE).
-Unfortunately, dependency_profile() does not
-currently get more specific than that.
-" />
+<meta property="og:description" content="The dependency profile can tell you
+why a target is out of date. It tells you the specific
+dependencies that changed since the last make(),
+as well as whether any of the built-in trigger()s
+(the command, depend, and file triggers) will be activated." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,18 +117,11 @@ currently get more specific than that.
 
     <div class="ref-description">
     
-    <p>The dependency profile can give you
-a hint as to why a target is out of date.
-It can tell you if</p><ul>
-<li><p>at least one input file changed,</p></li>
-<li><p>at least one output file changed,</p></li>
-<li><p>or a non-file dependency changed. For this last part,
-the imports need to be up to date in the cache,
-which you can do with <code><a href='outdated.html'>outdated()</a></code> or
-<code><a href='make.html'>make(skip_targets = TRUE)</a></code>.
-Unfortunately, <code>dependency_profile()</code> does not
-currently get more specific than that.</p></li>
-</ul>
+    <p>The dependency profile can tell you
+why a target is out of date. It tells you the specific
+dependencies that changed since the last <code><a href='make.html'>make()</a></code>,
+as well as whether any of the built-in <code><a href='trigger.html'>trigger()</a></code>s
+(the command, depend, and file triggers) will be activated.</p>
     
     </div>
 
@@ -164,8 +150,8 @@ is a character string rather than a symbol</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame of the old hashes and
-new hashes of the data frame, along with
-an indication of which hashes changed since
+new hashes of each dependency and trigger, along with
+a logical column to indicate which hashes changed since
 the last <code><a href='make.html'>make()</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
