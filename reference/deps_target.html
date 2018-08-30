@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deprecated. — deps_targets • drake</title>
+<title>List the dependencies of one or more targets — deps_target • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Deprecated. — deps_targets" />
+<meta property="og:title" content="List the dependencies of one or more targets — deps_target" />
 
-<meta property="og:description" content="Deprecated. Use deps_target() (singular) instead." />
+<meta property="og:description" content="Intended for debugging and checking your project.
+The dependency structure of the components of your analysis
+decides which targets are built and when." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,34 +108,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Deprecated.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
-    <div class="hidden name"><code>deps_targets.Rd</code></div>
+    <h1>List the dependencies of one or more targets</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/dependencies.R'><code>R/dependencies.R</code></a></small>
+    <div class="hidden name"><code>deps_target.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Deprecated. Use <code><a href='deps_target.html'>deps_target()</a></code> (singular) instead.</p>
+    <p>Intended for debugging and checking your project.
+The dependency structure of the components of your analysis
+decides which targets are built and when.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>deps_targets</span>(<span class='no'>targets</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fu'><a href='read_drake_config.html'>read_drake_config</a></span>(), <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>deps_target</span>(<span class='no'>target</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='fu'><a href='read_drake_config.html'>read_drake_config</a></span>(),
+  <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>targets</th>
-      <td><p>a character vector of target names</p></td>
+      <th>target</th>
+      <td><p>a symbol denoting a target name, or if <code>character_only</code>
+is TRUE, a character scalar denoting a target name.</p></td>
     </tr>
     <tr>
       <th>config</th>
       <td><p>an output list from <code><a href='drake_config.html'>drake_config()</a></code></p></td>
     </tr>
     <tr>
-      <th>reverse</th>
-      <td><p>logical, whether to compute reverse dependencies
-(targets immediately downstream) instead of ordinary dependencies.</p></td>
+      <th>character_only</th>
+      <td><p>logical, whether to assume target is a character
+string rather than a symbol.</p></td>
     </tr>
     </table>
     
@@ -141,18 +147,14 @@
 
     <p>Names of dependencies listed by type (object, input file, etc).</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Deprecated on 2018-08-30.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='fu'>deps_targets</span>(<span class='st'>"regression1_small"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
-<span class='fu'>deps_targets</span>(<span class='fu'>c</span>(<span class='st'>"small"</span>, <span class='st'>"large"</span>), <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>deps_target</span>(<span class='st'>"regression1_small"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
+<span class='fu'>deps_target</span>(<span class='fu'>c</span>(<span class='st'>"small"</span>, <span class='st'>"large"</span>), <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 })
 <span class='co'># }</span></pre>
   </div>
@@ -162,8 +164,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
