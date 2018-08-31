@@ -111,27 +111,51 @@
 <h1 class="page-header">
 <a href="#version-5-4-0-9001" class="anchor"></a>Version 5.4.0.9001<small> Unreleased </small>
 </h1>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<ul>
+<li>Avoid serialization in <code>digest()</code> wherever possible. This puts old <code>drake</code> projects out of date, but it improves speed.</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Previously, <code><a href="../reference/clean.html">clean()</a></code> deleted input-only files if no targets from the plan were cached. A patch and a unit test are included in this release.</li>
+<li>
+<code><a href="../reference/readd.html">loadd(not_a_target)</a></code> no longer loads every target in the cache.</li>
+<li>Exclude each target from its own dependency metadata in the “deps” <code>igraph</code> vertex attribute (fixes <a href="https://github.com/ropensci/drake/issues/503" class="uri">https://github.com/ropensci/drake/issues/503</a>).</li>
+</ul>
+</div>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
 <li>Add a proper <a href="https://github.com/mschubert/clustermq"><code>clustermq</code></a>-based parallel backend: <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
-<li>Avoid serialization in <code>digest()</code> wherever possible. This puts old <code>drake</code> projects out of date, but it improves speed.</li>
+<li>Expose the <code>template</code> argument of <code>clustermq</code> functions (e.g. <code>Q()</code> and <code>workers()</code>) as an argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
+<li>Add a new <code><a href="../reference/code_to_plan.html">code_to_plan()</a></code> function to turn R scripts and R Markdown reports into workflow plan data frames.</li>
+<li>Add a new <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code> function, which generates lines of code for a <code><a href="../reference/drake_plan.html">drake_plan()</a></code> call. This <code><a href="../reference/drake_plan.html">drake_plan()</a></code> call produces the plan passed to <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code>. The main purpose is visual inspection (we even have syntax highlighting via <code>prettycode</code>) but users may also save the output to a script file for the sake of reproducibility or simple reference.</li>
+<li>Deprecate <code><a href="../reference/deps_targets.html">deps_targets()</a></code> in favor of a new <code><a href="../reference/deps_target.html">deps_target()</a></code> function (singular) that behaves more like <code><a href="../reference/deps_code.html">deps_code()</a></code>.</li>
+</ul>
+</div>
+<div id="enhancements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancements" class="anchor"></a>Enhancements</h2>
+<ul>
 <li>Smooth the edges in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Make hover text slightly more readable in in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Align hover text properly in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> using the “title” node column.</li>
 <li>Optionally collapse nodes into clusters with <code><a href="../reference/vis_drake_graph.html">vis_drake_graph(collapse = TRUE)</a></code>.</li>
 <li>Improve <code><a href="../reference/dependency_profile.html">dependency_profile()</a></code> show major trigger hashes side-by-side to tell the user if the command, a dependency, an input file, or an ouptut file changed since the last <code><a href="../reference/make.html">make()</a></code>.</li>
 <li>Choose more appropriate places to check that the <code>txtq</code> package is installed.</li>
-<li>Expose the <code>template</code> argument of <code>clustermq</code> functions (e.g. <code>Q()</code> and <code>workers()</code>) as an argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
 <li>Improve the help files of <code><a href="../reference/readd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code>, giving specific usage guidance in prose.</li>
-<li>Bugfix: <code><a href="../reference/readd.html">loadd(not_a_target)</a></code> no longer loads every target in the cache.</li>
-<li>Bugfix: exclude each target from its own dependency metadata in the “deps” <code>igraph</code> vertex attribute (fixes <a href="https://github.com/ropensci/drake/issues/503" class="uri">https://github.com/ropensci/drake/issues/503</a>).</li>
-<li>Add a new <code><a href="../reference/code_to_plan.html">code_to_plan()</a></code> function to turn R scripts and R Markdown reports into workflow plan data frames.</li>
-<li>Add a new <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code> function, which generates lines of code for a <code><a href="../reference/drake_plan.html">drake_plan()</a></code> call. This <code><a href="../reference/drake_plan.html">drake_plan()</a></code> call produces the plan passed to <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code>. The main purpose is visual inspection (we even have syntax highlighting via <code>prettycode</code>) but users may also save the output to a script file for the sake of reproducibility or simple reference.</li>
 <li>Memoize all the steps of <code><a href="../reference/build_drake_graph.html">build_drake_graph()</a></code> and print to the console the ones that execute.</li>
 <li>Bug fix: avoid <code>sort(NULL)</code> because it returns <code>NA</code>s on R 3.3.</li>
 <li>Bug fix: work around mysterious <code>codetools</code> failures on R 3.3 (add a <code>tryCatch()</code> statement in <code>find_globals()</code>).</li>
 <li>Skip some tests if <code>txtq</code> is not installed.</li>
-<li>Deprecate <code><a href="../reference/deps_targets.html">deps_targets()</a></code> in favor of a <code><a href="../reference/deps_target.html">deps_target()</a></code> function (singular) that behaves more like <code><a href="../reference/deps_code.html">deps_code()</a></code>.</li>
 </ul>
+</div>
 </div>
     <div id="version-5-4-0" class="section level1">
 <h1 class="page-header">
