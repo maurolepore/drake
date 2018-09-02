@@ -127,6 +127,7 @@
 <code><a href="../reference/readd.html">loadd(not_a_target)</a></code> no longer loads every target in the cache.</li>
 <li>Exclude each target from its own dependency metadata in the “deps” <code>igraph</code> vertex attribute (fixes <a href="https://github.com/ropensci/drake/issues/503" class="uri">https://github.com/ropensci/drake/issues/503</a>).</li>
 <li>Detect inline code dependencies in <code><a href="../reference/knitr_in.html">knitr_in()</a></code> file code chunks.</li>
+<li>Fix a minor glitch where R 3.3.3 complained about <code>is.na(NULL)</code>. Now using <code>safe_is_na()</code> where input is likely to be <code>NULL</code>.</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
