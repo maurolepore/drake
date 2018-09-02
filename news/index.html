@@ -116,6 +116,7 @@
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>Avoid serialization in <code>digest()</code> wherever possible. This puts old <code>drake</code> projects out of date, but it improves speed.</li>
+<li>Require R version &gt;= 3.3.0 rather than &gt;= 3.2.0. Tests and checks still run fine on 3.3.0, but the required version of the <code>stringi</code> package no longer compiles on 3.2.0.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
