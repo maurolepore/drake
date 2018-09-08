@@ -256,6 +256,9 @@
     <loc>https://github.com/ropensci/drake/reference/gather.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ropensci/drake/reference/gather_by.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ropensci/drake/reference/gather_plan.html</loc>
   </url>
   <url>
@@ -407,6 +410,9 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/recover_cache.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/reduce_by.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/reduce_plan.html</loc>
