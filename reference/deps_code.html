@@ -138,11 +138,17 @@ or imported function to analyze for dependencies.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Names of dependencies listed by type (object, input file, etc).</p>
+    <p>Names of dependencies listed by type (object, input file, etc).
+The <code>globals</code> slot of the output list contains candidate globals only.
+Each global will be treated as an actual dependency if and only if
+it is either a target or an item in the <code>envir</code> argument to <code><a href='make.html'>make()</a></code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If the argument is a <code>knitr</code> report
+    <p>The <code>globals</code> slot of the output list contains candidate globals only.
+Each global will be treated as an actual dependency if and only if
+it is either a target or an item in the <code>envir</code> argument to <code><a href='make.html'>make()</a></code>.</p>
+<p>If the argument is a <code>knitr</code> report
 (for example, <code><a href='file_store.html'>file_store("report.Rmd")</a></code> or <code>"\"report.Rmd\""</code>)
 the the dependencies of the expected compiled
 output will be given. For example, <code>deps_code(file_store("report.Rmd"))</code>
