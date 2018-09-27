@@ -123,6 +123,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
+<li>In the call to <code>unlink()</code> in <code><a href="../reference/clean.html">clean()</a></code>, set <code>recursive</code> and <code>force</code> to <code>FALSE</code>. This should prevent the accidental deletion of whole directories.</li>
 <li>Previously, <code><a href="../reference/clean.html">clean()</a></code> deleted input-only files if no targets from the plan were cached. A patch and a unit test are included in this release.</li>
 <li>
 <code><a href="../reference/readd.html">loadd(not_a_target)</a></code> no longer loads every target in the cache.</li>
@@ -130,6 +131,7 @@
 <li>Detect inline code dependencies in <code><a href="../reference/knitr_in.html">knitr_in()</a></code> file code chunks.</li>
 <li>Remove more calls to <code>sort(NULL)</code> that caused warnings in R 3.3.3.</li>
 <li>Fix a bug on R 3.3.3 where <code>analyze_loadd()</code> was sometimes quitting with “Error: attempt to set an attribute on NULL”.</li>
+<li>Do not call <code><a href="http://www.rdocumentation.org/packages/digest/topics/digest">digest::digest(file = TRUE)</a></code> on directories. Instead, set hashes of directories to <code>NA</code>. Users should still not directories as file dependencies.</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">

@@ -162,10 +162,10 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
     <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>1e3</span>
   )
 )</div><div class='output co'>#&gt; <span class='warning'>Warning: Converting double-quotes to single-quotes because the `strings_in_dots` argument is missing. Use the file_in(), file_out(), and knitr_in() functions to work with files in your commands. To remove this warning, either call `drake_plan()` with `strings_in_dots = "literals"` or use `pkgconfig::set_config("drake::strings_in_dots" = "literals")`.</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 4
-#&gt;   target         command                   trigger                      timeout
-#&gt; * &lt;chr&gt;          &lt;chr&gt;                     &lt;chr&gt;                          &lt;dbl&gt;
-#&gt; 1 small_data     "download_data('https://… &lt;NA&gt;                              NA
-#&gt; 2 large_data_raw "download_data(\"https:/… "trigger(change = time_last…    1000</div><div class='input'><span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)
+#&gt;   target    command                       trigger                       timeout
+#&gt; * &lt;chr&gt;     &lt;chr&gt;                         &lt;chr&gt;                           &lt;dbl&gt;
+#&gt; 1 small_da… "download_data('https://some… &lt;NA&gt;                               NA
+#&gt; 2 large_da… "download_data(\"https://lot… "trigger(change = time_last_…    1000</div><div class='input'><span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)
 <span class='fu'>print</span>(<span class='no'>source</span>) <span class='co'># Install the prettycode package for syntax highlighting.</span></div><div class='output co'>#&gt; drake_plan(
 #&gt;   small_data = download_data("https://some_website.com") %&gt;%
 #&gt;     select_my_columns() %&gt;%

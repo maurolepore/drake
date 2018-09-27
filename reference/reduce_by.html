@@ -179,15 +179,15 @@ or to do the reduction all in one command.</p></td>
 )
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='evaluate_plan.html'>evaluate_plan</a></span>(<span class='no'>plan</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>mu__</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>), <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'><a href='gather_by.html'>gather_by</a></span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"dplyr::bind_rows"</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
-#&gt;   target               command                                 mu__  mu___from 
-#&gt; * &lt;chr&gt;                &lt;chr&gt;                                   &lt;chr&gt; &lt;chr&gt;     
-#&gt; 1 data                 get_data()                              &lt;NA&gt;  &lt;NA&gt;      
-#&gt; 2 informal_look_1      inspect_data(data, mu = 1)              1     informal_…
-#&gt; 3 informal_look_2      inspect_data(data, mu = 2)              2     informal_…
-#&gt; 4 bayes_model_1        bayesian_model_fit(data, prior_mu = 1)  1     bayes_mod…
-#&gt; 5 bayes_model_2        bayesian_model_fit(data, prior_mu = 2)  2     bayes_mod…
-#&gt; 6 target_bayes_model   dplyr::bind_rows(bayes_model_1 = bayes… &lt;NA&gt;  bayes_mod…
-#&gt; 7 target_informal_look dplyr::bind_rows(informal_look_1 = inf… &lt;NA&gt;  informal_…</div><div class='input'><span class='fu'><a href='gather_by.html'>gather_by</a></span>(<span class='no'>plan</span>, <span class='no'>mu__</span>, <span class='no'>mu___from</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"x"</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 4
+#&gt;   target         command                                      mu__  mu___from  
+#&gt; * &lt;chr&gt;          &lt;chr&gt;                                        &lt;chr&gt; &lt;chr&gt;      
+#&gt; 1 data           get_data()                                   &lt;NA&gt;  &lt;NA&gt;       
+#&gt; 2 informal_look… inspect_data(data, mu = 1)                   1     informal_l…
+#&gt; 3 informal_look… inspect_data(data, mu = 2)                   2     informal_l…
+#&gt; 4 bayes_model_1  bayesian_model_fit(data, prior_mu = 1)       1     bayes_model
+#&gt; 5 bayes_model_2  bayesian_model_fit(data, prior_mu = 2)       2     bayes_model
+#&gt; 6 target_bayes_… dplyr::bind_rows(bayes_model_1 = bayes_mode… &lt;NA&gt;  bayes_model
+#&gt; 7 target_inform… dplyr::bind_rows(informal_look_1 = informal… &lt;NA&gt;  informal_l…</div><div class='input'><span class='fu'><a href='gather_by.html'>gather_by</a></span>(<span class='no'>plan</span>, <span class='no'>mu__</span>, <span class='no'>mu___from</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"x"</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 4
 #&gt;   target            command                                 mu__  mu___from    
 #&gt; * &lt;chr&gt;             &lt;chr&gt;                                   &lt;chr&gt; &lt;chr&gt;        
 #&gt; 1 data              get_data()                              &lt;NA&gt;  &lt;NA&gt;         
@@ -199,15 +199,15 @@ or to do the reduction all in one command.</p></td>
 #&gt; 7 x_1_informal_look list(informal_look_1 = informal_look_1) 1     informal_look
 #&gt; 8 x_2_bayes_model   list(bayes_model_2 = bayes_model_2)     2     bayes_model  
 #&gt; 9 x_2_informal_look list(informal_look_2 = informal_look_2) 2     informal_look</div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>begin</span> <span class='kw'>=</span> <span class='st'>"list("</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>")"</span>, <span class='kw'>op</span> <span class='kw'>=</span> <span class='st'>", "</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
-#&gt;   target               command                                mu__  mu___from  
-#&gt; * &lt;chr&gt;                &lt;chr&gt;                                  &lt;chr&gt; &lt;chr&gt;      
-#&gt; 1 data                 get_data()                             &lt;NA&gt;  &lt;NA&gt;       
-#&gt; 2 informal_look_1      inspect_data(data, mu = 1)             1     informal_l…
-#&gt; 3 informal_look_2      inspect_data(data, mu = 2)             2     informal_l…
-#&gt; 4 bayes_model_1        bayesian_model_fit(data, prior_mu = 1) 1     bayes_model
-#&gt; 5 bayes_model_2        bayesian_model_fit(data, prior_mu = 2) 2     bayes_model
-#&gt; 6 target_bayes_model   list(bayes_model_1, bayes_model_2)     &lt;NA&gt;  bayes_model
-#&gt; 7 target_informal_look list(informal_look_1, informal_look_2) &lt;NA&gt;  informal_l…</div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>mu__</span>, <span class='no'>mu___from</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 4
+#&gt;   target               command                               mu__  mu___from   
+#&gt; * &lt;chr&gt;                &lt;chr&gt;                                 &lt;chr&gt; &lt;chr&gt;       
+#&gt; 1 data                 get_data()                            &lt;NA&gt;  &lt;NA&gt;        
+#&gt; 2 informal_look_1      inspect_data(data, mu = 1)            1     informal_lo…
+#&gt; 3 informal_look_2      inspect_data(data, mu = 2)            2     informal_lo…
+#&gt; 4 bayes_model_1        bayesian_model_fit(data, prior_mu = … 1     bayes_model 
+#&gt; 5 bayes_model_2        bayesian_model_fit(data, prior_mu = … 2     bayes_model 
+#&gt; 6 target_bayes_model   list(bayes_model_1, bayes_model_2)    &lt;NA&gt;  bayes_model 
+#&gt; 7 target_informal_look list(informal_look_1, informal_look_… &lt;NA&gt;  informal_lo…</div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>mu__</span>, <span class='no'>mu___from</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 4
 #&gt;   target          command                                mu__  mu___from    
 #&gt; * &lt;chr&gt;           &lt;chr&gt;                                  &lt;chr&gt; &lt;chr&gt;        
 #&gt; 1 data            get_data()                             &lt;NA&gt;  &lt;NA&gt;         
