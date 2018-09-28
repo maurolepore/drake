@@ -133,6 +133,8 @@
 <li>Remove more calls to <code>sort(NULL)</code> that caused warnings in R 3.3.3.</li>
 <li>Fix a bug on R 3.3.3 where <code>analyze_loadd()</code> was sometimes quitting with “Error: attempt to set an attribute on NULL”.</li>
 <li>Do not call <code><a href="http://www.rdocumentation.org/packages/digest/topics/digest">digest::digest(file = TRUE)</a></code> on directories. Instead, set hashes of directories to <code>NA</code>. Users should still not directories as file dependencies.</li>
+<li>If files are declared as dependnecies of custom triggers (“condition” and “change”) include them in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code>. Previously, these files were missing from the visualization, but actual workflows worked just fine. Ref: <a href="https://stackoverflow.com/questions/52121537/trigger-notification-from-report-generation-in-r-drake-package" class="uri">https://stackoverflow.com/questions/52121537/trigger-notification-from-report-generation-in-r-drake-package</a>
+</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
