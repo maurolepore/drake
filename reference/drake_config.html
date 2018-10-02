@@ -483,11 +483,23 @@ this is a step in the right direction for data reproducibility.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>integer, the root pseudo-random seed to use for your project.
-To ensure reproducibility across different R sessions,
+      <td><p>integer, the root pseudo-random number generator
+seed to use for your project.
+In <code><a href='make.html'>make()</a></code>, <code>drake</code> generates a unique
+local seed for each target using the global seed
+and the target name. That way, different pseudo-random numbers
+are generated for different targets, and this pseudo-randomness
+is reproducible.</p>
+<p>To ensure reproducibility across different R sessions,
 <code>set.seed()</code> and <code>.Random.seed</code> are ignored and have no affect on
-<code>drake</code> workflows. Conversely, <code><a href='make.html'>make()</a></code> does not change <code>.Random.seed</code>,
-even when pseudo-random numbers are generated.</p>
+<code>drake</code> workflows. Conversely, <code><a href='make.html'>make()</a></code> does not usually
+change <code>.Random.seed</code>,
+even when pseudo-random numbers are generated.
+The exceptions to this last point are
+<code><a href='make.html'>make(parallelism = "clustermq")</a></code> and
+<code><a href='make.html'>make(parallelism = "clustermq_staged")</a></code>,
+because the <code>clustermq</code> package needs to generate random numbers
+to set up ports and sockets for ZeroMQ.</p>
 <p>On the first call to <code><a href='make.html'>make()</a></code> or <code>drake_config()</code>, <code>drake</code>
 uses the random number generator seed from the <code>seed</code> argument.
 Here, if the <code>seed</code> is <code>NULL</code> (default), <code>drake</code> uses a <code>seed</code> of <code>0</code>.
