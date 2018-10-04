@@ -160,13 +160,17 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
       <span class='kw'>depend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
     ),
     <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='fl'>1e3</span>
-  )
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Converting double-quotes to single-quotes because the `strings_in_dots` argument is missing. Use the file_in(), file_out(), and knitr_in() functions to work with files in your commands. To remove this warning, either call `drake_plan()` with `strings_in_dots = "literals"` or use `pkgconfig::set_config("drake::strings_in_dots" = "literals")`.</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 4
+  ),
+  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
+)
+<span class='fu'>print</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 4
 #&gt;   target    command                       trigger                       timeout
 #&gt; * &lt;chr&gt;     &lt;chr&gt;                         &lt;chr&gt;                           &lt;dbl&gt;
-#&gt; 1 small_da… "download_data('https://some… &lt;NA&gt;                               NA
-#&gt; 2 large_da… "download_data(\"https://lot… "trigger(change = time_last_…    1000</div><div class='input'><span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)
-<span class='fu'>print</span>(<span class='no'>source</span>) <span class='co'># Install the prettycode package for syntax highlighting.</span></div><div class='output co'>#&gt; drake_plan(
+#&gt; 1 small_da… "download_data(\"https://som… &lt;NA&gt;                               NA
+#&gt; 2 large_da… "download_data(\"https://lot… "trigger(change = time_last_…    1000</div><div class='input'><span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"styler"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)){
+  <span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)
+  <span class='fu'>print</span>(<span class='no'>source</span>) <span class='co'># Install the prettycode package for syntax highlighting.</span>
+}</div><div class='output co'>#&gt; drake_plan(
 #&gt;   small_data = download_data("https://some_website.com") %&gt;%
 #&gt;     select_my_columns() %&gt;%
 #&gt;     munge(),
@@ -182,7 +186,8 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 #&gt;   strings_in_dots = "literals"
 #&gt; )</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"suppress side effects"</span>, {
-<span class='fu'>writeLines</span>(<span class='no'>source</span>, <span class='st'>"my_script.R"</span>) <span class='co'># Save the code to an R script.</span>
+<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>tempfile</span>() <span class='co'># Path to an R script to contain the drake_plan() call.</span>
+<span class='fu'>writeLines</span>(<span class='no'>source</span>, <span class='no'>file</span>) <span class='co'># Save the code to an R script.</span>
 })
 <span class='co'># }</span></pre>
   </div>

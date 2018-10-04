@@ -290,11 +290,13 @@ as names and vectors of possible values as list elements.</p>
 #&gt; 2 x_2    rnorm(2) 2     x       
 #&gt; 3 y_1    rexp(1)  1     y       
 #&gt; 4 y_2    rexp(2)  2     y       </div><div class='input'><span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"1"</span>)
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>))
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"x_1"</span>, <span class='st'>"y_2"</span>), <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><div class='output co'>#&gt; <span class='message'>target x_1</span></div><div class='output co'>#&gt; <span class='message'>target y_2</span></div><div class='input'><span class='co'># Optionally cluster on columns supplied by `drake_graph_info()$nodes`.</span>
-<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"up to date"</span>)</div></pre>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"x_1"</span>, <span class='st'>"y_2"</span>), <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
+<span class='co'># Optionally cluster on columns supplied by `drake_graph_info()$nodes`.</span>
+<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"up to date"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
