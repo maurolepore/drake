@@ -115,7 +115,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
-<li>Call <code>normalizePath()</code> on the <code>file</code> argument to <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code> and <code><a href="../reference/render_sankey_drake_graph.html">render_sankey_drake_graph()</a></code>. That way, static image file paths are written correctly in spite of any tildes. Compensates for <a href="https://github.com/wch/webshot" class="uri">https://github.com/wch/webshot</a>.</li>
+<li>Call <code>path.expand()</code> on the <code>file</code> argument to <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code> and <code><a href="../reference/render_sankey_drake_graph.html">render_sankey_drake_graph()</a></code>. That way, tildes in file paths no longer interfere with the rendering of static image files. Compensates for <a href="https://github.com/wch/webshot" class="uri">https://github.com/wch/webshot</a>.</li>
 <li>Skip tests and examples if the required “Suggests” packages are not installed.</li>
 </ul>
 </div>
