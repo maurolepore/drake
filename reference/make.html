@@ -506,7 +506,7 @@ use <code><a href='clean.html'>clean(destroy = TRUE)</a></code>.</p></td>
     <tr>
       <th>caching</th>
       <td><p>character string, only applies to
-<code>"clustermq"</code> and <code>"future"</code> parallelism.
+<code>"clustermq"</code>, <code>"clustermq_staged"</code>, and <code>"future"</code> parallel backends.
 The <code>caching</code> argument can be either <code>"master"</code> or <code>"worker"</code>.</p><ul>
 <li><p><code>"master"</code>: Targets are built by remote workers and sent back to
 the master process. Then, the master process saves them to the
