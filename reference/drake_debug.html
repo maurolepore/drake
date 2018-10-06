@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Build/process a single target or import. — drake_build • drake</title>
+<title>Run a single target's command in debug mode. — drake_debug • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Build/process a single target or import. — drake_build" />
+<meta property="og:title" content="Run a single target's command in debug mode. — drake_debug" />
 
 <meta property="og:description" content="Also load the target's dependencies beforehand." />
 <meta name="twitter:card" content="summary" />
@@ -106,9 +106,9 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Build/process a single target or import.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/build.R'><code>R/build.R</code></a></small>
-    <div class="hidden name"><code>drake_build.Rd</code></div>
+    <h1>Run a single target's command in debug mode.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/debug_target.R'><code>R/debug_target.R</code></a></small>
+    <div class="hidden name"><code>drake_debug.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -117,9 +117,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_build</span>(<span class='no'>target</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='no'>envir</span>, <span class='kw'>jobs</span>
-  <span class='kw'>=</span> <span class='no'>jobs</span>), <span class='kw'>meta</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>drake_debug</span>(<span class='no'>target</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='no'>envir</span>, <span class='kw'>jobs</span>
+  <span class='kw'>=</span> <span class='no'>jobs</span>), <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,11 +131,6 @@
     <tr>
       <th>config</th>
       <td><p>internal configuration list</p></td>
-    </tr>
-    <tr>
-      <th>meta</th>
-      <td><p>list of metadata that tell which
-targets are up to date (from <code><a href='drake_meta.html'>drake_meta()</a></code>).</p></td>
     </tr>
     <tr>
       <th>character_only</th>
@@ -182,7 +177,7 @@ will not be replaced.</p></td>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='co'># Create the master internal configuration list.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_build</span>(<span class='no'>small</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
+<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_build.html'>drake_build</a></span>(<span class='no'>small</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
 <span class='co'># Now includes `small`.</span>
 <span class='fu'><a href='cached.html'>cached</a></span>()
 <span class='fu'>head</span>(<span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>small</span>))
@@ -191,7 +186,7 @@ will not be replaced.</p></td>
 <span class='co'># If you previously called make(),</span>
 <span class='co'># `config` is just read from the cache.</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_build</span>(<span class='no'>small</span>)
+<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_build.html'>drake_build</a></span>(<span class='no'>small</span>)
 <span class='fu'>head</span>(<span class='no'>result</span>)
 })
 <span class='co'># }</span></pre>
