@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set the trigger of a target. — trigger • drake</title>
+<title>Customize the decision rules for rebuilding targets — trigger • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,12 @@
 
 
 
-<meta property="og:title" content="Set the trigger of a target. — trigger" />
+<meta property="og:title" content="Customize the decision rules for rebuilding targets — trigger" />
 
-<meta property="og:description" content="For details, see the chapter on triggers
+<meta property="og:description" content="Use this function inside a target's command
+in your drake_plan() or the trigger argument to
+make() or drake_config().
+For details, see the chapter on triggers
 in the user manual:
 https://ropenscilabs.github.io/drake-manual" />
 <meta name="twitter:card" content="summary" />
@@ -108,21 +111,25 @@ https://ropenscilabs.github.io/drake-manual" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set the trigger of a target.</h1>
+    <h1>Customize the decision rules for rebuilding targets</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/triggers.R'><code>R/triggers.R</code></a></small>
     <div class="hidden name"><code>trigger.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>For details, see the chapter on triggers
+    <p>Use this function inside a target's command
+in your <code><a href='drake_plan.html'>drake_plan()</a></code> or the <code>trigger</code> argument to
+<code><a href='make.html'>make()</a></code> or <code><a href='drake_config.html'>drake_config()</a></code>.
+For details, see the chapter on triggers
 in the user manual:
 <a href='https://ropenscilabs.github.io/drake-manual'>https://ropenscilabs.github.io/drake-manual</a></p>
     
     </div>
 
     <pre class="usage"><span class='fu'>trigger</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>depend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>change</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>condition</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>change</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"whitelist"</span>,
+  <span class='st'>"blacklist"</span>, <span class='st'>"condition"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,6 +162,24 @@ that returns any value. The target will rebuild
 if that value is different from last time
 or not already cached.</p></td>
     </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>a character scalar equal to <code>"whitelist"</code> (default) or
+<code>"blacklist"</code> or <code>"condition"</code>. With the <code>mode</code> argument, you can choose
+how the <code>condition</code> trigger factors into the decision to build
+or skip the target. Here are the options.</p><ul>
+<li><p><code>"whitelist"</code> (default): we <em>rebuild</em> the target whenever <code>condition</code>
+evaluates to <code>TRUE</code>. Otherwise, we defer to the other triggers.
+This behavior is the same as the decision rule described in the
+"Details" section of this help file.</p></li>
+<li><p><code>"blacklist"</code>: we <em>skip</em> the target whenever <code>condition</code> evaluates
+to <code>FALSE</code>. Otherwise, we defer to the other triggers.</p></li>
+<li><p><code>"condition"</code>: here, the <code>condition</code> trigger is the only decider,
+and we ignore all the other triggers. We <em>rebuild</em> target whenever
+<code>condition</code> evaluates to <code>TRUE</code> and <em>skip</em> it whenever <code>condition</code>
+evaluates to <code>FALSE</code>.</p></li>
+</ul></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -165,13 +190,19 @@ whether to build the target.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Use this function inside a target's command
-in your <code><a href='drake_plan.html'>drake_plan()</a></code>. The target will rebuild if and only if:</p><ul>
+    <p>A target always builds if it has not been built before.
+Triggers allow you to customize the conditions
+under which a pre-existing target <em>re</em>builds.
+By default, the target will rebuild if and only if:</p><ul>
 <li><p>Any of <code>command</code>, <code>depend</code>, or <code>file</code> is <code>TRUE</code>, or</p></li>
 <li><p><code>condition</code> evaluates to <code>TRUE</code>, or</p></li>
 <li><p><code>change</code> evaluates to a value different from last time.
-There may be a slight efficiency loss if you set complex
-triggers for <code>change</code> and/or <code>condition</code> because
+The above steps correspond to the "whitelist" decision rule.
+You can select other decision rules with the <code>mode</code> argument
+described in this help file.
+On another note, there may be a slight efficiency loss
+if you set complex triggers
+for <code>change</code> and/or <code>condition</code> because
 <code>drake</code> needs to load any required dependencies
 into memory before evaluating these triggers.</p></li>
 </ul>
@@ -198,6 +229,9 @@ into memory before evaluating these triggers.</p></li>
 #&gt; 
 #&gt; $change
 #&gt; NULL
+#&gt; 
+#&gt; $mode
+#&gt; [1] "whitelist"
 #&gt; </div><div class='input'><span class='co'># This trigger will build a target on Tuesdays</span>
 <span class='co'># and when the value of an online dataset changes.</span>
 <span class='fu'>trigger</span>(<span class='kw'>condition</span> <span class='kw'>=</span> <span class='fu'>today</span>() <span class='kw'>==</span> <span class='st'>"Tuesday"</span>, <span class='kw'>change</span> <span class='kw'>=</span> <span class='fu'>get_online_dataset</span>())</div><div class='output co'>#&gt; $command
@@ -214,6 +248,9 @@ into memory before evaluating these triggers.</p></li>
 #&gt; 
 #&gt; $change
 #&gt; get_online_dataset()
+#&gt; 
+#&gt; $mode
+#&gt; [1] "whitelist"
 #&gt; </div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
