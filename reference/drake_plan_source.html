@@ -165,7 +165,7 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 )
 <span class='fu'>print</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 4
 #&gt;   target    command                       trigger                       timeout
-#&gt; * &lt;chr&gt;     &lt;chr&gt;                         &lt;chr&gt;                           &lt;dbl&gt;
+#&gt;   &lt;chr&gt;     &lt;chr&gt;                         &lt;chr&gt;                           &lt;dbl&gt;
 #&gt; 1 small_da… "download_data(\"https://som… &lt;NA&gt;                               NA
 #&gt; 2 large_da… "download_data(\"https://lot… "trigger(change = time_last_…    1000</div><div class='input'><span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"styler"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)){
   <span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)

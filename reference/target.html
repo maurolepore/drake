@@ -206,7 +206,7 @@ arguments as columns.</p>
 )
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 4
 #&gt;   target       command                               trigger custom_column
-#&gt; * &lt;chr&gt;        &lt;chr&gt;                                 &lt;chr&gt;           &lt;dbl&gt;
+#&gt;   &lt;chr&gt;        &lt;chr&gt;                                 &lt;chr&gt;           &lt;dbl&gt;
 #&gt; 1 website_data "download_data(\"www.your_url.com\")" always              5
 #&gt; 2 analysis     analyze(website_data)                 &lt;NA&gt;               NA</div><div class='input'><span class='co'># make(plan) # nolint</span>
 <span class='co'># Call target() inside or outside drake_plan().</span>
