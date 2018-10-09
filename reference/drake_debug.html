@@ -107,7 +107,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Run a single target's command in debug mode.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/debug_target.R'><code>R/debug_target.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/drake_debug.R'><code>R/drake_debug.R</code></a></small>
     <div class="hidden name"><code>drake_debug.Rd</code></div>
     </div>
 
@@ -117,9 +117,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_debug</span>(<span class='no'>target</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='no'>envir</span>, <span class='kw'>jobs</span>
-  <span class='kw'>=</span> <span class='no'>jobs</span>), <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>drake_debug</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(<span class='kw'>envir</span> <span class='kw'>=</span>
+  <span class='no'>envir</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='no'>jobs</span>), <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(),
+  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,6 +156,11 @@ just set jobs to be an integer greater than 1. On Windows,
       <td><p>logical. If <code>FALSE</code>,
 items already in your environment
 will not be replaced.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>logical, whether to print out the target
+you are debugging.</p></td>
     </tr>
     </table>
     

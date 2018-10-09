@@ -137,6 +137,7 @@
 <li>Set the default <code>caching</code> argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code> to <code>"master"</code> rather than <code>"worker"</code>. The default option should be the lower-overhead option for small workflows. Users have the option to make a different set of tradeoffs for larger workflows.</li>
 <li>Allow the <code>condition</code> trigger to evaluate to non-logical values as long as those values can be coerced to logicals.</li>
 <li>Require that the <code>condition</code> trigger evaluate to a vector of length 1.</li>
+<li>Keep non-standard columns in <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code>.</li>
 </ul>
 </div>
 </div>
