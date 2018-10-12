@@ -231,6 +231,37 @@ for the <code>plan</code> argument of <code>make()</code>.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="map_plan.html">map_plan()</a></code> </p>
+        </td>
+        <td><p>Map a function to a grid of settings to create a plan.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gather_plan.html">gather_plan()</a></code> </p>
+        </td>
+        <td><p>Write commands to combine several targets into one
+or more overarching targets.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gather_by.html">gather_by()</a></code> </p>
+        </td>
+        <td><p>Gather multiple groupings of targets</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reduce_plan.html">reduce_plan()</a></code> </p>
+        </td>
+        <td><p>Write commands to reduce several targets down to one.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reduce_by.html">reduce_by()</a></code> </p>
+        </td>
+        <td><p>Reduce multiple groupings of targets</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="file_in.html">file_in()</a></code> </p>
         </td>
         <td><p>Declare the file inputs of a workflow plan command.</p></td>
@@ -269,17 +300,16 @@ of a workflow plan command.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="analysis_wildcard.html">analysis_wildcard()</a></code> </p>
+          <p><code><a href="code_to_plan.html">code_to_plan()</a></code> </p>
         </td>
-        <td><p>Show the analysis wildcard
-used in <code>plan_summaries()</code>.</p></td>
+        <td><p>Turn an R script file or knitr / R Markdown report
+into a <code>drake</code> workflow plan data frame.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="dataset_wildcard.html">dataset_wildcard()</a></code> </p>
+          <p><code><a href="drake_plan_source.html">drake_plan_source()</a></code> </p>
         </td>
-        <td><p>Show the dataset wildcard
-used in <code>plan_analyses()</code> and <code>plan_summaries()</code>.</p></td>
+        <td><p>Show the code required to produce a given workflow plan data frame</p></td>
       </tr><tr>
         
         <td>
@@ -293,31 +323,6 @@ workflow plan data frame from a template data frame.</p></td>
           <p><code><a href="expand_plan.html">expand_plan()</a></code> </p>
         </td>
         <td><p>Create replicates of targets.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gather_plan.html">gather_plan()</a></code> </p>
-        </td>
-        <td><p>Write commands to combine several targets into one
-or more overarching targets.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gather_by.html">gather_by()</a></code> </p>
-        </td>
-        <td><p>Gather multiple groupings of targets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="reduce_plan.html">reduce_plan()</a></code> </p>
-        </td>
-        <td><p>Write commands to reduce several targets down to one.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="reduce_by.html">reduce_by()</a></code> </p>
-        </td>
-        <td><p>Reduce multiple groupings of targets</p></td>
       </tr><tr>
         
         <td>
@@ -335,16 +340,17 @@ multiple analyses of multiple datasets multiple ways.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="code_to_plan.html">code_to_plan()</a></code> </p>
+          <p><code><a href="dataset_wildcard.html">dataset_wildcard()</a></code> </p>
         </td>
-        <td><p>Turn an R script file or knitr / R Markdown report
-into a <code>drake</code> workflow plan data frame.</p></td>
+        <td><p>Show the dataset wildcard
+used in <code>plan_analyses()</code> and <code>plan_summaries()</code>.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="drake_plan_source.html">drake_plan_source()</a></code> </p>
+          <p><code><a href="analysis_wildcard.html">analysis_wildcard()</a></code> </p>
         </td>
-        <td><p>Show the code required to produce a given workflow plan data frame</p></td>
+        <td><p>Show the analysis wildcard
+used in <code>plan_summaries()</code>.</p></td>
       </tr>
     </tbody><tbody>
       <tr>

@@ -115,6 +115,7 @@
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
+<li><strong>Add a new <code><a href="../reference/map_plan.html">map_plan()</a></code> function to easily create a workflow plan data frame to execute a function call over a grid of arguments.</strong></li>
 <li>Enable the <code>caching</code> argument for the <code>"clustermq"</code> and <code>"clustermq_staged"</code> parallel backends. Now, <code><a href="../reference/make.html">make(parallelism = "clustermq", caching = "master")</a></code> will do all the caching with the master process, and <code><a href="../reference/make.html">make(parallelism = "clustermq", caching = "worker")</a></code> will do all the caching with the workers. The same is true for <code>parallelism = "clustermq_staged"</code>.</li>
 <li>Add a new <code><a href="../reference/drake_debug.html">drake_debug()</a></code> function to run a target’s command in debug mode. Analogous to <code><a href="../reference/drake_build.html">drake_build()</a></code>.</li>
 <li>Add a <code>mode</code> argument to <code><a href="../reference/trigger.html">trigger()</a></code> to control how the <code>condition</code> trigger factors into the decision to build or skip a target. See the <code><a href="../reference/trigger.html">?trigger</a></code> for details.</li>
