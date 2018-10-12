@@ -118,6 +118,7 @@
 <li>Enable the <code>caching</code> argument for the <code>"clustermq"</code> and <code>"clustermq_staged"</code> parallel backends. Now, <code><a href="../reference/make.html">make(parallelism = "clustermq", caching = "master")</a></code> will do all the caching with the master process, and <code><a href="../reference/make.html">make(parallelism = "clustermq", caching = "worker")</a></code> will do all the caching with the workers. The same is true for <code>parallelism = "clustermq_staged"</code>.</li>
 <li>Add a new <code><a href="../reference/drake_debug.html">drake_debug()</a></code> function to run a target’s command in debug mode. Analogous to <code><a href="../reference/drake_build.html">drake_build()</a></code>.</li>
 <li>Add a <code>mode</code> argument to <code><a href="../reference/trigger.html">trigger()</a></code> to control how the <code>condition</code> trigger factors into the decision to build or skip a target. See the <code><a href="../reference/trigger.html">?trigger</a></code> for details.</li>
+<li>Add a new <code>sleep</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code> to help the master process consume fewer resources during parallel processing.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -142,7 +143,7 @@
 <li>Require that the <code>condition</code> trigger evaluate to a vector of length 1.</li>
 <li>Keep non-standard columns in <code><a href="../reference/drake_plan_source.html">drake_plan_source()</a></code>.</li>
 <li>
-<code><a href="../reference/make.html">make(verbose = 4)</a></code> now prints to the console when a target or import is stored.</li>
+<code><a href="../reference/make.html">make(verbose = 4)</a></code> now prints to the console when a target is stored.</li>
 </ul>
 </div>
 </div>

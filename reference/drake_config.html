@@ -165,7 +165,7 @@ and it could lead to false negative results from
   <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lookahead"</span>, <span class='st'>"speed"</span>, <span class='st'>"memory"</span>),
   <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='st'>"Makefile"</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'>list</span>())</pre>
+  <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fl'>0.01</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -614,6 +614,29 @@ For more information, see the <code>clustermq</code> package:
 <a href='https://github.com/mschubert/clustermq'>https://github.com/mschubert/clustermq</a>.
 Some template placeholders such as <code>{{ job_name }}</code> and <code>{{ n_jobs }}</code>
 cannot be set this way.</p></td>
+    </tr>
+    <tr>
+      <th>sleep</th>
+      <td><p>In its parallel processing, <code>drake</code> uses
+a central master process to check what the parallel
+workers are doing, and for the affected high-performance
+computing workflows, wait for data to arrive over a network.
+In between loop iterations, the master process sleeps to avoid throttling.
+The <code>sleep</code> argument to <code><a href='make.html'>make()</a></code> and <code>drake_config()</code>
+allows you to customize how much time the master process spends
+sleeping.</p>
+<p>The <code>sleep</code> argument is a function that takes an argument
+<code>i</code> and returns a numeric scalar, the number of seconds to
+supply to <code>Sys.sleep()</code> after iteration <code>i</code> of checking.
+(Here, <code>i</code> starts at 1.)
+If the checking loop does something other than sleeping
+on iteration <code>i</code>, then <code>i</code> is reset back to 1.</p>
+<p>To sleep for the same amount of time between checks,
+you might supply something like <code>function(i) 0.01</code>.
+But to avoid consuming too many resources during heavier
+and longer workflows, you might use an exponential
+backoff: say,
+<code>function(i) { 0.1 + 120 * pexp(i - 1, rate = 0.01) }</code>.</p></td>
     </tr>
     </table>
     
