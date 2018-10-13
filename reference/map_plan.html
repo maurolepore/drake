@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Map a function to a grid of settings to create a plan. — map_plan • drake</title>
+<title>Create a plan that maps a function to a grid of arguments. — map_plan • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,14 +30,12 @@
 
 
 
-<meta property="og:title" content="Map a function to a grid of settings to create a plan. — map_plan" />
+<meta property="og:title" content="Create a plan that maps a function to a grid of arguments. — map_plan" />
 
-<meta property="og:description" content="Given a function name and a data frame
-of named arguments,
-map_plan() creates a workflow plan data frame
-where each target is the result of the function applied
-to the arguments in a row. The idea is similar to
-functions map_df() and pmap()" />
+<meta property="og:description" content="map_plan() is like pmap_df() from the purrr package.
+It takes a function name and a grid of arguments, and it
+writes out all the commands calls to apply the function to
+each row of arguments." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,19 +109,17 @@ functions map_df() and pmap()" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Map a function to a grid of settings to create a plan.</h1>
+    <h1>Create a plan that maps a function to a grid of arguments.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/map_reduce.R'><code>R/map_reduce.R</code></a></small>
     <div class="hidden name"><code>map_plan.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Given a function name and a data frame
-of named arguments,
-<code>map_plan()</code> creates a workflow plan data frame
-where each target is the result of the function applied
-to the arguments in a row. The idea is similar to
-functions <code>map_df()</code> and <code>pmap()</code></p>
+    <p><code>map_plan()</code> is like <code>pmap_df()</code> from the <code>purrr</code> package.
+It takes a function name and a grid of arguments, and it
+writes out all the commands calls to apply the function to
+each row of arguments.</p>
     
     </div>
 
@@ -172,75 +168,31 @@ evaluate_plan, expand_plan</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># For a practical example of map_plan() in action,</span>
-<span class='co'># see the econometrics exmaple at</span>
-<span class='co'># https://ropenscilabs.github.io/drake-manual/gsp.html.</span>
-<span class='co'># But for now, let's say we want find out which variables</span>
-<span class='co'># best explain fuel efficiency (in miles per gallon) in the mtcars dataset.</span>
-<span class='co'># We write a function that takes the names of two covariates</span>
-<span class='co'># and fits them to the response variable (mpg).</span>
+    <pre class="examples"><div class='input'><span class='co'># For the full tutorial, visit</span>
+<span class='co'># https://ropenscilabs.github.io/drake-manual/plans.html#map_plan.</span>
 <span class='no'>my_model_fit</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>data</span>){
   <span class='fu'>lm</span>(<span class='fu'>as.formula</span>(<span class='fu'>paste</span>(<span class='st'>"mpg ~"</span>, <span class='no'>x1</span>, <span class='st'>"+"</span>, <span class='no'>x1</span>)), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>)
 }
-<span class='co'># For covariates, we consider all the variables in mtcars except mpg.</span>
 <span class='no'>covariates</span> <span class='kw'>&lt;-</span> <span class='fu'>setdiff</span>(<span class='fu'>colnames</span>(<span class='no'>mtcars</span>), <span class='st'>"mpg"</span>)
-<span class='co'># And we consider all possible combinations of 2 covariates.</span>
 <span class='no'>args</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(<span class='fu'>t</span>(<span class='fu'>combn</span>(<span class='no'>covariates</span>, <span class='fl'>2</span>)))
 <span class='fu'>colnames</span>(<span class='no'>args</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"x1"</span>, <span class='st'>"x2"</span>)
-<span class='fu'>head</span>(<span class='no'>args</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 2
-#&gt;   x1    x2   
-#&gt;   &lt;chr&gt; &lt;chr&gt;
-#&gt; 1 cyl   disp 
-#&gt; 2 cyl   hp   
-#&gt; 3 cyl   drat 
-#&gt; 4 cyl   wt   
-#&gt; 5 cyl   qsec 
-#&gt; 6 cyl   vs   </div><div class='input'><span class='fu'>str</span>(<span class='no'>args</span>)</div><div class='output co'>#&gt; Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	45 obs. of  2 variables:
-#&gt;  $ x1: chr  "cyl" "cyl" "cyl" "cyl" ...
-#&gt;  $ x2: chr  "disp" "hp" "drat" "wt" ...</div><div class='input'><span class='co'># Each row in args represents a function call to `my_model_fit()`</span>
-<span class='co'># using the values in the row. `my_model_fit()` expects</span>
-<span class='co'># `x1` and `x2` to be character strings, so that is how</span>
-<span class='co'># we set them in `args`. But what about the `data` argument?</span>
-<span class='co'># In general, `data` could be the `mtcars` dataset or an</span>
-<span class='co'># unknown upstream target.</span>
-<span class='co'># For the "data" column, we need a list of symbols.</span>
-<span class='co'># The `syms()` function from the `rlang` package can help us.</span>
-<span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rlang/topics/sym'>syms</a></span>(<span class='fu'>rep</span>(<span class='st'>"mtcars"</span>, <span class='fu'>nrow</span>(<span class='no'>args</span>)))
-<span class='no'>args</span></div><div class='output co'>#&gt; # A tibble: 45 x 3
-#&gt;    x1    x2    data    
-#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;list&gt;  
-#&gt;  1 cyl   disp  &lt;symbol&gt;
-#&gt;  2 cyl   hp    &lt;symbol&gt;
-#&gt;  3 cyl   drat  &lt;symbol&gt;
-#&gt;  4 cyl   wt    &lt;symbol&gt;
-#&gt;  5 cyl   qsec  &lt;symbol&gt;
-#&gt;  6 cyl   vs    &lt;symbol&gt;
-#&gt;  7 cyl   am    &lt;symbol&gt;
-#&gt;  8 cyl   gear  &lt;symbol&gt;
-#&gt;  9 cyl   carb  &lt;symbol&gt;
-#&gt; 10 disp  hp    &lt;symbol&gt;
-#&gt; # ... with 35 more rows</div><div class='input'><span class='co'># For each row of `args`, we want to call `my_model_fit()` on the</span>
-<span class='co'># arguments in the row.</span>
-<span class='co'># Let's create a `drake` plan to do that.</span>
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='st'>"my_model_fit"</span>)
-<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 45 x 2
-#&gt;    target                command                                               
-#&gt;    &lt;chr&gt;                 &lt;chr&gt;                                                 
-#&gt;  1 my_model_fit_884de18b "my_model_fit(x1 = \"cyl\", x2 = \"disp\", data = mtc…
-#&gt;  2 my_model_fit_2e63129f "my_model_fit(x1 = \"cyl\", x2 = \"hp\", data = mtcar…
-#&gt;  3 my_model_fit_19b142ef "my_model_fit(x1 = \"cyl\", x2 = \"drat\", data = mtc…
-#&gt;  4 my_model_fit_6985bd7e "my_model_fit(x1 = \"cyl\", x2 = \"wt\", data = mtcar…
-#&gt;  5 my_model_fit_3bcc5d9f "my_model_fit(x1 = \"cyl\", x2 = \"qsec\", data = mtc…
-#&gt;  6 my_model_fit_8c75f563 "my_model_fit(x1 = \"cyl\", x2 = \"vs\", data = mtcar…
-#&gt;  7 my_model_fit_c6cd0cee "my_model_fit(x1 = \"cyl\", x2 = \"am\", data = mtcar…
-#&gt;  8 my_model_fit_fd66f1da "my_model_fit(x1 = \"cyl\", x2 = \"gear\", data = mtc…
-#&gt;  9 my_model_fit_71d436b8 "my_model_fit(x1 = \"cyl\", x2 = \"carb\", data = mtc…
-#&gt; 10 my_model_fit_e2fa742d "my_model_fit(x1 = \"disp\", x2 = \"hp\", data = mtca…
-#&gt; # ... with 35 more rows</div><div class='input'><span class='no'>plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>]</div><div class='output co'>#&gt; [1] "my_model_fit(x1 = \"cyl\", x2 = \"disp\", data = mtcars)"</div><div class='input'><span class='no'>plan</span>$<span class='no'>target</span>[<span class='fl'>1</span>]</div><div class='output co'>#&gt; [1] "my_model_fit_884de18b"</div><div class='input'><span class='co'># The default target names are ugly, so we can supply</span>
-<span class='co'># our own names. You can either set an "id" column in `args`</span>
-<span class='co'># or set the `id` argument of `map_plan()`.</span>
+<span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='st'>"mtcars"</span>
+<span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rlang/topics/sym'>syms</a></span>(<span class='no'>args</span>$<span class='no'>data</span>)
 <span class='no'>args</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'>paste0</span>(<span class='st'>"fit_"</span>, <span class='no'>args</span>$<span class='no'>x1</span>, <span class='st'>"_"</span>, <span class='no'>args</span>$<span class='no'>x2</span>)
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>)
+<span class='no'>args</span></div><div class='output co'>#&gt; # A tibble: 45 x 4
+#&gt;    x1    x2    data     id          
+#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;list&gt;   &lt;chr&gt;       
+#&gt;  1 cyl   disp  &lt;symbol&gt; fit_cyl_disp
+#&gt;  2 cyl   hp    &lt;symbol&gt; fit_cyl_hp  
+#&gt;  3 cyl   drat  &lt;symbol&gt; fit_cyl_drat
+#&gt;  4 cyl   wt    &lt;symbol&gt; fit_cyl_wt  
+#&gt;  5 cyl   qsec  &lt;symbol&gt; fit_cyl_qsec
+#&gt;  6 cyl   vs    &lt;symbol&gt; fit_cyl_vs  
+#&gt;  7 cyl   am    &lt;symbol&gt; fit_cyl_am  
+#&gt;  8 cyl   gear  &lt;symbol&gt; fit_cyl_gear
+#&gt;  9 cyl   carb  &lt;symbol&gt; fit_cyl_carb
+#&gt; 10 disp  hp    &lt;symbol&gt; fit_disp_hp 
+#&gt; # ... with 35 more rows</div><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 45 x 2
 #&gt;    target       command                                                   
 #&gt;    &lt;chr&gt;        &lt;chr&gt;                                                     
@@ -254,12 +206,8 @@ evaluate_plan, expand_plan</p></div>
 #&gt;  8 fit_cyl_gear "my_model_fit(x1 = \"cyl\", x2 = \"gear\", data = mtcars)"
 #&gt;  9 fit_cyl_carb "my_model_fit(x1 = \"cyl\", x2 = \"carb\", data = mtcars)"
 #&gt; 10 fit_disp_hp  "my_model_fit(x1 = \"disp\", x2 = \"hp\", data = mtcars)" 
-#&gt; # ... with 35 more rows</div><div class='input'><span class='co'># Let's actually fit our models.</span>
-<span class='co'># In your own work, just call make(plan).</span>
-<span class='co'># The special cache just keeps built-in package examples clean.</span>
-<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
+#&gt; # ... with 35 more rows</div><div class='input'><span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
-<span class='co'># Let's inspect one of our models.</span>
 <span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>fit_cyl_disp</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = as.formula(paste("mpg ~", x1, "+", x1)), data = data)
