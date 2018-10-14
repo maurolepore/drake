@@ -182,7 +182,9 @@ for details.</p></td>
 #&gt; data &lt;- raw_data %&gt;% mutate(Species = fct_inorder(Species)) %&gt;% select(-X__1)
 #&gt; hist &lt;- create_plot(data)
 #&gt; fit &lt;- lm(Sepal.Width ~ Petal.Width + Species, data)</div><div class='input'><span class='co'># Convert back to a drake plan.</span>
-<span class='fu'><a href='code_to_plan.html'>code_to_plan</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 2
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"CodeDepends"</span>)){
+  <span class='fu'><a href='code_to_plan.html'>code_to_plan</a></span>(<span class='no'>file</span>)
+}</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: CodeDepends</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target   command                                                              
 #&gt;   &lt;chr&gt;    &lt;chr&gt;                                                                
 #&gt; 1 raw_data "read_excel(file_in(\"raw_data.xlsx\"))"                             
