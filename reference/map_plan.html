@@ -123,7 +123,7 @@ each row of arguments.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>fun</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>fun</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +154,13 @@ and a character scalar otherwise.</p></td>
       <th>character_only</th>
       <td><p>logical, whether to interpret
 the <code>fun</code> and <code>id</code> arguments as character scalars or symbols.</p></td>
+    </tr>
+    <tr>
+      <th>trace</th>
+      <td><p>logical, whether to append the columns of <code>args</code>
+to the output workflow plan data frame. The added columns
+help "trace back" the original settings that went into building
+each target. Similar to the <code>trace</code> argument of <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>.</p></td>
     </tr>
     </table>
     
@@ -206,7 +213,24 @@ evaluate_plan, expand_plan</p></div>
 #&gt;  8 fit_cyl_gear "my_model_fit(x1 = \"cyl\", x2 = \"gear\", data = mtcars)"
 #&gt;  9 fit_cyl_carb "my_model_fit(x1 = \"cyl\", x2 = \"carb\", data = mtcars)"
 #&gt; 10 fit_disp_hp  "my_model_fit(x1 = \"disp\", x2 = \"hp\", data = mtcars)" 
-#&gt; # ... with 35 more rows</div><div class='input'><span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
+#&gt; # ... with 35 more rows</div><div class='input'><span class='co'># Consider `trace = TRUE` to include the columns in `args`</span>
+<span class='co'># in your plan.</span>
+<span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 45 x 6
+#&gt;    target     command                              x1    x2    data    id      
+#&gt;    &lt;chr&gt;      &lt;chr&gt;                                &lt;chr&gt; &lt;chr&gt; &lt;list&gt;  &lt;chr&gt;   
+#&gt;  1 fit_cyl_d… "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   disp  &lt;symbo… fit_cyl…
+#&gt;  2 fit_cyl_hp "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   hp    &lt;symbo… fit_cyl…
+#&gt;  3 fit_cyl_d… "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   drat  &lt;symbo… fit_cyl…
+#&gt;  4 fit_cyl_wt "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   wt    &lt;symbo… fit_cyl…
+#&gt;  5 fit_cyl_q… "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   qsec  &lt;symbo… fit_cyl…
+#&gt;  6 fit_cyl_vs "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   vs    &lt;symbo… fit_cyl…
+#&gt;  7 fit_cyl_am "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   am    &lt;symbo… fit_cyl…
+#&gt;  8 fit_cyl_g… "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   gear  &lt;symbo… fit_cyl…
+#&gt;  9 fit_cyl_c… "my_model_fit(x1 = \"cyl\", x2 = \"… cyl   carb  &lt;symbo… fit_cyl…
+#&gt; 10 fit_disp_… "my_model_fit(x1 = \"disp\", x2 = \… disp  hp    &lt;symbo… fit_dis…
+#&gt; # ... with 35 more rows</div><div class='input'><span class='co'># And of course, you can execute the plan and</span>
+<span class='co'># inspect your results.</span>
+<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
 <span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>fit_cyl_disp</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
