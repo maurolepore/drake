@@ -149,6 +149,7 @@
 <code><a href="../reference/make.html">make(verbose = 4)</a></code> now prints to the console when a target is stored.</li>
 <li>
 <code><a href="../reference/gather_by.html">gather_by()</a></code> and <code><a href="../reference/reduce_by.html">reduce_by()</a></code> now gather/reduce everything if no columns are specified.</li>
+<li>Change the default parallelization of the imports. Previously, <code><a href="../reference/make.html">make(jobs = 4)</a></code> was equivalent to <code><a href="../reference/make.html">make(jobs = c(imports = 4, targets = 4))</a></code>. Now, <code><a href="../reference/make.html">make(jobs = 4)</a></code> is equivalent to <code><a href="../reference/make.html">make(jobs = c(imports = 1, targets = 4))</a></code>. See <a href="https://github.com/ropensci/drake/issues/553">issue 553</a> for details.</li>
 </ul>
 </div>
 </div>

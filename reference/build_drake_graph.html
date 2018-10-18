@@ -184,26 +184,20 @@ for example, <code><a href='http://www.rdocumentation.org/packages/pkgconfig/top
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>number of parallel processes or jobs to run.
-See <code><a href='predict_runtime.html'>predict_runtime()</a></code>
-to help figure out what the number of jobs should be.
-Windows users should not set <code>jobs &gt; 1</code> if
+      <td><p>maximum number of parallel workers for processing the targets.
+If you wish to parallelize the imports and preprocessing as well, you can
+use a named numeric vector of length 2, e.g.
+<code><a href='make.html'>make(jobs = c(imports = 4, targets = 8))</a></code>.
+<code><a href='make.html'>make(jobs = 4)</a></code> is equivalent to <code><a href='make.html'>make(jobs = c(imports = 1, targets = 4))</a></code>.</p>
+<p>Windows users should not set <code>jobs &gt; 1</code> if
 <code>parallelism</code> is <code>"mclapply"</code> because
 <code>mclapply()</code> is based on forking. Windows users
 who use <code>parallelism = "Makefile"</code> will need to
 download and install Rtools.</p>
-<p>Imports and targets are processed separately, and they usually
-have different parallelism needs. To use at most 2 jobs at a time
-for imports and at most 4 jobs at a time for targets, call
-<code><a href='make.html'>make(..., jobs = c(imports = 2, targets = 4))</a></code>.</p>
-<p>If <code>parallelism</code> is <code>"Makefile"</code>,  Makefile-level parallelism is
-only used for targets in your workflow plan data frame, not imports.  To
-process imported objects and files, drake selects the best parallel backend
-for your system and uses the number of jobs you give to the <code>jobs</code>
-argument to <code><a href='make.html'>make()</a></code>. To use at most 2 jobs for imports and at
-most 4 jobs for targets, run
-<code><a href='make.html'>make(..., parallelism = "Makefile", jobs = c(imports = 2, targets = 4))</a></code> or
-<code><a href='make.html'>make(..., parallelism = "Makefile", jobs = 2, args = "--jobs=4")</a></code>.</p></td>
+<p>You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
+to help decide on an appropriate number of jobs.
+For details, visit
+<a href='https://ropenscilabs.github.io/drake-manual/time.html'>https://ropenscilabs.github.io/drake-manual/time.html</a>.</p></td>
     </tr>
     <tr>
       <th>sanitize_plan</th>
