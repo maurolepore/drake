@@ -34,9 +34,8 @@ or more overarching targets. — gather_plan • drake</title>
 <meta property="og:title" content="Write commands to combine several targets into one
 or more overarching targets. — gather_plan" />
 
-<meta property="og:description" content="Creates a new workflow plan data frame with a single new
-target. This new target is a list, vector, or other aggregate of
-a collection of existing targets in another workflow plan data frame." />
+<meta property="og:description" content="Creates a new workflow plan to aggregate
+existing targets in the supplied plan." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,13 +117,13 @@ or more overarching targets.</h1>
 
     <div class="ref-description">
     
-    <p>Creates a new workflow plan data frame with a single new
-target. This new target is a list, vector, or other aggregate of
-a collection of existing targets in another workflow plan data frame.</p>
+    <p>Creates a new workflow plan to aggregate
+existing targets in the supplied plan.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>gather_plan</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target"</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"list"</span>)</pre>
+    <pre class="usage"><span class='fu'>gather_plan</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target"</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"list"</span>,
+  <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,6 +140,14 @@ a collection of existing targets in another workflow plan data frame.</p>
       <th>gather</th>
       <td><p>function used to gather the targets. Should be
 one of <code>list(...)</code>, <code>c(...)</code>, <code>rbind(...)</code>, or similar.</p></td>
+    </tr>
+    <tr>
+      <th>append</th>
+      <td><p>logical. If <code>TRUE</code>, the output will include the
+original rows in <code>plan</code> in addition to the row that gathers
+the targetsin <code>plan</code>.
+If <code>FALSE</code>, the output will only include the new
+targets and commands.</p></td>
     </tr>
     </table>
     
@@ -159,22 +166,37 @@ evaluate_plan, expand_plan</p></div>
     <pre class="examples"><div class='input'><span class='co'># Workflow plan for datasets:</span>
 <span class='no'>datasets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'>simulate</span>(<span class='fl'>5</span>),
-  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'>simulate</span>(<span class='fl'>50</span>))
+  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'>simulate</span>(<span class='fl'>50</span>)
+)
 <span class='co'># Create a new target that brings the datasets together.</span>
-<span class='fu'>gather_plan</span>(<span class='no'>datasets</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"my_datasets"</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
+<span class='fu'>gather_plan</span>(<span class='no'>datasets</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"my_datasets"</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;   target      command                           
 #&gt;   &lt;chr&gt;       &lt;chr&gt;                             
 #&gt; 1 my_datasets list(small = small, large = large)</div><div class='input'><span class='co'># This time, the new target just appends the rows of 'small' and 'large'</span>
 <span class='co'># into a single matrix or data frame.</span>
 <span class='no'>gathered</span> <span class='kw'>&lt;-</span> <span class='fu'>gather_plan</span>(
-  <span class='no'>datasets</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"aggregated_data"</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"rbind"</span>
+  <span class='no'>datasets</span>,
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"aggregated_data"</span>,
+  <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"rbind"</span>,
+  <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 <span class='no'>gathered</span></div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;   target          command                            
 #&gt;   &lt;chr&gt;           &lt;chr&gt;                              
 #&gt; 1 aggregated_data rbind(small = small, large = large)</div><div class='input'><span class='co'># For the complete workflow plan, row bind the pieces together.</span>
-<span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='no'>datasets</span>, <span class='no'>gathered</span>)
-<span class='no'>my_plan</span></div><div class='output co'>#&gt; # A tibble: 3 x 2
+<span class='fu'><a href='bind_plans.html'>bind_plans</a></span>(<span class='no'>datasets</span>, <span class='no'>gathered</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 2
+#&gt;   target          command                            
+#&gt;   &lt;chr&gt;           &lt;chr&gt;                              
+#&gt; 1 small           simulate(5)                        
+#&gt; 2 large           simulate(50)                       
+#&gt; 3 aggregated_data rbind(small = small, large = large)</div><div class='input'><span class='co'># Alternatively, you can set `append = TRUE` to incorporate</span>
+<span class='co'># the new targets automatically.</span>
+<span class='fu'>gather_plan</span>(
+  <span class='no'>datasets</span>,
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"aggregated_data"</span>,
+  <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"rbind"</span>,
+  <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; # A tibble: 3 x 2
 #&gt;   target          command                            
 #&gt;   &lt;chr&gt;           &lt;chr&gt;                              
 #&gt; 1 small           simulate(5)                        
