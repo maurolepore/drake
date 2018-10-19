@@ -122,7 +122,7 @@ operator to pairs of targets to produce one target).</p>
     </div>
 
     <pre class="usage"><span class='fu'>reduce_plan</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target"</span>, <span class='kw'>begin</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>op</span> <span class='kw'>=</span> <span class='st'>" + "</span>,
-  <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,6 +155,14 @@ of each step in the reduction</p></td>
 new targets, one for each pair/step in the reduction (<code>TRUE</code>),
 or to do the reduction all in one command.</p></td>
     </tr>
+    <tr>
+      <th>append</th>
+      <td><p>logical. If <code>TRUE</code>, the output will include the
+original rows in <code>plan</code> in addition to the row that gathers
+the targetsin <code>plan</code>.
+If <code>FALSE</code>, the output will only include the new
+targets and commands.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -176,12 +184,24 @@ gather_plan, evaluate_plan, expand_plan</p></div>
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>8</span>
 )
 <span class='co'># Create a new target from the sum of the others.</span>
-<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
+<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;   target command                                      
 #&gt;   &lt;chr&gt;  &lt;chr&gt;                                        
-#&gt; 1 x_sum  x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8</div><div class='input'><span class='co'># For memory efficiency and parallel computing,</span>
+#&gt; 1 x_sum  x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8</div><div class='input'><span class='co'># Optionally include the original rows with `append = TRUE`.</span>
+<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 2
+#&gt;   target command                                      
+#&gt;   &lt;chr&gt;  &lt;chr&gt;                                        
+#&gt; 1 x_1    1                                            
+#&gt; 2 x_2    2                                            
+#&gt; 3 x_3    3                                            
+#&gt; 4 x_4    4                                            
+#&gt; 5 x_5    5                                            
+#&gt; 6 x_6    6                                            
+#&gt; 7 x_7    7                                            
+#&gt; 8 x_8    8                                            
+#&gt; 9 x_sum  x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8</div><div class='input'><span class='co'># For memory efficiency and parallel computing,</span>
 <span class='co'># reduce pairwise:</span>
-<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 2
+<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 2
 #&gt;   target  command          
 #&gt;   &lt;chr&gt;   &lt;chr&gt;            
 #&gt; 1 x_sum_1 x_1 + x_2        
