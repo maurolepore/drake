@@ -134,6 +134,7 @@
 <li>Stop checking for non-standard columns. Previously, warnings about non-standard columns were incorrectly triggered by <code><a href="../reference/evaluate_plan.html">evaluate_plan(trace = TRUE)</a></code> followed by <code><a href="../reference/expand_plan.html">expand_plan()</a></code>, <code><a href="../reference/gather_plan.html">gather_plan()</a></code>, <code><a href="../reference/reduce_plan.html">reduce_plan()</a></code>, <code><a href="../reference/gather_by.html">gather_by()</a></code>, or <code><a href="../reference/reduce_by.html">reduce_by()</a></code>. The more relaxed behavior also gives users more options about how to construct and maintain their workflow plan data frames.</li>
 <li>Use checksums in <code>"future"</code> parallelism to make sure files travel over network file systems before proceeding to downstream targets.</li>
 <li>Refactor and clean up checksum code.</li>
+<li>Allow more tests and checks to succeed withtout the optional <code>visNetwork</code> package.</li>
 </ul>
 </div>
 <div id="enhancements" class="section level2">
@@ -367,7 +368,7 @@
 <li>Cache the pseudo-random seed at the time the project is created and use that seed to build targets until the cache is destroyed.</li>
 <li>Add a new <code>drake_read_seed()</code> function to read the seed from the cache. Its examples illustrate what <code>drake</code> is doing to try to ensure reproducible random numbers.</li>
 <li>Evaluate the quasiquotation operator <code>!!</code> for the <code>...</code> argument to <code><a href="../reference/drake_plan.html">drake_plan()</a></code>. Suppress this behavior using <code>tidy_evaluation = FALSE</code> or by passing in commands passed through the <code>list</code> argument.</li>
-<li>Preprocess workflow plan commands with <code><a href="http://www.rdocumentation.org/packages/rlang/topics/quotation">rlang::expr()</a></code> before evaluating them. That means you can use the quasiquotation operator <code>!!</code> in your commands, and <code><a href="../reference/make.html">make()</a></code> will evaluate them according to the tidy evaluation paradigm.</li>
+<li>Preprocess workflow plan commands with <code><a href="https://rlang.r-lib.org/reference/quotation.html">rlang::expr()</a></code> before evaluating them. That means you can use the quasiquotation operator <code>!!</code> in your commands, and <code><a href="../reference/make.html">make()</a></code> will evaluate them according to the tidy evaluation paradigm.</li>
 <li>Restructure <code><a href="../reference/drake_example.html">drake_example("basic")</a></code>, <code><a href="../reference/drake_example.html">drake_example("gsp")</a></code>, and <code><a href="../reference/drake_example.html">drake_example("packages")</a></code> to demonstrate how to set up the files for serious <code>drake</code> projects. More guidance was needed in light of <a href="https://github.com/ropensci/drake/issues/193">this issue</a>.</li>
 <li>Improve the examples of <code><a href="../reference/drake_plan.html">drake_plan()</a></code> in the help file (<code><a href="../reference/drake_plan.html">?drake_plan</a></code>).</li>
 </ul>

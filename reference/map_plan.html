@@ -184,7 +184,7 @@ evaluate_plan, expand_plan</p></div>
 <span class='no'>args</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(<span class='fu'>t</span>(<span class='fu'>combn</span>(<span class='no'>covariates</span>, <span class='fl'>2</span>)))
 <span class='fu'>colnames</span>(<span class='no'>args</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"x1"</span>, <span class='st'>"x2"</span>)
 <span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='st'>"mtcars"</span>
-<span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rlang/topics/sym'>syms</a></span>(<span class='no'>args</span>$<span class='no'>data</span>)
+<span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a></span>(<span class='no'>args</span>$<span class='no'>data</span>)
 <span class='no'>args</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'>paste0</span>(<span class='st'>"fit_"</span>, <span class='no'>args</span>$<span class='no'>x1</span>, <span class='st'>"_"</span>, <span class='no'>args</span>$<span class='no'>x2</span>)
 <span class='no'>args</span></div><div class='output co'>#&gt; # A tibble: 45 x 4
 #&gt;    x1    x2    data     id          
