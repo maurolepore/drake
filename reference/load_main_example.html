@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Load the mtcars example from <code>drake_example("mtcars")</code> — load_mtcars_example • drake</title>
+<title>Load the main example from <code>drake_example("main")</code> — load_main_example • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,16 +30,16 @@
 
 
 
-<meta property="og:title" content="Load the mtcars example from <code>drake_example("mtcars")</code> — load_mtcars_example" />
+<meta property="og:title" content="Load the main example from <code>drake_example("main")</code> — load_main_example" />
 
-<meta property="og:description" content="Is there an association between
-the weight and the fuel efficiency of cars?
-To find out, we use the mtcars dataset.
-The mtcars dataset itself only has 32 rows,
-so we generate two larger bootstrapped datasets
-and then analyze them with regression models.
-Finally, we summarize the regression models
-to see if there is an association." />
+<meta property="og:description" content="The main example itself lives at
+https://github.com/wlandau/drake-examples/tree/master/main. # nolint
+Use drake_example(&quot;main&quot;) to download the code.
+The chapter of the user manual at
+https://ropenscilabs.github.io/drake-manual/main.html # nolint
+also walks through the main example.
+This function also writes/overwrites
+the files report.Rmd and raw_data.xlsx." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,25 +113,25 @@ to see if there is an association." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Load the mtcars example from <code>drake_example("mtcars")</code></h1>
+    <h1>Load the main example from <code>drake_example("main")</code></h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/examples.R'><code>R/examples.R</code></a></small>
-    <div class="hidden name"><code>load_mtcars_example.Rd</code></div>
+    <div class="hidden name"><code>load_main_example.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Is there an association between
-the weight and the fuel efficiency of cars?
-To find out, we use the mtcars dataset.
-The mtcars dataset itself only has 32 rows,
-so we generate two larger bootstrapped datasets
-and then analyze them with regression models.
-Finally, we summarize the regression models
-to see if there is an association.</p>
+    <p>The main example itself lives at
+<a href='https://github.com/wlandau/drake-examples/tree/master/main'>https://github.com/wlandau/drake-examples/tree/master/main</a>. # nolint
+Use <code><a href='drake_example.html'>drake_example("main")</a></code> to download the code.
+The chapter of the user manual at
+<a href='https://ropenscilabs.github.io/drake-manual/main.html'>https://ropenscilabs.github.io/drake-manual/main.html</a> # nolint
+also walks through the main example.
+This function also writes/overwrites
+the files <code>report.Rmd</code> and <code>raw_data.xlsx</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>load_mtcars_example</span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>report_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>load_main_example</span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>report_file</span> <span class='kw'>=</span> <span class='st'>"report.Rmd"</span>,
   <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -146,10 +146,7 @@ set <code>envir = new.env(parent = globalenv())</code>.</p></td>
     </tr>
     <tr>
       <th>report_file</th>
-      <td><p>where to write the report file. Deprecated.
-In a future release, the report file will always be
-<code>report.Rmd</code> and will always be written to your
-working directory (current default).</p></td>
+      <td><p>where to write the report file <code>report.Rmd</code>.</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
@@ -165,45 +162,27 @@ non-back-compatible cache from a previous version of drake.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>nothing</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Use <code><a href='drake_example.html'>drake_example("mtcars")</a></code> to get the code
-for the mtcars example. The included R script is a detailed,
-heavily-commented walkthrough. The chapter of the user manual at
-<a href='https://ropenscilabs.github.io/drake-manual/mtcars.html'>https://ropenscilabs.github.io/drake-manual/mtcars.html</a> # nolint
-also walks through the mtcars example.
-This function also writes/overwrites
-the file, <code>report.Rmd</code>.</p>
+    <p>A <code><a href='drake_config.html'>drake_config()</a></code> configuration list.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='clean_mtcars_example.html'>clean_mtcars_example()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='clean_main_example.html'>clean_main_example()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='co'># Populate your workspace and write 'report.Rmd'.</span>
-<span class='fu'>load_mtcars_example</span>() <span class='co'># Get the code: drake_example("mtcars")</span>
-<span class='co'># Check the dependencies of an imported function.</span>
-<span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>reg1</span>)
-<span class='co'># Check the dependencies of commands in the workflow plan.</span>
-<span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>])
-<span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>4</span>])
-<span class='co'># Plot the interactive network visualization of the workflow.</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Which targets are out of date?</span>
-<span class='co'># Run the workflow to build all the targets in the plan.</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)
-<span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Everything should be up to date.</span>
-<span class='co'># For the reg2() model on the small dataset,</span>
-<span class='co'># the p-value is so small that there may be an association</span>
-<span class='co'># between weight and fuel efficiency after all.</span>
-<span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>coef_regression2_small</span>)
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"downloader"</span>)){
+<span class='co'># Populate your workspace and write 'report.Rmd' and 'raw_data.xlsx'.</span>
+<span class='fu'>load_main_example</span>() <span class='co'># Get the code: drake_example("main")</span>
+<span class='co'># Run the project with make(plan).</span>
+<span class='co'># Make sure you have these packages installed first:</span>
+<span class='co'># dplyr, forcats, ggplot2, readxl, and rmarkdown</span>
+<span class='co'># make(plan) # nolint</span>
+<span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>hist</span>) <span class='co'># Show the ggplot2 histogram.</span>
 <span class='co'># Clean up the example.</span>
-<span class='fu'><a href='clean_mtcars_example.html'>clean_mtcars_example</a></span>()
+<span class='fu'><a href='clean_main_example.html'>clean_main_example</a></span>()
+}
 })
 <span class='co'># }</span></pre>
   </div>
@@ -213,8 +192,6 @@ the file, <code>report.Rmd</code>.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

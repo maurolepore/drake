@@ -58,6 +58,12 @@
     <loc>https://github.com/ropensci/drake/reference/clean.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ropensci/drake/reference/clean_main_example.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/clean_mtcars_example.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ropensci/drake/reference/cleaned_namespaces.html</loc>
   </url>
   <url>
@@ -271,6 +277,9 @@
     <loc>https://github.com/ropensci/drake/reference/get_cache.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ropensci/drake/reference/hasty_build.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ropensci/drake/reference/ignore.html</loc>
   </url>
   <url>
@@ -290,6 +299,9 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/load_basic_example.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/load_main_example.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/load_mtcars_example.html</loc>
