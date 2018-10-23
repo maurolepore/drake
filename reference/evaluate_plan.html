@@ -246,12 +246,12 @@ gather_plan, evaluate_plan, expand_plan</p></div>
 <span class='co'># Any valid symbol will do.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>t</span>  <span class='kw'>=</span> <span class='fu'>rt</span>(<span class='fl'>1000</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>.df.</span>),
-  <span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>1000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>MEAN</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>..sd</span>)
+  <span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>1000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>`{MEAN}`</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>..sd</span>)
 )
 <span class='fu'>evaluate_plan</span>(
   <span class='no'>plan</span>,
   <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(
-    <span class='kw'>MEAN</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
+    <span class='st'>"`{MEAN}`"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
     <span class='kw'>..sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>, <span class='fl'>4</span>),
     <span class='kw'>.df.</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>7</span>
   )
