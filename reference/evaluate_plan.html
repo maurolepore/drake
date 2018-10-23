@@ -242,7 +242,29 @@ gather_plan, evaluate_plan, expand_plan</p></div>
 #&gt; 1 small       simulate(5) 
 #&gt; 2 large       simulate(50)
 #&gt; 3 regression1 reg1(small) 
-#&gt; 4 regression2 reg2(large) </div><div class='input'><span class='co'># Workflow plans can have multiple wildcards.</span>
+#&gt; 4 regression2 reg2(large) </div><div class='input'><span class='co'># Wildcards for evaluate_plan() do not need the double-underscore suffix.</span>
+<span class='co'># Any valid symbol will do.</span>
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
+  <span class='kw'>t</span>  <span class='kw'>=</span> <span class='fu'>rt</span>(<span class='fl'>1000</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>.df.</span>),
+  <span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>1000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>MEAN</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>..sd</span>)
+)
+<span class='fu'>evaluate_plan</span>(
+  <span class='no'>plan</span>,
+  <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(
+    <span class='kw'>MEAN</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
+    <span class='kw'>..sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>, <span class='fl'>4</span>),
+    <span class='kw'>.df.</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>7</span>
+  )
+)</div><div class='output co'>#&gt; # A tibble: 7 x 2
+#&gt;   target     command                      
+#&gt;   &lt;chr&gt;      &lt;chr&gt;                        
+#&gt; 1 t_5        rt(1000, df = 5)             
+#&gt; 2 t_6        rt(1000, df = 6)             
+#&gt; 3 t_7        rt(1000, df = 7)             
+#&gt; 4 normal_0_3 runif(1000, mean = 0, sd = 3)
+#&gt; 5 normal_0_4 runif(1000, mean = 0, sd = 4)
+#&gt; 6 normal_1_3 runif(1000, mean = 1, sd = 3)
+#&gt; 7 normal_1_4 runif(1000, mean = 1, sd = 4)</div><div class='input'><span class='co'># Workflow plans can have multiple wildcards.</span>
 <span class='co'># Each combination of wildcard values will be used</span>
 <span class='co'># Except when expand is FALSE.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>draws</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>Mean</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>Sd</span>))
