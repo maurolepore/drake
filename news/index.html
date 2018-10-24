@@ -157,6 +157,7 @@
 <li>Change the default parallelization of the imports. Previously, <code><a href="../reference/make.html">make(jobs = 4)</a></code> was equivalent to <code><a href="../reference/make.html">make(jobs = c(imports = 4, targets = 4))</a></code>. Now, <code><a href="../reference/make.html">make(jobs = 4)</a></code> is equivalent to <code><a href="../reference/make.html">make(jobs = c(imports = 1, targets = 4))</a></code>. See <a href="https://github.com/ropensci/drake/issues/553">issue 553</a> for details.</li>
 <li>Add a console message for building the priority queue when <code>verbose</code> is at least 2.</li>
 <li>Condense <code><a href="../reference/load_mtcars_example.html">load_mtcars_example()</a></code>.</li>
+<li>Disable the <code>hook</code> argument for non-hasty parallelism.</li>
 </ul>
 </div>
 </div>

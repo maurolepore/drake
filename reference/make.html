@@ -127,12 +127,12 @@ for an overview of the documentation.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>make</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='read_drake_plan.html'>read_drake_plan</a></span>(), <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>make</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/read_drake_plan'>read_drake_plan</a></span>(), <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(),
-  <span class='kw'>hook</span> <span class='kw'>=</span> <span class='no'>default_hook</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>,
-  <span class='kw'>force</span> <span class='kw'>=</span> <span class='no'>force</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='no'>console_log_file</span>),
-  <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_parallelism'>default_parallelism</a></span>(),
-  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'>rev</span>(<span class='fu'>.packages</span>()), <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>),
+  <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>, <span class='kw'>force</span> <span class='kw'>=</span>
+  <span class='no'>force</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_parallelism'>default_parallelism</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'>rev</span>(<span class='fu'>.packages</span>()), <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>),
   <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>), <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_Makefile_command'>default_Makefile_command</a></span>(),
   <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_Makefile_args'>default_Makefile_args</a></span>(<span class='kw'>jobs</span> <span class='kw'>=</span> <span class='no'>jobs</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>),
   <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/drake/topics/default_recipe_command'>default_recipe_command</a></span>(),
@@ -200,22 +200,9 @@ for example, <code><a href='http://www.rdocumentation.org/packages/pkgconfig/top
     </tr>
     <tr>
       <th>hook</th>
-      <td><p>function with at least one argument.
-The hook is as a wrapper around the code that drake uses
-to build a target (see the body of <code>drake:::build_in_hook()</code>).
-Hooks can control the side effects of build behavior.
-For example, to redirect output and error messages to text files,
-you might use the built-in <code><a href='silencer_hook.html'>silencer_hook()</a></code>, as in
-<code>make(my_plan, hook = silencer_hook)</code>.
-The silencer hook is useful for distributed parallelism,
-where the calling R process does not have control over all the
-error and output streams. See also <code><a href='output_sink_hook.html'>output_sink_hook()</a></code>
-and <code><a href='message_sink_hook.html'>message_sink_hook()</a></code>.
-For your own custom hooks, treat the first argument as the code
-that builds a target, and make sure this argument is actually evaluated.
-Otherwise, the code will not run and none of your targets will build.
-For example, <code>function(code){force(code)}</code> is a good hook
-and <code>function(code){message("Avoiding the code")}</code> is a bad hook.</p></td>
+      <td><p>Only applies if <code>parallelism</code> is <code>"hasty"</code>.
+The hook is as a wrapper around the code that <code>drake</code>
+in "hasty" mode uses to build a target.</p></td>
     </tr>
     <tr>
       <th>cache</th>
