@@ -185,7 +185,14 @@ gather_plan, evaluate_plan, expand_plan</p></div>
   <span class='kw'>bayes_model</span> <span class='kw'>=</span> <span class='fu'>bayesian_model_fit</span>(<span class='no'>data</span>, <span class='kw'>prior_mu</span> <span class='kw'>=</span> <span class='no'>mu__</span>)
 )
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='evaluate_plan.html'>evaluate_plan</a></span>(<span class='no'>plan</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>mu__</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>), <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"dplyr::bind_rows"</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
+<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 5 x 4
+#&gt;   target          command                                mu__  mu___from    
+#&gt;   &lt;chr&gt;           &lt;chr&gt;                                  &lt;chr&gt; &lt;chr&gt;        
+#&gt; 1 data            get_data()                             &lt;NA&gt;  &lt;NA&gt;         
+#&gt; 2 informal_look_1 inspect_data(data, mu = 1)             1     informal_look
+#&gt; 3 informal_look_2 inspect_data(data, mu = 2)             2     informal_look
+#&gt; 4 bayes_model_1   bayesian_model_fit(data, prior_mu = 1) 1     bayes_model  
+#&gt; 5 bayes_model_2   bayesian_model_fit(data, prior_mu = 2) 2     bayes_model  </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"dplyr::bind_rows"</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
 #&gt;   target         command                                      mu__  mu___from  
 #&gt;   &lt;chr&gt;          &lt;chr&gt;                                        &lt;chr&gt; &lt;chr&gt;      
 #&gt; 1 data           get_data()                                   &lt;NA&gt;  &lt;NA&gt;       
