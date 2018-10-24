@@ -121,7 +121,7 @@ Triggers disappear.
     <div class="page-header">
     <h1>Turn a <code>drake</code> workflow plan data frame
 into a plain R script file.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/plan_to_code.R'><code>R/plan_to_code.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/code_to_plan.R'><code>R/code_to_plan.R</code></a></small>
     <div class="hidden name"><code>plan_to_code.Rd</code></div>
     </div>
 
@@ -184,7 +184,7 @@ for details.</p></td>
 #&gt; fit &lt;- lm(Sepal.Width ~ Petal.Width + Species, data)</div><div class='input'><span class='co'># Convert back to a drake plan.</span>
 <span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"CodeDepends"</span>)){
   <span class='fu'><a href='code_to_plan.html'>code_to_plan</a></span>(<span class='no'>file</span>)
-}</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: CodeDepends</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
+}</div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target   command                                                              
 #&gt;   &lt;chr&gt;    &lt;chr&gt;                                                                
 #&gt; 1 raw_data "read_excel(file_in(\"raw_data.xlsx\"))"                             
