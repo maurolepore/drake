@@ -163,7 +163,7 @@ alerts <code>drake</code> utility functions to file names by
 enclosing them in literal double quotes.
 (For example, <code><a href='file_store.html'>file_store("report.Rmd")</a></code> is just <code>"\"report.Rmd\""</code>.)</p>
 <p><code>drake</code> takes special precautions so that a target/import
-does not depend on itself. For example, <code>deps_code(f)`` might return </code>"f"<code>if</code>f()` is a recursive function, but <code><a href='make.html'>make()</a></code> just ignores
+does not depend on itself. For example, <code>deps_code(f)`` might return</code>"f"<code>if</code>f()` is a recursive function, but <code><a href='make.html'>make()</a></code> just ignores
 this conflict and runs as expected. In other words, <code><a href='make.html'>make()</a></code>
 automatically removes all self-referential loops in the dependency
 network.</p>
