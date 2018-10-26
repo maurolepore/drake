@@ -277,9 +277,6 @@
     <loc>https://github.com/ropensci/drake/reference/get_cache.html</loc>
   </url>
   <url>
-    <loc>https://github.com/ropensci/drake/reference/hasty_build.html</loc>
-  </url>
-  <url>
     <loc>https://github.com/ropensci/drake/reference/ignore.html</loc>
   </url>
   <url>
@@ -446,6 +443,9 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/ropensci/drake/reference/remote_hasty_build.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/render_drake_ggraph.html</loc>
