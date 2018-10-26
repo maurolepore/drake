@@ -107,15 +107,16 @@
       <small>Source: <a href='https://github.com/ropensci/drake/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="version-6-1-0" class="section level1">
+    <div id="version-6-0-0-9000" class="section level1">
 <h1 class="page-header">
-<a href="#version-6-1-0" class="anchor"></a>Version 6.1.0<small> Unreleased </small>
+<a href="#version-6-0-0-9000" class="anchor"></a>Version 6.0.0.9000<small> Unreleased </small>
 </h1>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
 <li><strong>Add a new <code><a href="../reference/map_plan.html">map_plan()</a></code> function to easily create a workflow plan data frame to execute a function call over a grid of arguments.</strong></li>
+<li><strong>Add a hasty mode: <code><a href="../reference/make.html">make(parallelism = "hasty")</a></code> skips all of <code>drake</code>’s expensive caching and checking. All targets run every single time and you are responsible for saving results to custom output files, but almost all the by-target overhead is gone.</strong></li>
 <li>Add a new <code><a href="../reference/plan_to_code.html">plan_to_code()</a></code> function to turn <code>drake</code> plans into generic R scripts. New users can use this function to better understand the relationship between plans and code, and unsatisfied customers can use it to disentangle their projects from <code>drake</code> altogether. Similarly, <code><a href="../reference/plan_to_notebook.html">plan_to_notebook()</a></code> generates an R notebook from a <code>drake</code> plan.</li>
 <li>Add a new <code><a href="../reference/drake_debug.html">drake_debug()</a></code> function to run a target’s command in debug mode. Analogous to <code><a href="../reference/drake_build.html">drake_build()</a></code>.</li>
 <li>Add a <code>mode</code> argument to <code><a href="../reference/trigger.html">trigger()</a></code> to control how the <code>condition</code> trigger factors into the decision to build or skip a target. See the <code><a href="../reference/trigger.html">?trigger</a></code> for details.</li>
@@ -124,7 +125,6 @@
 <li>Add a new <code>append</code> argument to <code><a href="../reference/gather_plan.html">gather_plan()</a></code>, <code><a href="../reference/gather_by.html">gather_by()</a></code>, <code><a href="../reference/reduce_plan.html">reduce_plan()</a></code>, and <code><a href="../reference/reduce_by.html">reduce_by()</a></code>. The <code>append</code> argument control whether the output includes the original <code>plan</code> in addition to the newly generated rows.</li>
 <li>Add new functions <code><a href="../reference/load_main_example.html">load_main_example()</a></code>, <code><a href="../reference/clean_main_example.html">clean_main_example()</a></code>, and <code><a href="../reference/clean_mtcars_example.html">clean_mtcars_example()</a></code>.</li>
 <li>Add a <code>filter</code> argument to <code><a href="../reference/gather_by.html">gather_by()</a></code> and <code><a href="../reference/reduce_by.html">reduce_by()</a></code> in order to restrict what we gather even when <code>append</code> is <code>TRUE</code>.</li>
-<li>Add a hasty mode: <code><a href="../reference/make.html">make(parallelism = "hasty")</a></code> skips all of <code>drake</code>’s expensive caching and checking. All targets run every single time and you are responsible for saving results to custom output files, but almost all the by-target overhead is gone.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -549,7 +549,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#version-6-1-0">6.1.0</a></li>
+        <li><a href="#version-6-0-0-9000">6.0.0.9000</a></li>
         <li><a href="#version-6-0-0">6.0.0</a></li>
         <li><a href="#version-5-4-0">5.4.0</a></li>
         <li><a href="#version-5-3-0">5.3.0</a></li>
