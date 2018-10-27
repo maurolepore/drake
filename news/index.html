@@ -111,6 +111,13 @@
 <h1 class="page-header">
 <a href="#version-6-1-0-9000" class="anchor"></a>Version 6.1.0.9000<small> Unreleased </small>
 </h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>Expose a <code>hasty_build</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. Here, the user can set the function that builds targets in “hasty mode” (<code><a href="../reference/make.html">make(parallelism = "hasty")</a></code>).</li>
+</ul>
+</div>
 <div id="enhancements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
@@ -123,9 +130,9 @@
 <h1 class="page-header">
 <a href="#version-6-1-0" class="anchor"></a>Version 6.1.0<small> 2018-10-26 </small>
 </h1>
-<div id="new-features" class="section level2">
+<div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h2>
+<a href="#new-features-1" class="anchor"></a>New features</h2>
 <ul>
 <li><strong>Add a new <code><a href="../reference/map_plan.html">map_plan()</a></code> function to easily create a workflow plan data frame to execute a function call over a grid of arguments.</strong></li>
 <li>Add a new <code><a href="../reference/plan_to_code.html">plan_to_code()</a></code> function to turn <code>drake</code> plans into generic R scripts. New users can use this function to better understand the relationship between plans and code, and unsatisfied customers can use it to disentangle their projects from <code>drake</code> altogether. Similarly, <code><a href="../reference/plan_to_notebook.html">plan_to_notebook()</a></code> generates an R notebook from a <code>drake</code> plan.</li>
@@ -205,9 +212,9 @@
 <li>Work around mysterious <code>codetools</code> failures in R 3.3 (add a <code>tryCatch()</code> statement in <code>find_globals()</code>).</li>
 </ul>
 </div>
-<div id="new-features-1" class="section level2">
+<div id="new-features-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-1" class="anchor"></a>New features</h2>
+<a href="#new-features-2" class="anchor"></a>New features</h2>
 <ul>
 <li>Add a proper <a href="https://github.com/mschubert/clustermq"><code>clustermq</code></a>-based parallel backend: <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
 <li>

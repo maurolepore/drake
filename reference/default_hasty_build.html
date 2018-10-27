@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Build a target on a remote worker using "hasty" parallelism — remote_hasty_build • drake</title>
+<title>Build a target using "hasty" parallelism — default_hasty_build • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Build a target on a remote worker using "hasty" parallelism — remote_hasty_build" />
+<meta property="og:title" content="Build a target using "hasty" parallelism — default_hasty_build" />
 
 <meta property="og:description" content="For internal use only" />
 <meta name="twitter:card" content="summary" />
@@ -106,9 +106,9 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Build a target on a remote worker using "hasty" parallelism</h1>
+    <h1>Build a target using "hasty" parallelism</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/hasty.R'><code>R/hasty.R</code></a></small>
-    <div class="hidden name"><code>remote_hasty_build.Rd</code></div>
+    <div class="hidden name"><code>default_hasty_build.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -117,7 +117,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>remote_hasty_build</span>(<span class='no'>target</span>, <span class='kw'>deps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>config</span>)</pre>
+    <pre class="usage"><span class='fu'>default_hasty_build</span>(<span class='no'>target</span>, <span class='no'>config</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -125,10 +125,6 @@
     <tr>
       <th>target</th>
       <td><p>name of the target</p></td>
-    </tr>
-    <tr>
-      <th>deps</th>
-      <td><p>named list of dependencies</p></td>
     </tr>
     <tr>
       <th>config</th>
