@@ -211,25 +211,34 @@ gather_plan, evaluate_plan, expand_plan</p></div>
     <pre class="examples"><div class='input'><span class='co'># Create the part of the workflow plan for the datasets.</span>
 <span class='no'>datasets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'>simulate</span>(<span class='fl'>5</span>),
-  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'>simulate</span>(<span class='fl'>50</span>))
+  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'>simulate</span>(<span class='fl'>50</span>)
+)
 <span class='co'># Create a template workflow plan for the analyses.</span>
 <span class='no'>methods</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>regression1</span> <span class='kw'>=</span> <span class='fu'>reg1</span>(<span class='no'>dataset__</span>),
-  <span class='kw'>regression2</span> <span class='kw'>=</span> <span class='fu'>reg2</span>(<span class='no'>dataset__</span>))
+  <span class='kw'>regression2</span> <span class='kw'>=</span> <span class='fu'>reg2</span>(<span class='no'>dataset__</span>)
+)
 <span class='co'># Evaluate the wildcards in the template</span>
 <span class='co'># to produce the actual part of the workflow plan</span>
 <span class='co'># that encodes the analyses of the datasets.</span>
 <span class='co'># Create one analysis for each combination of dataset and method.</span>
-<span class='fu'>evaluate_plan</span>(<span class='no'>methods</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 2
+<span class='fu'>evaluate_plan</span>(
+  <span class='no'>methods</span>,
+  <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
+  <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>
+)</div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target            command    
 #&gt;   &lt;chr&gt;             &lt;chr&gt;      
 #&gt; 1 regression1_small reg1(small)
 #&gt; 2 regression1_large reg1(large)
 #&gt; 3 regression2_small reg2(small)
 #&gt; 4 regression2_large reg2(large)</div><div class='input'><span class='co'># Only choose some combinations of dataset and analysis method.</span>
-<span class='no'>ans</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>methods</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>ans</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(
+  <span class='no'>methods</span>,
+  <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
+  <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>,
+  <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 <span class='no'>ans</span></div><div class='output co'>#&gt; # A tibble: 2 x 2
 #&gt;   target      command    
 #&gt;   &lt;chr&gt;       &lt;chr&gt;      
@@ -245,78 +254,74 @@ gather_plan, evaluate_plan, expand_plan</p></div>
 #&gt; 4 regression2 reg2(large) </div><div class='input'><span class='co'># Wildcards for evaluate_plan() do not need the double-underscore suffix.</span>
 <span class='co'># Any valid symbol will do.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>t</span>  <span class='kw'>=</span> <span class='fu'>rt</span>(<span class='fl'>1000</span>, <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>.df.</span>),
-  <span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>1000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>`{MEAN}`</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>..sd</span>)
+  <span class='kw'>numbers</span> <span class='kw'>=</span> <span class='fu'>sample.int</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>`{Number}`</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>..size</span>)
 )
 <span class='fu'>evaluate_plan</span>(
   <span class='no'>plan</span>,
   <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(
-    <span class='st'>"`{MEAN}`"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-    <span class='kw'>..sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>, <span class='fl'>4</span>),
-    <span class='kw'>.df.</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>7</span>
+    <span class='st'>"`{Number}`"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>13</span>),
+    <span class='kw'>..size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>, <span class='fl'>4</span>)
   )
-)</div><div class='output co'>#&gt; # A tibble: 7 x 2
-#&gt;   target     command                      
-#&gt;   &lt;chr&gt;      &lt;chr&gt;                        
-#&gt; 1 t_5        rt(1000, df = 5)             
-#&gt; 2 t_6        rt(1000, df = 6)             
-#&gt; 3 t_7        rt(1000, df = 7)             
-#&gt; 4 normal_0_3 runif(1000, mean = 0, sd = 3)
-#&gt; 5 normal_0_4 runif(1000, mean = 0, sd = 4)
-#&gt; 6 normal_1_3 runif(1000, mean = 1, sd = 3)
-#&gt; 7 normal_1_4 runif(1000, mean = 1, sd = 4)</div><div class='input'><span class='co'># Workflow plans can have multiple wildcards.</span>
+)</div><div class='output co'>#&gt; # A tibble: 4 x 2
+#&gt;   target       command                     
+#&gt;   &lt;chr&gt;        &lt;chr&gt;                       
+#&gt; 1 numbers_10_3 sample.int(n = 10, size = 3)
+#&gt; 2 numbers_10_4 sample.int(n = 10, size = 4)
+#&gt; 3 numbers_13_3 sample.int(n = 13, size = 3)
+#&gt; 4 numbers_13_4 sample.int(n = 13, size = 4)</div><div class='input'><span class='co'># Workflow plans can have multiple wildcards.</span>
 <span class='co'># Each combination of wildcard values will be used</span>
 <span class='co'># Except when expand is FALSE.</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>draws</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>Mean</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='no'>Sd</span>))
-<span class='fu'>evaluate_plan</span>(<span class='no'>x</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>Mean</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>Sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div><div class='output co'>#&gt; # A tibble: 6 x 2
-#&gt;   target     command                 
-#&gt;   &lt;chr&gt;      &lt;chr&gt;                   
-#&gt; 1 draws_1_1  rnorm(mean = 1, sd = 1) 
-#&gt; 2 draws_1_10 rnorm(mean = 1, sd = 10)
-#&gt; 3 draws_2_1  rnorm(mean = 2, sd = 1) 
-#&gt; 4 draws_2_10 rnorm(mean = 2, sd = 10)
-#&gt; 5 draws_3_1  rnorm(mean = 3, sd = 1) 
-#&gt; 6 draws_3_10 rnorm(mean = 3, sd = 10)</div><div class='input'><span class='co'># You can use wildcards on columns other than "command"</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>draws</span> <span class='kw'>=</span> <span class='fu'>sample.int</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>Size</span>))
+<span class='fu'>evaluate_plan</span>(<span class='no'>x</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>10</span>:<span class='fl'>13</span>, <span class='kw'>Size</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>))</div><div class='output co'>#&gt; # A tibble: 8 x 2
+#&gt;   target     command                     
+#&gt;   &lt;chr&gt;      &lt;chr&gt;                       
+#&gt; 1 draws_10_1 sample.int(n = 10, size = 1)
+#&gt; 2 draws_10_2 sample.int(n = 10, size = 2)
+#&gt; 3 draws_11_1 sample.int(n = 11, size = 1)
+#&gt; 4 draws_11_2 sample.int(n = 11, size = 2)
+#&gt; 5 draws_12_1 sample.int(n = 12, size = 1)
+#&gt; 6 draws_12_2 sample.int(n = 12, size = 2)
+#&gt; 7 draws_13_1 sample.int(n = 13, size = 1)
+#&gt; 8 draws_13_2 sample.int(n = 13, size = 2)</div><div class='input'><span class='co'># You can use wildcards on columns other than "command"</span>
 <span class='fu'>evaluate_plan</span>(
   <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"always"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"any"</span>),
-    <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"any"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"always"</span>),
-    <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"any"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"any"</span>),
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"1 + 1"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"any"</span>),
+    <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"sqrt(4)"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"always"</span>),
+    <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"sqrt(16)"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"any"</span>),
     <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
   ),
   <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>always</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>),
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"command"</span>, <span class='st'>"cpu"</span>)
-)</div><div class='output co'>#&gt; # A tibble: 5 x 3
-#&gt;   target command cpu  
-#&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;
-#&gt; 1 x_1    1       any  
-#&gt; 2 x_2    2       any  
-#&gt; 3 y_1    any     1    
-#&gt; 4 y_2    any     2    
-#&gt; 5 z      any     any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
+)</div><div class='output co'>#&gt; # A tibble: 4 x 3
+#&gt;   target command  cpu  
+#&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;
+#&gt; 1 x      1 + 1    any  
+#&gt; 2 y_1    sqrt(4)  1    
+#&gt; 3 y_2    sqrt(4)  2    
+#&gt; 4 z      sqrt(16) any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
 <span class='co'># you can generate columns that show how the wildcards</span>
 <span class='co'># were evaluated.</span>
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='no'>n__</span>))
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>sample.int</span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>n__</span>))
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'>print</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 4
-#&gt;   target command  n__   n___from
-#&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   
-#&gt; 1 x_1    rnorm(1) 1     x       
-#&gt; 2 x_2    rnorm(2) 2     x       
-#&gt; 3 y_1    rexp(1)  1     y       
-#&gt; 4 y_2    rexp(2)  2     y       </div><div class='input'><span class='co'># With the `trace` argument,</span>
+#&gt;   target command       n__   n___from
+#&gt;   &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   
+#&gt; 1 x_1    sample.int(1) 1     x       
+#&gt; 2 x_2    sample.int(2) 2     x       
+#&gt; 3 y_1    sqrt(1)       1     y       
+#&gt; 4 y_2    sqrt(2)       2     y       </div><div class='input'><span class='co'># With the `trace` argument,</span>
 <span class='co'># you can generate columns that show how the wildcards</span>
 <span class='co'># were evaluated. Then you can visualize the wildcard groups</span>
 <span class='co'># as clusters.</span>
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='no'>n__</span>))
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>sample.int</span>(<span class='no'>n__</span>))
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'>print</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 4
-#&gt;   target command  n__   n___from
-#&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   
-#&gt; 1 x_1    rnorm(1) 1     x       
-#&gt; 2 x_2    rnorm(2) 2     x       
-#&gt; 3 y_1    rexp(1)  1     y       
-#&gt; 4 y_2    rexp(2)  2     y       </div><div class='input'><span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
+#&gt;   target command       n__   n___from
+#&gt;   &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   
+#&gt; 1 x_1    sqrt(1)       1     x       
+#&gt; 2 x_2    sqrt(2)       2     x       
+#&gt; 3 y_1    sample.int(1) 1     y       
+#&gt; 4 y_2    sample.int(2) 2     y       </div><div class='input'><span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"1"</span>)
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>))
