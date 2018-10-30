@@ -122,7 +122,8 @@ and then row-bind the new targets to the plan.</p>
     </div>
 
     <pre class="usage"><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>...</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"target"</span>, <span class='kw'>begin</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>op</span> <span class='kw'>=</span> <span class='st'>" + "</span>,
-  <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,6 +181,11 @@ Why not just call <code><a href='http://dplyr.tidyverse.org/reference/filter.htm
 Because <code><a href='gather_by.html'>gather_by(append = TRUE, filter = my_column == "my_value")</a></code>
 gathers on some targets while including all the original targets
 in the output. See the examples for a demonstration.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>character scalar, delimiter for creating the names
+of new targets</p></td>
     </tr>
     </table>
     
