@@ -123,7 +123,7 @@ workflow plan data frame from a template data frame.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plan_summaries</span>(<span class='no'>plan</span>, <span class='no'>analyses</span>, <span class='no'>datasets</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='st'>"list"</span>,
-  <span class='fu'>nrow</span>(<span class='no'>plan</span>)))</pre>
+  <span class='fu'>nrow</span>(<span class='no'>plan</span>)), <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,6 +149,11 @@ or import the datasets.</p></td>
 summaries. If not <code>NULL</code>, the length must be the number of
 rows in the <code>plan</code>. See the <code><a href='gather_plan.html'>gather_plan()</a></code> function
 for more.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>character scalar, delimiter for creating the
+new target names</p></td>
     </tr>
     </table>
     

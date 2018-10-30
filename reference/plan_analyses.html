@@ -122,7 +122,7 @@ workflow plan data frame from a template data frame.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plan_analyses</span>(<span class='no'>plan</span>, <span class='no'>datasets</span>)</pre>
+    <pre class="usage"><span class='fu'>plan_analyses</span>(<span class='no'>plan</span>, <span class='no'>datasets</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,6 +140,11 @@ the commands in the output will include <code>lm(your_dataset_1)</code>,
       <th>datasets</th>
       <td><p>workflow plan data frame with instructions
 to make the datasets.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>character scalar, delimiter for creating
+the names of new targets</p></td>
     </tr>
     </table>
     
