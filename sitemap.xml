@@ -325,6 +325,9 @@
     <loc>https://github.com/ropensci/drake/reference/make_with_config.html</loc>
   </url>
   <url>
+    <loc>https://github.com/ropensci/drake/reference/manage_memory.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/ropensci/drake/reference/map_plan.html</loc>
   </url>
   <url>
@@ -398,9 +401,6 @@
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/prune_drake_graph.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/ropensci/drake/reference/prune_envir.html</loc>
   </url>
   <url>
     <loc>https://github.com/ropensci/drake/reference/r_recipe_wildcard.html</loc>

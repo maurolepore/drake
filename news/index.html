@@ -116,6 +116,7 @@
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
 <li>Expose a <code>hasty_build</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. Here, the user can set the function that builds targets in “hasty mode” (<code><a href="../reference/make.html">make(parallelism = "hasty")</a></code>).</li>
+<li>Expose a variable called <code>._envir</code> to workflow plan commands. This allows users to manage memory themselves.</li>
 <li>Add a <code>sep</code> argument to <code><a href="../reference/gather_by.html">gather_by()</a></code>, <code><a href="../reference/reduce_by.html">reduce_by()</a></code>, <code><a href="../reference/reduce_plan.html">reduce_plan()</a></code>, <code><a href="../reference/evaluate_plan.html">evaluate_plan()</a></code>, <code><a href="../reference/expand_plan.html">expand_plan()</a></code>, <code><a href="../reference/plan_analyses.html">plan_analyses()</a></code>, and <code><a href="../reference/plan_summaries.html">plan_summaries()</a></code>. Allows the user to set the delimiter for generating new target names.</li>
 </ul>
 </div>
@@ -125,6 +126,9 @@
 <ul>
 <li>Remove strict dependencies on packages <code>evaluate</code>, <code>fs</code>, <code>future</code>, <code>parallel</code>, <code>R.utils</code>, <code>stats</code>, and <code>stringi</code>.</li>
 <li>Deprecate the <code>force</code> argument to <code><a href="../reference/make.html">make()</a></code> and related functions.</li>
+<li>Change the name of <code>prune_envir()</code> to <code><a href="../reference/manage_memory.html">manage_memory()</a></code>.</li>
+<li>Deprecate and rename the <code>pruning_strategy</code> argument to <code>memory_strategy</code> (<code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>).</li>
+<li>Change the default value of <code>memory_strategy</code> (previously <code>pruning_strategy</code>) to <code>"speed"</code> (previously <code>"lookahead"</code>).</li>
 </ul>
 </div>
 </div>
