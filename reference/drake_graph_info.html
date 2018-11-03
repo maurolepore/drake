@@ -277,10 +277,9 @@ default title of the graph.</p>
 <span class='co'># Use the data frames to plot your own custom visNetwork graph.</span>
 <span class='co'># For example, you can omit the legend nodes</span>
 <span class='co'># and change the direction of the graph.</span>
-<span class='fu'>library</span>(<span class='no'>magrittr</span>)
 <span class='fu'>library</span>(<span class='no'>visNetwork</span>)
-<span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='no'>raw_graph</span>$<span class='no'>nodes</span>, <span class='kw'>edges</span> <span class='kw'>=</span> <span class='no'>raw_graph</span>$<span class='no'>edges</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visHierarchicalLayout'>visHierarchicalLayout</a></span>(<span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>'UD'</span>)
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='no'>raw_graph</span>$<span class='no'>nodes</span>, <span class='kw'>edges</span> <span class='kw'>=</span> <span class='no'>raw_graph</span>$<span class='no'>edges</span>)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/visNetwork/topics/visHierarchicalLayout'>visHierarchicalLayout</a></span>(<span class='no'>graph</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>'UD'</span>)
 <span class='co'># Optionally visualize clusters.</span>
 <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>large_data</span> <span class='kw'>&lt;-</span> <span class='fu'>grepl</span>(<span class='st'>"large"</span>, <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>target</span>)
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_graph_info</span>(

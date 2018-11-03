@@ -237,11 +237,11 @@ of class <code>"error"</code>.</p>
   )
 )
 <span class='no'>targets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='built.html'>built</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>lapply</span>(<span class='no'>targets</span>, <span class='no'>diagnose</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>set_names</span>(<span class='no'>targets</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='st'>"warnings"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/keep'>compact</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='no'>unlist</span>
+<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>lapply</span>(<span class='no'>targets</span>, <span class='no'>diagnose</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>names</span>(<span class='no'>out</span>) <span class='kw'>&lt;-</span> <span class='no'>targets</span>
+<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>out</span>, <span class='st'>"warnings"</span>)
+<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/keep'>compact</a></span>(<span class='no'>out</span>)
+<span class='fu'>unlist</span>(<span class='no'>out</span>)
 })
 <span class='co'># }</span></pre>
   </div>
