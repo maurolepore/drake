@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create the <code>igraph</code> dependency network of your project. — build_drake_graph • drake</title>
+<title>Deprecated function <code>build_drake_graph</code> — build_drake_graph • drake</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,14 +30,9 @@
 
 
 
-<meta property="og:title" content="Create the <code>igraph</code> dependency network of your project. — build_drake_graph" />
+<meta property="og:title" content="Deprecated function <code>build_drake_graph</code> — build_drake_graph" />
 
-<meta property="og:description" content="This function returns an igraph object representing how
-the targets in your workflow plan data frame
-depend on each other.
-(help(package = &quot;igraph&quot;)). To plot this graph, call
-to plot.igraph() on your graph. See the online manual
-for enhanced graph visualization functionality." />
+<meta property="og:description" content="Use drake_config() instead." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,19 +106,14 @@ for enhanced graph visualization functionality." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create the <code>igraph</code> dependency network of your project.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/build_drake_graph.R'><code>R/build_drake_graph.R</code></a></small>
+    <h1>Deprecated function <code>build_drake_graph</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
     <div class="hidden name"><code>build_drake_graph.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function returns an igraph object representing how
-the targets in your workflow plan data frame
-depend on each other.
-(<code>help(package = "igraph")</code>). To plot this graph, call
-to <code>plot.igraph()</code> on your graph. See the online manual
-for enhanced graph visualization functionality.</p>
+    <p>Use <code><a href='drake_config.html'>drake_config()</a></code> instead.</p>
     
     </div>
 
@@ -201,11 +191,7 @@ For details, visit
     </tr>
     <tr>
       <th>sanitize_plan</th>
-      <td><p>logical, deprecated. If you must,
-call <code>drake:::sanitize_plan()</code> to sanitize the plan
-and/or <code>drake:::sanitize_targets()</code> to sanitize the targets
-(or just get <code>plan</code> and <code>targets</code> and <code>graph</code> from
-<code><a href='drake_config.html'>drake_config()</a></code>).</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>console_log_file</th>
@@ -217,30 +203,29 @@ Console output will be appended to that file.</p></td>
     </tr>
     <tr>
       <th>trigger</th>
-      <td><p>optional, a global trigger for building targets
-(see <code><a href='trigger.html'>trigger()</a></code>).</p></td>
+      <td><p>Name of the trigger to apply to all targets.
+Ignored if <code>plan</code> has a <code>trigger</code> column.
+See <code><a href='trigger.html'>trigger()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>cache</th>
-      <td><p>an optional <code>storr</code> cache for memoization</p></td>
+      <td><p>drake cache as created by <code><a href='new_cache.html'>new_cache()</a></code>.
+See also <code><a href='get_cache.html'>get_cache()</a></code> and <code><a href='this_cache.html'>this_cache()</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An igraph object representing
-the workflow plan dependency network.</p>
+    <p>an <code>igraph</code> object</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Deprecated on 2018-11-02.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='co'># Make the igraph network connecting all the targets and imports.</span>
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='fu'>build_drake_graph</span>(<span class='no'>my_plan</span>)
-<span class='fu'>class</span>(<span class='no'>g</span>) <span class='co'># "igraph"</span>
-})
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'># See ?drake_config for examples.
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -248,6 +233,8 @@ the workflow plan dependency network.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

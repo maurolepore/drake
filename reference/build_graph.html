@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Deprecated function <code>build_graph</code> — build_graph" />
 
-<meta property="og:description" content="Use build_drake_graph() instead." />
+<meta property="og:description" content="Use drake_config() instead." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,7 +113,7 @@
 
     <div class="ref-description">
     
-    <p>Use <code><a href='build_drake_graph.html'>build_drake_graph()</a></code> instead.</p>
+    <p>Use <code><a href='drake_config.html'>drake_config()</a></code> instead.</p>
     
     </div>
 
@@ -125,41 +125,77 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>plan</th>
-      <td><p>Same as for <code><a href='build_drake_graph.html'>build_drake_graph()</a></code>.</p></td>
+      <td><p>workflow plan data frame.
+A workflow plan data frame is a data frame
+with a <code>target</code> column and a <code>command</code> column.
+(See the details in the <code><a href='drake_plan.html'>drake_plan()</a></code> help file
+for descriptions of the optional columns.)
+Targets are the objects and files that drake generates,
+and commands are the pieces of R code that produce them.
+Use the function <code><a href='drake_plan.html'>drake_plan()</a></code> to generate workflow plan
+data frames easily, and see functions <code><a href='plan_analyses.html'>plan_analyses()</a></code>,
+<code><a href='plan_summaries.html'>plan_summaries()</a></code>, <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>,
+<code><a href='expand_plan.html'>expand_plan()</a></code>, and <code><a href='gather_plan.html'>gather_plan()</a></code> for
+easy ways to generate large workflow plan data frames.</p></td>
     </tr>
     <tr>
       <th>targets</th>
-      <td><p>Same as for <code><a href='build_drake_graph.html'>build_drake_graph()</a></code>.</p></td>
+      <td><p>character vector, names of targets to build.
+Dependencies are built too. Together, the <code>plan</code> and
+<code>targets</code> comprise the workflow network
+(i.e. the <code>graph</code> argument).
+Changing either will change the network.</p></td>
     </tr>
     <tr>
       <th>envir</th>
-      <td><p>Same as for <code><a href='build_drake_graph.html'>build_drake_graph()</a></code>.</p></td>
+      <td><p>environment to use. Defaults to the current
+workspace, so you should not need to worry about this
+most of the time. A deep copy of <code>envir</code> is made,
+so you don't need to worry about your workspace being modified
+by <code>make</code>. The deep copy inherits from the global environment.
+Wherever necessary, objects and functions are imported
+from <code>envir</code> and the global environment and
+then reproducibly tracked as dependencies.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Same as for <code><a href='build_drake_graph.html'>build_drake_graph()</a></code>.</p></td>
+      <td><p>logical or numeric, control printing to the console.
+Use <code>pkgconfig</code> to set the default value of <code>verbose</code>
+for your R session:
+for example, <code><a href='http://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::verbose" = 2)</a></code>.</p><dl class='dl-horizontal'>
+<dt>0 or <code>FALSE</code>:</dt><dd><p>print nothing.</p></dd>
+<dt>1 or <code>TRUE</code>:</dt><dd><p>print only targets to build.</p></dd>
+<dt>2:</dt><dd><p>+ checks and cache info.</p></dd>
+<dt>3:</dt><dd><p>+ any potentially missing items.</p></dd>
+<dt>4:</dt><dd><p>+ imports and writes to the cache.</p></dd>
+</dl></td>
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>Same as for <code><a href='build_drake_graph.html'>build_drake_graph()</a></code>.</p></td>
+      <td><p>maximum number of parallel workers for processing the targets.
+If you wish to parallelize the imports and preprocessing as well, you can
+use a named numeric vector of length 2, e.g.
+<code><a href='make.html'>make(jobs = c(imports = 4, targets = 8))</a></code>.
+<code><a href='make.html'>make(jobs = 4)</a></code> is equivalent to <code><a href='make.html'>make(jobs = c(imports = 1, targets = 4))</a></code>.</p>
+<p>Windows users should not set <code>jobs &gt; 1</code> if
+<code>parallelism</code> is <code>"mclapply"</code> because
+<code>mclapply()</code> is based on forking. Windows users
+who use <code>parallelism = "Makefile"</code> will need to
+download and install Rtools.</p>
+<p>You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
+to help decide on an appropriate number of jobs.
+For details, visit
+<a href='https://ropenscilabs.github.io/drake-manual/time.html'>https://ropenscilabs.github.io/drake-manual/time.html</a>.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>The same return value as <code><a href='build_drake_graph.html'>build_drake_graph()</a></code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Deprecated on 2017-11-12.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='build_drake_graph.html'>build_drake_graph()</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># See ?as_drake_filename for examples.
+    <pre class="examples"><div class='input'># See ?drake_config for examples.
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -167,11 +203,7 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
