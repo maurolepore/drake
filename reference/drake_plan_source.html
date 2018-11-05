@@ -164,7 +164,7 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 #&gt;   target     command                trigger                             timeout
 #&gt;   &lt;chr&gt;      &lt;chr&gt;                  &lt;chr&gt;                                 &lt;dbl&gt;
 #&gt; 1 small_data "download_data(\"http… &lt;NA&gt;                                     NA
-#&gt; 2 large_dat… "download_data(\"http… "trigger(change = time_last_modifi…    1000</div><div class='input'><span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"styler"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)){
+#&gt; 2 large_dat… "download_data(\"http… "trigger(change = time_last_modifi…    1000</div><div class='input'><span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"styler"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
   <span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)
   <span class='fu'>print</span>(<span class='no'>source</span>) <span class='co'># Install the prettycode package for syntax highlighting.</span>
 }</div><div class='output co'>#&gt; drake_plan(

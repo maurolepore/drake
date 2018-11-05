@@ -187,7 +187,7 @@ for details.</p></td>
 #&gt; hist &lt;- create_plot(data)
 #&gt; fit &lt;- lm(Sepal.Width ~ Petal.Width + Species, data)
 #&gt; ```</div><div class='input'><span class='co'># Convert back to a drake plan.</span>
-<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"CodeDepends"</span>)){
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"CodeDepends"</span>)) {
   <span class='fu'><a href='code_to_plan.html'>code_to_plan</a></span>(<span class='no'>file</span>)
 }</div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target   command                                      

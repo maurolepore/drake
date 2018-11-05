@@ -177,7 +177,7 @@ evaluate_plan, expand_plan</p></div>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># For the full tutorial, visit</span>
 <span class='co'># https://ropenscilabs.github.io/drake-manual/plans.html#map_plan.</span>
-<span class='no'>my_model_fit</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>data</span>){
+<span class='no'>my_model_fit</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>data</span>) {
   <span class='fu'>lm</span>(<span class='fu'>as.formula</span>(<span class='fu'>paste</span>(<span class='st'>"mpg ~"</span>, <span class='no'>x1</span>, <span class='st'>"+"</span>, <span class='no'>x1</span>)), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>)
 }
 <span class='no'>covariates</span> <span class='kw'>&lt;-</span> <span class='fu'>setdiff</span>(<span class='fu'>colnames</span>(<span class='no'>mtcars</span>), <span class='st'>"mpg"</span>)

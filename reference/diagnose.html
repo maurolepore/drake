@@ -208,7 +208,7 @@ of class <code>"error"</code>.</p>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'>diagnose</span>() <span class='co'># List all the targets with recorded error logs.</span>
 <span class='co'># Define a function doomed to failure.</span>
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(){
+<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>() {
   <span class='fu'>stop</span>(<span class='st'>"unusual error"</span>)
 }
 <span class='co'># Create a workflow plan doomed to failure.</span>

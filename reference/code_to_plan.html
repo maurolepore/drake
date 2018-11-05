@@ -172,7 +172,7 @@ The target/command binding should be permanent.</p></li>
 #&gt; data &lt;- raw_data
 #&gt; hist &lt;- create_plot(data)
 #&gt; fit &lt;- lm(Sepal.Width ~ Petal.Width + Species, data)</div><div class='input'><span class='co'># Convert back to a drake plan.</span>
-<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"CodeDepends"</span>)){
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"CodeDepends"</span>)) {
   <span class='fu'>code_to_plan</span>(<span class='no'>file</span>)
 }</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: CodeDepends</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target   command                                      

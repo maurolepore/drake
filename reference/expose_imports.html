@@ -194,10 +194,10 @@ for the idea that makes this function work.</p>
 <span class='co'># which computes the hash of an object.</span>
 
 <span class='fu'>library</span>(<span class='no'>digest</span>) <span class='co'># Has the digest() function.</span>
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>){
+<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
   <span class='fu'><a href='http://www.rdocumentation.org/packages/digest/topics/digest'>digest</a></span>(<span class='no'>x</span>)
 }
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>){
+<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
   <span class='fu'>g</span>(<span class='no'>x</span>)
 }
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='fl'>1</span>))
@@ -237,7 +237,7 @@ for the idea that makes this function work.</p>
 
 <span class='co'># Note: if you use `digest::digest()`` instead of just `digest()`,</span>
 <span class='co'># `drake` does not dive into the function body anymore.</span>
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>){
+<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
   <span class='kw pkg'>digest</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/digest/topics/digest'>digest</a></span>(<span class='no'>x</span>) <span class='co'># Was previously just digest()</span>
 }
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)

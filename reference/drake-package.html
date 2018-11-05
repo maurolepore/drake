@@ -145,7 +145,7 @@ and high-performance computing.</p>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Build everything.</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Nothing is done because everything is already up to date.</span>
-<span class='no'>reg2</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>d</span>){ <span class='co'># Change one of your functions.</span>
+<span class='no'>reg2</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>d</span>) { <span class='co'># Change one of your functions.</span>
   <span class='no'>d</span>$<span class='no'>x3</span> <span class='kw'>=</span> <span class='no'>d</span>$<span class='no'>x</span>^<span class='fl'>3</span>
   <span class='fu'>lm</span>(<span class='no'>y</span> ~ <span class='no'>x3</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>)
 }

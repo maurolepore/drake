@@ -663,7 +663,7 @@ for more details.</p>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># Build what needs to be built.</span>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Everything is up to date.</span>
 <span class='co'># Change one of your imported function dependencies.</span>
-<span class='no'>reg2</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>d</span>){
+<span class='no'>reg2</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>d</span>) {
   <span class='no'>d</span>$<span class='no'>x3</span> <span class='kw'>=</span> <span class='no'>d</span>$<span class='no'>x</span>^<span class='fl'>3</span>
   <span class='fu'>lm</span>(<span class='no'>y</span> ~ <span class='no'>x3</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>)
 }
