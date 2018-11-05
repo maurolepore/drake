@@ -124,11 +124,14 @@
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
-<li>Remove strict dependencies on packages <code>evaluate</code>, <code>fs</code>, <code>future</code>, <code>parallel</code>, <code>R.utils</code>, <code>stats</code>, and <code>stringi</code>.</li>
+<li>
+<strong>Large speed boost</strong>: reduce repeated calls to <code>parse()</code> in <code>code_dependencies()</code>.</li>
+<li>
+<strong>Large speed boost</strong>: change the default value of <code>memory_strategy</code> (previously <code>pruning_strategy</code>) to <code>"speed"</code> (previously <code>"lookahead"</code>).</li>
+<li>Remove strict dependencies on packages <code>evaluate</code>, <code>fs</code>, <code>future</code>, <code>magrittr</code>, <code>parallel</code>, <code>R.utils</code>, <code>stats</code>, and <code>stringi</code>.</li>
 <li>Deprecate the <code>force</code> argument to <code><a href="../reference/make.html">make()</a></code> and related functions.</li>
 <li>Change the name of <code>prune_envir()</code> to <code><a href="../reference/manage_memory.html">manage_memory()</a></code>.</li>
 <li>Deprecate and rename the <code>pruning_strategy</code> argument to <code>memory_strategy</code> (<code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>).</li>
-<li>Change the default value of <code>memory_strategy</code> (previously <code>pruning_strategy</code>) to <code>"speed"</code> (previously <code>"lookahead"</code>).</li>
 </ul>
 </div>
 </div>
