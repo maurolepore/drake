@@ -128,6 +128,7 @@
 <strong>Large speed boost</strong>: reduce repeated calls to <code>parse()</code> in <code>code_dependencies()</code>.</li>
 <li>
 <strong>Large speed boost</strong>: change the default value of <code>memory_strategy</code> (previously <code>pruning_strategy</code>) to <code>"speed"</code> (previously <code>"lookahead"</code>).</li>
+<li>Use the <code>label</code> argument to <code>future()</code> inside <code><a href="../reference/make.html">make(parallelism = "future")</a></code>. That way , job names are target names by default if <code>job.name</code> is used correctly in the <code>batchtools</code> template file.</li>
 <li>Remove strict dependencies on packages <code>evaluate</code>, <code>fs</code>, <code>future</code>, <code>magrittr</code>, <code>parallel</code>, <code>R.utils</code>, <code>stats</code>, and <code>stringi</code>.</li>
 <li>Deprecate the <code>force</code> argument to <code><a href="../reference/make.html">make()</a></code> and related functions.</li>
 <li>Change the name of <code>prune_envir()</code> to <code><a href="../reference/manage_memory.html">manage_memory()</a></code>.</li>
