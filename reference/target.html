@@ -34,10 +34,7 @@
 
 <meta property="og:description" content="The target() function lets you define
 custom columns in a workflow plan data frame, both
-inside and outside calls to drake_plan().
-@details Tidy evaluation is applied to the arguments,
-and the !! operator is evaluated immediately
-for expressions and language objects." />
+inside and outside calls to drake_plan()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,16 +117,13 @@ for expressions and language objects." />
     
     <p>The <code>target()</code> function lets you define
 custom columns in a workflow plan data frame, both
-inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></code>.
-@details Tidy evaluation is applied to the arguments,
-and the <code>!!</code> operator is evaluated immediately
-for expressions and language objects.</p>
+inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>target</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>worker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>evaluator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>target</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>worker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>evaluator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,6 +181,12 @@ fields of the workflow plan.</p></td>
     <p>A one-row workflow plan data frame with the named
 arguments as columns.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Tidy evaluation is applied to the arguments,
+and the <code>!!</code> operator is evaluated immediately
+for expressions and language objects.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
@@ -225,6 +225,8 @@ arguments as columns.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
