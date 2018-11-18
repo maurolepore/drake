@@ -293,12 +293,15 @@ command, then <code><a href='make.html'>make()</a></code> will scan <code>"your_
 calls to <code>loadd()</code> and <code>readd()</code> in active code chunks,
 and then treat those loaded targets as dependencies.
 That way, <code><a href='make.html'>make()</a></code> will automatically (re)run the report if those
-dependencies change.
-Please do not put calls to <code>loadd()</code> or <code>readd()</code> inside
-your custom (imported) functions or the commands in your <code><a href='drake_plan.html'>drake_plan()</a></code>.
-This create confusion inside <code><a href='make.html'>make()</a></code>, which has its own ways of
-interacting with the cache.</p></li>
+dependencies change.</p></li>
 </ol>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Please do not put calls to <code>loadd()</code> or <code>readd()</code> inside
+your custom (imported) functions or the commands in your <code><a href='drake_plan.html'>drake_plan()</a></code>.
+This creates confusion inside <code><a href='make.html'>make()</a></code>, which has its own ways of
+interacting with the cache.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -359,6 +362,8 @@ interacting with the cache.</p></li>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
