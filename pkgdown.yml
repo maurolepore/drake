@@ -4,6 +4,6 @@ pkgdown_sha: ~
 articles:
   drake: drake.html
 urls:
-  reference: https://github.com/ropensci/drake/reference
-  article: https://github.com/ropensci/drake/articles
+  reference: https://ropensci.github.io/drake/reference
+  article: https://ropensci.github.io/drake/articles
 
