@@ -168,7 +168,7 @@ and it could lead to false negative results from
   <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fl'>0.01</span>,
   <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/drake/topics/default_hasty_build'>default_hasty_build</a></span>,
-  <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>, <span class='st'>"lookahead"</span>))</pre>
+  <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>, <span class='st'>"lookahead"</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -301,7 +301,7 @@ and then once again for each target right before that target is built.</p></td>
       <td><p>lines to prepend to the Makefile if <code>parallelism</code>
 is <code>"Makefile"</code>. See the <a href='https://ropenscilabs.github.io/drake-manual/store.html'>high-performance computing guide</a>
 to learn how to use <code>prepend</code>
-to take advantage of multiple nodes of a supercomputer.</p></td>
+to distribute work on a cluster.</p></td>
     </tr>
     <tr>
       <th>command</th>
@@ -640,6 +640,13 @@ targets from storage, and <code>"lookahead"</code> wastes time
 traversing the entire dependency graph on every <code><a href='make.html'>make()</a></code>. For a better
 compromise and more control, see the examples in the help file
 of <code><a href='drake_envir.html'>drake_envir()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>layout</th>
+      <td><p><code>config$layout</code>, where <code>config</code> is the return value
+from a prior call to <code>drake_config()</code>. If your plan or environment
+have changed since the last <code><a href='make.html'>make()</a></code>, do not supply a <code>layout</code> argument.
+Otherwise, supplying one could save time.</p></td>
     </tr>
     </table>
     

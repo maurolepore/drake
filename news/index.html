@@ -130,6 +130,8 @@
 <strong>Large speed boost</strong>: reduce repeated calls to <code><a href="https://www.rdocumentation.org/packages/base/topics/parse">parse()</a></code> in <code>code_dependencies()</code>.</li>
 <li>
 <strong>Large speed boost</strong>: change the default value of <code>memory_strategy</code> (previously <code>pruning_strategy</code>) to <code>"speed"</code> (previously <code>"lookahead"</code>).</li>
+<li>Compute a special data structure in <code><a href="../reference/drake_config.html">drake_config()</a></code> (<code>config$layout</code>) just to store the code analysis results. This is an intermediate structure between the workflow plan data frame and the graph. It will help clean up the internals in future development.</li>
+<li>Improve memoized preprocessing: deparse all the functions in the environment so the memoization does not react so spurious changes in R internals. Related: <a href='https://github.com/ropensci/drake/issues/345'>#345</a>.</li>
 <li>Use the <code>label</code> argument to <code>future()</code> inside <code><a href="../reference/make.html">make(parallelism = "future")</a></code>. That way , job names are target names by default if <code>job.name</code> is used correctly in the <code>batchtools</code> template file.</li>
 <li>Remove strict dependencies on packages <code>evaluate</code>, <code>fs</code>, <code>future</code>, <code>magrittr</code>, <code>parallel</code>, <code>R.utils</code>, <code>stats</code>, and <code>stringi</code>.</li>
 <li>Deprecate the <code>force</code> argument to <code><a href="../reference/make.html">make()</a></code> and related functions.</li>
