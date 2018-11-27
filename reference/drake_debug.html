@@ -32,7 +32,11 @@
 
 <meta property="og:title" content="Run a single target's command in debug mode. — drake_debug" />
 
-<meta property="og:description" content="Also load the target's dependencies beforehand." />
+<meta property="og:description" content="drake_debug() loads a target's dependencies
+and then runs its command in debug mode (see browser(),
+debug(), and debugonce()). This function does not
+store the target's value in the cache
+(see https://github.com/ropensci/drake/issues/587)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,7 +119,11 @@
 
     <div class="ref-description">
     
-    <p>Also load the target's dependencies beforehand.</p>
+    <p><code>drake_debug()</code> loads a target's dependencies
+and then runs its command in debug mode (see <code><a href='https://www.rdocumentation.org/packages/base/topics/browser'>browser()</a></code>,
+<code><a href='https://www.rdocumentation.org/packages/base/topics/debug'>debug()</a></code>, and <code><a href='https://www.rdocumentation.org/packages/base/topics/debug'>debugonce()</a></code>). This function does not
+store the target's value in the cache
+(see <a href='https://github.com/ropensci/drake/issues/587'>https://github.com/ropensci/drake/issues/587</a>).</p>
     
     </div>
 
