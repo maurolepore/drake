@@ -181,11 +181,19 @@ need to know how to load the cache.</p></td>
     </tr>
     <tr>
       <th>console_log_file</th>
-      <td><p>character scalar or <code>NULL</code>.
+      <td><p>character scalar,
+connection object (such as <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>) or <code>NULL</code>.
 If <code>NULL</code>, console output will be printed
 to the R console using <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>.
-Otherwise, <code>console_log_file</code> should be the name of a flat file.
-Console output will be appended to that file.</p></td>
+If a character scalar, <code>console_log_file</code>
+should be the name of a flat file, and
+console output will be appended to that file.
+If a connection object (e.g. <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>)
+warnings and messages will be sent to the connection.
+For example, if <code>console_log_file</code> is <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>,
+warnings and messages are printed to the console in real time
+(in addition to the usual in-bulk printing
+after each target finishes).</p></td>
     </tr>
     </table>
     
