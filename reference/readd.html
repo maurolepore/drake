@@ -135,7 +135,8 @@ targets built by <code><a href='make.html'>make()</a></code>.</p>
   <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>lazy</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>tidyselect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,9 +199,10 @@ was imported (using <code><a href='show_source.html'>show_source()</a></code>).<
     </tr>
     <tr>
       <th>...</th>
-      <td><p>targets to load from the cache: as names (symbols),
-character strings, or <code>dplyr</code>-style <code>tidyselect</code>
-commands such as <code><a href='https://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with()</a></code>.</p></td>
+      <td><p>targets to load from the cache: as names (symbols) or
+character strings. If the <code>tidyselect</code> package is installed,
+you can also supply <code>dplyr</code>-style <code>tidyselect</code>
+commands such as <code>starts_with()</code>, <code>ends_with()</code>, and <code>one_of()</code>.</p></td>
     </tr>
     <tr>
       <th>list</th>
@@ -264,6 +266,12 @@ it will be read from the cache.</p></td>
       <td><p>logical. If <code>FALSE</code>,
 items already in your environment
 will not be replaced.</p></td>
+    </tr>
+    <tr>
+      <th>tidyselect</th>
+      <td><p>logical, whether to enable
+<code>tidyselect</code> expressions in <code>...</code> like
+<code>starts_with("prefix")</code> and <code>ends_with("suffix")</code>.</p></td>
     </tr>
     </table>
     
@@ -331,9 +339,6 @@ interacting with the cache.</p>
 <span class='co'># For many targets, you can parallelize loadd()</span>
 <span class='co'># using the 'jobs' argument.</span>
 <span class='fu'>loadd</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"small"</span>, <span class='st'>"large"</span>), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ls'>ls</a></span>()
-<span class='co'># How about tidyselect?</span>
-<span class='fu'>loadd</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with</a></span>(<span class='st'>"summ"</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ls'>ls</a></span>()
 <span class='co'># Load the dependencies of the target, coef_regression2_small</span>
 <span class='fu'>loadd</span>(<span class='no'>coef_regression2_small</span>, <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)

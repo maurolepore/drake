@@ -135,9 +135,10 @@ argument for different versions of the build time.
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>targets to load from the cache: as names (symbols),
-character strings, or <code>dplyr</code>-style <code>tidyselect</code>
-commands such as <code><a href='https://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with()</a></code>.</p></td>
+      <td><p>targets to load from the cache: as names (symbols) or
+character strings. If the <code>tidyselect</code> package is installed,
+you can also supply <code>dplyr</code>-style <code>tidyselect</code>
+commands such as <code>starts_with()</code>, <code>ends_with()</code>, and <code>one_of()</code>.</p></td>
     </tr>
     <tr>
       <th>path</th>
@@ -209,7 +210,6 @@ just to run the command.</p></td>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Build all the targets.</span>
 <span class='fu'>build_times</span>() <span class='co'># Show how long it took to build each target.</span>
-<span class='fu'>build_times</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with</a></span>(<span class='st'>"coef"</span>)) <span class='co'># `dplyr`-style `tidyselect`</span>
 })
 <span class='co'># }</span></pre>
   </div>

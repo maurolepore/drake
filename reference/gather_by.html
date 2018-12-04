@@ -135,8 +135,7 @@ and then row-bind the new targets to the plan.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Symbols, columns of <code>plan</code> to define target groupings
-passed to <code><a href='http://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.
+      <td><p>Symbols, columns of <code>plan</code> to define target groupings.
 A <code><a href='gather_plan.html'>gather_plan()</a></code> call is applied for each grouping.
 Groupings with all <code>NA</code>s in the selector variables are ignored.</p></td>
     </tr>
@@ -199,7 +198,7 @@ of new targets</p></td>
 #&gt; 2 informal_look_1 inspect_data(data, mu = 1)             1     informal_look
 #&gt; 3 informal_look_2 inspect_data(data, mu = 2)             2     informal_look
 #&gt; 4 bayes_model_1   bayesian_model_fit(data, prior_mu = 1) 1     bayes_model  
-#&gt; 5 bayes_model_2   bayesian_model_fit(data, prior_mu = 2) 2     bayes_model  </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"dplyr::bind_rows"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 4
+#&gt; 5 bayes_model_2   bayesian_model_fit(data, prior_mu = 2) 2     bayes_model  </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"rbind"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 4
 #&gt;   target         command                                      mu__  mu___from  
 #&gt;   &lt;chr&gt;          &lt;chr&gt;                                        &lt;chr&gt; &lt;chr&gt;      
 #&gt; 1 data           get_data()                                   &lt;NA&gt;  &lt;NA&gt;       
@@ -207,9 +206,9 @@ of new targets</p></td>
 #&gt; 3 informal_look… inspect_data(data, mu = 2)                   2     informal_l…
 #&gt; 4 bayes_model_1  bayesian_model_fit(data, prior_mu = 1)       1     bayes_model
 #&gt; 5 bayes_model_2  bayesian_model_fit(data, prior_mu = 2)       2     bayes_model
-#&gt; 6 target_bayes_… dplyr::bind_rows(bayes_model_1 = bayes_mode… &lt;NA&gt;  bayes_model
-#&gt; 7 target_inform… dplyr::bind_rows(informal_look_1 = informal… &lt;NA&gt;  informal_l…
-#&gt; 8 target_NA      dplyr::bind_rows(data = data)                &lt;NA&gt;  &lt;NA&gt;       </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 4
+#&gt; 6 target_bayes_… rbind(bayes_model_1 = bayes_model_1, bayes_… &lt;NA&gt;  bayes_model
+#&gt; 7 target_inform… rbind(informal_look_1 = informal_look_1, in… &lt;NA&gt;  informal_l…
+#&gt; 8 target_NA      rbind(data = data)                           &lt;NA&gt;  &lt;NA&gt;       </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 4
 #&gt;   target         command                                      mu__  mu___from  
 #&gt;   &lt;chr&gt;          &lt;chr&gt;                                        &lt;chr&gt; &lt;chr&gt;      
 #&gt; 1 data           get_data()                                   &lt;NA&gt;  &lt;NA&gt;       
@@ -220,7 +219,6 @@ of new targets</p></td>
 #&gt; 6 target_bayes_… list(bayes_model_1 = bayes_model_1, bayes_m… &lt;NA&gt;  bayes_model
 #&gt; 7 target_inform… list(informal_look_1 = informal_look_1, inf… &lt;NA&gt;  informal_l…
 #&gt; 8 target_NA      list(data = data)                            &lt;NA&gt;  &lt;NA&gt;       </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 3
-#&gt; # Groups:   mu___from [3]
 #&gt;   target          command                                           mu___from  
 #&gt;   &lt;chr&gt;           &lt;chr&gt;                                             &lt;chr&gt;      
 #&gt; 1 target_bayes_m… list(bayes_model_1 = bayes_model_1, bayes_model_… bayes_model
@@ -234,8 +232,8 @@ of new targets</p></td>
 #&gt;  4 bayes_model_1     bayesian_model_fit(data, prior_mu = 1)  1     bayes_model  
 #&gt;  5 bayes_model_2     bayesian_model_fit(data, prior_mu = 2)  2     bayes_model  
 #&gt;  6 x_1_bayes_model   list(bayes_model_1 = bayes_model_1)     1     bayes_model  
-#&gt;  7 x_1_informal_look list(informal_look_1 = informal_look_1) 1     informal_look
-#&gt;  8 x_2_bayes_model   list(bayes_model_2 = bayes_model_2)     2     bayes_model  
+#&gt;  7 x_2_bayes_model   list(bayes_model_2 = bayes_model_2)     2     bayes_model  
+#&gt;  8 x_1_informal_look list(informal_look_1 = informal_look_1) 1     informal_look
 #&gt;  9 x_2_informal_look list(informal_look_2 = informal_look_2) 2     informal_look
 #&gt; 10 x_NA_NA           list(data = data)                       &lt;NA&gt;  &lt;NA&gt;         </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>) <span class='co'># Gather everything and append a row.</span></div><div class='output co'>#&gt; # A tibble: 6 x 4
 #&gt;   target       command                                        mu__  mu___from  

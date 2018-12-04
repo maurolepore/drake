@@ -129,9 +129,10 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>targets to remove from the cache: as names (symbols),
-character strings, or <code>dplyr</code>-style <code>tidyselect</code>
-commands such as <code><a href='https://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with()</a></code>.</p></td>
+      <td><p>targets to remove from the cache: as names (symbols) or
+character strings. If the <code>tidyselect</code> package is installed,
+you can also supply <code>dplyr</code>-style <code>tidyselect</code>
+commands such as <code>starts_with()</code>, <code>ends_with()</code>, and <code>one_of()</code>.</p></td>
     </tr>
     <tr>
       <th>list</th>
@@ -244,9 +245,6 @@ if you're sure you won't lose anything important.</p>
 <span class='co'># Remove 'summ_regression1_large' and 'small' from the cache.</span>
 <span class='fu'>clean</span>(<span class='no'>summ_regression1_large</span>, <span class='no'>small</span>)
 <span class='co'># Those objects should be gone.</span>
-<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># How about `tidyselect`?</span>
-<span class='fu'>clean</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/tidyselect/topics/select_helpers'>starts_with</a></span>(<span class='st'>"coef"</span>))
 <span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># Rebuild the missing targets.</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)

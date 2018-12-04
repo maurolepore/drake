@@ -136,8 +136,7 @@ and then row-bind the new targets to the plan.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Symbols, columns of <code>plan</code> to define target groupings
-passed to <code><a href='http://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.
+      <td><p>Symbols, columns of <code>plan</code> to define target groupings.
 A <code><a href='reduce_plan.html'>reduce_plan()</a></code> call is applied for each grouping.
 Groupings with all <code>NA</code>s in the selector variables are ignored.</p></td>
     </tr>
@@ -243,7 +242,6 @@ of new targets</p></td>
 #&gt; 5 bayes_model_2   bayesian_model_fit(data, prior_mu = 2) 2     bayes_model  
 #&gt; 6 target_1        informal_look_1 + bayes_model_1        1     &lt;NA&gt;         
 #&gt; 7 target_2        informal_look_2 + bayes_model_2        2     &lt;NA&gt;         </div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>mu__</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt; # Groups:   mu__ [2]
 #&gt;   target   command                         mu__ 
 #&gt;   &lt;chr&gt;    &lt;chr&gt;                           &lt;chr&gt;
 #&gt; 1 target_1 informal_look_1 + bayes_model_1 1    
