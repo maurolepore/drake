@@ -141,7 +141,7 @@
 <li>Improve memoized preprocessing: deparse all the functions in the environment so the memoization does not react so spurious changes in R internals. Related: <a href='https://github.com/ropensci/drake/issues/345'>#345</a>.</li>
 <li>Use the <code>label</code> argument to <code>future()</code> inside <code><a href="../reference/make.html">make(parallelism = "future")</a></code>. That way , job names are target names by default if <code>job.name</code> is used correctly in the <code>batchtools</code> template file.</li>
 <li>Remove strict dependencies on packages <code>dplyr</code>, <code>evaluate</code>, <code>fs</code>, <code>future</code>, <code>magrittr</code>, <code>parallel</code>, <code>R6</code>, <code>R.utils</code>, <code>stats</code>, <code>stringi</code>, <code>tidyselect</code>, and <code>withr</code>.</li>
-<li>Deprecate the <code>force</code> argument to <code><a href="../reference/make.html">make()</a></code> and related functions.</li>
+<li>Deprecate the <code>force</code> argument in all functions except <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
 <li>Change the name of <code>prune_envir()</code> to <code><a href="../reference/manage_memory.html">manage_memory()</a></code>.</li>
 <li>Deprecate and rename the <code>pruning_strategy</code> argument to <code>memory_strategy</code> (<code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>).</li>
 <li>Print warnings and messages to the <code>console_log_file</code> in real time (<a href="https://github.com/ropensci/drake/issues/588"><a href='https://github.com/ropensci/drake/issues/588'>#588</a></a>).</li>
@@ -150,6 +150,7 @@
 <li>Remove support for the <code>worker</code> column of <code>config$plan</code> in <code><a href="../reference/predict_runtime.html">predict_runtime()</a></code> and <code><a href="../reference/predict_load_balancing.html">predict_load_balancing()</a></code>. This functionality will go away in 2019 via <a href="https://github.com/ropensci/drake/issues/561"><a href='https://github.com/ropensci/drake/issues/561'>#561</a></a>.</li>
 <li>Change the names of the return value of <code><a href="../reference/predict_load_balancing.html">predict_load_balancing()</a></code> to <code>time</code> and <code>workers</code>.</li>
 <li>Bring the documentation of <code><a href="../reference/predict_runtime.html">predict_runtime()</a></code> and <code><a href="../reference/predict_load_balancing.html">predict_load_balancing()</a></code> up to date.</li>
+<li>Deprecate <code><a href="../reference/drake_session.html">drake_session()</a></code> and rename to <code><a href="../reference/drake_get_session_info.html">drake_get_session_info()</a></code>.</li>
 </ul>
 </div>
 </div>

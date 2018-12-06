@@ -363,7 +363,14 @@ column in <code>plan</code>.</p></td>
     </tr>
     <tr>
       <th>force</th>
-      <td><p>deprecated</p></td>
+      <td><p>Logical. If <code>FALSE</code> (default) then <code>drake</code> will stop you
+if the cache was created with an old
+and incompatible version of drake.
+This gives you an opportunity to
+downgrade <code>drake</code> to a compatible version
+rather than rerun all your targets from scratch.
+If <code>force</code> is <code>TRUE</code>, then <code>make()</code> executes your workflow
+regardless of the version of <code>drake</code> that last ran <code>make()</code> on the cache.</p></td>
     </tr>
     <tr>
       <th>return_config</th>
