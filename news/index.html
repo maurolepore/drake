@@ -117,9 +117,9 @@
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
+<li>Add a <code>sep</code> argument to <code><a href="../reference/gather_by.html">gather_by()</a></code>, <code><a href="../reference/reduce_by.html">reduce_by()</a></code>, <code><a href="../reference/reduce_plan.html">reduce_plan()</a></code>, <code><a href="../reference/evaluate_plan.html">evaluate_plan()</a></code>, <code><a href="../reference/expand_plan.html">expand_plan()</a></code>, <code><a href="../reference/plan_analyses.html">plan_analyses()</a></code>, and <code><a href="../reference/plan_summaries.html">plan_summaries()</a></code>. Allows the user to set the delimiter for generating new target names.</li>
 <li>Expose a <code>hasty_build</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. Here, the user can set the function that builds targets in “hasty mode” (<code><a href="../reference/make.html">make(parallelism = "hasty")</a></code>).</li>
 <li>Add a new <code><a href="../reference/drake_envir.html">drake_envir()</a></code> function that returns the environment where <code>drake</code> builds targets. Can only be accessed from inside the commands in the workflow plan data frame. The primary use case is to allow users to remove individual targets from memory at predetermined build steps.</li>
-<li>Add a <code>sep</code> argument to <code><a href="../reference/gather_by.html">gather_by()</a></code>, <code><a href="../reference/reduce_by.html">reduce_by()</a></code>, <code><a href="../reference/reduce_plan.html">reduce_plan()</a></code>, <code><a href="../reference/evaluate_plan.html">evaluate_plan()</a></code>, <code><a href="../reference/expand_plan.html">expand_plan()</a></code>, <code><a href="../reference/plan_analyses.html">plan_analyses()</a></code>, and <code><a href="../reference/plan_summaries.html">plan_summaries()</a></code>. Allows the user to set the delimiter for generating new target names.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
