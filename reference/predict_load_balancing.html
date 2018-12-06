@@ -231,9 +231,6 @@ to adjust the assumptions as needed.</p>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
-<span class='co'># The predictions use the cached build times of the targets,</span>
-<span class='co'># but if you expect your target runtimes</span>
-<span class='co'># to be different, you can specify them (in seconds).</span>
 <span class='no'>known_times</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>7200</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>my_plan</span>) - <span class='fl'>1</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>known_times</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>), <span class='no'>my_plan</span>$<span class='no'>target</span>[-<span class='fl'>1</span>])
 <span class='no'>known_times</span>
@@ -250,10 +247,6 @@ to adjust the assumptions as needed.</p>
   <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>
 )
-<span class='co'># Why isn't 8 jobs any better?</span>
-<span class='co'># 8 would be a good guess based on the layout of the workflow graph.</span>
-<span class='co'># It's because of load balancing.</span>
-<span class='co'># Below, each row is a persistent worker.</span>
 <span class='no'>balance</span> <span class='kw'>&lt;-</span> <span class='fu'>predict_load_balancing</span>(
   <span class='no'>config</span>,
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>7</span>,
@@ -262,11 +255,6 @@ to adjust the assumptions as needed.</p>
   <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 <span class='no'>balance</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>max</a></span>(<span class='no'>balance</span>$<span class='no'>time</span>)
-<span class='co'># Each worker gets 2 rate-limiting targets.</span>
-<span class='no'>balance</span>$<span class='no'>time</span>
-<span class='co'># Even if you add another worker, there will be still be workers</span>
-<span class='co'># with two heavy targets.</span>
 })
 <span class='co'># }</span></pre>
   </div>
