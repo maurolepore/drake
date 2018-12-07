@@ -125,7 +125,7 @@ inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></co
 
     <pre class="usage"><span class='fu'>target</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>worker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>evaluator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>worker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>resources</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,9 +167,15 @@ will be built first.</p></td>
 (in parallel computing).</p></td>
     </tr>
     <tr>
-      <th>evaluator</th>
-      <td><p>the <code>future</code> evaluator of the target.
-Not yet supported.</p></td>
+      <th>resources</th>
+      <td><p>Experimental, no guarantees that this works all the time.
+Same as the <code>resources</code> argument to <code>batchtools_slurm()</code>
+and related <code>future.bachtools</code> functions.
+See also <a href='https://github.com/HenrikBengtsson/future.batchtools#examples'>https://github.com/HenrikBengtsson/future.batchtools#examples</a>. # nolint
+<code>resources</code> is a list of computing resource parameters for the target.
+Each element is a value passed to a <code>brew</code> placeholder of a
+<code>batchtools</code> template file. The list names of <code>resources</code>
+should be the brew patterns.</p></td>
     </tr>
     <tr>
       <th>...</th>

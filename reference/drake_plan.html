@@ -231,9 +231,17 @@ column in <code>plan</code>.</p></li>
 a timeout on a target.
 Assign target-level elapsed timeout times with an optional <code>elapsed</code>
 column in <code>plan</code>.</p></li>
-<li><p><code>evaluator</code>: An experimental column. Each entry is a function
-passed to the <code>evaluator</code> argument of <code><a href='https://www.rdocumentation.org/packages/future/topics/future'>future::future()</a></code>
-for each worker in <code><a href='make.html'>make(..., parallelism = "future")</a></code>.</p></li>
+<li><p><code>resources</code>: Experimental, no guarantees that this works all the time.
+<code>resources</code> is a list column. Each element is a named list,
+same as the <code>resources</code> argument to <code>batchtools_slurm()</code>
+and related <code>future.bachtools</code> functions. See also
+<a href='https://github.com/HenrikBengtsson/future.batchtools#examples'>https://github.com/HenrikBengtsson/future.batchtools#examples</a>. # nolint
+<code>resources[[target_name]]</code> is a list of
+computing resource parameters for the target.
+Each element is a value passed to a <code>brew</code> placeholder of a
+<code>batchtools</code> template file.
+The list names of <code>resources[[target_name]]</code>
+should be the brew patterns.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
