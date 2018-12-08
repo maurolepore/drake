@@ -152,6 +152,7 @@
 <li>Change the names of the return value of <code><a href="../reference/predict_load_balancing.html">predict_load_balancing()</a></code> to <code>time</code> and <code>workers</code>.</li>
 <li>Bring the documentation of <code><a href="../reference/predict_runtime.html">predict_runtime()</a></code> and <code><a href="../reference/predict_load_balancing.html">predict_load_balancing()</a></code> up to date.</li>
 <li>Deprecate <code><a href="../reference/drake_session.html">drake_session()</a></code> and rename to <code><a href="../reference/drake_get_session_info.html">drake_get_session_info()</a></code>.</li>
+<li>Deprecate the <code>timeout</code> argument in the API of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. A value of <code>timeout</code> can be still passed to these functions without error, but only the <code>elapsed</code> and <code>cpu</code> arguments impose actual timeouts now.</li>
 </ul>
 </div>
 </div>
