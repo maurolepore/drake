@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Load the main example. — load_main_example • drake</title>
+<title>Deprecated: load the main example. — load_main_example • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Load the main example. — load_main_example" />
+<meta property="og:title" content="Deprecated: load the main example. — load_main_example" />
 
 <meta property="og:description" content="The main example lives at
 https://github.com/wlandau/drake-examples/tree/master/main.
@@ -115,8 +115,8 @@ the files report.Rmd and raw_data.xlsx." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Load the main example.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/examples.R'><code>R/examples.R</code></a></small>
+    <h1>Deprecated: load the main example.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
     <div class="hidden name"><code>load_main_example.Rd</code></div>
     </div>
 
@@ -165,6 +165,10 @@ existing file <code>report.Rmd</code></p></td>
 
     <p>A <code><a href='drake_config.html'>drake_config()</a></code> configuration list.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Deprecated December 2018.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='clean_main_example.html'>clean_main_example()</a></code></p></div>
@@ -173,17 +177,12 @@ existing file <code>report.Rmd</code></p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"downloader"</span>)) {
 <span class='co'># Populate your workspace and write 'report.Rmd' and 'raw_data.xlsx'.</span>
 <span class='fu'>load_main_example</span>() <span class='co'># Get the code: drake_example("main")</span>
 <span class='co'># Run the project with make(plan).</span>
-<span class='co'># Make sure you have these packages installed first:</span>
-<span class='co'># dplyr, forcats, ggplot2, readxl, and rmarkdown</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>) <span class='co'># Build the targets.</span>
-<span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>hist</span>) <span class='co'># Show the ggplot2 histogram.</span>
 <span class='co'># Clean up the example.</span>
 <span class='fu'><a href='clean_main_example.html'>clean_main_example</a></span>()
-}
 })
 <span class='co'># }</span></pre>
   </div>
@@ -193,6 +192,8 @@ existing file <code>report.Rmd</code></p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
