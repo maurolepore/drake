@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Configure the hash algorithms, etc. of a drake cache. — configure_cache • drake</title>
+<title>Deprecated. Configure the hash algorithms, etc. of a drake cache. — configure_cache • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,12 @@
 
 
 
-<meta property="og:title" content="Configure the hash algorithms, etc. of a drake cache. — configure_cache" />
+<meta property="og:title" content="Deprecated. Configure the hash algorithms, etc. of a drake cache. — configure_cache" />
 
 <meta property="og:description" content="The purpose of this function is
-to prepare the cache to be called from make()." />
+to prepare the cache to be called from make().
+drake only uses a single hash algorithm now,
+so we no longer need this configuration step." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,15 +111,17 @@ to prepare the cache to be called from make()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Configure the hash algorithms, etc. of a drake cache.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/cache.R'><code>R/cache.R</code></a></small>
+    <h1>Deprecated. Configure the hash algorithms, etc. of a drake cache.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
     <div class="hidden name"><code>configure_cache.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>The purpose of this function is
-to prepare the cache to be called from <code><a href='make.html'>make()</a></code>.</p>
+to prepare the cache to be called from <code><a href='make.html'>make()</a></code>.
+<code>drake</code> only uses a single hash algorithm now,
+so we no longer need this configuration step.</p>
     
     </div>
 
@@ -193,32 +197,14 @@ on the master process</p></td>
 
     <p>A drake/storr cache.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class='dont-index'><p><code><a href='default_short_hash_algo.html'>default_short_hash_algo()</a></code>,
-<code><a href='default_long_hash_algo.html'>default_long_hash_algo()</a></code></p></div>
+    <p>Deprecated on 2018-12-12.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='clean.html'>clean</a></span>(<span class='kw'>destroy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build all the targets.</span>
-<span class='co'># Locate the drake/storr cache of the project</span>
-<span class='co'># inside the master internal configuration list.</span>
-<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='no'>config</span>$<span class='no'>cache</span>
-<span class='fu'><a href='long_hash.html'>long_hash</a></span>(<span class='no'>cache</span>) <span class='co'># Return the long hash algorithm used.</span>
-<span class='co'># Change the long hash algorithm of the cache.</span>
-<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='fu'>configure_cache</span>(
-  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>,
-  <span class='kw'>long_hash_algo</span> <span class='kw'>=</span> <span class='st'>"murmur32"</span>,
-  <span class='kw'>overwrite_hash_algos</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)
-<span class='fu'><a href='long_hash.html'>long_hash</a></span>(<span class='no'>cache</span>) <span class='co'># Show the new long hash algorithm.</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Changing the long hash puts the targets out of date.</span>
-})
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'># deprecated
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -227,7 +213,7 @@ on the master process</p></td>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

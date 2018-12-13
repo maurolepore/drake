@@ -202,18 +202,14 @@ See the examples below for details.
 Depending on your project's
 history, the targets may be different than the ones
 in your workflow plan data frame.
-Also, the keys depend on the short hash algorithm
-of your cache (default: <code><a href='default_short_hash_algo.html'>default_short_hash_algo()</a></code>).</p>
+Also, the keys depend on the hash algorithm
+of your cache. To define your own hash algorithm,
+you can create your own <code>storr</code> cache and give it a hash algorithm
+(e.g. <code>storr_rds(hash_algorithm = "murmur32")</code>)</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='drake_cache_log_file.html'>drake_cache_log_file()</a></code>
-<code><a href='cached.html'>cached()</a></code>,
-<code><a href='get_cache.html'>get_cache()</a></code>,
-<code><a href='default_short_hash_algo.html'>default_short_hash_algo()</a></code>,
-<code><a href='default_long_hash_algo.html'>default_long_hash_algo()</a></code>,
-<code><a href='short_hash.html'>short_hash()</a></code>,
-<code><a href='long_hash.html'>long_hash()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='drake_cache_log_file.html'>drake_cache_log_file()</a></code>, <code><a href='cached.html'>cached()</a></code>, <code><a href='get_cache.html'>get_cache()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

@@ -125,8 +125,8 @@ in-memory caches such as <code>storr_environment()</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>recover_cache</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_cache_path'>default_cache_path</a></span>(),
-  <span class='kw'>short_hash_algo</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_short_hash_algo'>default_short_hash_algo</a></span>(),
-  <span class='kw'>long_hash_algo</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_long_hash_algo'>default_long_hash_algo</a></span>(), <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>hash_algorithm</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>short_hash_algo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>long_hash_algo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
@@ -138,16 +138,17 @@ in-memory caches such as <code>storr_environment()</code>.</p>
       <td><p>file path of the cache</p></td>
     </tr>
     <tr>
+      <th>hash_algorithm</th>
+      <td><p>name of a hash algorithm to use.
+See the <code>algo</code> argument of the <code>digest</code> package for your options.</p></td>
+    </tr>
+    <tr>
       <th>short_hash_algo</th>
-      <td><p>short hash algorithm for the cache.
-See <code><a href='default_short_hash_algo.html'>default_short_hash_algo()</a></code> and
-<code><a href='make.html'>make()</a></code></p></td>
+      <td><p>Deprecated on 2018-12-12. Use <code>hash_algorithm</code> instead</p></td>
     </tr>
     <tr>
       <th>long_hash_algo</th>
-      <td><p>long hash algorithm for the cache.
-See <code><a href='default_long_hash_algo.html'>default_long_hash_algo()</a></code> and
-<code><a href='make.html'>make()</a></code></p></td>
+      <td><p>Deprecated on 2018-12-12. Use <code>hash_algorithm</code> instead</p></td>
     </tr>
     <tr>
       <th>force</th>
