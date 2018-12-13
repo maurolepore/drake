@@ -147,10 +147,20 @@ cache is rescued.</p></td>
     </tr>
     <tr>
       <th>path</th>
-      <td><p>Root directory of the drake project,
-or if <code>search</code> is <code>TRUE</code>, either the
-project root or a subdirectory of the project.
-Ignored if a <code>cache</code> is supplied.</p></td>
+      <td><p>If <code>search = FALSE</code>, <code>path</code> must be the root
+directory of a <code>drake</code> project (a folder containing a <code>.drake</code> cache).
+For example, if your cache is a folder called
+<code>/home/you/my_project/.drake</code>, then
+<code><a href='get_cache.html'>get_cache(path = "/home/you/my_project", search = FALSE)</a></code>
+will return the cache.
+Otherwise, if <code>search = TRUE</code>, you can specify any
+subdirectory of the project. The following are equivalent and correct:</p><ul>
+<li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project", search = FALSE)</a></code></p></li>
+<li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project", search = TRUE)</a></code></p></li>
+<li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project/subdir/x", search = TRUE)</a></code></p></li>
+<li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project/.drake", search = TRUE)</a></code></p></li>
+<li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project/.drake/keys", search = TRUE)</a></code></p></li>
+</ul></td>
     </tr>
     <tr>
       <th>search</th>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the drake cache, optionally searching up the file system. — get_cache • drake</title>
+<title>Get the default cache of a <code>drake</code> project. — get_cache • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,11 @@
 
 
 
-<meta property="og:title" content="Get the drake cache, optionally searching up the file system. — get_cache" />
+<meta property="og:title" content="Get the default cache of a <code>drake</code> project. — get_cache" />
 
 <meta property="og:description" content="Only works if the cache
-is in a folder called .drake/." />
+is in a folder called .drake/. See the description of the
+path argument for details." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,7 +110,7 @@ is in a folder called .drake/." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the drake cache, optionally searching up the file system.</h1>
+    <h1>Get the default cache of a <code>drake</code> project.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/cache.R'><code>R/cache.R</code></a></small>
     <div class="hidden name"><code>get_cache.Rd</code></div>
     </div>
@@ -117,7 +118,8 @@ is in a folder called .drake/." />
     <div class="ref-description">
     
     <p>Only works if the cache
-is in a folder called <code>.drake/</code>.</p>
+is in a folder called <code>.drake/</code>. See the description of the
+<code>path</code> argument for details.</p>
     
     </div>
 
@@ -130,10 +132,20 @@ is in a folder called <code>.drake/</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>Root directory of the drake project,
-or if <code>search</code> is <code>TRUE</code>, either the
-project root or a subdirectory of the project.
-Ignored if a <code>cache</code> is supplied.</p></td>
+      <td><p>If <code>search = FALSE</code>, <code>path</code> must be the root
+directory of a <code>drake</code> project (a folder containing a <code>.drake</code> cache).
+For example, if your cache is a folder called
+<code>/home/you/my_project/.drake</code>, then
+<code>get_cache(path = "/home/you/my_project", search = FALSE)</code>
+will return the cache.
+Otherwise, if <code>search = TRUE</code>, you can specify any
+subdirectory of the project. The following are equivalent and correct:</p><ul>
+<li><p><code>get_cache(path = "/home/you/my_project", search = FALSE)</code></p></li>
+<li><p><code>get_cache(path = "/home/you/my_project", search = TRUE)</code></p></li>
+<li><p><code>get_cache(path = "/home/you/my_project/subdir/x", search = TRUE)</code></p></li>
+<li><p><code>get_cache(path = "/home/you/my_project/.drake", search = TRUE)</code></p></li>
+<li><p><code>get_cache(path = "/home/you/my_project/.drake/keys", search = TRUE)</code></p></li>
+</ul></td>
     </tr>
     <tr>
       <th>search</th>
