@@ -215,15 +215,15 @@ of new targets</p></td>
 #&gt; 3 informal_look_2 inspect_data(data, mu = 2)             2     informal_look
 #&gt; 4 bayes_model_1   bayesian_model_fit(data, prior_mu = 1) 1     bayes_model  
 #&gt; 5 bayes_model_2   bayesian_model_fit(data, prior_mu = 2) 2     bayes_model  </div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>begin</span> <span class='kw'>=</span> <span class='st'>"list("</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>")"</span>, <span class='kw'>op</span> <span class='kw'>=</span> <span class='st'>", "</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
-#&gt;   target               command                               mu__  mu___from   
-#&gt;   &lt;chr&gt;                &lt;chr&gt;                                 &lt;chr&gt; &lt;chr&gt;       
-#&gt; 1 data                 get_data()                            &lt;NA&gt;  &lt;NA&gt;        
-#&gt; 2 informal_look_1      inspect_data(data, mu = 1)            1     informal_lo…
-#&gt; 3 informal_look_2      inspect_data(data, mu = 2)            2     informal_lo…
-#&gt; 4 bayes_model_1        bayesian_model_fit(data, prior_mu = … 1     bayes_model 
-#&gt; 5 bayes_model_2        bayesian_model_fit(data, prior_mu = … 2     bayes_model 
-#&gt; 6 target_bayes_model   list(bayes_model_1, bayes_model_2)    &lt;NA&gt;  bayes_model 
-#&gt; 7 target_informal_look list(informal_look_1, informal_look_… &lt;NA&gt;  informal_lo…</div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>mu__</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
+#&gt;   target               command                                mu__  mu___from   
+#&gt;   &lt;chr&gt;                &lt;chr&gt;                                  &lt;chr&gt; &lt;chr&gt;       
+#&gt; 1 data                 get_data()                             &lt;NA&gt;  &lt;NA&gt;        
+#&gt; 2 informal_look_1      inspect_data(data, mu = 1)             1     informal_lo…
+#&gt; 3 informal_look_2      inspect_data(data, mu = 2)             2     informal_lo…
+#&gt; 4 bayes_model_1        bayesian_model_fit(data, prior_mu = 1) 1     bayes_model 
+#&gt; 5 bayes_model_2        bayesian_model_fit(data, prior_mu = 2) 2     bayes_model 
+#&gt; 6 target_bayes_model   list(bayes_model_1, bayes_model_2)     &lt;NA&gt;  bayes_model 
+#&gt; 7 target_informal_look list(informal_look_1, informal_look_2) &lt;NA&gt;  informal_lo…</div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='no'>mu__</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
 #&gt;   target          command                                mu__  mu___from    
 #&gt;   &lt;chr&gt;           &lt;chr&gt;                                  &lt;chr&gt; &lt;chr&gt;        
 #&gt; 1 data            get_data()                             &lt;NA&gt;  &lt;NA&gt;         
@@ -263,14 +263,14 @@ of new targets</p></td>
 #&gt; 2 target_2 informal_look_2 + bayes_model_1
 #&gt; 3 target_3 bayes_model_2 + target_1       
 #&gt; 4 target   target_2 + target_3            </div><div class='input'><span class='fu'>reduce_by</span>(<span class='no'>plan</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 4
-#&gt;   target       command                                        mu__  mu___from  
-#&gt;   &lt;chr&gt;        &lt;chr&gt;                                          &lt;chr&gt; &lt;chr&gt;      
-#&gt; 1 data         get_data()                                     &lt;NA&gt;  &lt;NA&gt;       
-#&gt; 2 informal_lo… inspect_data(data, mu = 1)                     1     informal_l…
-#&gt; 3 informal_lo… inspect_data(data, mu = 2)                     2     informal_l…
-#&gt; 4 bayes_model… bayesian_model_fit(data, prior_mu = 1)         1     bayes_model
-#&gt; 5 bayes_model… bayesian_model_fit(data, prior_mu = 2)         2     bayes_model
-#&gt; 6 target       data + informal_look_1 + informal_look_2 + ba… &lt;NA&gt;  &lt;NA&gt;       </div><div class='input'><span class='co'># You can filter out the informal_look_* targets beforehand</span>
+#&gt;   target       command                                         mu__  mu___from  
+#&gt;   &lt;chr&gt;        &lt;chr&gt;                                           &lt;chr&gt; &lt;chr&gt;      
+#&gt; 1 data         get_data()                                      &lt;NA&gt;  &lt;NA&gt;       
+#&gt; 2 informal_lo… inspect_data(data, mu = 1)                      1     informal_l…
+#&gt; 3 informal_lo… inspect_data(data, mu = 2)                      2     informal_l…
+#&gt; 4 bayes_model… bayesian_model_fit(data, prior_mu = 1)          1     bayes_model
+#&gt; 5 bayes_model… bayesian_model_fit(data, prior_mu = 2)          2     bayes_model
+#&gt; 6 target       data + informal_look_1 + informal_look_2 + bay… &lt;NA&gt;  &lt;NA&gt;       </div><div class='input'><span class='co'># You can filter out the informal_look_* targets beforehand</span>
 <span class='co'># if you only want the bayes_model_* ones to be reduced.</span>
 <span class='co'># The advantage here is that if you also need `append = TRUE`,</span>
 <span class='co'># only the bayes_model_* targets will be reduced, but</span>

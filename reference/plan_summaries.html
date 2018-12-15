@@ -199,52 +199,52 @@ analyses of multiple datasets in multiple ways.</p>
 #&gt; 6 coef_regression1_large coefficients(regression1_large)
 #&gt; 7 coef_regression2_small coefficients(regression2_small)
 #&gt; 8 coef_regression2_large coefficients(regression2_large)</div><div class='input'><span class='fu'>plan_summaries</span>(<span class='no'>summary_types</span>, <span class='no'>analyses</span>, <span class='no'>datasets</span>)</div><div class='output co'>#&gt; # A tibble: 10 x 2
-#&gt;    target             command                                                  
-#&gt;    &lt;chr&gt;              &lt;chr&gt;                                                    
-#&gt;  1 coef               list(coef_regression1_small = coef_regression1_small, co…
-#&gt;  2 summ               list(summ_regression1_small = summ_regression1_small, su…
-#&gt;  3 summ_regression1_… summary(regression1_small)                               
-#&gt;  4 summ_regression1_… summary(regression1_large)                               
-#&gt;  5 summ_regression2_… summary(regression2_small)                               
-#&gt;  6 summ_regression2_… summary(regression2_large)                               
-#&gt;  7 coef_regression1_… coefficients(regression1_small)                          
-#&gt;  8 coef_regression1_… coefficients(regression1_large)                          
-#&gt;  9 coef_regression2_… coefficients(regression2_small)                          
-#&gt; 10 coef_regression2_… coefficients(regression2_large)                          </div><div class='input'><span class='fu'>plan_summaries</span>(<span class='no'>summary_types</span>, <span class='no'>analyses</span>, <span class='no'>datasets</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"list"</span>)</div><div class='output co'>#&gt; # A tibble: 10 x 2
-#&gt;    target             command                                                  
-#&gt;    &lt;chr&gt;              &lt;chr&gt;                                                    
-#&gt;  1 coef               list(coef_regression1_small = coef_regression1_small, co…
-#&gt;  2 summ               list(summ_regression1_small = summ_regression1_small, su…
-#&gt;  3 summ_regression1_… summary(regression1_small)                               
-#&gt;  4 summ_regression1_… summary(regression1_large)                               
-#&gt;  5 summ_regression2_… summary(regression2_small)                               
-#&gt;  6 summ_regression2_… summary(regression2_large)                               
-#&gt;  7 coef_regression1_… coefficients(regression1_small)                          
-#&gt;  8 coef_regression1_… coefficients(regression1_large)                          
-#&gt;  9 coef_regression2_… coefficients(regression2_small)                          
-#&gt; 10 coef_regression2_… coefficients(regression2_large)                          </div><div class='input'><span class='no'>summs</span> <span class='kw'>&lt;-</span> <span class='fu'>plan_summaries</span>(
+#&gt;    target             command                                                   
+#&gt;    &lt;chr&gt;              &lt;chr&gt;                                                     
+#&gt;  1 coef               list(coef_regression1_small = coef_regression1_small, coe…
+#&gt;  2 summ               list(summ_regression1_small = summ_regression1_small, sum…
+#&gt;  3 summ_regression1_… summary(regression1_small)                                
+#&gt;  4 summ_regression1_… summary(regression1_large)                                
+#&gt;  5 summ_regression2_… summary(regression2_small)                                
+#&gt;  6 summ_regression2_… summary(regression2_large)                                
+#&gt;  7 coef_regression1_… coefficients(regression1_small)                           
+#&gt;  8 coef_regression1_… coefficients(regression1_large)                           
+#&gt;  9 coef_regression2_… coefficients(regression2_small)                           
+#&gt; 10 coef_regression2_… coefficients(regression2_large)                           </div><div class='input'><span class='fu'>plan_summaries</span>(<span class='no'>summary_types</span>, <span class='no'>analyses</span>, <span class='no'>datasets</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"list"</span>)</div><div class='output co'>#&gt; # A tibble: 10 x 2
+#&gt;    target             command                                                   
+#&gt;    &lt;chr&gt;              &lt;chr&gt;                                                     
+#&gt;  1 coef               list(coef_regression1_small = coef_regression1_small, coe…
+#&gt;  2 summ               list(summ_regression1_small = summ_regression1_small, sum…
+#&gt;  3 summ_regression1_… summary(regression1_small)                                
+#&gt;  4 summ_regression1_… summary(regression1_large)                                
+#&gt;  5 summ_regression2_… summary(regression2_small)                                
+#&gt;  6 summ_regression2_… summary(regression2_large)                                
+#&gt;  7 coef_regression1_… coefficients(regression1_small)                           
+#&gt;  8 coef_regression1_… coefficients(regression1_large)                           
+#&gt;  9 coef_regression2_… coefficients(regression2_small)                           
+#&gt; 10 coef_regression2_… coefficients(regression2_large)                           </div><div class='input'><span class='no'>summs</span> <span class='kw'>&lt;-</span> <span class='fu'>plan_summaries</span>(
   <span class='no'>summary_types</span>, <span class='no'>analyses</span>, <span class='no'>datasets</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"list"</span>, <span class='st'>"rbind"</span>))
 <span class='co'># For the final workflow plan, row bind the pieces together.</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='no'>datasets</span>, <span class='no'>analyses</span>, <span class='no'>summs</span>)
 <span class='no'>my_plan</span></div><div class='output co'>#&gt; # A tibble: 16 x 2
-#&gt;    target             command                                                  
-#&gt;    &lt;chr&gt;              &lt;chr&gt;                                                    
-#&gt;  1 small              simulate(5)                                              
-#&gt;  2 large              simulate(50)                                             
-#&gt;  3 regression1_small  reg1(small)                                              
-#&gt;  4 regression1_large  reg1(large)                                              
-#&gt;  5 regression2_small  reg2(small)                                              
-#&gt;  6 regression2_large  reg2(large)                                              
-#&gt;  7 coef               rbind(coef_regression1_small = coef_regression1_small, c…
-#&gt;  8 summ               list(summ_regression1_small = summ_regression1_small, su…
-#&gt;  9 summ_regression1_… summary(regression1_small)                               
-#&gt; 10 summ_regression1_… summary(regression1_large)                               
-#&gt; 11 summ_regression2_… summary(regression2_small)                               
-#&gt; 12 summ_regression2_… summary(regression2_large)                               
-#&gt; 13 coef_regression1_… coefficients(regression1_small)                          
-#&gt; 14 coef_regression1_… coefficients(regression1_large)                          
-#&gt; 15 coef_regression2_… coefficients(regression2_small)                          
-#&gt; 16 coef_regression2_… coefficients(regression2_large)                          </div></pre>
+#&gt;    target             command                                                   
+#&gt;    &lt;chr&gt;              &lt;chr&gt;                                                     
+#&gt;  1 small              simulate(5)                                               
+#&gt;  2 large              simulate(50)                                              
+#&gt;  3 regression1_small  reg1(small)                                               
+#&gt;  4 regression1_large  reg1(large)                                               
+#&gt;  5 regression2_small  reg2(small)                                               
+#&gt;  6 regression2_large  reg2(large)                                               
+#&gt;  7 coef               rbind(coef_regression1_small = coef_regression1_small, co…
+#&gt;  8 summ               list(summ_regression1_small = summ_regression1_small, sum…
+#&gt;  9 summ_regression1_… summary(regression1_small)                                
+#&gt; 10 summ_regression1_… summary(regression1_large)                                
+#&gt; 11 summ_regression2_… summary(regression2_small)                                
+#&gt; 12 summ_regression2_… summary(regression2_large)                                
+#&gt; 13 coef_regression1_… coefficients(regression1_small)                           
+#&gt; 14 coef_regression1_… coefficients(regression1_large)                           
+#&gt; 15 coef_regression2_… coefficients(regression2_small)                           
+#&gt; 16 coef_regression2_… coefficients(regression2_large)                           </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

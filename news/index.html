@@ -127,6 +127,8 @@
 <ul>
 <li>Use only one hash algorithm per <code>drake</code> cache, which the user can set with the <code>hash_algorithm</code> argument of <code><a href="../reference/new_cache.html">new_cache()</a></code>, <code><a href="https://www.rdocumentation.org/packages/storr/topics/storr_rds">storr::storr_rds()</a></code>, and various other cache functions. Thus, the concepts of a “short hash algorithm” and “long hash algorithm” are deprecated, and the functions <code><a href="../reference/long_hash.html">long_hash()</a></code>, <code><a href="../reference/short_hash.html">short_hash()</a></code>, <code><a href="../reference/default_long_hash_algo.html">default_long_hash_algo()</a></code>, <code><a href="../reference/default_short_hash_algo.html">default_short_hash_algo()</a></code>, and <code><a href="../reference/available_hash_algos.html">available_hash_algos()</a></code> are deprecated. Caches are still back-compatible with <code>drake</code> &gt; 5.4.0 and &lt;= 6.2.1.</li>
 <li>Allow the <code>magrittr</code> dot symbol to appear in some commands sometimes.</li>
+<li>Deprecate the <code>fetch_cache</code> argument in all functions</li>
+<li>Remove packages <code>DBI</code> and <code>RSQLite</code> from “Suggests”.</li>
 </ul>
 </div>
 </div>

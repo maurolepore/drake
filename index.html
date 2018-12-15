@@ -220,13 +220,13 @@ Development
 <a class="sourceLine" id="cb4-13" data-line-number="13">)</a>
 <a class="sourceLine" id="cb4-14" data-line-number="14">plan</a>
 <a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; # A tibble: 5 x 2</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;   target   command                                                        </span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;                                                          </span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1 raw_data "readxl::read_excel(file_in(\"raw_data.xlsx\"))"               </span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 data     "raw_data %&gt;% mutate(Species = forcats::fct_inorder(Species)) …</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 hist     create_plot(data)                                              </span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                  </span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 report   "rmarkdown::render(knitr_in(\"report.Rmd\"), output_file = fil…</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;   target   command                                                         </span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;                                                           </span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1 raw_data "readxl::read_excel(file_in(\"raw_data.xlsx\"))"                </span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 data     "raw_data %&gt;% mutate(Species = forcats::fct_inorder(Species)) %…</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 hist     create_plot(data)                                               </span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                   </span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 report   "rmarkdown::render(knitr_in(\"report.Rmd\"), output_file = file…</span></a></code></pre></div>
 <p>So far, we have just been setting the stage. Use <code><a href="reference/make.html">make()</a></code> to do the real work. Targets are built in the correct order regardless of the row order of <code>plan</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; target raw_data</span></a>
