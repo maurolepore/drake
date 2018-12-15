@@ -129,6 +129,7 @@
 <li>Allow the <code>magrittr</code> dot symbol to appear in some commands sometimes.</li>
 <li>Deprecate the <code>fetch_cache</code> argument in all functions</li>
 <li>Remove packages <code>DBI</code> and <code>RSQLite</code> from “Suggests”.</li>
+<li>Define a special <code>config$eval &lt;- new.env(parent = config$envir)</code> for storing built targets and evaluating commands in the plan. This move increases the purity of <code><a href="../reference/make.html">make()</a></code> calls.</li>
 </ul>
 </div>
 </div>
