@@ -185,24 +185,14 @@ each target. Similar to the <code>trace</code> argument of <code><a href='evalua
 <span class='no'>covariates</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sets'>setdiff</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>mtcars</span>), <span class='st'>"mpg"</span>)
 <span class='no'>args</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/t'>t</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/combn'>combn</a></span>(<span class='no'>covariates</span>, <span class='fl'>2</span>))
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>args</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x1"</span>, <span class='st'>"x2"</span>)
-<span class='no'>args</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(<span class='no'>args</span>) <span class='co'># or as.data.frame</span>
+<span class='co'># Use tibble::as_tibble(args) for better printing # nolint</span>
+<span class='co'># Below, stringsAsFactors = FALSE is very important! # nolint</span>
+<span class='no'>args</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>args</span>, <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='st'>"mtcars"</span>
 <span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a></span>(<span class='no'>args</span>$<span class='no'>data</span>)
 <span class='no'>args</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"fit_"</span>, <span class='no'>args</span>$<span class='no'>x1</span>, <span class='st'>"_"</span>, <span class='no'>args</span>$<span class='no'>x2</span>)
-<span class='no'>args</span></div><div class='output co'>#&gt; # A tibble: 45 x 4
-#&gt;    x1    x2    data   id          
-#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;list&gt; &lt;chr&gt;       
-#&gt;  1 cyl   disp  &lt;sym&gt;  fit_cyl_disp
-#&gt;  2 cyl   hp    &lt;sym&gt;  fit_cyl_hp  
-#&gt;  3 cyl   drat  &lt;sym&gt;  fit_cyl_drat
-#&gt;  4 cyl   wt    &lt;sym&gt;  fit_cyl_wt  
-#&gt;  5 cyl   qsec  &lt;sym&gt;  fit_cyl_qsec
-#&gt;  6 cyl   vs    &lt;sym&gt;  fit_cyl_vs  
-#&gt;  7 cyl   am    &lt;sym&gt;  fit_cyl_am  
-#&gt;  8 cyl   gear  &lt;sym&gt;  fit_cyl_gear
-#&gt;  9 cyl   carb  &lt;sym&gt;  fit_cyl_carb
-#&gt; 10 disp  hp    &lt;sym&gt;  fit_disp_hp 
-#&gt; # ... with 35 more rows</div><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>)
+<span class='co'># print(args) # Requires `args` to be a tibble # nolint</span>
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 45 x 2
 #&gt;    target       command                                                   
 #&gt;    &lt;chr&gt;        &lt;chr&gt;                                                     
@@ -218,20 +208,9 @@ each target. Similar to the <code>trace</code> argument of <code><a href='evalua
 #&gt; 10 fit_disp_hp  "my_model_fit(x1 = \"disp\", x2 = \"hp\", data = mtcars)" 
 #&gt; # ... with 35 more rows</div><div class='input'><span class='co'># Consider `trace = TRUE` to include the columns in `args`</span>
 <span class='co'># in your plan.</span>
-<span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 45 x 6
-#&gt;    target     command                                x1    x2    data  id       
-#&gt;    &lt;chr&gt;      &lt;chr&gt;                                  &lt;chr&gt; &lt;chr&gt; &lt;lis&gt; &lt;chr&gt;    
-#&gt;  1 fit_cyl_d… "my_model_fit(x1 = \"cyl\", x2 = \"di… cyl   disp  &lt;sym&gt; fit_cyl_…
-#&gt;  2 fit_cyl_hp "my_model_fit(x1 = \"cyl\", x2 = \"hp… cyl   hp    &lt;sym&gt; fit_cyl_…
-#&gt;  3 fit_cyl_d… "my_model_fit(x1 = \"cyl\", x2 = \"dr… cyl   drat  &lt;sym&gt; fit_cyl_…
-#&gt;  4 fit_cyl_wt "my_model_fit(x1 = \"cyl\", x2 = \"wt… cyl   wt    &lt;sym&gt; fit_cyl_…
-#&gt;  5 fit_cyl_q… "my_model_fit(x1 = \"cyl\", x2 = \"qs… cyl   qsec  &lt;sym&gt; fit_cyl_…
-#&gt;  6 fit_cyl_vs "my_model_fit(x1 = \"cyl\", x2 = \"vs… cyl   vs    &lt;sym&gt; fit_cyl_…
-#&gt;  7 fit_cyl_am "my_model_fit(x1 = \"cyl\", x2 = \"am… cyl   am    &lt;sym&gt; fit_cyl_…
-#&gt;  8 fit_cyl_g… "my_model_fit(x1 = \"cyl\", x2 = \"ge… cyl   gear  &lt;sym&gt; fit_cyl_…
-#&gt;  9 fit_cyl_c… "my_model_fit(x1 = \"cyl\", x2 = \"ca… cyl   carb  &lt;sym&gt; fit_cyl_…
-#&gt; 10 fit_disp_… "my_model_fit(x1 = \"disp\", x2 = \"h… disp  hp    &lt;sym&gt; fit_disp…
-#&gt; # ... with 35 more rows</div><div class='input'><span class='co'># And of course, you can execute the plan and</span>
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># print(plan) # If you have tibble installed # nolint</span>
+<span class='co'># And of course, you can execute the plan and</span>
 <span class='co'># inspect your results.</span>
 <span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)

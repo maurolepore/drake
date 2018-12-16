@@ -156,13 +156,15 @@ show with <code><a href='https://www.rdocumentation.org/packages/graphics/topics
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='co'># Instead of jumpting right to vis_drake_graph(), get the data frames</span>
-<span class='co'># of nodes, edges, and legend nodes.</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
-<span class='fu'><a href='drake_ggraph.html'>drake_ggraph</a></span>(<span class='no'>config</span>) <span class='co'># Jump straight to the static graph.</span>
-<span class='co'># Get the node and edge info that vis_drake_graph() just plotted:</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='no'>config</span>)
-<span class='fu'>render_drake_ggraph</span>(<span class='no'>graph</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"ggraph"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+  <span class='co'># Instead of jumpting right to vis_drake_graph(), get the data frames</span>
+  <span class='co'># of nodes, edges, and legend nodes.</span>
+  <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
+  <span class='fu'><a href='drake_ggraph.html'>drake_ggraph</a></span>(<span class='no'>config</span>) <span class='co'># Jump straight to the static graph.</span>
+  <span class='co'># Get the node and edge info that vis_drake_graph() just plotted:</span>
+  <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='no'>config</span>)
+  <span class='fu'>render_drake_ggraph</span>(<span class='no'>graph</span>)
+}
 })
 <span class='co'># }</span></pre>
   </div>

@@ -169,6 +169,8 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 #&gt; 2 large_dat… "download_data(\"http… "trigger(change = time_last_modifie…    1000</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"styler"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
   <span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>source</span>) <span class='co'># Install the prettycode package for syntax highlighting.</span>
+  <span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>() <span class='co'># Path to an R script to contain the drake_plan() call.</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>source</span>, <span class='no'>file</span>) <span class='co'># Save the code to an R script.</span>
 }</div><div class='output co'>#&gt; drake_plan(
 #&gt;   small_data = download_data("https://some_website.com"),
 #&gt;   large_data_raw = target(
@@ -181,10 +183,7 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 #&gt;     timeout = 1000
 #&gt;   ),
 #&gt;   strings_in_dots = "literals"
-#&gt; )</div><span class='co'># NOT RUN {</span>
-<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>() <span class='co'># Path to an R script to contain the drake_plan() call.</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>source</span>, <span class='no'>file</span>) <span class='co'># Save the code to an R script.</span>
-<span class='co'># }</span></pre>
+#&gt; )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

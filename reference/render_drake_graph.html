@@ -228,26 +228,28 @@ Analogous to <code><a href='https://www.rdocumentation.org/packages/visNetwork/t
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='co'># Instead of jumpting right to vis_drake_graph(), get the data frames</span>
-<span class='co'># of nodes, edges, and legend nodes.</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
-<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># Jump straight to the interactive graph.</span>
-<span class='co'># Get the node and edge info that vis_drake_graph() just plotted:</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='no'>config</span>)
-<span class='co'># You can pass the data frames right to render_drake_graph()</span>
-<span class='co'># (as in vis_drake_graph()) or you can create</span>
-<span class='co'># your own custom visNewtork graph.</span>
-<span class='fu'>render_drake_graph</span>(<span class='no'>graph</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'100%'</span>) <span class='co'># Width is passed to visNetwork.</span>
-<span class='co'># Optionally visualize clusters.</span>
-<span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>large_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></span>(<span class='st'>"large"</span>, <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>target</span>)
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(
-  <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"large_data"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
-<span class='fu'>render_drake_graph</span>(<span class='no'>graph</span>)
-<span class='co'># You can even use clusters given to you for free in the `graph$nodes`</span>
-<span class='co'># data frame.</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(
-  <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"imported"</span>)
-<span class='fu'>render_drake_graph</span>(<span class='no'>graph</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+  <span class='co'># Instead of jumpting right to vis_drake_graph(), get the data frames</span>
+  <span class='co'># of nodes, edges, and legend nodes.</span>
+  <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
+  <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># Jump straight to the interactive graph.</span>
+  <span class='co'># Get the node and edge info that vis_drake_graph() just plotted:</span>
+  <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(<span class='no'>config</span>)
+  <span class='co'># You can pass the data frames right to render_drake_graph()</span>
+  <span class='co'># (as in vis_drake_graph()) or you can create</span>
+  <span class='co'># your own custom visNewtork graph.</span>
+  <span class='fu'>render_drake_graph</span>(<span class='no'>graph</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'100%'</span>) <span class='co'># Width is passed to visNetwork.</span>
+  <span class='co'># Optionally visualize clusters.</span>
+  <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>large_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></span>(<span class='st'>"large"</span>, <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>target</span>)
+  <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(
+    <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"large_data"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
+  <span class='fu'>render_drake_graph</span>(<span class='no'>graph</span>)
+  <span class='co'># You can even use clusters given to you for free in the `graph$nodes`</span>
+  <span class='co'># data frame.</span>
+  <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_graph_info.html'>drake_graph_info</a></span>(
+    <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"imported"</span>)
+  <span class='fu'>render_drake_graph</span>(<span class='no'>graph</span>)
+}
 })
 <span class='co'># }</span></pre>
   </div>

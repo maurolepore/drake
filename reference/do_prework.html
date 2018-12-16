@@ -159,7 +159,9 @@ package startup messages</p></td>
 <span class='co'># and for distributed computing backends like "future_lapply",</span>
 <span class='co'># right before each target is built.</span>
 <span class='fu'>do_prework</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>con</span>, <span class='kw'>verbose_packages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/identical'>identical</a></span>(<span class='no'>x</span>, <span class='fl'>1</span>) <span class='co'># Should be TRUE.</span>
+<span class='co'># The `eval` element is the environment where the prework</span>
+<span class='co'># and the commands in your workflow plan data frame are executed.</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/identical'>identical</a></span>(<span class='no'>con</span>$<span class='no'>eval</span>$<span class='no'>x</span>, <span class='fl'>1</span>) <span class='co'># Should be TRUE.</span>
 })
 <span class='co'># }</span></pre>
   </div>
