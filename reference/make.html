@@ -149,7 +149,8 @@ for an overview of the documentation.</p>
   <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fl'>0.01</span>,
   <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/drake/topics/default_hasty_build'>default_hasty_build</a></span>,
-  <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>, <span class='st'>"lookahead"</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>, <span class='st'>"lookahead"</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -652,6 +653,17 @@ of <code><a href='drake_envir.html'>drake_envir()</a></code>.</p></td>
 from a prior call to <code><a href='drake_config.html'>drake_config()</a></code>. If your plan or environment
 have changed since the last <code>make()</code>, do not supply a <code>layout</code> argument.
 Otherwise, supplying one could save time.</p></td>
+    </tr>
+    <tr>
+      <th>lock_envir</th>
+      <td><p>logical, whether to lock <code>config$envir</code> during <code>make()</code>.
+If <code>TRUE</code>, <code>make()</code> quits in error whenever a command in your
+<code>drake</code> plan (or <code>prework</code>) tries to add, remove, or modify
+non-hidden variables in your environment/workspace/R session.
+This is extremely important for ensuring the purity of your functions
+and the reproducibility/credibility/trust you can place in your project.
+<code>lock_envir</code> will be set to a default of <code>TRUE</code> in <code>drake</code> version
+7.0.0 and higher.</p></td>
     </tr>
     </table>
     
