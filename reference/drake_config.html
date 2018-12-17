@@ -633,18 +633,19 @@ help file examples of <code><a href='drake_envir.html'>drake_envir()</a></code>.
 to <code><a href='make.html'>make()</a></code> and <code>drake_config()</code> is an attempt at an automatic
 catch-all solution. These are the choices.</p><ul>
 <li><p><code>"speed"</code>: Once a target is loaded in memory, just keep it there.
-Maximizes speed, but hogs memory.</p></li>
-<li><p><code>"memory"</code>: For each target, unload everything from memory
-except the target's direct dependencies. Conserves memory,
-but sacrifices speed because each new target needs to reload
-any previously unloaded targets from the cache.</p></li>
-<li><p><code>"lookahead"</code> (default): keep loaded targets in memory until they are
-no longer needed as dependencies in downstream build steps.
-Then, unload them from the environment. This step avoids
-keeping unneeded data in memory and minimizes expensive
-reads from the cache. However, it requires looking ahead
-in the dependency graph, which could add overhead for every
-target of projects with lots of targets.</p></li>
+This choice maximizes speed and hogs memory.</p></li>
+<li><p><code>"memory"</code>: Just before building each new target,
+unload everything from memory except the target's direct dependencies.
+This option conserves memory, but it sacrifices speed because
+each new target needs to reload
+any previously unloaded targets from storage.</p></li>
+<li><p><code>"lookahead"</code>: Just before building each new target,
+search the dependency graph to find targets that will not be
+needed for the rest of the current <code><a href='make.html'>make()</a></code> session.
+In this mode, targets are only in memory if they need to be loaded,
+and we avoid superfluous reads from the cache.
+However, searching the graph takes time,
+and it could even double the computational overhead for large projects.</p></li>
 </ul>
 
 <p>Each strategy has a weakness.
