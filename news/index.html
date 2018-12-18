@@ -139,6 +139,7 @@
 <li>Remove packages <code>DBI</code> and <code>RSQLite</code> from “Suggests”.</li>
 <li>Define a special <code>config$eval &lt;- new.env(parent = config$envir)</code> for storing built targets and evaluating commands in the plan. Now, <code><a href="../reference/make.html">make()</a></code> no longer modifies the user’s environment. This move is a long-overdue step toward purity.</li>
 <li>Remove dependency on the <code>codetools</code> package.</li>
+<li>Deprecate and remove the <code>session</code> argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. Details: <a href="https://github.com/ropensci/drake/issues/623#issue-391894088" class="uri">https://github.com/ropensci/drake/issues/623#issue-391894088</a>.</li>
 </ul>
 </div>
 </div>
