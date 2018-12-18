@@ -137,7 +137,8 @@
 <li>Allow the <code>magrittr</code> dot symbol to appear in some commands sometimes.</li>
 <li>Deprecate the <code>fetch_cache</code> argument in all functions</li>
 <li>Remove packages <code>DBI</code> and <code>RSQLite</code> from “Suggests”.</li>
-<li>Define a special <code>config$eval &lt;- new.env(parent = config$envir)</code> for storing built targets and evaluating commands in the plan. Now, <code><a href="../reference/make.html">make()</a></code> no longer modifies the user’s environemnt. This move is a long-overdue step toward purity.</li>
+<li>Define a special <code>config$eval &lt;- new.env(parent = config$envir)</code> for storing built targets and evaluating commands in the plan. Now, <code><a href="../reference/make.html">make()</a></code> no longer modifies the user’s environment. This move is a long-overdue step toward purity.</li>
+<li>Remove dependency on the <code>codetools</code> package.</li>
 </ul>
 </div>
 </div>
@@ -247,7 +248,7 @@
 <li>Add a console message for building the priority queue when <code>verbose</code> is at least 2.</li>
 <li>Condense <code><a href="../reference/load_mtcars_example.html">load_mtcars_example()</a></code>.</li>
 <li>Deprecate the <code>hook</code> argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
-<li>In <code><a href="../reference/gather_by.html">gather_by()</a></code> and <code><a href="../reference/reduce_by.html">reduce_by()</a></code>, do not exclude targets with all <code>NA</code> gathring variables.</li>
+<li>In <code><a href="../reference/gather_by.html">gather_by()</a></code> and <code><a href="../reference/reduce_by.html">reduce_by()</a></code>, do not exclude targets with all <code>NA</code> gathering variables.</li>
 </ul>
 </div>
 </div>
@@ -277,7 +278,7 @@
 <li>Remove more calls to <code><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort(NULL)</a></code> that caused warnings in R 3.3.3.</li>
 <li>Fix a bug on R 3.3.3 where <code>analyze_loadd()</code> was sometimes quitting with “Error: attempt to set an attribute on NULL”.</li>
 <li>Do not call <code><a href="https://www.rdocumentation.org/packages/digest/topics/digest">digest::digest(file = TRUE)</a></code> on directories. Instead, set hashes of directories to <code>NA</code>. Users should still not directories as file dependencies.</li>
-<li>If files are declared as dependnecies of custom triggers (“condition” and “change”) include them in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code>. Previously, these files were missing from the visualization, but actual workflows worked just fine. Ref: <a href="https://stackoverflow.com/questions/52121537/trigger-notification-from-report-generation-in-r-drake-package" class="uri">https://stackoverflow.com/questions/52121537/trigger-notification-from-report-generation-in-r-drake-package</a>
+<li>If files are declared as dependencies of custom triggers (“condition” and “change”) include them in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code>. Previously, these files were missing from the visualization, but actual workflows worked just fine. Ref: <a href="https://stackoverflow.com/questions/52121537/trigger-notification-from-report-generation-in-r-drake-package" class="uri">https://stackoverflow.com/questions/52121537/trigger-notification-from-report-generation-in-r-drake-package</a>
 </li>
 <li>Work around mysterious <code>codetools</code> failures in R 3.3 (add a <code><a href="https://www.rdocumentation.org/packages/base/topics/conditions">tryCatch()</a></code> statement in <code>find_globals()</code>).</li>
 </ul>
@@ -304,7 +305,7 @@
 <li>Make hover text slightly more readable in in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Align hover text properly in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> using the “title” node column.</li>
 <li>Optionally collapse nodes into clusters with <code><a href="../reference/vis_drake_graph.html">vis_drake_graph(collapse = TRUE)</a></code>.</li>
-<li>Improve <code><a href="../reference/dependency_profile.html">dependency_profile()</a></code> show major trigger hashes side-by-side to tell the user if the command, a dependency, an input file, or an ouptut file changed since the last <code><a href="../reference/make.html">make()</a></code>.</li>
+<li>Improve <code><a href="../reference/dependency_profile.html">dependency_profile()</a></code> show major trigger hashes side-by-side to tell the user if the command, a dependency, an input file, or an output file changed since the last <code><a href="../reference/make.html">make()</a></code>.</li>
 <li>Choose more appropriate places to check that the <code>txtq</code> package is installed.</li>
 <li>Improve the help files of <code><a href="../reference/readd.html">loadd()</a></code> and <code><a href="../reference/readd.html">readd()</a></code>, giving specific usage guidance in prose.</li>
 <li>Memoize all the steps of <code><a href="../reference/build_drake_graph.html">build_drake_graph()</a></code> and print to the console the ones that execute.</li>
@@ -348,7 +349,7 @@
 <li>Skip more tests on CRAN. White-list tests instead of blacklisting them in order to try to keep check time under the official 10-minute cap.</li>
 <li>Disallow wildcard names to grep-match other wildcard names or any replacement values. This will prevent careless mistakes and confusion when generating <code><a href="../reference/drake_plan.html">drake_plan()</a></code>s.</li>
 <li>Prevent persistent workers from hanging when a target fails.</li>
-<li>Move the example template files to <a href="https://github.com/ropensci/drake/tree/master/inst/hpc_template_files" class="uri">https://github.com/ropensci/drake/tree/master/inst/hpc_template_files</a>.</li>
+<li>Move the example template files <a href="https://github.com/ropensci/drake/tree/master/inst/hpc_template_files">here</a>.</li>
 <li>Deprecate <code><a href="../reference/drake_batchtools_tmpl_file.html">drake_batchtools_tmpl_file()</a></code> in favor of <code><a href="../reference/drake_hpc_template_file.html">drake_hpc_template_file()</a></code> and <code><a href="../reference/drake_hpc_template_files.html">drake_hpc_template_files()</a></code>.</li>
 <li>Add a <code>garbage_collection</code> argument to <code><a href="../reference/make.html">make()</a></code>. If <code>TRUE</code>, <code><a href="https://www.rdocumentation.org/packages/base/topics/gc">gc()</a></code> is called after every new build of a target.</li>
 <li>Remove redundant calls to <code>sanitize_plan()</code> in <code><a href="../reference/make.html">make()</a></code>.</li>
@@ -372,7 +373,7 @@
 <ul>
 <li>Sequester staged parallelism in backends “mclapply_staged” and “parLapply_staged”. For the other <code>lapply</code>-like backends, <code>drake</code> uses persistent workers and a master process. In the case of <code>"future_lapply"</code> parallelism, the master process is a separate background process called by <code>Rscript</code>.</li>
 <li>Remove the appearance of staged parallelism from single-job <code><a href="../reference/make.html">make()</a></code>’s. (Previously, there were “check” messages and a call to <code>staged_parallelism()</code>.)</li>
-<li>Remove uncontained remnants of staged parallelism internals.</li>
+<li>Remove some remnants of staged parallelism internals.</li>
 <li>Allow different parallel backends for imports vs targets. For example, <code>make(parallelism = c(imports = "mclapply_staged", targets = "mclapply")</code>.</li>
 <li>Fix a bug in environment pruning. Previously, dependencies of downstream targets were being dropped from memory in <code><a href="../reference/make.html">make(jobs = 1)</a></code>. Now, they are kept in memory until no downstream target needs them (for <code><a href="../reference/make.html">make(jobs = 1)</a></code>).</li>
 <li>Improve <code><a href="../reference/predict_runtime.html">predict_runtime()</a></code>. It is a more sensible way to go about predicting runtimes with multiple jobs. Likely to be more accurate.</li>
@@ -423,7 +424,7 @@
 </h1>
 <ul>
 <li>Add a <code><a href="../reference/reduce_plan.html">reduce_plan()</a></code> function to do pairwise reductions on collections of targets.</li>
-<li>Forcibly exclude the dot (<code>.</code>) from being a dependency of any target or import. This enforces more consistent behavior in the face of the current static code analysis funcionality, which sometimes detects <code>.</code> and sometimes does not.</li>
+<li>Forcibly exclude the dot (<code>.</code>) from being a dependency of any target or import. This enforces more consistent behavior in the face of the current static code analysis functionality, which sometimes detects <code>.</code> and sometimes does not.</li>
 <li>Use <code><a href="../reference/ignore.html">ignore()</a></code> to optionally ignore pieces of workflow plan commands and/or imported functions. Use <code><a href="../reference/ignore.html">ignore(some_code)</a></code> to
 <ol>
 <li>Force <code>drake</code> to not track dependencies in <code>some_code</code>, and</li>
@@ -457,7 +458,7 @@
 <li>Add a new <code><a href="../reference/expose_imports.html">expose_imports()</a></code> function to optionally force <code>drake</code> detect deeply nested functions inside specific packages.</li>
 <li>Move the “quickstart.Rmd” vignette to “example-basic.Rmd”. The so-called “quickstart” didn’t end up being very quick, and it was all about the basic example anyway.</li>
 <li>Move <code><a href="../reference/drake_build.html">drake_build()</a></code> to be an exclusively user-side function.</li>
-<li>Add a <code>replace</code> argument to <code><a href="../reference/readd.html">loadd()</a></code> so that objects already in the user’s eOne small thing:nvironment need not be replaced.</li>
+<li>Add a <code>replace</code> argument to <code><a href="../reference/readd.html">loadd()</a></code> so that objects already in the user’s environment need not be replaced.</li>
 <li>When the graph cyclic, print out all the cycles.</li>
 <li>Prune self-referential loops (and duplicate edges) from the workflow graph. That way, recursive functions are allowed.</li>
 <li>Add a <code>seed</code> argument to <code><a href="../reference/make.html">make()</a></code>, <code><a href="../reference/drake_config.html">drake_config()</a></code>, and <code><a href="../reference/load_basic_example.html">load_basic_example()</a></code>. Also hard-code a default seed of <code>0</code>. That way, the pseudo-randomness in projects should be reproducible across R sessions.</li>
@@ -611,7 +612,7 @@
 <li><a href="https://github.com/ropensci/drake/pull/56">Reproducible random numbers</a></li>
 <li><a href="https://github.com/ropensci/drake/issues/9">Automatic detection of knitr dependencies</a></li>
 <li>More vignettes</li>
-<li>Bugfixes</li>
+<li>Bug fixes</li>
 </ul>
 </div>
     <div id="version-4-2-0-2017-09-29" class="section level1">
