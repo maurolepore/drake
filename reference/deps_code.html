@@ -185,7 +185,7 @@ network.</p>
 <span class='co'># in your workspace or packages. Any file names or target names</span>
 <span class='co'># will be ignored.</span>
 <span class='fu'>deps_code</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt; $globals
-#&gt; [1] "g"       "saveRDS"
+#&gt; [1] "saveRDS" "g"      
 #&gt; </div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span> + <span class='no'>some_object</span>,
@@ -204,7 +204,7 @@ network.</p>
 #&gt; $file_in
 #&gt; [1] "\"tracked_input_file.rds\""
 #&gt; </div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>3</span>])</div><div class='output co'>#&gt; $globals
-#&gt; [1] "f" "x" "y" "g" "z" "w"
+#&gt; [1] "w" "x" "y" "z" "f" "g"
 #&gt; </div><div class='input'><span class='co'># New: you can also supply language objects.</span>
 <span class='fu'>deps_code</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expression'>expression</a></span>(<span class='no'>x</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; $globals
 #&gt; [1] "x"
