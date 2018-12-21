@@ -146,6 +146,7 @@
 <li>Deprecate and remove the <code>session</code> argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. Details: <a href="https://github.com/ropensci/drake/issues/623#issue-391894088" class="uri">https://github.com/ropensci/drake/issues/623#issue-391894088</a>.</li>
 <li>Deprecate the <code>graph</code> and <code>layout</code> arguments to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. The change simplifies the internals, and memoization allows us to do this.</li>
 <li>Warn the user if running <code><a href="../reference/make.html">make()</a></code> in a subdirectory of the <code>drake</code> project root (determined by the location of the <code>.drake</code> folder in relation to the working directory).</li>
+<li>In the code analysis, explicitly prohibit targets from being dependencies of imported functions.</li>
 </ul>
 </div>
 </div>
