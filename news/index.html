@@ -134,7 +134,9 @@
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
-<li>Move away from <code>storr</code>’s key mangling in favor of <code>drake</code>’s own base 64 encoding of file paths for <code>storr</code> keys. Needed to exclude symbols <code>.</code>, <code>..</code>, and <code>.gitignore</code> from being target names.</li>
+<li>
+<strong>Large speed boost</strong>: move away from <code>storr</code>’s key mangling in favor of <code>drake</code>’s own base 64 encoding of file paths for <code>storr</code> keys.</li>
+<li>Exclude symbols <code>.</code>, <code>..</code>, and <code>.gitignore</code> from being target names (consequence of the above).</li>
 <li>Use only one hash algorithm per <code>drake</code> cache, which the user can set with the <code>hash_algorithm</code> argument of <code><a href="../reference/new_cache.html">new_cache()</a></code>, <code><a href="https://www.rdocumentation.org/packages/storr/topics/storr_rds">storr::storr_rds()</a></code>, and various other cache functions. Thus, the concepts of a “short hash algorithm” and “long hash algorithm” are deprecated, and the functions <code><a href="../reference/long_hash.html">long_hash()</a></code>, <code><a href="../reference/short_hash.html">short_hash()</a></code>, <code><a href="../reference/default_long_hash_algo.html">default_long_hash_algo()</a></code>, <code><a href="../reference/default_short_hash_algo.html">default_short_hash_algo()</a></code>, and <code><a href="../reference/available_hash_algos.html">available_hash_algos()</a></code> are deprecated. Caches are still back-compatible with <code>drake</code> &gt; 5.4.0 and &lt;= 6.2.1.</li>
 <li>Allow the <code>magrittr</code> dot symbol to appear in some commands sometimes.</li>
 <li>Deprecate the <code>fetch_cache</code> argument in all functions</li>
@@ -143,6 +145,7 @@
 <li>Remove dependency on the <code>codetools</code> package.</li>
 <li>Deprecate and remove the <code>session</code> argument of <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. Details: <a href="https://github.com/ropensci/drake/issues/623#issue-391894088" class="uri">https://github.com/ropensci/drake/issues/623#issue-391894088</a>.</li>
 <li>Deprecate the <code>graph</code> and <code>layout</code> arguments to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. The change simplifies the internals, and memoization allows us to do this.</li>
+<li>Warn the user if running <code><a href="../reference/make.html">make()</a></code> in a subdirectory of the <code>drake</code> project root (determined by the location of the <code>.drake</code> folder in relation to the working directory).</li>
 </ul>
 </div>
 </div>
