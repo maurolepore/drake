@@ -113,6 +113,11 @@
 <h1 class="page-header">
 <a href="#version-6-2-1-9000" class="anchor"></a>Version 6.2.1.9000<small> Unreleased </small>
 </h1>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<p>This release will be version 7.0.0, a major update. Unfortunately, the enhancements that increase speed also invalidate targets in old projects. Workflows run with drake &lt;= 6.2.1 will need to run from scratch again. In addition, a large amount of deprecated functionality is removed, including several functions and the single-quoted file API.</p>
+</div>
 <div id="bug-fixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
@@ -135,7 +140,7 @@
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<strong>Large speed boost</strong>: move away from <code>storr</code>’s key mangling in favor of <code>drake</code>’s own base 64 encoding of file paths for <code>storr</code> keys.</li>
+<strong>Large speed boost</strong>: move away from <code>storr</code>’s key mangling in favor of <code>drake</code>’s own encoding of file paths and namespaced functions for <code>storr</code> keys.</li>
 <li>Exclude symbols <code>.</code>, <code>..</code>, and <code>.gitignore</code> from being target names (consequence of the above).</li>
 <li>Use only one hash algorithm per <code>drake</code> cache, which the user can set with the <code>hash_algorithm</code> argument of <code><a href="../reference/new_cache.html">new_cache()</a></code>, <code><a href="https://www.rdocumentation.org/packages/storr/topics/storr_rds">storr::storr_rds()</a></code>, and various other cache functions. Thus, the concepts of a “short hash algorithm” and “long hash algorithm” are deprecated, and the functions <code><a href="../reference/long_hash.html">long_hash()</a></code>, <code><a href="../reference/short_hash.html">short_hash()</a></code>, <code><a href="../reference/default_long_hash_algo.html">default_long_hash_algo()</a></code>, <code><a href="../reference/default_short_hash_algo.html">default_short_hash_algo()</a></code>, and <code><a href="../reference/available_hash_algos.html">available_hash_algos()</a></code> are deprecated. Caches are still back-compatible with <code>drake</code> &gt; 5.4.0 and &lt;= 6.2.1.</li>
 <li>Allow the <code>magrittr</code> dot symbol to appear in some commands sometimes.</li>
@@ -264,9 +269,9 @@
 <h1 class="page-header">
 <a href="#version-6-0-0" class="anchor"></a>Version 6.0.0<small> 2018-09-30 </small>
 </h1>
-<div id="breaking-changes" class="section level2">
+<div id="breaking-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>Avoid serialization in <code>digest()</code> wherever possible. This puts old <code>drake</code> projects out of date, but it improves speed.</li>
 <li>Require R version &gt;= 3.3.0 rather than &gt;= 3.2.0. Tests and checks still run fine on 3.3.0, but the required version of the <code>stringi</code> package no longer compiles on 3.2.0.</li>
