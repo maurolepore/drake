@@ -120,9 +120,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>build_drake_graph</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='read_drake_plan.html'>read_drake_plan</a></span>(), <span class='kw'>targets</span> <span class='kw'>=</span> <span class='no'>plan</span>$<span class='no'>target</span>,
-  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(),
-  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sanitize_plan</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,10 +162,7 @@ then reproducibly tracked as dependencies.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.
-Use <code>pkgconfig</code> to set the default value of <code>verbose</code>
-for your R session:
-for example, <code><a href='https://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::verbose" = 2)</a></code>.</p><ul>
+      <td><p>logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: also print checks and cache info.</p></li>
@@ -190,10 +186,6 @@ download and install Rtools.</p>
 to help decide on an appropriate number of jobs.
 For details, visit
 <a href='https://ropenscilabs.github.io/drake-manual/time.html'>https://ropenscilabs.github.io/drake-manual/time.html</a>.</p></td>
-    </tr>
-    <tr>
-      <th>sanitize_plan</th>
-      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>console_log_file</th>

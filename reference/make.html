@@ -130,9 +130,9 @@ for an overview of the documentation.</p>
     </div>
 
     <pre class="usage"><span class='fu'>make</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/read_drake_plan'>read_drake_plan</a></span>(), <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(),
-  <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>,
-  <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span>
+  <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_parallelism'>default_parallelism</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/zpackages'>.packages</a></span>()), <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>),
   <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_Makefile_command'>default_Makefile_command</a></span>(),
@@ -140,15 +140,14 @@ for an overview of the documentation.</p>
   <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_recipe_command'>default_recipe_command</a></span>(),
   <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>return_config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(),
-  <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caching</span> <span class='kw'>=</span> <span class='st'>"master"</span>, <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>imports_only</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='st'>"Makefile"</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fl'>0.01</span>,
-  <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/drake/topics/default_hasty_build'>default_hasty_build</a></span>,
+  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
+  <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caching</span> <span class='kw'>=</span> <span class='st'>"master"</span>, <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='st'>"Makefile"</span>,
+  <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
+  <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/drake/topics/default_hasty_build'>default_hasty_build</a></span>,
   <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>, <span class='st'>"lookahead"</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -191,10 +190,7 @@ then reproducibly tracked as dependencies.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.
-Use <code>pkgconfig</code> to set the default value of <code>verbose</code>
-for your R session:
-for example, <code><a href='https://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::verbose" = 2)</a></code>.</p><ul>
+      <td><p>logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: also print checks and cache info.</p></li>
@@ -371,13 +367,6 @@ If <code>force</code> is <code>TRUE</code>, then <code>make()</code> executes yo
 regardless of the version of <code>drake</code> that last ran <code>make()</code> on the cache.</p></td>
     </tr>
     <tr>
-      <th>return_config</th>
-      <td><p>Logical, whether to return the internal list
-of runtime configuration parameters used by <code>make()</code>.
-This argument is deprecated. Now, a configuration list
-is always invisibly returned.</p></td>
-    </tr>
-    <tr>
       <th>graph</th>
       <td><p>An <code>igraph</code> object from the previous <code>make()</code>.
 Supplying a pre-built graph could save time.</p></td>
@@ -520,10 +509,6 @@ If <code>session</code> is <code>NULL</code> (default), then <code>make()</code>
 your current R session as the master session. This is slightly faster,
 but it causes <code>make()</code> to populate your workspace/environment
 with the last few targets it builds.</p></td>
-    </tr>
-    <tr>
-      <th>imports_only</th>
-      <td><p>deprecated. Use <code>skip_targets</code> instead.</p></td>
     </tr>
     <tr>
       <th>pruning_strategy</th>

@@ -124,8 +124,8 @@ of your drake project.</h1>
 
     <pre class="usage"><span class='fu'>static_drake_graph</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(),
   <span class='kw'>build_times</span> <span class='kw'>=</span> <span class='st'>"build"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>split_columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"out"</span>,
-  <span class='st'>"in"</span>, <span class='st'>"all"</span>), <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>),
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
@@ -158,10 +158,6 @@ no build times at all. See <code><a href='build_times.html'>build_times()</a></c
       <td><p>logical,
 whether to skip the imports and only include the
 targets in the workflow plan.</p></td>
-    </tr>
-    <tr>
-      <th>split_columns</th>
-      <td><p>logical, deprecated.</p></td>
     </tr>
     <tr>
       <th>main</th>

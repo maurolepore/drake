@@ -155,8 +155,7 @@ to a command in your workflow plan data frame.</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(
   <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>write.csv</a></span>(<span class='no'>mtcars</span>, <span class='fu'><a href='file_out.html'>file_out</a></span>(<span class='st'>"mtcars.csv"</span>)),
-    <span class='kw'>contents</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'>file_in</span>(<span class='st'>"mtcars.csv"</span>)),
-    <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span> <span class='co'># deprecated but useful: no single quotes needed. # nolint</span>
+    <span class='kw'>contents</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'>file_in</span>(<span class='st'>"mtcars.csv"</span>))
   )
 )
 <span class='no'>plan</span>

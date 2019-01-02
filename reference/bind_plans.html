@@ -143,8 +143,7 @@ correctly fills in missing entries.</p>
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='kw'>command</span> <span class='kw'>=</span> <span class='fu'>download_data</span>(),
     <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"always"</span>
-  ),
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
+  )
 )
 <span class='co'># But if the data don't change, the analyses don't need to change.</span>
 <span class='no'>analysis_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(

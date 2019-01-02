@@ -130,8 +130,8 @@ next <code><a href='make.html'>make()</a></code>.</p>
 
     <pre class="usage"><span class='fu'>predict_load_balancing</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(),
   <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>future_jobs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a></span>(<span class='fl'>0</span>), <span class='kw'>default_time</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a></span>(<span class='fl'>0</span>), <span class='kw'>default_time</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,14 +161,6 @@ already up to date and therefore skipped.</p></td>
       <td><p>logical, whether to factor in
 just the targets into the calculations or use the
 build times for everything, including the imports</p></td>
-    </tr>
-    <tr>
-      <th>future_jobs</th>
-      <td><p>deprecated</p></td>
-    </tr>
-    <tr>
-      <th>digits</th>
-      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>jobs</th>

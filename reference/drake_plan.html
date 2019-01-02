@@ -129,8 +129,7 @@ argument to supply them as character strings.</p>
     </div>
 
     <pre class="usage"><span class='fu'>drake_plan</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>file_targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw pkg'>pkgconfig</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/pkgconfig/topics/get_config'>get_config</a></span>(<span class='st'>"drake::strings_in_dots"</span>),
-  <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,42 +146,11 @@ with names as targets.</p></td>
     </tr>
     <tr>
       <th>file_targets</th>
-      <td><p>deprecated argument. See <code><a href='file_out.html'>file_out()</a></code>,
-<code><a href='file_in.html'>file_in()</a></code>, and <code><a href='knitr_in.html'>knitr_in()</a></code> for the current way to work
-with files.
-In the past, this argument was a logical to indicate whether the
-target names should be single-quoted to denote files. But the newer
-interface is much better.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>strings_in_dots</th>
-      <td><p>deprecated argument for handling strings in
-commands specified in the <code>...</code> argument. Defaults to <code>NULL</code> for backward
-compatibility. New code should use <code><a href='file_out.html'>file_out()</a></code>, <code><a href='file_in.html'>file_in()</a></code>, and
-<code><a href='knitr_in.html'>knitr_in()</a></code> to specify file names and set this argument to <code>"literals"</code>,
-which will at some point become the only accepted value.</p>
-<p>To fully embrace the glorious new file API, call
-<code><a href='https://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::strings_in_dots" = "literals")</a></code>
-right when you start your R session.
-That way, <code>drake</code> totally relies on <code><a href='file_in.html'>file_in()</a></code>, <code><a href='file_out.html'>file_out()</a></code>,
-and <code><a href='knitr_in.html'>knitr_in()</a></code> to coordinate input and output files, as
-opposed to deprecated features like single-quotes
-(and in the case of <code>knitr</code> reports,
-explicit calls to <code><a href='https://www.rdocumentation.org/packages/knitr/topics/knit'>knitr::knit()</a></code> and <code><a href='https://www.rdocumentation.org/packages/rmarkdown/topics/render'>rmarkdown::render()</a></code> in commands).
-This is why the default value of <code>strings_in_dots</code> is
-<code><a href='https://www.rdocumentation.org/packages/pkgconfig/topics/get_config'>pkgconfig::get_config("drake::strings_in_dots")</a></code>.</p>
-<p>In the past, this argument was a character scalar denoting
-how to treat quoted character strings in the commands
-specified through <code>...</code>.
-Set to <code>"filenames"</code> to treat all these strings as
-external file targets/imports (single-quoted),
-or to <code>"literals"</code> to treat them all as literal
-strings (double-quoted).
-Unfortunately, because of how R deparses code,
-you cannot simply leave literal quotes alone in the
-<code>...</code> argument. R will either convert all these quotes
-to single quotes or double quotes. Literal quotes in the
-<code>list</code> argument are left alone.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>tidy_evaluation</th>
@@ -255,8 +223,7 @@ should be the brew patterns.</p></li>
 <span class='co'># Create workflow plan data frames.</span>
 <span class='no'>mtcars_plan</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan</span>(
   <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>write.csv</a></span>(<span class='no'>mtcars</span>[, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mpg"</span>, <span class='st'>"cyl"</span>)], <span class='fu'><a href='file_out.html'>file_out</a></span>(<span class='st'>"mtcars.csv"</span>)),
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"mtcars.csv"</span>)),
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"mtcars.csv"</span>))
 )
 <span class='no'>mtcars_plan</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>mtcars_plan</span>) <span class='co'># Makes `mtcars.csv` and then `value`</span>
@@ -277,8 +244,7 @@ should be the brew patterns.</p></li>
     <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"always"</span>,
     <span class='kw'>custom_column</span> <span class='kw'>=</span> <span class='fl'>5</span>
   ),
-  <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'>analyze</span>(<span class='no'>website_data</span>),
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
+  <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'>analyze</span>(<span class='no'>website_data</span>)
 )
 <span class='co'># Are you a fan of tidy evaluation?</span>
 <span class='no'>my_variable</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>

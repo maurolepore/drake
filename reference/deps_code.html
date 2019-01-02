@@ -190,8 +190,7 @@ network.</p>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span> + <span class='no'>some_object</span>,
   <span class='kw'>my_target</span> <span class='kw'>=</span> <span class='no'>x</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/readRDS'>readRDS</a></span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"tracked_input_file.rds"</span>)),
-  <span class='kw'>return_value</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='fu'>g</span>(<span class='no'>z</span> + <span class='no'>w</span>)),
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='st'>"literals"</span>
+  <span class='kw'>return_value</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='fu'>g</span>(<span class='no'>z</span> + <span class='no'>w</span>))
 )
 <span class='co'># Get the dependencies of workflow plan commands.</span>
 <span class='co'># Here, the dependencies could be R functions/objects from your workspace</span>

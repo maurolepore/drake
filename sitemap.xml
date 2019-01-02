@@ -7,31 +7,16 @@
     <loc>https://ropensci.github.io/drake/reference/Makefile_recipe.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/analyses.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/analysis_wildcard.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/as_drake_filename.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/as_file.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/available_hash_algos.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/backend.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/bind_plans.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/build_drake_graph.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/build_graph.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/build_times.html</loc>
@@ -47,9 +32,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/cached.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/check.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/check_plan.html</loc>
@@ -76,13 +58,7 @@
     <loc>https://ropensci.github.io/drake/reference/code_to_plan.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/config.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/configure_cache.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/dataframes_graph.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/dataset_wildcard.html</loc>
@@ -106,9 +82,6 @@
     <loc>https://ropensci.github.io/drake/reference/default_hasty_build.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/default_hook.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/default_long_hash_algo.html</loc>
   </url>
   <url>
@@ -119,9 +92,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/default_short_hash_algo.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/default_system2_args.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/default_verbose.html</loc>
@@ -229,22 +199,7 @@
     <loc>https://ropensci.github.io/drake/reference/eager_load_target.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/empty_hook.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/evaluate.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/evaluate_plan.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/example_drake.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/examples_drake.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/expand.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/expand_plan.html</loc>
@@ -274,9 +229,6 @@
     <loc>https://ropensci.github.io/drake/reference/fl_master.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/gather.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/gather_by.html</loc>
   </url>
   <url>
@@ -302,9 +254,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/legend_nodes.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/load_basic_example.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/load_main_example.html</loc>
@@ -343,9 +292,6 @@
     <loc>https://ropensci.github.io/drake/reference/mc_process.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/message_sink_hook.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/migrate_drake_project.html</loc>
   </url>
   <url>
@@ -361,22 +307,13 @@
     <loc>https://ropensci.github.io/drake/reference/outdated.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/output_sink_hook.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/parallel_stages.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/parallelism_choices.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/plan.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/plan_analyses.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/plan_drake.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/plan_summaries.html</loc>
@@ -386,9 +323,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/plan_to_notebook.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/plot_graph.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/predict_load_balancing.html</loc>
@@ -412,28 +346,16 @@
     <loc>https://ropensci.github.io/drake/reference/rate_limiting_times.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/read_config.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/read_drake_config.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/read_drake_graph.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/read_drake_meta.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/read_drake_plan.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/read_drake_seed.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/read_graph.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/read_plan.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/readd.html</loc>
@@ -457,9 +379,6 @@
     <loc>https://ropensci.github.io/drake/reference/render_drake_graph.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/render_graph.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/render_sankey_drake_graph.html</loc>
   </url>
   <url>
@@ -472,9 +391,6 @@
     <loc>https://ropensci.github.io/drake/reference/sankey_drake_graph.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/session.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/shell_file.html</loc>
   </url>
   <url>
@@ -484,16 +400,10 @@
     <loc>https://ropensci.github.io/drake/reference/show_source.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/silencer_hook.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/static_drake_graph.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/store_drake_config.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/summaries.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/target.html</loc>
@@ -521,12 +431,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/vis_drake_graph.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/workflow.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/workplan.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/articles/drake.html</loc>

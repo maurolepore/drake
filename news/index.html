@@ -418,7 +418,7 @@
 <li>Move all the vignettes to the up and coming user manual: <a href="https://ropenscilabs.github.io/drake-manual/" class="uri">https://ropenscilabs.github.io/drake-manual/</a>
 </li>
 <li>Rename the “basic example” to the “mtcars example”.</li>
-<li>Deprecate <code><a href="../reference/load_basic_example.html">load_basic_example()</a></code> in favor of <code><a href="../reference/load_mtcars_example.html">load_mtcars_example()</a></code>.</li>
+<li>Deprecate <code>load_basic_example()</code> in favor of <code><a href="../reference/load_mtcars_example.html">load_mtcars_example()</a></code>.</li>
 <li>Refocus the <code>README.md</code> file on the main example rather than the mtcars example.</li>
 <li>Use a <code>README.Rmd</code> file to generate <code>README.md</code>.</li>
 <li>Add function <code><a href="../reference/deps_targets.html">deps_targets()</a></code>.</li>
@@ -478,16 +478,16 @@
 <li>Change <code><a href="../reference/drake_plan.html">drake_plan()</a></code> so that it automatically fills in any target names that the user does not supply. Also, any <code><a href="../reference/file_out.html">file_out()</a></code>s become the target names automatically (double-quoted internally).</li>
 <li>Make <code><a href="../reference/read_drake_plan.html">read_drake_plan()</a></code> (rather than an empty <code><a href="../reference/drake_plan.html">drake_plan()</a></code>) the default <code>plan</code> argument in all functions that accept a <code>plan</code>.</li>
 <li>Add support for active bindings: <code><a href="../reference/readd.html">loadd(..., lazy = "bind")</a></code>. That way, when you have a target loaded in one R session and hit <code><a href="../reference/make.html">make()</a></code> in another R session, the target in your first session will automatically update.</li>
-<li>Use tibbles for workflow plan data frames and the output of <code><a href="../reference/dataframes_graph.html">dataframes_graph()</a></code>.</li>
+<li>Use tibbles for workflow plan data frames and the output of <code>dataframes_graph()</code>.</li>
 <li>Return warnings, errors, and other context of each build, all wrapped up with the usual metadata. <code><a href="../reference/diagnose.html">diagnose()</a></code> will take on the role of returning this metadata.</li>
-<li>Deprecate the <code><a href="../reference/read_drake_meta.html">read_drake_meta()</a></code> function in favor of <code><a href="../reference/diagnose.html">diagnose()</a></code>.</li>
+<li>Deprecate the <code>read_drake_meta()</code> function in favor of <code><a href="../reference/diagnose.html">diagnose()</a></code>.</li>
 <li>Add a new <code><a href="../reference/expose_imports.html">expose_imports()</a></code> function to optionally force <code>drake</code> detect deeply nested functions inside specific packages.</li>
 <li>Move the “quickstart.Rmd” vignette to “example-basic.Rmd”. The so-called “quickstart” didn’t end up being very quick, and it was all about the basic example anyway.</li>
 <li>Move <code><a href="../reference/drake_build.html">drake_build()</a></code> to be an exclusively user-side function.</li>
 <li>Add a <code>replace</code> argument to <code><a href="../reference/readd.html">loadd()</a></code> so that objects already in the user’s environment need not be replaced.</li>
 <li>When the graph cyclic, print out all the cycles.</li>
 <li>Prune self-referential loops (and duplicate edges) from the workflow graph. That way, recursive functions are allowed.</li>
-<li>Add a <code>seed</code> argument to <code><a href="../reference/make.html">make()</a></code>, <code><a href="../reference/drake_config.html">drake_config()</a></code>, and <code><a href="../reference/load_basic_example.html">load_basic_example()</a></code>. Also hard-code a default seed of <code>0</code>. That way, the pseudo-randomness in projects should be reproducible across R sessions.</li>
+<li>Add a <code>seed</code> argument to <code><a href="../reference/make.html">make()</a></code>, <code><a href="../reference/drake_config.html">drake_config()</a></code>, and <code>load_basic_example()</code>. Also hard-code a default seed of <code>0</code>. That way, the pseudo-randomness in projects should be reproducible across R sessions.</li>
 <li>Cache the pseudo-random seed at the time the project is created and use that seed to build targets until the cache is destroyed.</li>
 <li>Add a new <code>drake_read_seed()</code> function to read the seed from the cache. Its examples illustrate what <code>drake</code> is doing to try to ensure reproducible random numbers.</li>
 <li>Evaluate the quasiquotation operator <code>!!</code> for the <code>...</code> argument to <code><a href="../reference/drake_plan.html">drake_plan()</a></code>. Suppress this behavior using <code>tidy_evaluation = FALSE</code> or by passing in commands passed through the <code>list</code> argument.</li>
@@ -530,61 +530,61 @@
 <li>Deprecate and rename functions:
 <ul>
 <li>
-<code><a href="../reference/analyses.html">analyses()</a></code> =&gt; <code><a href="../reference/plan_analyses.html">plan_analyses()</a></code>
+<code>analyses()</code> =&gt; <code><a href="../reference/plan_analyses.html">plan_analyses()</a></code>
 </li>
 <li>
-<code><a href="../reference/as_file.html">as_file()</a></code> =&gt; <code><a href="../reference/as_drake_filename.html">as_drake_filename()</a></code>
+<code>as_file()</code> =&gt; <code>as_drake_filename()</code>
 </li>
 <li>
-<code><a href="../reference/backend.html">backend()</a></code> =&gt; <code><a href="https://www.rdocumentation.org/packages/future/topics/plan">future::plan()</a></code>
+<code>backend()</code> =&gt; <code><a href="https://www.rdocumentation.org/packages/future/topics/plan">future::plan()</a></code>
 </li>
 <li>
-<code><a href="../reference/build_graph.html">build_graph()</a></code> =&gt; <code><a href="../reference/build_drake_graph.html">build_drake_graph()</a></code>
+<code>build_graph()</code> =&gt; <code><a href="../reference/build_drake_graph.html">build_drake_graph()</a></code>
 </li>
 <li>
-<code><a href="../reference/check.html">check()</a></code> =&gt; <code><a href="../reference/check_plan.html">check_plan()</a></code>
+<code><a href="https://www.rdocumentation.org/packages/utils/topics/PkgUtils">check()</a></code> =&gt; <code><a href="../reference/check_plan.html">check_plan()</a></code>
 </li>
 <li>
-<code><a href="../reference/config.html">config()</a></code> =&gt; <code><a href="../reference/drake_config.html">drake_config()</a></code>
+<code>config()</code> =&gt; <code><a href="../reference/drake_config.html">drake_config()</a></code>
 </li>
 <li>
-<code><a href="../reference/evaluate.html">evaluate()</a></code> =&gt; <code><a href="../reference/evaluate_plan.html">evaluate_plan()</a></code>
+<code>evaluate()</code> =&gt; <code><a href="../reference/evaluate_plan.html">evaluate_plan()</a></code>
 </li>
 <li>
-<code><a href="../reference/example_drake.html">example_drake()</a></code> =&gt; <code><a href="../reference/drake_example.html">drake_example()</a></code>
+<code>example_drake()</code> =&gt; <code><a href="../reference/drake_example.html">drake_example()</a></code>
 </li>
 <li>
-<code><a href="../reference/examples_drake.html">examples_drake()</a></code> =&gt; <code><a href="../reference/drake_examples.html">drake_examples()</a></code>
+<code>examples_drake()</code> =&gt; <code><a href="../reference/drake_examples.html">drake_examples()</a></code>
 </li>
 <li>
-<code><a href="../reference/expand.html">expand()</a></code> =&gt; <code><a href="../reference/expand_plan.html">expand_plan()</a></code>
+<code>expand()</code> =&gt; <code><a href="../reference/expand_plan.html">expand_plan()</a></code>
 </li>
 <li>
-<code><a href="../reference/gather.html">gather()</a></code> =&gt; <code><a href="../reference/gather_plan.html">gather_plan()</a></code>
+<code>gather()</code> =&gt; <code><a href="../reference/gather_plan.html">gather_plan()</a></code>
 </li>
 <li>
-<code><a href="../reference/plan.html">plan()</a></code>, <code><a href="../reference/workflow.html">workflow()</a></code>, <code><a href="../reference/workplan.html">workplan()</a></code> =&gt; <code><a href="../reference/drake_plan.html">drake_plan()</a></code>
+<code>plan()</code>, <code>workflow()</code>, <code>workplan()</code> =&gt; <code><a href="../reference/drake_plan.html">drake_plan()</a></code>
 </li>
 <li>
-<code><a href="../reference/plot_graph.html">plot_graph()</a></code> =&gt; <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code>
+<code>plot_graph()</code> =&gt; <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code>
 </li>
 <li>
-<code><a href="../reference/read_config.html">read_config()</a></code> =&gt; <code><a href="../reference/read_drake_config.html">read_drake_config()</a></code>
+<code>read_config()</code> =&gt; <code><a href="../reference/read_drake_config.html">read_drake_config()</a></code>
 </li>
 <li>
-<code><a href="../reference/read_graph.html">read_graph()</a></code> =&gt; <code><a href="../reference/read_drake_graph.html">read_drake_graph()</a></code>
+<code>read_graph()</code> =&gt; <code><a href="../reference/read_drake_graph.html">read_drake_graph()</a></code>
 </li>
 <li>
-<code><a href="../reference/read_plan.html">read_plan()</a></code> =&gt; <code><a href="../reference/read_drake_plan.html">read_drake_plan()</a></code>
+<code>read_plan()</code> =&gt; <code><a href="../reference/read_drake_plan.html">read_drake_plan()</a></code>
 </li>
 <li>
-<code><a href="../reference/render_graph.html">render_graph()</a></code> =&gt; <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>
+<code>render_graph()</code> =&gt; <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>
 </li>
 <li>
-<code><a href="../reference/session.html">session()</a></code> =&gt; <code><a href="../reference/drake_session.html">drake_session()</a></code>
+<code>session()</code> =&gt; <code><a href="../reference/drake_session.html">drake_session()</a></code>
 </li>
 <li>
-<code><a href="../reference/summaries.html">summaries()</a></code> =&gt; <code><a href="../reference/plan_summaries.html">plan_summaries()</a></code>
+<code>summaries()</code> =&gt; <code><a href="../reference/plan_summaries.html">plan_summaries()</a></code>
 </li>
 </ul>
 </li>
@@ -610,8 +610,8 @@
 <a href="#version-4-4-0" class="anchor"></a>Version 4.4.0<small> 2017-11-05 </small>
 </h1>
 <ul>
-<li>Extend <code><a href="../reference/plot_graph.html">plot_graph()</a></code> to display subcomponents. Check out arguments <code>from</code>, <code>mode</code>, <code>order</code>, and <code>subset</code>. The graph visualization vignette has demonstrations.</li>
-<li>Add <code>"future_lapply"</code> parallelism: parallel backends supported by the <a href="https://github.com/HenrikBengtsson/future">future</a> and <a href="https://github.com/HenrikBengtsson/future.batchtools">future.batchtools</a> packages. See <code><a href="../reference/backend.html">?backend</a></code> for examples and the parallelism vignette for an introductory tutorial. More advanced instruction can be found in the <code>future</code> and <code>future.batchtools</code> packages themselves.</li>
+<li>Extend <code>plot_graph()</code> to display subcomponents. Check out arguments <code>from</code>, <code>mode</code>, <code>order</code>, and <code>subset</code>. The graph visualization vignette has demonstrations.</li>
+<li>Add <code>"future_lapply"</code> parallelism: parallel backends supported by the <a href="https://github.com/HenrikBengtsson/future">future</a> and <a href="https://github.com/HenrikBengtsson/future.batchtools">future.batchtools</a> packages. See <code>?backend</code> for examples and the parallelism vignette for an introductory tutorial. More advanced instruction can be found in the <code>future</code> and <code>future.batchtools</code> packages themselves.</li>
 <li>Cache diagnostic information of targets that fail and retrieve diagnostic info with <code><a href="../reference/diagnose.html">diagnose()</a></code>.</li>
 <li>Add an optional <code>hook</code> argument to <code><a href="../reference/make.html">make()</a></code> to wrap around <code><a href="https://www.rdocumentation.org/packages/utils/topics/PkgUtils">build()</a></code>. That way, users can more easily control the side effects of distributed jobs. For example, to redirect error messages to a file in <code><a href="../reference/make.html">make(..., parallelism = "Makefile", jobs = 2, hook = my_hook)</a></code>, <code>my_hook</code> should be something like <code>function(code){withr::with_message_sink("messages.txt", code)}</code>.</li>
 <li>Remove console logging for “parLapply” parallelism. <code>drake</code> was previously using the <code>outfile</code> argument for PSOCK clusters to generate output that could not be caught by <code><a href="https://www.rdocumentation.org/packages/utils/topics/capture.output">capture.output()</a></code>. It was a hack that should have been removed before.</li>
@@ -619,10 +619,10 @@
 <li>If ‘verbose’ is ‘TRUE’ and all targets are already up to date (nothing to build), then <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/outdated.html">outdated()</a></code> print “All targets are already up to date” to the console.</li>
 <li>Add new examples in ‘inst/examples’, most of them demonstrating how to use the <code>"future_lapply"</code> backends.</li>
 <li>New support for timeouts and retries when it comes to building targets.</li>
-<li>Failed targets are now recorded during the build process. You can see them in <code><a href="../reference/plot_graph.html">plot_graph()</a></code> and <code><a href="../reference/progress.html">progress()</a></code>. Also see the new <code><a href="../reference/failed.html">failed()</a></code> function, which is similar to <code><a href="../reference/in_progress.html">in_progress()</a></code>.</li>
+<li>Failed targets are now recorded during the build process. You can see them in <code>plot_graph()</code> and <code><a href="../reference/progress.html">progress()</a></code>. Also see the new <code><a href="../reference/failed.html">failed()</a></code> function, which is similar to <code><a href="../reference/in_progress.html">in_progress()</a></code>.</li>
 <li>Speed up the overhead of <code>parLapply</code> parallelism. The downside to this fix is that <code>drake</code> has to be properly installed. It should not be loaded with <code><a href="https://www.rdocumentation.org/packages/devtools/topics/load_all">devtools::load_all()</a></code>. The speedup comes from lightening the first <code>clusterExport()</code> call in <code>run_parLapply()</code>. Previously, we exported every single individual <code>drake</code> function to all the workers, which created a bottleneck. Now, we just load <code>drake</code> itself in each of the workers, which works because <code><a href="https://www.rdocumentation.org/packages/utils/topics/PkgUtils">build()</a></code> and <code><a href="../reference/do_prework.html">do_prework()</a></code> are exported.</li>
-<li>Change default value of <code>overwrite</code> to <code>FALSE</code> in <code><a href="../reference/load_basic_example.html">load_basic_example()</a></code>.</li>
-<li>Warn when overwriting an existing <code>report.Rmd</code> in <code><a href="../reference/load_basic_example.html">load_basic_example()</a></code>.</li>
+<li>Change default value of <code>overwrite</code> to <code>FALSE</code> in <code>load_basic_example()</code>.</li>
+<li>Warn when overwriting an existing <code>report.Rmd</code> in <code>load_basic_example()</code>.</li>
 <li>Tell the user the location of the cache using a console message. Happens on every call to <code><a href="../reference/get_cache.html">get_cache(..., verbose = TRUE)</a></code>.</li>
 <li>Increase efficiency of internal preprocessing via <code>lightly_parallelize()</code> and <code>lightly_parallelize_atomic()</code>. Now, processing happens faster, and only over the unique values of a vector.</li>
 <li>Add a new <code><a href="../reference/make_with_config.html">make_with_config()</a></code> function to do the work of <code><a href="../reference/make.html">make()</a></code> on an existing internal configuration list from <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>

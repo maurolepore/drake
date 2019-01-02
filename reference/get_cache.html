@@ -123,9 +123,8 @@ is in a folder called <code>.drake/</code>. See the description of the
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_cache</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_verbose'>default_verbose</a></span>(), <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_cache</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,10 +155,7 @@ Ignored if a <code>cache</code> is supplied.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.
-Use <code>pkgconfig</code> to set the default value of <code>verbose</code>
-for your R session:
-for example, <code><a href='https://www.rdocumentation.org/packages/pkgconfig/topics/set_config'>pkgconfig::set_config("drake::verbose" = 2)</a></code>.</p><ul>
+      <td><p>logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: also print checks and cache info.</p></li>
