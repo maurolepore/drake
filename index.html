@@ -209,25 +209,24 @@ Development
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">plan &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_plan.html">drake_plan</a></span>(</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">raw_data =</span> readxl<span class="op">::</span><span class="kw"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span>(<span class="kw"><a href="reference/file_in.html">file_in</a></span>(<span class="st">"raw_data.xlsx"</span>)),</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">data =</span> raw_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Species =</span> forcats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/forcats/topics/fct_inorder">fct_inorder</a></span>(Species)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>X__<span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">hist =</span> <span class="kw">create_plot</span>(data),</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">fit =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Width <span class="op">+</span><span class="st"> </span>Species, data),</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">report =</span> rmarkdown<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rmarkdown/topics/render">render</a></span>(</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="kw"><a href="reference/knitr_in.html">knitr_in</a></span>(<span class="st">"report.Rmd"</span>),</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">output_file =</span> <span class="kw"><a href="reference/file_out.html">file_out</a></span>(<span class="st">"report.html"</span>),</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">    <span class="dt">quiet =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  )</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">)</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">plan</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; # A tibble: 5 x 2</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;   target   command                                                         </span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;                                                           </span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1 raw_data "readxl::read_excel(file_in(\"raw_data.xlsx\"))"                </span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 data     "raw_data %&gt;% mutate(Species = forcats::fct_inorder(Species)) %…</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 hist     create_plot(data)                                               </span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                   </span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 report   "rmarkdown::render(knitr_in(\"report.Rmd\"), output_file = file…</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Species =</span> forcats<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/forcats/topics/fct_inorder">fct_inorder</a></span>(Species)),</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">hist =</span> <span class="kw">create_plot</span>(data),</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">fit =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Width <span class="op">+</span><span class="st"> </span>Species, data),</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">report =</span> rmarkdown<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rmarkdown/topics/render">render</a></span>(</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="kw"><a href="reference/knitr_in.html">knitr_in</a></span>(<span class="st">"report.Rmd"</span>),</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="dt">output_file =</span> <span class="kw"><a href="reference/file_out.html">file_out</a></span>(<span class="st">"report.html"</span>),</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">quiet =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  )</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">plan</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; # A tibble: 5 x 2</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt;   target   command                                                         </span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;                                                           </span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; 1 raw_data "readxl::read_excel(file_in(\"raw_data.xlsx\"))"                </span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 2 data     raw_data %&gt;% mutate(Species = forcats::fct_inorder(Species))    </span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 3 hist     create_plot(data)                                               </span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                   </span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 5 report   "rmarkdown::render(knitr_in(\"report.Rmd\"), output_file = file…</span></a></code></pre></div>
 <p>So far, we have just been setting the stage. Use <code><a href="reference/make.html">make()</a></code> to do the real work. Targets are built in the correct order regardless of the row order of <code>plan</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; target raw_data</span></a>
@@ -246,14 +245,14 @@ Development
 <a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; target report</span></a></code></pre></div>
 <p>Except for files like <code>report.html</code>, your output is stored in a hidden <code>.drake/</code> folder. Reading it back is easy.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">readd</a></span>(data) <span class="co"># See also loadd().</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; # A tibble: 150 x 5</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  </span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; 1          5.1         3.5          1.4         0.2 setosa </span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 2          4.9         3            1.4         0.2 setosa </span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 3          4.7         3.2          1.3         0.2 setosa </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 4          4.6         3.1          1.5         0.2 setosa </span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 5          5           3.6          1.4         0.2 setosa </span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; # A tibble: 150 x 6</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;    X__1 Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;   &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  </span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; 1     1          5.1         3.5          1.4         0.2 setosa </span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 2     2          4.9         3            1.4         0.2 setosa </span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 3     3          4.7         3.2          1.3         0.2 setosa </span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 4     4          4.6         3.1          1.5         0.2 setosa </span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 5     5          5           3.6          1.4         0.2 setosa </span></a>
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; # ... with 145 more rows</span></a></code></pre></div>
 <p>You may look back on your work and see room for improvement, but it’s all good! The whole point of <code>drake</code> is to help you go back and change things quickly and painlessly. For example, we forgot to give our histogram a bin width.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">readd</a></span>(hist)</a>
