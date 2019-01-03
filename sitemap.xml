@@ -52,9 +52,6 @@
     <loc>https://ropensci.github.io/drake/reference/cmq_build.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/cmq_staged_build.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/code_to_plan.html</loc>
   </url>
   <url>
@@ -145,9 +142,6 @@
     <loc>https://ropensci.github.io/drake/reference/drake_examples.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/drake_future_task.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/drake_gc.html</loc>
   </url>
   <url>
@@ -223,6 +217,9 @@
     <loc>https://ropensci.github.io/drake/reference/find_project.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/future_build.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/gather_by.html</loc>
   </url>
   <url>
@@ -280,19 +277,10 @@
     <loc>https://ropensci.github.io/drake/reference/max_useful_jobs.html</loc>
   </url>
   <url>
-    <loc>https://ropensci.github.io/drake/reference/mc_master.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/mc_process.html</loc>
-  </url>
-  <url>
     <loc>https://ropensci.github.io/drake/reference/migrate_drake_project.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/missed.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/mk.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/new_cache.html</loc>
@@ -323,9 +311,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/predict_runtime.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/prepare_distributed.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/progress.html</loc>
@@ -410,9 +395,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/this_cache.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/time_stamps.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/tracked.html</loc>

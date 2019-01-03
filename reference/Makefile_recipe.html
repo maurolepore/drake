@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For <code>make(..., parallelism = "Makefile")</code>,
-see what your <code>Makefile</code> recipes
-will look like in advance. — Makefile_recipe • drake</title>
+<title>Deprecated — Makefile_recipe • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,11 +30,9 @@ will look like in advance. — Makefile_recipe • drake</title>
 
 
 
-<meta property="og:title" content="For <code>make(..., parallelism = "Makefile")</code>,
-see what your <code>Makefile</code> recipes
-will look like in advance. — Makefile_recipe" />
+<meta property="og:title" content="Deprecated — Makefile_recipe" />
 
-<meta property="og:description" content="Relevant to &quot;Makefile&quot; parallelism only." />
+<meta property="og:description" content="2019-01-03" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,16 +108,14 @@ will look like in advance. — Makefile_recipe" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>For <code>make(..., parallelism = "Makefile")</code>,
-see what your <code>Makefile</code> recipes
-will look like in advance.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/recipe.R'><code>R/recipe.R</code></a></small>
+    <h1>Deprecated</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
     <div class="hidden name"><code>Makefile_recipe.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Relevant to <code>"Makefile"</code> parallelism only.</p>
+    <p>2019-01-03</p>
     
     </div>
 
@@ -133,85 +127,26 @@ will look like in advance.</h1>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>recipe_command</th>
-      <td><p>The Makefile recipe command.
-See <code><a href='default_recipe_command.html'>default_recipe_command()</a></code>.</p></td>
+      <td><p>character scalar</p></td>
     </tr>
     <tr>
       <th>target</th>
-      <td><p>character scalar, name of your target</p></td>
+      <td><p>character scalar</p></td>
     </tr>
     <tr>
       <th>cache_path</th>
-      <td><p>path to the drake cache.
-In practice, this defaults to the hidden <code>.drake/</code> folder,
-but this can be customized. In the Makefile, the drake cache
-is coded with the Unix variable <code>DRAKE_CACHE</code> and then dereferenced
-with <code>$(DRAKE_CACHE)</code>. To simplify things for users who may
-be unfamiliar with Unix variables, the <code>recipe()</code> function
-just shows the literal path to the cache.</p></td>
+      <td><p>character scalar</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character scalar with a Makefile recipe.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Makefile recipes to build targets are customizable.
-Use the <code>Makefile_recipe()</code> function to show and tweak
-Makefile recipes in advance, and see
-<code><a href='default_recipe_command.html'>default_recipe_command()</a></code> and
-<code><a href='r_recipe_wildcard.html'>r_recipe_wildcard()</a></code> for more clues.
-The default recipe is <code>Rscript -e 'R_RECIPE'</code>, where
-<code>R_RECIPE</code> is the wildcard for the recipe in R for making the target.
-In writing the Makefile, <code>R_RECIPE</code> is replaced with something like
-<code><a href='mk.html'>drake::mk("name_of_target", "path_to_cache")</a></code>.
-So when you call
-<code><a href='make.html'>make(..., parallelism = "Makefile", recipe_command = "R -e 'R_RECIPE' -q")</a></code>, # nolint
-from within R, the <code>Makefile</code> builds each target
-with the <code>Makefile</code> recipe,
-<code>R -e 'drake::mk("this_target", "path_to_cache")' -q</code>.
-But since <code>R -q -e</code> fails on Windows,
-so the default <code>recipe_command</code> argument is
-<code>"Rscript -e 'R_RECIPE'"</code>
-(equivalently just <code>"Rscript -e"</code>),
-so the default <code>Makefile</code> recipe for each target is
-<code>Rscript -e 'drake::mk("this_target", "path_to_cache")'</code>.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='default_recipe_command.html'>default_recipe_command()</a></code>,
-<code><a href='r_recipe_wildcard.html'>r_recipe_wildcard()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
+    <p>A character scalar</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Only relevant for "Makefile" parallelism.</span>
-<span class='co'># Show an example Makefile recipe.</span>
-<span class='fu'>Makefile_recipe</span>(<span class='kw'>cache_path</span> <span class='kw'>=</span> <span class='st'>"path"</span>) <span class='co'># `cache_path` has a reliable default.</span></div><div class='output co'>#&gt; <span class='message'>Rscript -e 'drake::mk(target = "your_target", cache_path = "path")'</span></div><div class='input'><span class='co'># Customize your Makefile recipe.</span>
-<span class='fu'>Makefile_recipe</span>(
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"this_target"</span>,
-  <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='st'>"R -e 'R_RECIPE' -q"</span>,
-  <span class='kw'>cache_path</span> <span class='kw'>=</span> <span class='st'>"custom_cache"</span>
-)</div><div class='output co'>#&gt; <span class='message'>R -e 'drake::mk(target = "this_target", cache_path = "custom_cache")' -q</span></div><div class='input'><span class='fu'><a href='default_recipe_command.html'>default_recipe_command</a></span>() <span class='co'># "Rscript -e 'R_RECIPE'" # nolint</span></div><div class='output co'>#&gt; [1] "Rscript -e 'R_RECIPE'"</div><div class='input'><span class='fu'><a href='r_recipe_wildcard.html'>r_recipe_wildcard</a></span>() <span class='co'># "R_RECIPE"</span></div><div class='output co'>#&gt; [1] "R_RECIPE"</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='co'># Look at the Makefile generated by the following.</span>
-<span class='co'># make(my_plan, paralleliem = "Makefile") # Requires Rtools on Windows. # nolint</span>
-<span class='co'># Generates a Makefile with "R -q -e" rather than</span>
-<span class='co'># "Rscript -e".</span>
-<span class='co'># Be aware the R -q -e fails on Windows.</span>
-<span class='co'># make(my_plan, parallelism = "Makefile", jobs = 2, # nolint</span>
-<span class='co'>#   recipe_command = "R -q -e") # nolint</span>
-<span class='co'># Same thing:</span>
-<span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch.</span>
-<span class='co'># make(my_plan, parallelism = "Makefile", jobs = 2, # nolint</span>
-<span class='co'>#   recipe_command = "R -q -e 'R_RECIPE'") # nolint</span>
-<span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch.</span>
-<span class='co'># make(my_plan, parallelism = "Makefile", jobs = 2, # nolint</span>
-<span class='co'>#   recipe_command = "R -e 'R_RECIPE' -q") # nolint</span>
-})
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'># deprecated
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -219,10 +154,6 @@ so the default <code>Makefile</code> recipe for each target is
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

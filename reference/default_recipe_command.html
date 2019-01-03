@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show the default
-recipe command for <code>make(..., parallelism = "Makefile")</code>. — default_recipe_command • drake</title>
+<title>Deprecated — default_recipe_command • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,8 +30,7 @@ recipe command for <code>make(..., parallelism = "Makefile")</code>. — default
 
 
 
-<meta property="og:title" content="Show the default
-recipe command for <code>make(..., parallelism = "Makefile")</code>. — default_recipe_command" />
+<meta property="og:title" content="Deprecated — default_recipe_command" />
 
 <meta property="og:description" content="See the help file of Makefile_recipe()
 for details and examples." />
@@ -111,9 +109,8 @@ for details and examples." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show the default
-recipe command for <code>make(..., parallelism = "Makefile")</code>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/recipe.R'><code>R/recipe.R</code></a></small>
+    <h1>Deprecated</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/deprecate.R'><code>R/deprecate.R</code></a></small>
     <div class="hidden name"><code>default_recipe_command.Rd</code></div>
     </div>
 
@@ -130,21 +127,15 @@ for details and examples.</p>
 
     <p>A character scalar with the default recipe command.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='Makefile_recipe.html'>Makefile_recipe()</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>default_recipe_command</span>()</div><div class='output co'>#&gt; [1] "Rscript -e 'R_RECIPE'"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>default_recipe_command</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: default_recipe_command() and Makefile parallelism are deprecated.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: r_recipe_wildcard() and Makefile parallelism are deprecated.</span></div><div class='output co'>#&gt; [1] "Rscript -e 'R_RECIPE'"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

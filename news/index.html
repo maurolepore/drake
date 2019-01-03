@@ -118,10 +118,12 @@
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>This release will be version 7.0.0, a major update. Unfortunately, some enhancements that increase cache speed also invalidate targets in old projects. Workflows run with drake &lt;= 6.2.1 will need to run from scratch again.</li>
+<li>Remove all parallel backends (<code>parallelism</code> argument of <code><a href="../reference/make.html">make()</a></code>) except “clustermq”, “future”, and “hasty”.</li>
 <li>A large amount of deprecated functionality is removed, including several functions and the single-quoted file API.</li>
 <li>Set the default value of <code>lock_envir</code> to <code>TRUE</code> in <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. So <code><a href="../reference/make.html">make()</a></code> will automatically quit in error if the act of building a target tries to change upstream dependencies.</li>
 <li>
 <code><a href="../reference/make.html">make()</a></code> no longer returns a value. Users will need to call <code><a href="../reference/drake_config.html">drake_config()</a></code> separately to get the old return value of <code><a href="../reference/make.html">make()</a></code>.</li>
+<li>Make <code>jobs</code> a scalar argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. To parallelize the imports and other preprocessing tasks, use <code>jobs_preprocess</code>.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -159,6 +161,7 @@
 <li>Warn the user if running <code><a href="../reference/make.html">make()</a></code> in a subdirectory of the <code>drake</code> project root (determined by the location of the <code>.drake</code> folder in relation to the working directory).</li>
 <li>In the code analysis, explicitly prohibit targets from being dependencies of imported functions.</li>
 <li>Increase options for the <code>verbose</code> argument, including the option to print execution and total build times.</li>
+<li>Separate the building of targets from the processing of imports. Imports are processed with rudimentary staged parallelism (<code>mclapply()</code> or <code>parLapply()</code>, depending on the operating system).</li>
 </ul>
 </div>
 </div>

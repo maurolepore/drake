@@ -175,16 +175,7 @@ then reproducibly tracked as dependencies.</p></td>
     <tr>
       <th>jobs</th>
       <td><p>maximum number of parallel workers for processing the targets.
-If you wish to parallelize the imports and preprocessing as well, you can
-use a named numeric vector of length 2, e.g.
-<code><a href='make.html'>make(jobs = c(imports = 4, targets = 8))</a></code>.
-<code><a href='make.html'>make(jobs = 4)</a></code> is equivalent to <code><a href='make.html'>make(jobs = c(imports = 1, targets = 4))</a></code>.</p>
-<p>Windows users should not set <code>jobs &gt; 1</code> if
-<code>parallelism</code> is <code>"mclapply"</code> because
-<code>mclapply()</code> is based on forking. Windows users
-who use <code>parallelism = "Makefile"</code> will need to
-download and install Rtools.</p>
-<p>You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
+You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
 to help decide on an appropriate number of jobs.
 For details, visit
 <a href='https://ropenscilabs.github.io/drake-manual/time.html'>https://ropenscilabs.github.io/drake-manual/time.html</a>.</p></td>

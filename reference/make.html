@@ -132,19 +132,17 @@ for an overview of the documentation.</p>
     <pre class="usage"><span class='fu'>make</span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/read_drake_plan'>read_drake_plan</a></span>(), <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span>
-  <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_parallelism'>default_parallelism</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/zpackages'>.packages</a></span>()), <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>),
-  <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_Makefile_command'>default_Makefile_command</a></span>(),
-  <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_Makefile_args'>default_Makefile_args</a></span>(<span class='kw'>jobs</span> <span class='kw'>=</span> <span class='no'>jobs</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>),
-  <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/default_recipe_command'>default_recipe_command</a></span>(),
-  <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='st'>"loop"</span>,
+  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs_preprocess</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/zpackages'>.packages</a></span>()),
+  <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
+  <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
   <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>caching</span> <span class='kw'>=</span> <span class='st'>"master"</span>, <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='st'>"Makefile"</span>,
+  <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
   <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/drake/topics/default_hasty_build'>default_hasty_build</a></span>,
@@ -211,39 +209,41 @@ See also <code><a href='get_cache.html'>get_cache()</a></code> and <code><a href
     </tr>
     <tr>
       <th>fetch_cache</th>
-      <td><p>character vector containing lines of code.
-The purpose of this code is to fetch the <code>storr</code> cache
-with a command like <code>storr_rds()</code> or <code>storr_dbi()</code>,
-but customized. This feature is experimental. It will turn out
-to be necessary if you are using both custom non-RDS caches
-and distributed parallelism (<code>parallelism = "future_lapply"</code>
-or <code>"Makefile"</code>) because the distributed R sessions
-need to know how to load the cache.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>parallelism</th>
-      <td><p>character, type of parallelism to use.
-To list the options, call <code><a href='parallelism_choices.html'>parallelism_choices()</a></code>.
+      <td><p>character scalar, type of parallelism to use.
 For detailed explanations, see the
 <a href='https://ropenscilabs.github.io/drake-manual/hpc.html'>high-performance computing chapter</a>
-of the user manual.</p></td>
+of the user manual.</p>
+<p>You could also supply your own scheduler function
+if you want to experiment or aggressively optimize.
+The function should take a single <code>config</code> argument
+(produced by <code><a href='drake_config.html'>drake_config()</a></code>). Existing examples
+from <code>drake</code>'s internals are the <code>backend_*()</code> functions:</p><ul>
+<li><p><code>backend_loop()</code></p></li>
+<li><p><code>backend_clustermq()</code></p></li>
+<li><p><code>backend_future()</code></p></li>
+<li><p><code>backend_hasty()</code> (unofficial)
+However, this functionality is really a back door
+and should not be used for production purposes unless you really
+know what you are doing and you are willing to suffer setbacks
+whenever <code>drake</code>'s unexported core functions are updated.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>jobs</th>
       <td><p>maximum number of parallel workers for processing the targets.
-If you wish to parallelize the imports and preprocessing as well, you can
-use a named numeric vector of length 2, e.g.
-<code>make(jobs = c(imports = 4, targets = 8))</code>.
-<code>make(jobs = 4)</code> is equivalent to <code>make(jobs = c(imports = 1, targets = 4))</code>.</p>
-<p>Windows users should not set <code>jobs &gt; 1</code> if
-<code>parallelism</code> is <code>"mclapply"</code> because
-<code>mclapply()</code> is based on forking. Windows users
-who use <code>parallelism = "Makefile"</code> will need to
-download and install Rtools.</p>
-<p>You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
+You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
 to help decide on an appropriate number of jobs.
 For details, visit
 <a href='https://ropenscilabs.github.io/drake-manual/time.html'>https://ropenscilabs.github.io/drake-manual/time.html</a>.</p></td>
+    </tr>
+    <tr>
+      <th>jobs_preprocess</th>
+      <td><p>number of parallel jobs for processing the imports
+and doing other preprocessing tasks.</p></td>
     </tr>
     <tr>
       <th>packages</th>
@@ -278,44 +278,19 @@ and then once again for each target right before that target is built.</p></td>
     </tr>
     <tr>
       <th>prepend</th>
-      <td><p>lines to prepend to the Makefile if <code>parallelism</code>
-is <code>"Makefile"</code>. See the <a href='https://ropenscilabs.github.io/drake-manual/store.html'>high-performance computing guide</a>
-to learn how to use <code>prepend</code>
-to distribute work on a cluster.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>command</th>
-      <td><p>character scalar, command to call the Makefile
-generated for distributed computing.
-Only applies when <code>parallelism</code> is <code>"Makefile"</code>.
-Defaults to the usual <code>"make"</code>
-(<code><a href='default_Makefile_command.html'>default_Makefile_command()</a></code>),
-but it could also be
-<code>"lsmake"</code> on supporting systems, for example.
-<code>command</code> and <code>args</code> are executed via
-<code><a href='https://www.rdocumentation.org/packages/base/topics/system2'>system2(command, args)</a></code> to run the Makefile.
-If <code>args</code> has something like <code>"--jobs=2"</code>, or if
-<code>jobs &gt;= 2</code> and <code>args</code> is left alone, targets
-will be distributed over independent parallel R sessions
-wherever possible.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>args</th>
-      <td><p>command line arguments to call the Makefile for
-distributed computing. For advanced users only. If set,
-<code>jobs</code> and <code>verbose</code> are overwritten as they apply to the
-Makefile.
-<code>command</code> and <code>args</code> are executed via
-<code><a href='https://www.rdocumentation.org/packages/base/topics/system2'>system2(command, args)</a></code> to run the Makefile.
-If <code>args</code> has something like <code>"--jobs=2"</code>, or if
-<code>jobs &gt;= 2</code> and <code>args</code> is left alone, targets
-will be distributed over independent parallel R sessions
-wherever possible.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>recipe_command</th>
-      <td><p>Character scalar, command for the
-Makefile recipe for each target.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>log_progress</th>
@@ -666,7 +641,6 @@ and the reproducibility/credibility/trust you can place in your project.
 <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>,
 <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>,
 <code><a href='outdated.html'>outdated()</a></code>,
-<code><a href='parallelism_choices.html'>parallelism_choices()</a></code>,
 <code><a href='triggers.html'>triggers()</a></code></p></div>
     
 
