@@ -37,7 +37,9 @@ for non-staged parallel backends. — predict_load_balancing" />
 <meta property="og:description" content="Take the past recorded runtimes times from
 build_times() and use them to predict how the targets
 will be distributed among the available workers in the
-next make()." />
+next make().
+Predictions only include the time it takes to run the targets,
+not overhead/preprocessing from drake itself." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,12 +126,14 @@ for non-staged parallel backends.</h1>
     <p>Take the past recorded runtimes times from
 <code><a href='build_times.html'>build_times()</a></code> and use them to predict how the targets
 will be distributed among the available workers in the
-next <code><a href='make.html'>make()</a></code>.</p>
+next <code><a href='make.html'>make()</a></code>.
+Predictions only include the time it takes to run the targets,
+not overhead/preprocessing from <code>drake</code> itself.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>predict_load_balancing</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/read_drake_config'>read_drake_config</a></span>(),
-  <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a></span>(<span class='fl'>0</span>), <span class='kw'>default_time</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -158,9 +162,7 @@ already up to date and therefore skipped.</p></td>
     </tr>
     <tr>
       <th>targets_only</th>
-      <td><p>logical, whether to factor in
-just the targets into the calculations or use the
-build times for everything, including the imports</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     <tr>
       <th>jobs</th>
@@ -196,23 +198,6 @@ targets default to <code>default_time</code>.</p></td>
 of the names of the targets assigned to each worker.
 For each worker, targets are listed in the order they are assigned.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The prediction is only a rough approximation.
-The algorithm that emulates the workers is not perfect,
-and it may turn out to perform poorly in some edge cases.
-It assumes you are using one of the backends with persistent workers
-(<code>"mclapply"</code>, <code>"parLapply"</code>, or <code>"future_lapply"</code>),
-though the transient worker backends <code>"future"</code> and <code>"Makefile"</code>
-should be similar. The prediction does not apply
-to staged parallelism backends such as
-<code><a href='make.html'>make(parallelism = "mclapply_staged")</a></code> or
-<code><a href='make.html'>make(parallelism = "parLapply_staged")</a></code>.
-The function also assumes
-that the overhead of initializing <code><a href='make.html'>make()</a></code> and any workers is
-negligible. Use the <code>default_time</code> and <code>known_times</code> arguments
-to adjust the assumptions as needed.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='predict_runtime.html'>predict_runtime()</a></code>, <code><a href='build_times.html'>build_times()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
@@ -222,13 +207,14 @@ to adjust the assumptions as needed.</p>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
-<span class='no'>known_times</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>7200</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>my_plan</span>) - <span class='fl'>1</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>known_times</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>), <span class='no'>my_plan</span>$<span class='no'>target</span>[-<span class='fl'>1</span>])
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
+<span class='no'>known_times</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>7200</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>my_plan</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>known_times</span>) <span class='kw'>&lt;-</span> <span class='no'>my_plan</span>$<span class='no'>target</span>
 <span class='no'>known_times</span>
 <span class='co'># Predict the runtime</span>
 <span class='fu'><a href='predict_runtime.html'>predict_runtime</a></span>(
-  <span class='no'>config</span>,
+  <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>,
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>7</span>,
   <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>
@@ -243,8 +229,7 @@ to adjust the assumptions as needed.</p>
   <span class='no'>config</span>,
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>7</span>,
   <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>,
-  <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>
 )
 <span class='no'>balance</span>
 })
@@ -256,8 +241,6 @@ to adjust the assumptions as needed.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

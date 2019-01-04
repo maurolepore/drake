@@ -162,6 +162,7 @@
 <li>In the code analysis, explicitly prohibit targets from being dependencies of imported functions.</li>
 <li>Increase options for the <code>verbose</code> argument, including the option to print execution and total build times.</li>
 <li>Separate the building of targets from the processing of imports. Imports are processed with rudimentary staged parallelism (<code>mclapply()</code> or <code>parLapply()</code>, depending on the operating system).</li>
+<li>Ignore the imports when it comes to build times. Functions <code><a href="../reference/build_times.html">build_times()</a></code>, <code><a href="../reference/predict_runtime.html">predict_runtime()</a></code>, etc. focus on only the targets.</li>
 </ul>
 </div>
 </div>
