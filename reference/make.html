@@ -662,29 +662,7 @@ and the reproducibility/credibility/trust you can place in your project.
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See how they fit in an interactive graph.</span>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># Write a text log file this time.</span>
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># The colors changed in the graph.</span>
-<span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch.</span>
-<span class='co'># Run with at most 2 jobs at a time for the imports</span>
-<span class='co'># and at most 4 jobs at a time for the targets.</span>
-<span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='kw'>imports</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='fl'>4</span>))
-<span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch.</span>
-<span class='co'># Rerun with "Makefile" parallelism with at most 4 jobs.</span>
-<span class='co'># Requires Rtools on Windows.</span>
-<span class='co'># make(my_plan, parallelism = "Makefile", jobs = 4) # nolint</span>
-<span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch.</span>
-<span class='co'># Specify your own Makefile recipe.</span>
-<span class='co'># Requires Rtools on Windows.</span>
-<span class='co'># make(my_plan, parallelism = "Makefile", jobs = 4, # nolint</span>
-<span class='co'>#   recipe_command = "R -q -e") # nolint</span>
-<span class='co'>#</span>
-<span class='co'># make() respects tidy evaluation as implemented in the rlang package.</span>
-<span class='co'># This workflow plan uses rlang's quasiquotation operator `!!`.</span>
-<span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
-  <span class='kw'>little_b</span> <span class='kw'>=</span> <span class='st'>"\"b\""</span>,
-  <span class='kw'>letter</span> <span class='kw'>=</span> <span class='st'>"!!little_b"</span>
-))
-<span class='no'>my_plan</span>
-<span class='fu'>make</span>(<span class='no'>my_plan</span>)
-<span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>letter</span>) <span class='co'># "b"</span>
+<span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch next time around.</span>
 })
 <span class='co'># }</span></pre>
   </div>

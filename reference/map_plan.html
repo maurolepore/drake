@@ -189,7 +189,7 @@ each target. Similar to the <code>trace</code> argument of <code><a href='evalua
 <span class='co'># Below, stringsAsFactors = FALSE is very important! # nolint</span>
 <span class='no'>args</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>args</span>, <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='st'>"mtcars"</span>
-<span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a></span>(<span class='no'>args</span>$<span class='no'>data</span>)
+<span class='no'>args</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/rlang/topics/sym'>syms</a></span>(<span class='no'>args</span>$<span class='no'>data</span>)
 <span class='no'>args</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"fit_"</span>, <span class='no'>args</span>$<span class='no'>x1</span>, <span class='st'>"_"</span>, <span class='no'>args</span>$<span class='no'>x2</span>)
 <span class='co'># print(args) # Requires `args` to be a tibble # nolint</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>)
@@ -206,7 +206,7 @@ each target. Similar to the <code>trace</code> argument of <code><a href='evalua
 #&gt;  8 fit_cyl_gear "my_model_fit(x1 = \"cyl\", x2 = \"gear\", data = mtcars)"
 #&gt;  9 fit_cyl_carb "my_model_fit(x1 = \"cyl\", x2 = \"carb\", data = mtcars)"
 #&gt; 10 fit_disp_hp  "my_model_fit(x1 = \"disp\", x2 = \"hp\", data = mtcars)" 
-#&gt; # ... with 35 more rows</div><div class='input'><span class='co'># Consider `trace = TRUE` to include the columns in `args`</span>
+#&gt; # … with 35 more rows</div><div class='input'><span class='co'># Consider `trace = TRUE` to include the columns in `args`</span>
 <span class='co'># in your plan.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># print(plan) # If you have tibble installed # nolint</span>
