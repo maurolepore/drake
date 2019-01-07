@@ -128,7 +128,7 @@ for ordinary error messages printed to the console.</p>
 
     <pre class="usage"><span class='fu'>failed</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span>
   <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>upstream_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>upstream_only</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,9 +166,7 @@ If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     </tr>
     <tr>
       <th>upstream_only</th>
-      <td><p>logical, whether to list only those targets
-with no failed dependencies.
-Naturally accompanies <code><a href='make.html'>make(keep_going = TRUE)</a></code>.</p></td>
+      <td><p>deprecated</p></td>
     </tr>
     </table>
     
