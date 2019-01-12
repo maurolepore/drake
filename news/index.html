@@ -119,7 +119,7 @@
 <ul>
 <li>This release will be version 7.0.0, a major update. It contains tremendous speed improvements, more and better boosts than in any previous release. Unfortunately, some enhancements that increase cache speed also invalidate targets in old projects. Workflows run with drake &lt;= 6.2.1 will need to run from scratch again.</li>
 <li>Remove all parallel backends (<code>parallelism</code> argument of <code><a href="../reference/make.html">make()</a></code>) except “clustermq”, “future”, and “hasty”.</li>
-<li>A large amount of deprecated functionality is removed, including several functions and the single-quoted file API.</li>
+<li>A large amount of deprecated functionality is removed, including several functions (<code><a href="../reference/built.html">built()</a></code>, <code><a href="../reference/find_project.html">find_project()</a></code>, <code><a href="../reference/imported.html">imported()</a></code>, and <code><a href="../reference/parallel_stages.html">parallel_stages()</a></code>) and the single-quoted file API.</li>
 <li>Set the default value of <code>lock_envir</code> to <code>TRUE</code> in <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. So <code><a href="../reference/make.html">make()</a></code> will automatically quit in error if the act of building a target tries to change upstream dependencies.</li>
 <li>
 <code><a href="../reference/make.html">make()</a></code> no longer returns a value. Users will need to call <code><a href="../reference/drake_config.html">drake_config()</a></code> separately to get the old return value of <code><a href="../reference/make.html">make()</a></code>.</li>
