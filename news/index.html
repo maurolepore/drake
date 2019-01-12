@@ -117,13 +117,14 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
-<li>This release will be version 7.0.0, a major update. Unfortunately, some enhancements that increase cache speed also invalidate targets in old projects. Workflows run with drake &lt;= 6.2.1 will need to run from scratch again.</li>
+<li>This release will be version 7.0.0, a major update. It contains tremendous speed improvements, more and better boosts than in any previous release. Unfortunately, some enhancements that increase cache speed also invalidate targets in old projects. Workflows run with drake &lt;= 6.2.1 will need to run from scratch again.</li>
 <li>Remove all parallel backends (<code>parallelism</code> argument of <code><a href="../reference/make.html">make()</a></code>) except “clustermq”, “future”, and “hasty”.</li>
 <li>A large amount of deprecated functionality is removed, including several functions and the single-quoted file API.</li>
 <li>Set the default value of <code>lock_envir</code> to <code>TRUE</code> in <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. So <code><a href="../reference/make.html">make()</a></code> will automatically quit in error if the act of building a target tries to change upstream dependencies.</li>
 <li>
 <code><a href="../reference/make.html">make()</a></code> no longer returns a value. Users will need to call <code><a href="../reference/drake_config.html">drake_config()</a></code> separately to get the old return value of <code><a href="../reference/make.html">make()</a></code>.</li>
 <li>Make <code>jobs</code> a scalar argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. To parallelize the imports and other preprocessing tasks, use <code>jobs_preprocess</code>.</li>
+<li>Get rid of the “kernels” <code>storr</code> namespace. As a result, <code>drake</code> is faster, but users will no longer be able to use imported functions loaded from <code><a href="../reference/readd.html">loadd()</a></code> or <code><a href="../reference/readd.html">readd()</a></code>.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
