@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show drake's color palette. — drake_palette • drake</title>
+<title>Deprecated. Show drake's color palette. — drake_palette • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,11 +30,9 @@
 
 
 
-<meta property="og:title" content="Show drake's color palette. — drake_palette" />
+<meta property="og:title" content="Deprecated. Show drake's color palette. — drake_palette" />
 
-<meta property="og:description" content="This function is
-used in both the console and graph visualizations.
-Your console must have the crayon package enabled." />
+<meta property="og:description" content="Deprecated on 2019-01-12." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -110,16 +108,14 @@ Your console must have the crayon package enabled." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show drake's color palette.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/vis-color.R'><code>R/vis-color.R</code></a></small>
+    <h1>Deprecated. Show drake's color palette.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-deprecate.R'><code>R/utils-deprecate.R</code></a></small>
     <div class="hidden name"><code>drake_palette.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function is
-used in both the console and graph visualizations.
-Your console must have the crayon package enabled.</p>
+    <p>Deprecated on 2019-01-12.</p>
     
     </div>
 
@@ -132,7 +128,10 @@ but the actual return value is <code>NULL</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This palette applies to console output
+    <p>This function is
+used in both the console and graph visualizations.
+Your console must have the crayon package enabled.
+This palette applies to console output
 (internal functions <code>console()</code> and
 <code>console_many_targets()</code>) and the node colors
 in the graph visualizations.
@@ -141,37 +140,6 @@ please both <code>drake_palette()</code> and
 <code><a href='https://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork::visNetwork(nodes = legend_nodes())</a></code></p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Show drake's color palette as text.</span>
-<span class='fu'>drake_palette</span>()</div><div class='output co'>#&gt; <span class='message'>analyze</span>
-#&gt; <span class='message'>cache</span>
-#&gt; <span class='message'>check</span>
-#&gt; <span class='message'>construct</span>
-#&gt; <span class='message'>encode</span>
-#&gt; <span class='message'>fail</span>
-#&gt; <span class='message'>failed</span>
-#&gt; <span class='message'>import</span>
-#&gt; <span class='message'>import_node</span>
-#&gt; <span class='message'>in_progress</span>
-#&gt; <span class='message'>launch</span>
-#&gt; <span class='message'>load</span>
-#&gt; <span class='message'>missing</span>
-#&gt; <span class='message'>missing_node</span>
-#&gt; <span class='message'>other</span>
-#&gt; <span class='message'>outdated</span>
-#&gt; <span class='message'>retry</span>
-#&gt; <span class='message'>skip</span>
-#&gt; <span class='message'>store</span>
-#&gt; <span class='message'>target</span>
-#&gt; <span class='message'>time</span>
-#&gt; <span class='message'>trigger</span>
-#&gt; <span class='message'>unload</span>
-#&gt; <span class='message'>up_to_date</span></div><div class='input'># Show part of the palette as an interactive visNetwork graph.
-# These are the nodes in the legend of the graph visualizations.
-</div># NOT RUN {
-# visNetwork::visNetwork(nodes = legend_nodes()) # nolint
-# }
-</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -180,9 +148,7 @@ please both <code>drake_palette()</code> and
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

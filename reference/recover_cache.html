@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Load an existing drake files system cache if it exists
-or create a new one otherwise. — recover_cache • drake</title>
+<title>Deprecated. Load an existing drake files system cache
+if it exists or create a new one otherwise. — recover_cache • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,11 +31,10 @@ or create a new one otherwise. — recover_cache • drake</title>
 
 
 
-<meta property="og:title" content="Load an existing drake files system cache if it exists
-or create a new one otherwise. — recover_cache" />
+<meta property="og:title" content="Deprecated. Load an existing drake files system cache
+if it exists or create a new one otherwise. — recover_cache" />
 
-<meta property="og:description" content="Does not work with
-in-memory caches such as storr_environment()." />
+<meta property="og:description" content="Deprecated on 2019-01-13." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,16 +110,15 @@ in-memory caches such as storr_environment()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Load an existing drake files system cache if it exists
-or create a new one otherwise.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-cache.R'><code>R/api-cache.R</code></a></small>
+    <h1>Deprecated. Load an existing drake files system cache
+if it exists or create a new one otherwise.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-deprecate.R'><code>R/utils-deprecate.R</code></a></small>
     <div class="hidden name"><code>recover_cache.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Does not work with
-in-memory caches such as <code>storr_environment()</code>.</p>
+    <p>Deprecated on 2019-01-13.</p>
     
     </div>
 
@@ -192,21 +190,17 @@ after each target finishes).</p></td>
 
     <p>A drake/storr cache.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Does not work with
+in-memory caches such as <code>storr_environment()</code>.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='new_cache.html'>new_cache()</a></code>, <code><a href='this_cache.html'>this_cache()</a></code>,
 <code><a href='get_cache.html'>get_cache()</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='clean.html'>clean</a></span>(<span class='kw'>destroy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build all the targets.</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>recover_cache</span>(<span class='st'>".drake"</span>) <span class='co'># Recover the project's storr cache.</span>
-})
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -215,10 +209,10 @@ after each target finishes).</p></td>
       
       <li><a href="#value">Value</a></li>
 
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

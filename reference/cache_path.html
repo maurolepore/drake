@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return the file path where the cache is stored,
+<title>Deprecated. Return the file path where the cache is stored,
 if applicable. — cache_path • drake</title>
 
 <!-- jquery -->
@@ -31,11 +31,10 @@ if applicable. — cache_path • drake</title>
 
 
 
-<meta property="og:title" content="Return the file path where the cache is stored,
+<meta property="og:title" content="Deprecated. Return the file path where the cache is stored,
 if applicable. — cache_path" />
 
-<meta property="og:description" content="Currently only works with
-storr::storr_rds() file system caches." />
+<meta property="og:description" content="Deprecated on 2019-01-12." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,16 +110,15 @@ storr::storr_rds() file system caches." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return the file path where the cache is stored,
+    <h1>Deprecated. Return the file path where the cache is stored,
 if applicable.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-cache.R'><code>R/api-cache.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-deprecate.R'><code>R/utils-deprecate.R</code></a></small>
     <div class="hidden name"><code>cache_path.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Currently only works with
-<code><a href='https://www.rdocumentation.org/packages/storr/topics/storr_rds'>storr::storr_rds()</a></code> file system caches.</p>
+    <p>Deprecated on 2019-01-12.</p>
     
     </div>
 
@@ -131,8 +129,7 @@ if applicable.</h1>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>cache</th>
-      <td><p>the cache whose file path
-you want to know</p></td>
+      <td><p>the cache whose file path you want to know</p></td>
     </tr>
     </table>
     
@@ -140,20 +137,12 @@ you want to know</p></td>
 
     <p>File path where the cache is stored.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='clean.html'>clean</a></span>(<span class='kw'>destroy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># Get/create a new drake/storr cache.</span>
-<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='recover_cache.html'>recover_cache</a></span>()
-<span class='co'># Show the file path of the cache.</span>
-<span class='fu'>cache_path</span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
-<span class='co'># In-memory caches do not have file paths.</span>
-<span class='no'>mem</span> <span class='kw'>&lt;-</span> <span class='fu'>storr_environment</span>()
-<span class='fu'>cache_path</span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>mem</span>)
-})
-<span class='co'># }</span></pre>
+    <p>Currently only works with
+<code><a href='https://www.rdocumentation.org/packages/storr/topics/storr_rds'>storr::storr_rds()</a></code> file system caches.</p>
+    
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -161,9 +150,9 @@ you want to know</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+
+      <li><a href="#details">Details</a></li>
+          </ul>
 
   </div>
 </div>
