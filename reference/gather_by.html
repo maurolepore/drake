@@ -131,7 +131,7 @@ and then row-bind the new targets to the plan.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>plan</th>
-      <td><p>workflow plan data frame of prespecified targets</p></td>
+      <td><p>Workflow plan data frame of prespecified targets.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -141,25 +141,25 @@ Groupings with all <code>NA</code>s in the selector variables are ignored.</p></
     </tr>
     <tr>
       <th>prefix</th>
-      <td><p>character, prefix for naming the new targets.
+      <td><p>Character, prefix for naming the new targets.
 Suffixes are generated from the values of the columns
 specified in <code>...</code>.</p></td>
     </tr>
     <tr>
       <th>gather</th>
-      <td><p>function used to gather the targets. Should be
+      <td><p>Function used to gather the targets. Should be
 one of <code><a href='https://www.rdocumentation.org/packages/base/topics/list'>list(...)</a></code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c(...)</a></code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind(...)</a></code>, or similar.</p></td>
     </tr>
     <tr>
       <th>append</th>
-      <td><p>logical. If <code>TRUE</code>, the output will include the
+      <td><p>Logical. If <code>TRUE</code>, the output will include the
 original rows in the <code>plan</code> argument.
 If <code>FALSE</code>, the output will only include the new
 targets and commands.</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>an expression like you would pass to <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code>.
+      <td><p>An expression like you would pass to <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code>.
 The rows for which <code>filter</code> evaluates to <code>TRUE</code> will be gathered,
 and the rest will be excluded from gathering.
 Why not just call <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code> before <code>gather_by()</code>?
@@ -169,8 +169,8 @@ in the output. See the examples for a demonstration.</p></td>
     </tr>
     <tr>
       <th>sep</th>
-      <td><p>character scalar, delimiter for creating the names
-of new targets</p></td>
+      <td><p>Character scalar, delimiter for creating the names
+of new targets.</p></td>
     </tr>
     </table>
     

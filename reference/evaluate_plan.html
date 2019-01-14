@@ -137,8 +137,8 @@ possible values using <code>evaluate_plan</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>plan</th>
-      <td><p>workflow plan data frame, similar to one produced by
-<code><a href='drake_plan.html'>drake_plan()</a></code></p></td>
+      <td><p>Workflow plan data frame, similar to one produced by
+<code><a href='drake_plan.html'>drake_plan()</a></code>.</p></td>
     </tr>
     <tr>
       <th>rules</th>
@@ -151,11 +151,11 @@ not <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>wildcard</th>
-      <td><p>character scalar denoting a wildcard placeholder</p></td>
+      <td><p>Character scalar denoting a wildcard placeholder.</p></td>
     </tr>
     <tr>
       <th>values</th>
-      <td><p>vector of values to replace the wildcard
+      <td><p>Vector of values to replace the wildcard
 in the drake instructions. Will be treated as a character vector.
 Must be the same length as <code>plan$command</code> if <code>expand</code> is
 <code>TRUE</code>.</p></td>
@@ -171,25 +171,25 @@ and the values are recycled.</p></td>
     </tr>
     <tr>
       <th>rename</th>
-      <td><p>logical, whether to rename the targets
+      <td><p>Logical, whether to rename the targets
 based on the values supplied for the wildcards
 (based on <code>values</code> or <code>rules</code>).</p></td>
     </tr>
     <tr>
       <th>trace</th>
-      <td><p>logical, whether to add columns that
+      <td><p>Logical, whether to add columns that
 trace the wildcard expansion process. These new
 columns indicate which targets were evaluated and with which
 wildcards.</p></td>
     </tr>
     <tr>
       <th>columns</th>
-      <td><p>character vector of names of columns
+      <td><p>Character vector of names of columns
 to look for and evaluate the wildcards.</p></td>
     </tr>
     <tr>
       <th>sep</th>
-      <td><p>character scalar, separator for the names
+      <td><p>Character scalar, separator for the names
 of the new targets generated. For example, in
 <code>evaluate_plan(drake_plan(x = sqrt(y__)), list(y__ = 1:2), sep = ".")</code>,
 the names of the new targets are <code>x.1</code> and <code>x.2</code>.</p></td>

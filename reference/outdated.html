@@ -128,7 +128,7 @@ make()." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>config</th>
-      <td><p>option internal runtime parameter list
+      <td><p>Optional internal runtime parameter list
 produced with <code><a href='drake_config.html'>drake_config()</a></code>.
 You must use a fresh <code>config</code> argument with an up-to-date
 <code>config$targets</code> element that was never modified by hand.
@@ -137,12 +137,12 @@ See the details in the help file for <code><a href='drake_config.html'>drake_con
     </tr>
     <tr>
       <th>make_imports</th>
-      <td><p>logical, whether to make the imports first.
+      <td><p>Logical, whether to make the imports first.
 Set to <code>FALSE</code> to save some time and risk obsolete output.</p></td>
     </tr>
     <tr>
-      <th>do_prework, </th>
-      <td><p>whether to do the <code>prework</code>
+      <th>do_prework</th>
+      <td><p>Whether to do the <code>prework</code>
 normally supplied to <code><a href='make.html'>make()</a></code>.</p></td>
     </tr>
     </table>

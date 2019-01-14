@@ -136,11 +136,11 @@ so we no longer need this configuration step.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>cache</th>
-      <td><p>cache to configure</p></td>
+      <td><p>Cache to configure</p></td>
     </tr>
     <tr>
       <th>short_hash_algo</th>
-      <td><p>short hash algorithm for drake.
+      <td><p>Short hash algorithm for drake.
 The short algorithm must be among <code><a href='available_hash_algos.html'>available_hash_algos()</a></code>,
 which is just the collection of algorithms available to the <code>algo</code>
 argument in <code><a href='https://www.rdocumentation.org/packages/digest/topics/digest'>digest::digest()</a></code>.
@@ -148,7 +148,7 @@ See <code><a href='default_short_hash_algo.html'>default_short_hash_algo()</a></
     </tr>
     <tr>
       <th>long_hash_algo</th>
-      <td><p>long hash algorithm for drake.
+      <td><p>Long hash algorithm for drake.
 The long algorithm must be among <code><a href='available_hash_algos.html'>available_hash_algos()</a></code>,
 which is just the collection of algorithms available to the <code>algo</code>
 argument in <code><a href='https://www.rdocumentation.org/packages/digest/topics/digest'>digest::digest()</a></code>.
@@ -156,19 +156,19 @@ See <code><a href='default_long_hash_algo.html'>default_long_hash_algo()</a></co
     </tr>
     <tr>
       <th>log_progress</th>
-      <td><p>deprecated logical.
+      <td><p>Deprecated logical.
 Previously toggled whether to clear the recorded
 build progress if this cache was used for previous calls to
 <code><a href='make.html'>make()</a></code>.</p></td>
     </tr>
     <tr>
       <th>overwrite_hash_algos</th>
-      <td><p>logical, whether to try to overwrite
+      <td><p>Logical, whether to try to overwrite
 the hash algorithms in the cache with any user-specified ones.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.</p><ul>
+      <td><p>Logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: plus checks and cache info.</p></li>
@@ -180,11 +180,11 @@ the hash algorithms in the cache with any user-specified ones.</p></td>
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>number of jobs for parallel processing</p></td>
+      <td><p>Number of jobs for parallel processing</p></td>
     </tr>
     <tr>
       <th>init_common_values</th>
-      <td><p>logical, whether to set the initial <code>drake</code>
+      <td><p>Logical, whether to set the initial <code>drake</code>
 version in the cache and other common values.
 Not always a thread safe operation, so should only be <code>TRUE</code>
 on the master process</p></td>

@@ -144,7 +144,7 @@ but you can see what all the colors mean with
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>config</th>
-      <td><p>a <code><a href='drake_config.html'>drake_config()</a></code> configuration list.
+      <td><p>A <code><a href='drake_config.html'>drake_config()</a></code> configuration list.
 You can get one as a return value from <code><a href='make.html'>make()</a></code> as well.</p></td>
     </tr>
     <tr>
@@ -162,7 +162,7 @@ interactive graph using a web browser.</p></td>
     </tr>
     <tr>
       <th>selfcontained</th>
-      <td><p>logical, whether
+      <td><p>Logical, whether
 to save the <code>file</code> as a self-contained
 HTML file (with external resources base64 encoded) or a file with
 external resources placed in an adjacent directory. If <code>TRUE</code>,
@@ -170,7 +170,7 @@ pandoc is required.</p></td>
     </tr>
     <tr>
       <th>build_times</th>
-      <td><p>character string or logical.
+      <td><p>Character string or logical.
 If character, the choices are
 1. <code>"build"</code>: runtime of the command plus the time
 it take to store the target or import.
@@ -182,11 +182,11 @@ no build times at all. See <code><a href='build_times.html'>build_times()</a></c
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>number of digits for rounding the build times</p></td>
+      <td><p>Number of digits for rounding the build times</p></td>
     </tr>
     <tr>
       <th>targets_only</th>
-      <td><p>logical,
+      <td><p>Logical,
 whether to skip the imports and only include the
 targets in the workflow plan.</p></td>
     </tr>
@@ -231,19 +231,19 @@ edges will drop from the graph.</p></td>
     </tr>
     <tr>
       <th>make_imports</th>
-      <td><p>logical, whether to make the imports first.
+      <td><p>Logical, whether to make the imports first.
 Set to <code>FALSE</code> to increase speed and risk using obsolete information.</p></td>
     </tr>
     <tr>
       <th>from_scratch</th>
-      <td><p>logical, whether to assume all the targets
+      <td><p>Logical, whether to assume all the targets
 will be made from scratch on the next <code><a href='make.html'>make()</a></code>.
 Makes all targets outdated, but keeps information about
 build progress in previous <code><a href='make.html'>make()</a></code>s.</p></td>
     </tr>
     <tr>
       <th>group</th>
-      <td><p>optional character scalar, name of the column used to
+      <td><p>Optional character scalar, name of the column used to
 group nodes into columns. All the columns names of your <code>config$plan</code>
 are choices. The other choices (such as <code>"status"</code>) are column names
 in the <code>nodes</code> . To group nodes into clusters in the graph,
@@ -251,18 +251,18 @@ you must also supply the <code>clusters</code> argument.</p></td>
     </tr>
     <tr>
       <th>clusters</th>
-      <td><p>optional character vector of values to cluster on.
+      <td><p>Optional character vector of values to cluster on.
 These values must be elements of the column of the <code>nodes</code> data frame
 that you specify in the <code>group</code> argument to <code><a href='drake_graph_info.html'>drake_graph_info()</a></code>.</p></td>
     </tr>
     <tr>
       <th>show_output_files</th>
-      <td><p>logical, whether to include
+      <td><p>Logical, whether to include
 <code><a href='file_out.html'>file_out()</a></code> files in the graph.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed to <code><a href='https://www.rdocumentation.org/packages/networkD3/topics/sankeyNetwork'>networkD3::sankeyNetwork()</a></code>.</p></td>
+      <td><p>Arguments passed to <code><a href='https://www.rdocumentation.org/packages/networkD3/topics/sankeyNetwork'>networkD3::sankeyNetwork()</a></code>.</p></td>
     </tr>
     </table>
     

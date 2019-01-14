@@ -141,7 +141,7 @@ not overhead/preprocessing from <code>drake</code> itself.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>config</th>
-      <td><p>option internal runtime parameter list of
+      <td><p>Optional internal runtime parameter list of
 produced by both <code><a href='make.html'>make()</a></code> and
 <code><a href='drake_config.html'>drake_config()</a></code>.</p></td>
     </tr>
@@ -154,37 +154,37 @@ Defaults to all targets.</p></td>
     </tr>
     <tr>
       <th>from_scratch</th>
-      <td><p>logical, whether to predict a
+      <td><p>Logical, whether to predict a
 <code><a href='make.html'>make()</a></code> build from scratch or to
 take into account the fact that some targets may be
 already up to date and therefore skipped.</p></td>
     </tr>
     <tr>
       <th>targets_only</th>
-      <td><p>deprecated</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>the <code>jobs</code> argument of your next planned
+      <td><p>The <code>jobs</code> argument of your next planned
 <code><a href='make.html'>make()</a></code>. How many targets to do you plan
 to have running simultaneously?</p></td>
     </tr>
     <tr>
       <th>known_times</th>
-      <td><p>a named numeric vector with targets/imports
+      <td><p>A named numeric vector with targets/imports
 as names and values as hypothetical runtimes in seconds.
 Use this argument to overwrite any of the existing build times
 or the <code>default_time</code>.</p></td>
     </tr>
     <tr>
       <th>default_time</th>
-      <td><p>number of seconds to assume for any
+      <td><p>Number of seconds to assume for any
 target or import with no recorded runtime (from <code><a href='build_times.html'>build_times()</a></code>)
 or anything in <code>known_times</code>.</p></td>
     </tr>
     <tr>
       <th>warn</th>
-      <td><p>logical, whether to warn the user about
+      <td><p>Logical, whether to warn the user about
 any targets with no available runtime, either in
 <code>known_times</code> or <code><a href='build_times.html'>build_times()</a></code>. The times for these
 targets default to <code>default_time</code>.</p></td>

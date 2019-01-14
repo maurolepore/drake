@@ -128,19 +128,19 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>targets to remove from the cache: as names (symbols) or
+      <td><p>Targets to remove from the cache: as names (symbols) or
 character strings. If the <code>tidyselect</code> package is installed,
 you can also supply <code>dplyr</code>-style <code>tidyselect</code>
 commands such as <code>starts_with()</code>, <code>ends_with()</code>, and <code>one_of()</code>.</p></td>
     </tr>
     <tr>
       <th>list</th>
-      <td><p>character vector naming targets to be removed from the
+      <td><p>Character vector naming targets to be removed from the
 cache. Similar to the <code>list</code> argument of <code><a href='https://www.rdocumentation.org/packages/base/topics/rm'>remove()</a></code>.</p></td>
     </tr>
     <tr>
       <th>destroy</th>
-      <td><p>logical, whether to totally remove the drake cache.
+      <td><p>Logical, whether to totally remove the drake cache.
 If <code>destroy</code> is <code>FALSE</code>, only the targets
 from <code><a href='make.html'>make()</a></code>
 are removed. If <code>TRUE</code>, the whole cache is removed, including
@@ -155,7 +155,7 @@ Ignored if a <code>cache</code> is supplied.</p></td>
     </tr>
     <tr>
       <th>search</th>
-      <td><p>logical. If <code>TRUE</code>, search parent directories
+      <td><p>Logical. If <code>TRUE</code>, search parent directories
 to find the nearest drake cache. Otherwise, look in the
 current working directory only.
 Ignored if a <code>cache</code> is supplied.</p></td>
@@ -167,7 +167,7 @@ If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.</p><ul>
+      <td><p>Logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: plus checks and cache info.</p></li>
@@ -184,13 +184,13 @@ If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     </tr>
     <tr>
       <th>force</th>
-      <td><p>logical, whether to try to clean the cache
+      <td><p>Logical, whether to try to clean the cache
 even though the project may not be back compatible with the
 current version of drake.</p></td>
     </tr>
     <tr>
       <th>garbage_collection</th>
-      <td><p>logical, whether to call
+      <td><p>Logical, whether to call
 <code>cache$gc()</code> to do garbage collection.
 If <code>TRUE</code>, cached data with no remaining references
 will be removed.
@@ -200,7 +200,7 @@ See the <code><a href='https://www.rdocumentation.org/packages/base/topics/gc'>g
     </tr>
     <tr>
       <th>purge</th>
-      <td><p>logical, whether to remove objects from
+      <td><p>Logical, whether to remove objects from
 metadata namespaces such as "meta", "build_times", and "errors".</p></td>
     </tr>
     </table>

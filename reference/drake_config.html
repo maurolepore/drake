@@ -171,7 +171,7 @@ and it could lead to false negative results from
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>plan</th>
-      <td><p>workflow plan data frame.
+      <td><p>Workflow plan data frame.
 A workflow plan data frame is a data frame
 with a <code>target</code> column and a <code>command</code> column.
 (See the details in the <code><a href='drake_plan.html'>drake_plan()</a></code> help file
@@ -185,7 +185,7 @@ easy ways to generate large workflow plan data frames.</p></td>
     </tr>
     <tr>
       <th>targets</th>
-      <td><p>character vector, names of targets to build.
+      <td><p>Character vector, names of targets to build.
 Dependencies are built too. Together, the <code>plan</code> and
 <code>targets</code> comprise the workflow network
 (i.e. the <code>graph</code> argument).
@@ -193,7 +193,7 @@ Changing either will change the network.</p></td>
     </tr>
     <tr>
       <th>envir</th>
-      <td><p>environment to use. Defaults to the current
+      <td><p>Environment to use. Defaults to the current
 workspace, so you should not need to worry about this
 most of the time. A deep copy of <code>envir</code> is made,
 so you don't need to worry about your workspace being modified
@@ -204,7 +204,7 @@ then reproducibly tracked as dependencies.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.</p><ul>
+      <td><p>Logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: plus checks and cache info.</p></li>
@@ -225,11 +225,11 @@ See also <code><a href='get_cache.html'>get_cache()</a></code> and <code><a href
     </tr>
     <tr>
       <th>fetch_cache</th>
-      <td><p>deprecated</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>parallelism</th>
-      <td><p>character scalar, type of parallelism to use.
+      <td><p>Character scalar, type of parallelism to use.
 For detailed explanations, see the
 <a href='https://ropenscilabs.github.io/drake-manual/hpc.html'>high-performance computing chapter</a>
 of the user manual.</p>
@@ -250,7 +250,7 @@ whenever <code>drake</code>'s unexported core functions are updated.</p></li>
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>maximum number of parallel workers for processing the targets.
+      <td><p>Maximum number of parallel workers for processing the targets.
 You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
 to help decide on an appropriate number of jobs.
 For details, visit
@@ -258,12 +258,12 @@ For details, visit
     </tr>
     <tr>
       <th>jobs_preprocess</th>
-      <td><p>number of parallel jobs for processing the imports
+      <td><p>Number of parallel jobs for processing the imports
 and doing other preprocessing tasks.</p></td>
     </tr>
     <tr>
       <th>packages</th>
-      <td><p>character vector packages to load, in the order
+      <td><p>Character vector packages to load, in the order
 they should be loaded. Defaults to <code><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev(.packages())</a></code>, so you
 should not usually need to set this manually. Just call
 <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library()</a></code> to load your packages before <code><a href='make.html'>make()</a></code>.
@@ -283,7 +283,7 @@ before that target is built.</p></td>
     </tr>
     <tr>
       <th>prework</th>
-      <td><p>character vector of lines of code to run
+      <td><p>Character vector of lines of code to run
 before build time. This code can be used to
 load packages, set options, etc., although the packages in the
 <code>packages</code> argument are loaded before any prework is done.
@@ -294,19 +294,19 @@ and then once again for each target right before that target is built.</p></td>
     </tr>
     <tr>
       <th>prepend</th>
-      <td><p>deprecated</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>command</th>
-      <td><p>deprecated</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>args</th>
-      <td><p>deprecated</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>recipe_command</th>
-      <td><p>deprecated</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>timeout</th>
@@ -345,7 +345,7 @@ regardless of the version of <code>drake</code> that last ran <code><a href='mak
     </tr>
     <tr>
       <th>log_progress</th>
-      <td><p>logical, whether to log the progress
+      <td><p>Logical, whether to log the progress
 of individual targets as they are being built. Progress logging
 creates a lot of little files in the cache, and it may make builds
 a tiny bit slower. So you may see gains in storage efficiency
@@ -365,12 +365,12 @@ See <code><a href='trigger.html'>trigger()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>skip_targets</th>
-      <td><p>logical, whether to skip building the targets
+      <td><p>Logical, whether to skip building the targets
 in <code>plan</code> and just import objects and files.</p></td>
     </tr>
     <tr>
       <th>skip_imports</th>
-      <td><p>logical, whether to totally neglect to
+      <td><p>Logical, whether to totally neglect to
 process the imports and jump straight to the targets. This can be useful
 if your imports are massive and you just want to test your project,
 but it is bad practice for reproducible data analysis.
@@ -378,12 +378,12 @@ This argument is overridden if you supply your own <code>graph</code> argument.<
     </tr>
     <tr>
       <th>skip_safety_checks</th>
-      <td><p>logical, whether to skip the safety checks
+      <td><p>Logical, whether to skip the safety checks
 on your workflow. Use at your own peril.</p></td>
     </tr>
     <tr>
       <th>lazy_load</th>
-      <td><p>either a character vector or a logical. Choices:</p><ul>
+      <td><p>Either a character vector or a logical. Choices:</p><ul>
 <li><p><code>"eager"</code>: no lazy loading. The target is loaded right away
 with <code><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign()</a></code>.</p></li>
 <li><p><code>"promise"</code>: lazy loading with <code><a href='https://www.rdocumentation.org/packages/base/topics/delayedAssign'>delayedAssign()</a></code></p></li>
@@ -411,7 +411,7 @@ it may duplicate the loading of dependencies, costing time.</p></td>
     </tr>
     <tr>
       <th>session_info</th>
-      <td><p>logical, whether to save the <code><a href='https://www.rdocumentation.org/packages/utils/topics/sessionInfo'>sessionInfo()</a></code>
+      <td><p>Logical, whether to save the <code><a href='https://www.rdocumentation.org/packages/utils/topics/sessionInfo'>sessionInfo()</a></code>
 to the cache. This behavior is recommended for serious <code><a href='make.html'>make()</a></code>s
 for the sake of reproducibility. This argument only exists to
 speed up tests. Apparently, <code><a href='https://www.rdocumentation.org/packages/utils/topics/sessionInfo'>sessionInfo()</a></code> is a bottleneck
@@ -433,7 +433,7 @@ this is a step in the right direction for data reproducibility.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>integer, the root pseudo-random number generator
+      <td><p>Integer, the root pseudo-random number generator
 seed to use for your project.
 In <code><a href='make.html'>make()</a></code>, <code>drake</code> generates a unique
 local seed for each target using the global seed
@@ -462,7 +462,7 @@ use <code><a href='clean.html'>clean(destroy = TRUE)</a></code>.</p></td>
     </tr>
     <tr>
       <th>caching</th>
-      <td><p>character string, only applies to
+      <td><p>Character string, only applies to
 <code>"clustermq"</code>, <code>"clustermq_staged"</code>, and <code>"future"</code> parallel backends.
 The <code>caching</code> argument can be either <code>"master"</code> or <code>"worker"</code>.</p><ul>
 <li><p><code>"master"</code>: Targets are built by remote workers and sent back to
@@ -480,7 +480,7 @@ a network can be slow.</p></li>
     </tr>
     <tr>
       <th>keep_going</th>
-      <td><p>logical, whether to still keep running <code><a href='make.html'>make()</a></code>
+      <td><p>Logical, whether to still keep running <code><a href='make.html'>make()</a></code>
 if targets fail.</p></td>
     </tr>
     <tr>
@@ -498,7 +498,7 @@ with the last few targets it builds.</p></td>
     </tr>
     <tr>
       <th>pruning_strategy</th>
-      <td><p>deprecated. See <code>memory_strategy</code>.</p></td>
+      <td><p>Deprecated. See <code>memory_strategy</code>.</p></td>
     </tr>
     <tr>
       <th>makefile_path</th>
@@ -510,7 +510,7 @@ Example: <code><a href='make.html'>make(parallelism = "Makefile", makefile_path 
     </tr>
     <tr>
       <th>console_log_file</th>
-      <td><p>character scalar,
+      <td><p>Character scalar,
 connection object (such as <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>) or <code>NULL</code>.
 If <code>NULL</code>, console output will be printed
 to the R console using <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>.
@@ -526,7 +526,7 @@ after each target finishes).</p></td>
     </tr>
     <tr>
       <th>ensure_workers</th>
-      <td><p>logical, whether the master process
+      <td><p>Logical, whether the master process
 should wait for the workers to post before assigning them
 targets. Should usually be <code>TRUE</code>. Set to <code>FALSE</code>
 for <code><a href='make.html'>make(parallelism = "future_lapply", jobs = n)</a></code>
@@ -537,12 +537,12 @@ This argument only applies to parallel computing with persistent workers
     </tr>
     <tr>
       <th>garbage_collection</th>
-      <td><p>logical, whether to call <code><a href='https://www.rdocumentation.org/packages/base/topics/gc'>gc()</a></code> each time
+      <td><p>Logical, whether to call <code><a href='https://www.rdocumentation.org/packages/base/topics/gc'>gc()</a></code> each time
 a target is built during <code><a href='make.html'>make()</a></code>.</p></td>
     </tr>
     <tr>
       <th>template</th>
-      <td><p>a named list of values to fill in the <code>{{ ... }}</code>
+      <td><p>A named list of values to fill in the <code>{{ ... }}</code>
 placeholders in template files (e.g. from <code><a href='drake_hpc_template_file.html'>drake_hpc_template_file()</a></code>).
 Same as the <code>template</code> argument of <code><a href='https://www.rdocumentation.org/packages/clustermq/topics/Q'>clustermq::Q()</a></code> and
 <code><a href='https://www.rdocumentation.org/packages/clustermq/topics/workers'>clustermq::workers</a></code>.
@@ -578,7 +578,7 @@ back-off: say,
     </tr>
     <tr>
       <th>hasty_build</th>
-      <td><p>a user-defined function.
+      <td><p>A user-defined function.
 In "hasty mode" (<code><a href='make.html'>make(parallelism = "hasty")</a></code>)
 this is the function that evaluates a target's command
 and returns the resulting value. The <code>hasty_build</code> argument
@@ -628,7 +628,7 @@ Otherwise, supplying one could save time.</p></td>
     </tr>
     <tr>
       <th>lock_envir</th>
-      <td><p>logical, whether to lock <code>config$envir</code> during <code><a href='make.html'>make()</a></code>.
+      <td><p>Logical, whether to lock <code>config$envir</code> during <code><a href='make.html'>make()</a></code>.
 If <code>TRUE</code>, <code><a href='make.html'>make()</a></code> quits in error whenever a command in your
 <code>drake</code> plan (or <code>prework</code>) tries to add, remove, or modify
 non-hidden variables in your environment/workspace/R session.

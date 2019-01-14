@@ -148,7 +148,7 @@ object.</p></td>
     </tr>
     <tr>
       <th>character_only</th>
-      <td><p>logical, whether <code>name</code> should be treated
+      <td><p>Logical, whether <code>name</code> should be treated
 as a character or a symbol
 (just like <code>character.only</code> in <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library()</a></code>).</p></td>
     </tr>
@@ -161,7 +161,7 @@ Ignored if a <code>cache</code> is supplied.</p></td>
     </tr>
     <tr>
       <th>search</th>
-      <td><p>logical. If <code>TRUE</code>, search parent directories
+      <td><p>Logical. If <code>TRUE</code>, search parent directories
 to find the nearest drake cache. Otherwise, look in the
 current working directory only.
 Ignored if a <code>cache</code> is supplied.</p></td>
@@ -173,12 +173,12 @@ If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     </tr>
     <tr>
       <th>namespace</th>
-      <td><p>optional character string,
+      <td><p>Optional character string,
 name of the <code>storr</code> namespace to read from.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.</p><ul>
+      <td><p>Logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: plus checks and cache info.</p></li>
@@ -190,35 +190,35 @@ name of the <code>storr</code> namespace to read from.</p></td>
     </tr>
     <tr>
       <th>show_source</th>
-      <td><p>logical, option to show the command
+      <td><p>Logical, option to show the command
 that produced the target or indicate that the object
 was imported (using <code><a href='show_source.html'>show_source()</a></code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>targets to load from the cache: as names (symbols) or
+      <td><p>Targets to load from the cache: as names (symbols) or
 character strings. If the <code>tidyselect</code> package is installed,
 you can also supply <code>dplyr</code>-style <code>tidyselect</code>
 commands such as <code>starts_with()</code>, <code>ends_with()</code>, and <code>one_of()</code>.</p></td>
     </tr>
     <tr>
       <th>list</th>
-      <td><p>character vector naming targets to be loaded from the
+      <td><p>Character vector naming targets to be loaded from the
 cache. Similar to the <code>list</code> argument of <code><a href='https://www.rdocumentation.org/packages/base/topics/rm'>remove()</a></code>.</p></td>
     </tr>
     <tr>
       <th>imported_only</th>
-      <td><p>logical, whether only imported objects
+      <td><p>Logical, whether only imported objects
 should be loaded.</p></td>
     </tr>
     <tr>
       <th>envir</th>
-      <td><p>environment to load objects into. Defaults to the
+      <td><p>Environment to load objects into. Defaults to the
 calling environment (current workspace).</p></td>
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>number of parallel jobs for loading objects. On
+      <td><p>Number of parallel jobs for loading objects. On
 non-Windows systems, the loading process for multiple objects
 can be lightly parallelized via <code><a href='https://www.rdocumentation.org/packages/parallel/topics/mclapply'>parallel::mclapply()</a></code>.
 just set jobs to be an integer greater than 1. On Windows,
@@ -226,7 +226,7 @@ just set jobs to be an integer greater than 1. On Windows,
     </tr>
     <tr>
       <th>deps</th>
-      <td><p>logical, whether to load any cached
+      <td><p>Logical, whether to load any cached
 dependencies of the targets
 instead of the targets themselves.
 This is useful if you know your
@@ -241,7 +241,7 @@ if you set <code>deps</code> to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>lazy</th>
-      <td><p>either a string or a logical. Choices:</p><ul>
+      <td><p>Either a string or a logical. Choices:</p><ul>
 <li><p><code>"eager"</code>: no lazy loading. The target is loaded right away
 with <code><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign()</a></code>.</p></li>
 <li><p><code>"promise"</code>: lazy loading with <code><a href='https://www.rdocumentation.org/packages/base/topics/delayedAssign'>delayedAssign()</a></code></p></li>
@@ -253,23 +253,23 @@ with <code><a href='https://www.rdocumentation.org/packages/base/topics/assign'>
     </tr>
     <tr>
       <th>graph</th>
-      <td><p>deprecated</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>replace</th>
-      <td><p>logical. If <code>FALSE</code>,
+      <td><p>Logical. If <code>FALSE</code>,
 items already in your environment
 will not be replaced.</p></td>
     </tr>
     <tr>
       <th>tidyselect</th>
-      <td><p>logical, whether to enable
+      <td><p>Logical, whether to enable
 <code>tidyselect</code> expressions in <code>...</code> like
 <code>starts_with("prefix")</code> and <code>ends_with("suffix")</code>.</p></td>
     </tr>
     <tr>
       <th>config</th>
-      <td><p>optional <code><a href='drake_config.html'>drake_config()</a></code> object.
+      <td><p>Optional <code><a href='drake_config.html'>drake_config()</a></code> object.
 You should supply one if <code>deps</code> is <code>TRUE</code>.</p></td>
     </tr>
     </table>

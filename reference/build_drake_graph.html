@@ -128,7 +128,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>plan</th>
-      <td><p>workflow plan data frame.
+      <td><p>Workflow plan data frame.
 A workflow plan data frame is a data frame
 with a <code>target</code> column and a <code>command</code> column.
 (See the details in the <code><a href='drake_plan.html'>drake_plan()</a></code> help file
@@ -142,7 +142,7 @@ easy ways to generate large workflow plan data frames.</p></td>
     </tr>
     <tr>
       <th>targets</th>
-      <td><p>character vector, names of targets to build.
+      <td><p>Character vector, names of targets to build.
 Dependencies are built too. Together, the <code>plan</code> and
 <code>targets</code> comprise the workflow network
 (i.e. the <code>graph</code> argument).
@@ -150,7 +150,7 @@ Changing either will change the network.</p></td>
     </tr>
     <tr>
       <th>envir</th>
-      <td><p>environment to use. Defaults to the current
+      <td><p>Environment to use. Defaults to the current
 workspace, so you should not need to worry about this
 most of the time. A deep copy of <code>envir</code> is made,
 so you don't need to worry about your workspace being modified
@@ -161,7 +161,7 @@ then reproducibly tracked as dependencies.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>logical or numeric, control printing to the console.</p><ul>
+      <td><p>Logical or numeric, control printing to the console.</p><ul>
 <li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
 <li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
 <li><p><code>2</code>: plus checks and cache info.</p></li>
@@ -173,7 +173,7 @@ then reproducibly tracked as dependencies.</p></td>
     </tr>
     <tr>
       <th>jobs</th>
-      <td><p>maximum number of parallel workers for processing the targets.
+      <td><p>Maximum number of parallel workers for processing the targets.
 You can experiment with <code><a href='predict_runtime.html'>predict_runtime()</a></code>
 to help decide on an appropriate number of jobs.
 For details, visit
@@ -181,7 +181,7 @@ For details, visit
     </tr>
     <tr>
       <th>console_log_file</th>
-      <td><p>character scalar,
+      <td><p>Character scalar,
 connection object (such as <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>) or <code>NULL</code>.
 If <code>NULL</code>, console output will be printed
 to the R console using <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>.

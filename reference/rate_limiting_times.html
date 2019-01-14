@@ -131,7 +131,7 @@ by a much better scheduling algorithm.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>config</th>
-      <td><p>option internal runtime parameter list of
+      <td><p>Optional internal runtime parameter list of
 <code><a href='make.html'>make</a>(...)</code>,
 produced by both <code><a href='make.html'>make()</a></code> and
 <code><a href='drake_config.html'>drake_config()</a></code>.</p></td>
@@ -145,24 +145,24 @@ Defaults to all targets.</p></td>
     </tr>
     <tr>
       <th>from_scratch</th>
-      <td><p>logical, whether to assume
+      <td><p>Logical, whether to assume
 next hypothetical call to <code><a href='make.html'>make()</a></code>
 is a build from scratch (after <code><a href='clean.html'>clean()</a></code>).</p></td>
     </tr>
     <tr>
       <th>targets_only</th>
-      <td><p>logical, whether to factor in just the
+      <td><p>Logical, whether to factor in just the
 targets or use times from everything, including the imports.</p></td>
     </tr>
     <tr>
       <th>future_jobs</th>
-      <td><p>hypothetical number of jobs
+      <td><p>Hypothetical number of jobs
 assumed for the predicted runtime.
 assuming this number of jobs.</p></td>
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>number of digits for rounding the times.</p></td>
+      <td><p>Number of digits for rounding the times.</p></td>
     </tr>
     </table>
     
