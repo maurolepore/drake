@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a workflow plan data frame to
-analyze multiple datasets using multiple methods of analysis. — plan_analyses • drake</title>
+<title>Deprecated. — plan_analyses • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,11 +30,9 @@ analyze multiple datasets using multiple methods of analysis. — plan_analyses 
 
 
 
-<meta property="og:title" content="Generate a workflow plan data frame to
-analyze multiple datasets using multiple methods of analysis. — plan_analyses" />
+<meta property="og:title" content="Deprecated. — plan_analyses" />
 
-<meta property="og:description" content="Uses wildcards to create a new
-workflow plan data frame from a template data frame." />
+<meta property="og:description" content="Use evaluate_plan() and expand_plan() instead." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,16 +108,14 @@ workflow plan data frame from a template data frame." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a workflow plan data frame to
-analyze multiple datasets using multiple methods of analysis.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-wildcards.R'><code>R/api-wildcards.R</code></a></small>
+    <h1>Deprecated.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-deprecate.R'><code>R/utils-deprecate.R</code></a></small>
     <div class="hidden name"><code>plan_analyses.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Uses wildcards to create a new
-workflow plan data frame from a template data frame.</p>
+    <p>Use <code><a href='evaluate_plan.html'>evaluate_plan()</a></code> and <code><a href='expand_plan.html'>expand_plan()</a></code> instead.</p>
     
     </div>
 
@@ -154,41 +149,14 @@ the names of new targets</p></td>
 
     <p>An evaluated workflow plan data frame of analysis targets.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='map_plan.html'>map_plan()</a></code>, <code><a href='reduce_by.html'>reduce_by()</a></code>, <code><a href='gather_by.html'>gather_by()</a></code>, <code><a href='reduce_plan.html'>reduce_plan()</a></code>,
-<code><a href='gather_plan.html'>gather_plan()</a></code>, <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>, <code><a href='expand_plan.html'>expand_plan()</a></code>, <code><a href='plan_summaries.html'>plan_summaries()</a></code></p></div>
+    <p>2019-01-13</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create the piece of the workflow plan for the datasets.</span>
-<span class='no'>datasets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>5</span>),
-  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>50</span>))
-<span class='co'># Create a template for the analysis methods.</span>
-<span class='no'>methods</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>regression1</span> <span class='kw'>=</span> <span class='fu'>reg1</span>(<span class='no'>dataset__</span>),
-  <span class='kw'>regression2</span> <span class='kw'>=</span> <span class='fu'>reg2</span>(<span class='no'>dataset__</span>))
-<span class='co'># Evaluate the wildcards to create the part of the workflow plan</span>
-<span class='co'># encoding the analyses of the datasets.</span>
-<span class='no'>ans</span> <span class='kw'>&lt;-</span> <span class='fu'>plan_analyses</span>(<span class='no'>methods</span>, <span class='kw'>datasets</span> <span class='kw'>=</span> <span class='no'>datasets</span>)
-<span class='no'>ans</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
-#&gt;   target            command    
-#&gt;   &lt;chr&gt;             &lt;chr&gt;      
-#&gt; 1 regression1_small reg1(small)
-#&gt; 2 regression1_large reg1(large)
-#&gt; 3 regression2_small reg2(small)
-#&gt; 4 regression2_large reg2(large)</div><div class='input'><span class='co'># For the final workflow plan, row bind the pieces together.</span>
-<span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='no'>datasets</span>, <span class='no'>ans</span>)
-<span class='no'>my_plan</span></div><div class='output co'>#&gt; # A tibble: 6 x 2
-#&gt;   target            command     
-#&gt;   &lt;chr&gt;             &lt;chr&gt;       
-#&gt; 1 small             simulate(5) 
-#&gt; 2 large             simulate(50)
-#&gt; 3 regression1_small reg1(small) 
-#&gt; 4 regression1_large reg1(large) 
-#&gt; 5 regression2_small reg2(small) 
-#&gt; 6 regression2_large reg2(large) </div></pre>
+    <pre class="examples"><div class='input'># Deprecated
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -197,7 +165,7 @@ the names of new targets</p></td>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
