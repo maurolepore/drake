@@ -129,7 +129,7 @@ argument to supply them as character strings.</p>
     </div>
 
     <pre class="usage"><span class='fu'>drake_plan</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>file_targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,6 +158,12 @@ with names as targets.</p></td>
 such as quasiquotation
 when evaluating commands passed through the free-form
 <code>...</code> argument.</p></td>
+    </tr>
+    <tr>
+      <th>trace</th>
+      <td><p>Logical, whether to add columns to show
+what happened during target transformations, e.g.
+<code>drake_plan(x = target(..., transform = ...))</code>.</p></td>
     </tr>
     </table>
     
@@ -236,6 +242,45 @@ should be the brew patterns.</p></li>
 <span class='co'># There, `drake` sees that `small`, `large`, and `coef_regression2_small`</span>
 <span class='co'># are loaded in with calls to `loadd()` and `readd()`.</span>
 <span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='st'>"report.Rmd"</span>)
+
+<span class='co'># Use transformations to generate large plans.</span>
+<span class='fu'>drake_plan</span>(
+  <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>48</span>),
+  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>64</span>),
+  <span class='kw'>reg</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>small</span>, <span class='no'>large</span>))
+  ),
+  <span class='kw'>summ</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'>sum_fun</span>(<span class='no'>data</span>, <span class='no'>reg</span>),
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>sum_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>coef</span>, <span class='no'>residuals</span>), <span class='no'>reg</span>)
+  ),
+  <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>summ</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>summarize</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
+  )
+)
+
+<span class='co'># Set `trace` to `TRUE` to retain information about the</span>
+<span class='co'># transformation process.</span>
+<span class='fu'>drake_plan</span>(
+  <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>48</span>),
+  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>64</span>),
+  <span class='kw'>reg</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>small</span>, <span class='no'>large</span>))
+  ),
+  <span class='kw'>summ</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'>sum_fun</span>(<span class='no'>data</span>, <span class='no'>reg</span>),
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>sum_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>coef</span>, <span class='no'>residuals</span>), <span class='no'>reg</span>)
+  ),
+  <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>summ</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>summarize</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
+  ),
+  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
+
 <span class='co'># You can create your own custom columns too.</span>
 <span class='co'># See ?triggers for more on triggers.</span>
 <span class='fu'>drake_plan</span>(
