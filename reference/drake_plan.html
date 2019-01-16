@@ -129,7 +129,8 @@ argument to supply them as character strings.</p>
     </div>
 
     <pre class="usage"><span class='fu'>drake_plan</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>file_targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,10 +161,16 @@ when evaluating commands passed through the free-form
 <code>...</code> argument.</p></td>
     </tr>
     <tr>
+      <th>transform</th>
+      <td><p>Logical, whether to transform targets in the plan
+according to the <code>transform</code> and <code>group</code> fields identified
+by <code><a href='target.html'>target()</a></code>. See the examples for details.</p></td>
+    </tr>
+    <tr>
       <th>trace</th>
       <td><p>Logical, whether to add columns to show
 what happened during target transformations, e.g.
-<code>drake_plan(x = target(..., transform = ...))</code>.</p></td>
+<code>drake_plan(x = target(..., transform = ...), transform = TRUE)</code>.</p></td>
     </tr>
     </table>
     
