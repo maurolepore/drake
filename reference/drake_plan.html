@@ -261,6 +261,27 @@ should be the brew patterns.</p></li>
   )
 )
 
+<span class='co'># Define custom groupings with the `group` field.</span>
+<span class='fu'>drake_plan</span>(
+  <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>48</span>),
+  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>64</span>),
+  <span class='kw'>reg1</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>small</span>, <span class='no'>large</span>)),
+    <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>reg</span>
+  ),
+  <span class='kw'>reg2</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>small</span>, <span class='no'>large</span>)),
+    <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>reg</span>
+  ),
+  <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>reg</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>summarize</span>(<span class='no'>data</span>),
+    <span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>
+  )
+)
+
 <span class='co'># Set `trace` to `TRUE` to retain information about the</span>
 <span class='co'># transformation process.</span>
 <span class='fu'>drake_plan</span>(
