@@ -214,6 +214,9 @@
     <loc>https://ropensci.github.io/drake/reference/find_project.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/from_plan.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/future_build.html</loc>
   </url>
   <url>
