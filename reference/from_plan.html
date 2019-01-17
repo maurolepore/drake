@@ -119,7 +119,7 @@ change, but the target x will stay up to date." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get a target's plan info from inside a plan's command.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/exec-memory.R'><code>R/exec-memory.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-plan.R'><code>R/api-plan.R</code></a></small>
     <div class="hidden name"><code>from_plan.Rd</code></div>
     </div>
 
@@ -174,30 +174,30 @@ and <code>column</code> is the name of the column of the plan you provide.</p>
 <span class='co'># Notice how we treat `mc.cores` for `mclapply()`</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>a</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>mclapply</span>(<span class='fl'>1</span>:<span class='fl'>8</span>, <span class='no'>my_function</span>, <span class='kw'>mc.cores</span> <span class='kw'>=</span> <span class='fu'>from_plan</span>(<span class='st'>"cores"</span>)),
+    <span class='kw pkg'>parallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/parallel/topics/mclapply'>mclapply</a></span>(<span class='fl'>1</span>:<span class='fl'>8</span>, <span class='no'>sqrt</span>, <span class='kw'>mc.cores</span> <span class='kw'>=</span> <span class='fu'>from_plan</span>(<span class='st'>"cores"</span>)),
     <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>4</span>
   ),
   <span class='kw'>b</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>mclapply</span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='no'>my_function</span>, <span class='kw'>mc.cores</span> <span class='kw'>=</span> <span class='fu'>from_plan</span>(<span class='st'>"cores"</span>)),
+    <span class='kw pkg'>parallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/parallel/topics/mclapply'>mclapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='no'>sqrt</span>, <span class='kw'>mc.cores</span> <span class='kw'>=</span> <span class='fu'>from_plan</span>(<span class='st'>"cores"</span>)),
     <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>2</span>
   )
 )
 
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;   target command                                                       cores
-#&gt;   &lt;chr&gt;  &lt;chr&gt;                                                         &lt;dbl&gt;
-#&gt; 1 a      "mclapply(1:8, my_function, mc.cores = from_plan(\"cores\"))"     4
-#&gt; 2 b      "mclapply(1:4, my_function, mc.cores = from_plan(\"cores\"))"     2</div><div class='input'>
-<span class='co'># make() # nolint</span>
+#&gt;   target command                                                          cores
+#&gt;   &lt;chr&gt;  &lt;chr&gt;                                                            &lt;dbl&gt;
+#&gt; 1 a      "parallel::mclapply(1:8, sqrt, mc.cores = from_plan(\"cores\"))"     4
+#&gt; 2 b      "parallel::mclapply(1:4, sqrt, mc.cores = from_plan(\"cores\"))"     2</div><div class='input'>
+<span class='co'># make(plan) # nolint</span>
 
 <span class='co'># Now, if you change the `cores` column of the plan, the parallelism will</span>
 <span class='co'># change, but the targets will stay up to date.</span>
 <span class='no'>plan</span>$<span class='no'>cores</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;   target command                                                       cores
-#&gt;   &lt;chr&gt;  &lt;chr&gt;                                                         &lt;dbl&gt;
-#&gt; 1 a      "mclapply(1:8, my_function, mc.cores = from_plan(\"cores\"))"     1
-#&gt; 2 b      "mclapply(1:4, my_function, mc.cores = from_plan(\"cores\"))"     1</div><div class='input'>
+#&gt;   target command                                                          cores
+#&gt;   &lt;chr&gt;  &lt;chr&gt;                                                            &lt;dbl&gt;
+#&gt; 1 a      "parallel::mclapply(1:8, sqrt, mc.cores = from_plan(\"cores\"))"     1
+#&gt; 2 b      "parallel::mclapply(1:4, sqrt, mc.cores = from_plan(\"cores\"))"     1</div><div class='input'>
 # make(plan) # nolint
 </div></pre>
   </div>
