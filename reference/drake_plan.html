@@ -162,8 +162,12 @@ when evaluating commands passed through the free-form
     </tr>
     <tr>
       <th>transform</th>
-      <td><p>Logical, whether to transform targets in the plan
-according to the <code>transform</code> and <code>group</code> fields identified
+      <td><p>Logical, whether to transform the plan
+into a larger plan with more targets.
+This is still an experimental feature,
+so please check your workflow with <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>
+before running it with <code><a href='make.html'>make()</a></code>.
+Requires the <code>transform</code> and <code>group</code> fields identified
 by <code><a href='target.html'>target()</a></code>. See the examples for details.</p></td>
     </tr>
     <tr>
@@ -176,8 +180,8 @@ what happened during target transformations, e.g.
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of targets and commands. See the details
-for optional columns you can append manually post-hoc.</p>
+    <p>A data frame of targets, commands, and optional
+custom columns.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -250,6 +254,9 @@ should be the brew patterns.</p></li>
 <span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='st'>"report.Rmd"</span>)
 
 <span class='co'># Use transformations to generate large plans.</span>
+<span class='co'># This feature is experimental, so please</span>
+<span class='co'># check your workflow with `vis_drake_graph()`</span>
+<span class='co'># before running `make()`.</span>
 <span class='fu'>drake_plan</span>(
   <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>48</span>),
   <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>64</span>),
@@ -267,7 +274,8 @@ should be the brew patterns.</p></li>
   )
 )
 
-<span class='co'># Define custom groupings with the `group` field.</span>
+<span class='co'># Optionally define custom groupings with the `group` field.</span>
+<span class='co'># Again, this is still experimental.</span>
 <span class='fu'>drake_plan</span>(
   <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>48</span>),
   <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>64</span>),

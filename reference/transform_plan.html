@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transform a plan — transform_plan • drake</title>
+<title>Experimental: transform a plan. — transform_plan • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,13 +30,12 @@
 
 
 
-<meta property="og:title" content="Transform a plan — transform_plan" />
+<meta property="og:title" content="Experimental: transform a plan. — transform_plan" />
 
-<meta property="og:description" content="Take an existing drake plan with a transform column,
-and apply transformations that expand and gather targets.
-Use to generate large plans. transform_plan() is useful
-if you generated multiple plans with drake_plan(transform = FALSE)
-and and want to combine and transform them later." />
+<meta property="og:description" content="This feature has a lot of promise,
+but it is still experimental.
+Please review your workflow with vis_drake_graph()
+before you run it." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,18 +111,17 @@ and and want to combine and transform them later." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Transform a plan</h1>
+    <h1>Experimental: transform a plan.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-transform.R'><code>R/api-transform.R</code></a></small>
     <div class="hidden name"><code>transform_plan.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Take an existing <code>drake</code> plan with a <code>transform</code> column,
-and apply transformations that expand and gather targets.
-Use to generate large plans. <code>transform_plan()</code> is useful
-if you generated multiple plans with <code><a href='drake_plan.html'>drake_plan(transform = FALSE)</a></code>
-and and want to combine and transform them later.</p>
+    <p>This feature has a lot of promise,
+but it is still experimental.
+Please review your workflow with <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>
+before you run it.</p>
     
     </div>
 
@@ -148,6 +146,17 @@ what happened during target transformations, e.g.
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A transformed workflow plan data frame</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The <code>transform_plan()</code> function
+take an existing <code>drake</code> plan and applies the transformations
+in the optional <code>"transform"</code> column, expanding and gathering
+targets to create a larger plan. Usually this is done
+inside <code><a href='drake_plan.html'>drake_plan(transform = TRUE)</a></code>, but
+<code>transform_plan()</code> on its own is useful
+if you generated multiple plans with <code><a href='drake_plan.html'>drake_plan(transform = FALSE)</a></code>
+and and want to combine and transform them later.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -192,6 +201,8 @@ what happened during target transformations, e.g.
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
