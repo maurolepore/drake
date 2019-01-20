@@ -34,10 +34,13 @@ for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code
 <meta property="og:title" content="Create a workflow plan data frame
 for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code>. — drake_plan" />
 
-<meta property="og:description" content="Turns a named collection of target/command pairs into
-a workflow plan data frame for make(). You can give the commands
-as named expressions, or you can use the list
-argument to supply them as character strings." />
+<meta property="og:description" content="A drake plan is a data frame with columns
+&quot;target&quot; and &quot;command&quot;. Each target is an R object
+produced in your workflow, and each command is the
+R code to produce it. The &quot;target&quot; column has the names
+of the targets, and no duplicate elements are allowed.
+The &quot;command&quot; column is either a character vector of
+code strings or a list of language objects." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,10 +124,13 @@ for the <code>plan</code> argument of <code><a href='make.html'>make()</a></code
 
     <div class="ref-description">
     
-    <p>Turns a named collection of target/command pairs into
-a workflow plan data frame for <code><a href='make.html'>make()</a></code>. You can give the commands
-as named expressions, or you can use the <code>list</code>
-argument to supply them as character strings.</p>
+    <p>A <code>drake</code> plan is a data frame with columns
+<code>"target"</code> and <code>"command"</code>. Each target is an R object
+produced in your workflow, and each command is the
+R code to produce it. The <code>"target"</code> column has the names
+of the targets, and no duplicate elements are allowed.
+The <code>"command"</code> column is either a character vector of
+code strings or a list of language objects.</p>
     
     </div>
 
@@ -185,49 +191,16 @@ custom columns.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A workflow plan data frame is a data frame
-with a <code>target</code> column and a <code>command</code> column.
-Targets are the R objects that <code>drake</code> generates,
-and commands are the pieces of R code that produce them.</p>
-<p>The commands that return targets may also depend on
-external files and create multiple external files.
-To signal that you are creating and/or depending on
-custom files in your commands,
-use the <code><a href='file_in.html'>file_in()</a></code>, <code><a href='knitr_in.html'>knitr_in()</a></code>, and
-<code><a href='file_out.html'>file_out()</a></code> functions in your commands.
-the examples in this help file provide some guidance.</p>
-<p>Besides the <code>target</code> and <code>command</code> columns, there are optional columns
-you may append to your workflow plan data frame:</p><ul>
-<li><p><code>trigger</code>: a character vector of triggers. A trigger is a rule for
-when to cause a target to (re)build. See <code><a href='triggers.html'>triggers()</a></code> for your options.
-For a walkthrough, see
-<a href='https://ropenscilabs.github.io/drake-manual/debug.html'>https://ropenscilabs.github.io/drake-manual/debug.html</a></p></li>
-<li><p><code>retries</code>: number of times to retry a target if it fails
-to build the first time.</p></li>
-<li><p><code>timeout</code>: Seconds of overall time to allow before imposing
-a timeout on a target.
-Assign target-level timeout times with an optional <code>timeout</code>
-column in <code>plan</code>.</p></li>
-<li><p><code>cpu</code>: Seconds of cpu time to allow before imposing
-a timeout on a target.
-Assign target-level cpu timeout times with an optional <code>cpu</code>
-column in <code>plan</code>.</p></li>
-<li><p><code>elapsed</code>: Seconds of elapsed time to allow before imposing
-a timeout on a target.
-Assign target-level elapsed timeout times with an optional <code>elapsed</code>
-column in <code>plan</code>.</p></li>
-<li><p><code>resources</code>: Experimental, no guarantees that this works all the time.
-<code>resources</code> is a list column. Each element is a named list,
-same as the <code>resources</code> argument to <code>batchtools_slurm()</code>
-and related <code>future.bachtools</code> functions. See also
-<a href='https://github.com/HenrikBengtsson/future.batchtools#examples'>https://github.com/HenrikBengtsson/future.batchtools#examples</a>. # nolint
-<code>resources[[target_name]]</code> is a list of
-computing resource parameters for the target.
-Each element is a value passed to a <code>brew</code> placeholder of a
-<code>batchtools</code> template file.
-The list names of <code>resources[[target_name]]</code>
-should be the brew patterns.</p></li>
-</ul>
+    <p><code>drake</code> has special syntax for generating large plans,
+and you can read about it at
+<a href='https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way'>https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way</a>. # nolint</p>
+<p>There is also special syntax for declaring input files,
+output files, and knitr reports so dependencies are
+properly accounted for (<code><a href='file_in.html'>file_in()</a></code>, <code><a href='file_out.html'>file_out()</a></code>, and
+<code><a href='knitr_in.html'>knitr_in()</a></code>, respectively.</p>
+<p>Besides <code>"target"</code> and <code>"command"</code>, you may include
+optional columns in your workflow plan. For details, visit
+<a href='https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan'>https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
