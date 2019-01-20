@@ -34,6 +34,8 @@
 
 <meta property="og:description" content="This feature has a lot of promise,
 but it is still experimental.
+Read about the details at
+https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way # nolint
 Please review your workflow with vis_drake_graph()
 before you run it." />
 <meta name="twitter:card" content="summary" />
@@ -120,6 +122,8 @@ before you run it." />
     
     <p>This feature has a lot of promise,
 but it is still experimental.
+Read about the details at
+<a href='https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way'>https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way</a> # nolint
 Please review your workflow with <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>
 before you run it.</p>
     
@@ -167,34 +171,41 @@ and and want to combine and transform them later.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>plan1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>analyze_data</span>(<span class='st'>"source"</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>source1</span>, <span class='no'>source2</span>)) <span class='co'># cross() would work too</span>
+    <span class='fu'>analyze_data</span>(<span class='no'>source</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>source1</span>, <span class='no'>source2</span>, <span class='no'>source3</span>))
   ),
-  <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
+<span class='no'>plan1</span>$<span class='no'>data_size</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"large"</span>, <span class='st'>"small"</span>, <span class='st'>"small"</span>)
 <span class='no'>plan2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>summaries</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>summarize_analyses</span>(<span class='no'>analysis</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>reduce</span>()
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>reduce</span>(<span class='no'>data_size</span>)
   ),
   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bind_plans.html'>bind_plans</a></span>(<span class='no'>plan1</span>, <span class='no'>plan2</span>)
-<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;   target    command                      transform                        
-#&gt;   &lt;chr&gt;     &lt;chr&gt;                        &lt;chr&gt;                            
-#&gt; 1 analysis  "analyze_data(\"source\")"   map(source = c(source1, source2))
-#&gt; 2 summaries summarize_analyses(analysis) reduce()                         </div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 2
-#&gt;   target         command                                                        
-#&gt;   &lt;chr&gt;          &lt;chr&gt;                                                          
-#&gt; 1 analysis_sour… "analyze_data(\"source\")"                                     
-#&gt; 2 analysis_sour… "analyze_data(\"source\")"                                     
-#&gt; 3 summaries      "summarize_analyses(list(analysis_source1 = analysis_source1, …</div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 5
-#&gt;   target      command                               source analysis    summaries
+<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 4 x 6
+#&gt;   target       command              source  analysis     data_size transform    
+#&gt;   &lt;chr&gt;        &lt;chr&gt;                &lt;fct&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;        
+#&gt; 1 analysis_so… analyze_data(source… source1 analysis_so… large     &lt;NA&gt;         
+#&gt; 2 analysis_so… analyze_data(source… source2 analysis_so… small     &lt;NA&gt;         
+#&gt; 3 analysis_so… analyze_data(source… source3 analysis_so… small     &lt;NA&gt;         
+#&gt; 4 summaries    summarize_analyses(… &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;      reduce(data_…</div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 5
+#&gt;   target      command                               source analysis    data_size
 #&gt;   &lt;chr&gt;       &lt;chr&gt;                                 &lt;fct&gt;  &lt;chr&gt;       &lt;chr&gt;    
-#&gt; 1 analysis_s… "analyze_data(\"source\")"            sourc… analysis_s… &lt;NA&gt;     
-#&gt; 2 analysis_s… "analyze_data(\"source\")"            sourc… analysis_s… &lt;NA&gt;     
-#&gt; 3 summaries   "summarize_analyses(list(analysis_so… &lt;NA&gt;   &lt;NA&gt;        summaries</div></pre>
+#&gt; 1 analysis_s… analyze_data(source1)                 sourc… analysis_s… large    
+#&gt; 2 analysis_s… analyze_data(source2)                 sourc… analysis_s… small    
+#&gt; 3 analysis_s… analyze_data(source3)                 sourc… analysis_s… small    
+#&gt; 4 summaries_… summarize_analyses(list(analysis_sou… &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;     
+#&gt; 5 summaries_… "summarize_analyses(list(analysis_so… &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;     </div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 6
+#&gt;   target    command                      source  analysis   data_size summaries 
+#&gt;   &lt;chr&gt;     &lt;chr&gt;                        &lt;fct&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     
+#&gt; 1 analysis… analyze_data(source1)        source1 analysis_… large     &lt;NA&gt;      
+#&gt; 2 analysis… analyze_data(source2)        source2 analysis_… small     &lt;NA&gt;      
+#&gt; 3 analysis… analyze_data(source3)        source3 analysis_… small     &lt;NA&gt;      
+#&gt; 4 summarie… summarize_analyses(list(ana… &lt;NA&gt;    &lt;NA&gt;       &lt;NA&gt;      summaries…
+#&gt; 5 summarie… "summarize_analyses(list(an… &lt;NA&gt;    &lt;NA&gt;       &lt;NA&gt;      summaries…</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
