@@ -270,7 +270,7 @@ should be the brew patterns.</p></li>
   ),
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>summ</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>summarize</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>reduce</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
   )
 )
 
@@ -291,7 +291,7 @@ should be the brew patterns.</p></li>
   ),
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>reg</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>summarize</span>(<span class='no'>data</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>reduce</span>(<span class='no'>data</span>),
     <span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>
   )
 )
@@ -311,7 +311,7 @@ should be the brew patterns.</p></li>
   ),
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>summ</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>summarize</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>reduce</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
   ),
   <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
