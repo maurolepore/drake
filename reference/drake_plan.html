@@ -328,22 +328,10 @@ should be the brew patterns.</p></li>
   ),
   <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'>analyze</span>(<span class='no'>website_data</span>)
 )
-<span class='co'># Are you a fan of tidy evaluation?</span>
-<span class='no'>my_variable</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
-<span class='fu'>drake_plan</span>(
-  <span class='kw'>a</span> <span class='kw'>=</span> !!<span class='no'>my_variable</span>,
-  <span class='kw'>b</span> <span class='kw'>=</span> !!<span class='no'>my_variable</span> + <span class='fl'>1</span>,
-  <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"!!my_variable"</span>)
-)
-<span class='fu'>drake_plan</span>(
-  <span class='kw'>a</span> <span class='kw'>=</span> !!<span class='no'>my_variable</span>,
-  <span class='kw'>b</span> <span class='kw'>=</span> !!<span class='no'>my_variable</span> + <span class='fl'>1</span>,
-  <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"!!my_variable"</span>),
-  <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
-<span class='co'># For instances of !! that remain unevaluated in the workflow plan,</span>
-<span class='co'># make() will run these commands in tidy fashion,</span>
-<span class='co'># evaluating the !! operator using the environment you provided.</span>
+
+<span class='co'># Tidy evaluation can help generate super large plans.</span>
+<span class='no'>sms</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a></span>(<span class='no'>letters</span>) <span class='co'># To sub in character args, skip this.</span>
+<span class='fu'>drake_plan</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='fu'>f</span>(<span class='no'>char</span>), <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>char</span> <span class='kw'>=</span> !!<span class='no'>sms</span>)))
 })</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
