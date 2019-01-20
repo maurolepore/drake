@@ -191,8 +191,14 @@ custom columns.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>drake</code> has special syntax for generating large plans,
-and you can read about it at
+    <p><code>drake</code> has special syntax for generating large plans.
+Your code will look something like
+<code>drake_plan(x = target(cmd, transform = f(y, z), group = g)</code>
+where <code>f()</code> is either <code>map()</code>, <code>cross()</code>, or <code>reduce()</code>
+(similar to <code><a href='https://purrr.tidyverse.org/reference/map2.html'>purrr::pmap()</a></code>, <code>tidy::crossing()</code>, and <code><a href='https://dplyr.tidyverse.org/reference/summarise.html'>dplyr::summarize()</a></code>,
+respectively). These verbs mimic Tidyverse behavior to scale up
+existing plans to large numbers of targets.
+You can read about this interface at
 <a href='https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way'>https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way</a>. # nolint</p>
 <p>There is also special syntax for declaring input files,
 output files, and knitr reports so dependencies are
