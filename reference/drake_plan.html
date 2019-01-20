@@ -258,11 +258,13 @@ should be the brew patterns.</p></li>
 <span class='co'># check your workflow with `vis_drake_graph()`</span>
 <span class='co'># before running `make()`.</span>
 <span class='fu'>drake_plan</span>(
-  <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>48</span>),
-  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>64</span>),
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='no'>nrows</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>nrows</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>48</span>, <span class='fl'>64</span>))
+  ),
   <span class='kw'>reg</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
-   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>small</span>, <span class='no'>large</span>))
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='no'>data</span>)
   ),
   <span class='kw'>summ</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>sum_fun</span>(<span class='no'>data</span>, <span class='no'>reg</span>),
@@ -281,7 +283,7 @@ should be the brew patterns.</p></li>
   <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>64</span>),
   <span class='kw'>reg1</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>small</span>, <span class='no'>large</span>)),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>small</span>, <span class='no'>large</span>)),
     <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>reg</span>
   ),
   <span class='kw'>reg2</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(

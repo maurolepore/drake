@@ -133,7 +133,8 @@ before you run it.</p>
     <tr>
       <th>plan</th>
       <td><p>Workflow plan data frame with a column for targets,
-a column for commands, and a column for transformations.</p></td>
+a column for commands, a column for transformations,
+and a column for optional grouping variables.</p></td>
     </tr>
     <tr>
       <th>trace</th>
@@ -167,7 +168,7 @@ and and want to combine and transform them later.</p>
     <pre class="examples"><div class='input'><span class='no'>plan1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>analyze_data</span>(<span class='st'>"source"</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>source1</span>, <span class='no'>source2</span>))
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>source1</span>, <span class='no'>source2</span>)) <span class='co'># cross() would work too</span>
   ),
   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -180,17 +181,17 @@ and and want to combine and transform them later.</p>
 )
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bind_plans.html'>bind_plans</a></span>(<span class='no'>plan1</span>, <span class='no'>plan2</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;   target    command                      transform                          
-#&gt;   &lt;chr&gt;     &lt;chr&gt;                        &lt;chr&gt;                              
-#&gt; 1 analysis  "analyze_data(\"source\")"   cross(source = c(source1, source2))
-#&gt; 2 summaries summarize_analyses(analysis) reduce()                           </div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 2
+#&gt;   target    command                      transform                        
+#&gt;   &lt;chr&gt;     &lt;chr&gt;                        &lt;chr&gt;                            
+#&gt; 1 analysis  "analyze_data(\"source\")"   map(source = c(source1, source2))
+#&gt; 2 summaries summarize_analyses(analysis) reduce()                         </div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 2
 #&gt;   target         command                                                        
 #&gt;   &lt;chr&gt;          &lt;chr&gt;                                                          
 #&gt; 1 analysis_sour… "analyze_data(\"source\")"                                     
 #&gt; 2 analysis_sour… "analyze_data(\"source\")"                                     
 #&gt; 3 summaries      "summarize_analyses(list(analysis_source1 = analysis_source1, …</div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 5
 #&gt;   target      command                               source analysis    summaries
-#&gt;   &lt;chr&gt;       &lt;chr&gt;                                 &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    
+#&gt;   &lt;chr&gt;       &lt;chr&gt;                                 &lt;fct&gt;  &lt;chr&gt;       &lt;chr&gt;    
 #&gt; 1 analysis_s… "analyze_data(\"source\")"            sourc… analysis_s… &lt;NA&gt;     
 #&gt; 2 analysis_s… "analyze_data(\"source\")"            sourc… analysis_s… &lt;NA&gt;     
 #&gt; 3 summaries   "summarize_analyses(list(analysis_so… &lt;NA&gt;   &lt;NA&gt;        summaries</div></pre>
