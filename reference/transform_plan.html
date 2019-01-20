@@ -187,20 +187,20 @@ and and want to combine and transform them later.</p>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bind_plans.html'>bind_plans</a></span>(<span class='no'>plan1</span>, <span class='no'>plan2</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 4 x 6
 #&gt;   target       command              source  analysis     data_size transform    
-#&gt;   &lt;chr&gt;        &lt;chr&gt;                &lt;fct&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;        
+#&gt;   &lt;chr&gt;        &lt;chr&gt;                &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;        
 #&gt; 1 analysis_so… analyze_data(source… source1 analysis_so… large     &lt;NA&gt;         
 #&gt; 2 analysis_so… analyze_data(source… source2 analysis_so… small     &lt;NA&gt;         
 #&gt; 3 analysis_so… analyze_data(source… source3 analysis_so… small     &lt;NA&gt;         
 #&gt; 4 summaries    summarize_analyses(… &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;      reduce(data_…</div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 5
 #&gt;   target      command                               source analysis    data_size
-#&gt;   &lt;chr&gt;       &lt;chr&gt;                                 &lt;fct&gt;  &lt;chr&gt;       &lt;chr&gt;    
+#&gt;   &lt;chr&gt;       &lt;chr&gt;                                 &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    
 #&gt; 1 analysis_s… analyze_data(source1)                 sourc… analysis_s… large    
 #&gt; 2 analysis_s… analyze_data(source2)                 sourc… analysis_s… small    
 #&gt; 3 analysis_s… analyze_data(source3)                 sourc… analysis_s… small    
 #&gt; 4 summaries_… summarize_analyses(list(analysis_sou… &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;     
 #&gt; 5 summaries_… "summarize_analyses(list(analysis_so… &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;     </div><div class='input'><span class='fu'>transform_plan</span>(<span class='no'>plan</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 6
 #&gt;   target    command                      source  analysis   data_size summaries 
-#&gt;   &lt;chr&gt;     &lt;chr&gt;                        &lt;fct&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     
+#&gt;   &lt;chr&gt;     &lt;chr&gt;                        &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     
 #&gt; 1 analysis… analyze_data(source1)        source1 analysis_… large     &lt;NA&gt;      
 #&gt; 2 analysis… analyze_data(source2)        source2 analysis_… small     &lt;NA&gt;      
 #&gt; 3 analysis… analyze_data(source3)        source3 analysis_… small     &lt;NA&gt;      
