@@ -194,7 +194,7 @@ custom columns.</p>
     <p><code>drake</code> has special syntax for generating large plans.
 Your code will look something like
 <code>drake_plan(x = target(cmd, transform = f(y, z), group = g)</code>
-where <code>f()</code> is either <code>map()</code>, <code>cross()</code>, or <code>reduce()</code>
+where <code>f()</code> is either <code>map()</code>, <code>cross()</code>, or <code>combine()</code>
 (similar to <code><a href='https://purrr.tidyverse.org/reference/map2.html'>purrr::pmap()</a></code>, <code>tidy::crossing()</code>, and <code><a href='https://dplyr.tidyverse.org/reference/summarise.html'>dplyr::summarize()</a></code>,
 respectively). These verbs mimic Tidyverse behavior to scale up
 existing plans to large numbers of targets.
@@ -254,7 +254,7 @@ optional columns in your workflow plan. For details, visit
   ),
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>summ</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>reduce</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
   )
 )
 
@@ -275,7 +275,7 @@ optional columns in your workflow plan. For details, visit
   ),
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>summ</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>reduce</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>)
   ),
   <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
