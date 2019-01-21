@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">drake</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.2.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">6.2.1.9002</span>
       </span>
     </div>
 
@@ -109,9 +109,9 @@
       <small>Source: <a href='https://github.com/ropensci/drake/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="version-6-2-1-9000" class="section level1">
+    <div id="version-6-2-1-9002" class="section level1">
 <h1 class="page-header">
-<a href="#version-6-2-1-9000" class="anchor"></a>Version 6.2.1.9000<small> Unreleased </small>
+<a href="#version-6-2-1-9002" class="anchor"></a>Version 6.2.1.9002<small> Unreleased </small>
 </h1>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -142,8 +142,7 @@
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
-<li>Introduce a new experimental domain-specific language for generating large plans (<a href='https://github.com/ropensci/drake/issues/233'>#233</a>). Uses optional <code>transform</code> and <code>group</code> arguments to <code><a href="../reference/target.html">target()</a></code> from within <code><a href="../reference/drake_plan.html">drake_plan()</a></code>. Supported transformations: <code>cross()</code> and <code>reduce()</code>.</li>
-<li>Add a new function <code><a href="../reference/transform_plan.html">transform_plan()</a></code> to do the transformations in the above API with an existing plan. Useful for combining multiple plans that were generated with <code><a href="../reference/drake_plan.html">drake_plan(transform = FALSE)</a></code> so you can generate multiple un-transformed plans, combine them, and then transform the aggregate plan.</li>
+<li>Introduce a new experimental domain-specific language for generating large plans (<a href='https://github.com/ropensci/drake/issues/233'>#233</a>). Details <a href="file:///home/landau/projects/drake-manual/_book/plans.html#create-large-plans-the-easy-way">here</a>.</li>
 <li>Implement a <code>lock_envir</code> argument to safeguard reproducibility. See <a href="https://github.com/ropensci/drake/issues/615#issuecomment-447585359">this thread</a> for a demonstration of the problem solved by <code><a href="../reference/make.html">make(lock_envir = TRUE)</a></code>. More discussion: <a href='https://github.com/ropensci/drake/issues/619'>#619</a>, <a href='https://github.com/ropensci/drake/issues/620'>#620</a>.</li>
 <li>The new <code><a href="../reference/from_plan.html">from_plan()</a></code> function allows the users to get custom columns of the plan. Changes to these custom columns do not invalidate targets, however, so be careful.</li>
 </ul>
@@ -673,7 +672,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#version-6-2-1-9000">6.2.1.9000</a></li>
+        <li><a href="#version-6-2-1-9002">6.2.1.9002</a></li>
         <li><a href="#version-6-2-1">6.2.1</a></li>
         <li><a href="#version-6-2-0">6.2.0</a></li>
         <li><a href="#version-6-1-0">6.1.0</a></li>
