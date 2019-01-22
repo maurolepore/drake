@@ -123,9 +123,7 @@ inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></co
     
     </div>
 
-    <pre class="usage"><span class='fu'>target</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>priority</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>worker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>resources</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>target</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,49 +131,6 @@ inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></co
     <tr>
       <th>command</th>
       <td><p>The command to build the target.</p></td>
-    </tr>
-    <tr>
-      <th>trigger</th>
-      <td><p>The target's trigger.</p></td>
-    </tr>
-    <tr>
-      <th>retries</th>
-      <td><p>Number of retries in case of failure.</p></td>
-    </tr>
-    <tr>
-      <th>timeout</th>
-      <td><p>Overall timeout (in seconds) for building a target.</p></td>
-    </tr>
-    <tr>
-      <th>cpu</th>
-      <td><p>cpu Timeout (seconds) for building a target.</p></td>
-    </tr>
-    <tr>
-      <th>elapsed</th>
-      <td><p>Elapsed time (seconds) for building a target.</p></td>
-    </tr>
-    <tr>
-      <th>priority</th>
-      <td><p>Integer giving the build priority of a target.
-Given two targets about to be built at the same time,
-the one with the lesser priority (numerically speaking)
-will be built first.</p></td>
-    </tr>
-    <tr>
-      <th>worker</th>
-      <td><p>The preferred worker to be assigned the target
-(in parallel computing).</p></td>
-    </tr>
-    <tr>
-      <th>resources</th>
-      <td><p>Experimental, no guarantees that this works all the time.
-Same as the <code>resources</code> argument to <code>batchtools_slurm()</code>
-and related <code>future.bachtools</code> functions.
-See also <a href='https://github.com/HenrikBengtsson/future.batchtools#examples'>https://github.com/HenrikBengtsson/future.batchtools#examples</a>. # nolint
-<code>resources</code> is a list of computing resource parameters for the target.
-Each element is a value passed to a <code>brew</code> placeholder of a
-<code>batchtools</code> template file. The list names of <code>resources</code>
-should be the brew patterns.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -194,6 +149,11 @@ arguments as columns.</p>
     <p>Tidy evaluation is applied to the arguments,
 and the <code>!!</code> operator is evaluated immediately
 for expressions and language objects.</p>
+<p>If you are getting cryptic "Error: Columns must be named"
+errors, that means all the arguments to <code>target()</code>
+except <code>command</code> must be explicitly named,
+e.g. <code>target(f(x), trigger = trigger(condition = TRUE)</code> instead of
+<code>target(f(x), trigger(condition = TRUE)</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
