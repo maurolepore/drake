@@ -654,8 +654,12 @@ and the reproducibility/credibility/trust you can place in your project.
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='co'># Construct the master internal configuration list.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_config</span>(<span class='no'>my_plan</span>)
-<span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See the dependency graph.</span>
-<span class='fu'><a href='sankey_drake_graph.html'>sankey_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See the dependency graph.</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>)) {
+  <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See the dependency graph.</span>
+  <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"networkD3"</span>)) {
+    <span class='fu'><a href='sankey_drake_graph.html'>sankey_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See the dependency graph.</span>
+  }
+}
 <span class='co'># These functions are faster than otherwise</span>
 <span class='co'># because they use the configuration list.</span>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Which targets are out of date?</span>

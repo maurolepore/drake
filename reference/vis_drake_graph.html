@@ -335,22 +335,22 @@ Analogous to <code><a href='https://www.rdocumentation.org/packages/visNetwork/t
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
 <span class='co'># Plot the network graph representation of the workflow.</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-  <span class='fu'>vis_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'100%'</span>) <span class='co'># The width is passed to visNetwork</span>
-  <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
-  <span class='fu'>vis_drake_graph</span>(<span class='no'>config</span>) <span class='co'># The red nodes from before are now green.</span>
-  <span class='co'># Plot a subgraph of the workflow.</span>
-  <span class='fu'>vis_drake_graph</span>(
-    <span class='no'>config</span>,
-    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"small"</span>, <span class='st'>"reg2"</span>),
-    <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"summ_regression2_small"</span>
-  )
-  <span class='co'># Optionally visualize clusters.</span>
-  <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>large_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></span>(<span class='st'>"large"</span>, <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>target</span>)
-  <span class='fu'>vis_drake_graph</span>(
-    <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"large_data"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
-  <span class='co'># You can even use clusters given to you for free in the `graph$nodes`</span>
-  <span class='co'># data frame of `drake_graph_info()`.</span>
-  <span class='fu'>vis_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"imported"</span>)
+<span class='fu'>vis_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'100%'</span>) <span class='co'># The width is passed to visNetwork</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
+<span class='fu'>vis_drake_graph</span>(<span class='no'>config</span>) <span class='co'># The red nodes from before are now green.</span>
+<span class='co'># Plot a subgraph of the workflow.</span>
+<span class='fu'>vis_drake_graph</span>(
+  <span class='no'>config</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"small"</span>, <span class='st'>"reg2"</span>),
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"summ_regression2_small"</span>
+)
+<span class='co'># Optionally visualize clusters.</span>
+<span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>large_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></span>(<span class='st'>"large"</span>, <span class='no'>config</span>$<span class='no'>plan</span>$<span class='no'>target</span>)
+<span class='fu'>vis_drake_graph</span>(
+  <span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"large_data"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
+<span class='co'># You can even use clusters given to you for free in the `graph$nodes`</span>
+<span class='co'># data frame of `drake_graph_info()`.</span>
+<span class='fu'>vis_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"imported"</span>)
 }
 })
 <span class='co'># }</span></pre>

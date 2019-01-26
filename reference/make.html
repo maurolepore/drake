@@ -655,9 +655,11 @@ and the reproducibility/credibility/trust you can place in your project.
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Some targets depend on reg2().</span>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>) <span class='co'># Rebuild just the outdated targets.</span>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Everything is up to date again.</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See how they fit in an interactive graph.</span>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># Write a text log file this time.</span>
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># The colors changed in the graph.</span>
+}
 <span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch next time around.</span>
 })
 <span class='co'># }</span></pre>

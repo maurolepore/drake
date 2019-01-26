@@ -201,7 +201,9 @@ just to run the command.</p></td>
 <span class='co'># Show the build times for the mtcars example.</span>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Build all the targets.</span>
-<span class='fu'>build_times</span>() <span class='co'># Show how long it took to build each target.</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"lubridate"</span>)) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'>build_times</span>()) <span class='co'># Show how long it took to build each target.</span>
+}
 })
 <span class='co'># }</span></pre>
   </div>

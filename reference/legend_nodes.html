@@ -148,7 +148,9 @@ in the graph visualizations.</p>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># Show the legend nodes used in graph visualizations.</span>
 <span class='co'># For example, you may want to inspect the color palette more closely.</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='kw pkg'>visNetwork</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/visNetwork/topics/visNetwork'>visNetwork</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'>legend_nodes</span>()) <span class='co'># nolint</span>
+}
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

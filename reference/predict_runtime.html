@@ -208,6 +208,7 @@ targets default to <code>default_time</code>.</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>known_times</span>) <span class='kw'>&lt;-</span> <span class='no'>my_plan</span>$<span class='no'>target</span>
 <span class='no'>known_times</span>
 <span class='co'># Predict the runtime</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"lubridate"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='fu'>predict_runtime</span>(
   <span class='no'>config</span>,
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>7</span>,
@@ -227,6 +228,7 @@ targets default to <code>default_time</code>.</p></td>
   <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>
 )
 <span class='no'>balance</span>
+}
 })
 <span class='co'># }</span></pre>
   </div>
