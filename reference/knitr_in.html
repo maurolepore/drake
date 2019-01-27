@@ -150,6 +150,7 @@ source files supplied to a command in your workflow plan data frame.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Contain side effects"</span>, {
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"knitr"</span>)) {
 <span class='co'># `knitr_in()` is like `file_in()`</span>
 <span class='co'># except that it analyzes active code chunks in your `knitr`</span>
 <span class='co'># source file and detects non-file dependencies.</span>
@@ -167,6 +168,7 @@ source files supplied to a command in your workflow plan data frame.</p></td>
 <span class='co'># to analyze the active code chunks. There, it spotted</span>
 <span class='co'># where `small`, `large`, and `coef_regression2_small`</span>
 <span class='co'># were read from the cache using calls to `loadd()` and `readd()`.</span>
+}
 })
 <span class='co'># }</span></pre>
   </div>

@@ -176,12 +176,12 @@ A workflow plan data frame is a data frame
 with a <code>target</code> column and a <code>command</code> column.
 (See the details in the <code><a href='drake_plan.html'>drake_plan()</a></code> help file
 for descriptions of the optional columns.)
-Targets are the objects and files that drake generates,
+Targets are the objects that drake generates,
 and commands are the pieces of R code that produce them.
+You can create and track custom files along the way
+(see <code><a href='file_in.html'>file_in()</a></code>, <code><a href='file_out.html'>file_out()</a></code>, and <code><a href='knitr_in.html'>knitr_in()</a></code>).
 Use the function <code><a href='drake_plan.html'>drake_plan()</a></code> to generate workflow plan
-data frames easily, and see functions <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>,
-<code><a href='expand_plan.html'>expand_plan()</a></code>, <code><a href='gather_by.html'>gather_by()</a></code>, and <code><a href='map_plan.html'>map_plan()</a></code> for
-easy ways to generate large workflow plan data frames.</p></td>
+data frames.</p></td>
     </tr>
     <tr>
       <th>targets</th>

@@ -157,12 +157,12 @@ A workflow plan data frame is a data frame
 with a <code>target</code> column and a <code>command</code> column.
 (See the details in the <code><a href='drake_plan.html'>drake_plan()</a></code> help file
 for descriptions of the optional columns.)
-Targets are the objects and files that drake generates,
+Targets are the objects that drake generates,
 and commands are the pieces of R code that produce them.
+You can create and track custom files along the way
+(see <code><a href='file_in.html'>file_in()</a></code>, <code><a href='file_out.html'>file_out()</a></code>, and <code><a href='knitr_in.html'>knitr_in()</a></code>).
 Use the function <code><a href='drake_plan.html'>drake_plan()</a></code> to generate workflow plan
-data frames easily, and see functions <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>,
-<code><a href='expand_plan.html'>expand_plan()</a></code>, <code><a href='gather_by.html'>gather_by()</a></code>, and <code><a href='map_plan.html'>map_plan()</a></code> for
-easy ways to generate large workflow plan data frames.</p></td>
+data frames.</p></td>
     </tr>
     <tr>
       <th>targets</th>
@@ -642,6 +642,7 @@ and the reproducibility/credibility/trust you can place in your project.
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"knitr"</span>)) {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Which targets need to be (re)built?</span>
@@ -661,6 +662,7 @@ and the reproducibility/credibility/trust you can place in your project.
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># The colors changed in the graph.</span>
 }
 <span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch next time around.</span>
+}
 })
 <span class='co'># }</span></pre>
   </div>
