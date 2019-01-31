@@ -32,9 +32,10 @@
 
 <meta property="og:title" content="Create replicates of targets. — expand_plan" />
 
-<meta property="og:description" content="Duplicates the rows of a workflow plan data frame.
-Prefixes are appended to the new target names
-so targets still have unique names." />
+<meta property="og:description" content="expand_plan() is no longer recommended.
+Consider using transformations instead. Visit
+https://ropenscilabs.github.io/drake-manual/plans.html#large-plans
+for the details." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,9 +118,10 @@ so targets still have unique names." />
 
     <div class="ref-description">
     
-    <p>Duplicates the rows of a workflow plan data frame.
-Prefixes are appended to the new target names
-so targets still have unique names.</p>
+    <p><code>expand_plan()</code> is no longer recommended.
+Consider using transformations instead. Visit
+<a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>
+for the details.</p>
     
     </div>
 
@@ -154,10 +156,15 @@ target names. Only relevant when <code>rename</code> is <code>TRUE</code>.</p></
 
     <p>An expanded workflow plan data frame (with replicated targets).</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Duplicates the rows of a workflow plan data frame.
+Prefixes are appended to the new target names
+so targets still have unique names.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='map_plan.html'>map_plan()</a></code>, <code><a href='reduce_by.html'>reduce_by()</a></code>, <code><a href='gather_by.html'>gather_by()</a></code>, <code><a href='reduce_plan.html'>reduce_plan()</a></code>,
-<code><a href='gather_plan.html'>gather_plan()</a></code>, <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>, <code>expand_plan()</code></p></div>
+    <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -200,6 +207,8 @@ target names. Only relevant when <code>rename</code> is <code>TRUE</code>.</p></
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

@@ -32,10 +32,10 @@
 
 <meta property="og:title" content="Create a plan that maps a function to a grid of arguments. — map_plan" />
 
-<meta property="og:description" content="map_plan() is like base::Map():
-it takes a function name and a grid of arguments, and
-writes out all the commands calls to apply the function to
-each row of arguments." />
+<meta property="og:description" content="map_plan() is no longer recommended.
+Consider using transformations instead. Visit
+https://ropenscilabs.github.io/drake-manual/plans.html#large-plans
+for the details." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,10 +118,10 @@ each row of arguments." />
 
     <div class="ref-description">
     
-    <p><code>map_plan()</code> is like <code><a href='https://www.rdocumentation.org/packages/base/topics/funprog'>base::Map()</a></code>:
-it takes a function name and a grid of arguments, and
-writes out all the commands calls to apply the function to
-each row of arguments.</p>
+    <p><code>map_plan()</code> is no longer recommended.
+Consider using transformations instead. Visit
+<a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>
+for the details.</p>
     
     </div>
 
@@ -162,7 +162,7 @@ the <code>fun</code> and <code>id</code> arguments as character scalars or symbo
       <td><p>Logical, whether to append the columns of <code>args</code>
 to the output workflow plan data frame. The added columns
 help "trace back" the original settings that went into building
-each target. Similar to the <code>trace</code> argument of <code><a href='evaluate_plan.html'>evaluate_plan()</a></code>.</p></td>
+each target. Similar to the <code>trace</code> argument of <code><a href='drake_plan.html'>drake_plan()</a></code>.</p></td>
     </tr>
     </table>
     
@@ -170,10 +170,16 @@ each target. Similar to the <code>trace</code> argument of <code><a href='evalua
 
     <p>A workflow plan data frame.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>map_plan()</code> is like <code><a href='https://www.rdocumentation.org/packages/base/topics/funprog'>base::Map()</a></code>:
+it takes a function name and a grid of arguments, and
+writes out all the commands calls to apply the function to
+each row of arguments.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='reduce_by.html'>reduce_by()</a></code>, <code><a href='gather_by.html'>gather_by()</a></code>, <code><a href='reduce_plan.html'>reduce_plan()</a></code>, <code><a href='gather_plan.html'>gather_plan()</a></code>,
-<code><a href='evaluate_plan.html'>evaluate_plan()</a></code>, <code><a href='expand_plan.html'>expand_plan()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -229,6 +235,8 @@ each target. Similar to the <code>trace</code> argument of <code><a href='evalua
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

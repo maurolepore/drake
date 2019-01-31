@@ -34,10 +34,10 @@ workflow plan data frame from a template data frame. — evaluate_plan • drake
 <meta property="og:title" content="Use wildcard templating to create a
 workflow plan data frame from a template data frame. — evaluate_plan" />
 
-<meta property="og:description" content="The commands in workflow plan data frames can have
-wildcard symbols that can stand for datasets, parameters, function
-arguments, etc. These wildcards can be evaluated over a set of
-possible values using evaluate_plan." />
+<meta property="og:description" content="Wildcards are no longer recommended.
+Consider using transformations instead. Visit
+https://ropenscilabs.github.io/drake-manual/plans.html#large-plans
+for the details." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,10 +121,10 @@ workflow plan data frame from a template data frame.</h1>
 
     <div class="ref-description">
     
-    <p>The commands in workflow plan data frames can have
-wildcard symbols that can stand for datasets, parameters, function
-arguments, etc. These wildcards can be evaluated over a set of
-possible values using <code>evaluate_plan</code>.</p>
+    <p>Wildcards are no longer recommended.
+Consider using transformations instead. Visit
+<a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>
+for the details.</p>
     
     </div>
 
@@ -202,7 +202,11 @@ the names of the new targets are <code>x.1</code> and <code>x.2</code>.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Specify a single wildcard with the <code>wildcard</code>
+    <p>The commands in workflow plan data frames can have
+wildcard symbols that can stand for datasets, parameters, function
+arguments, etc. These wildcards can be evaluated over a set of
+possible values using <code>evaluate_plan()</code>.</p>
+<p>Specify a single wildcard with the <code>wildcard</code>
 and <code>values</code> arguments. In each command, the text in
 <code>wildcard</code> will be replaced by each value in <code>values</code>
 in turn. Specify multiple wildcards with the <code>rules</code> argument,
@@ -212,8 +216,7 @@ as names and vectors of possible values as list elements.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='map_plan.html'>map_plan()</a></code>, <code><a href='reduce_by.html'>reduce_by()</a></code>, <code><a href='gather_by.html'>gather_by()</a></code>, <code><a href='reduce_plan.html'>reduce_plan()</a></code>,
-<code><a href='gather_plan.html'>gather_plan()</a></code>, <code>evaluate_plan()</code>, <code><a href='expand_plan.html'>expand_plan()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -235,7 +238,7 @@ as names and vectors of possible values as list elements.</p>
   <span class='no'>methods</span>,
   <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>
-)</div><div class='output co'>#&gt; # A tibble: 4 x 2
+)</div><div class='output co'>#&gt; <span class='message'>The interface at https://ropenscilabs.github.io/drake-manual/plans.html#large-plans is better than evaluate_plan(), map_plan(), gather_by(), etc.</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target            command    
 #&gt;   &lt;chr&gt;             &lt;chr&gt;      
 #&gt; 1 regression1_small reg1(small)
