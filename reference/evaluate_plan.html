@@ -304,12 +304,12 @@ as names and vectors of possible values as list elements.</p>
   <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>always</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>),
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"command"</span>, <span class='st'>"cpu"</span>)
 )</div><div class='output co'>#&gt; # A tibble: 4 x 3
-#&gt;   target command  cpu  
-#&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;
-#&gt; 1 x      1 + 1    any  
-#&gt; 2 y_1    sqrt(4)  1    
-#&gt; 3 y_2    sqrt(4)  2    
-#&gt; 4 z      sqrt(16) any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
+#&gt;   target command        cpu  
+#&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt;
+#&gt; 1 x      "\"1 + 1\""    any  
+#&gt; 2 y_1    "\"sqrt(4)\""  1    
+#&gt; 3 y_2    "\"sqrt(4)\""  2    
+#&gt; 4 z      "\"sqrt(16)\"" any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
 <span class='co'># you can generate columns that show how the wildcards</span>
 <span class='co'># were evaluated.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>sqrt</a></span>(<span class='no'>n__</span>))

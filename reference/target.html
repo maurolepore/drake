@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="Define custom columns in a <code><a href='drake_plan.html'>drake_plan()</a></code>. — target" />
 
-<meta property="og:description" content="The target() function lets you define
-custom columns in a workflow plan data frame, both
-inside and outside calls to drake_plan()." />
+<meta property="og:description" content="Not a user-side function. Please use from within
+drake_plan() only." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,9 +116,8 @@ inside and outside calls to drake_plan()." />
 
     <div class="ref-description">
     
-    <p>The <code>target()</code> function lets you define
-custom columns in a workflow plan data frame, both
-inside and outside calls to <code><a href='drake_plan.html'>drake_plan()</a></code>.</p>
+    <p>Not a user-side function. Please use from within
+<code><a href='drake_plan.html'>drake_plan()</a></code> only.</p>
     
     </div>
 
@@ -144,17 +142,6 @@ fields of the workflow plan.</p></td>
     <p>A one-row workflow plan data frame with the named
 arguments as columns.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Tidy evaluation is applied to the arguments,
-and the <code>!!</code> operator is evaluated immediately
-for expressions and language objects.</p>
-<p>If you are getting cryptic "Error: Columns must be named"
-errors, that means all the arguments to <code>target()</code>
-except <code>command</code> must be explicitly named,
-e.g. <code>target(f(x), trigger = trigger(condition = TRUE)</code> instead of
-<code>target(f(x), trigger(condition = TRUE)</code>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
@@ -163,28 +150,18 @@ e.g. <code>target(f(x), trigger = trigger(condition = TRUE)</code> instead of
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Use target() to create your own custom columns in a drake plan.</span>
 <span class='co'># See ?triggers for more on triggers.</span>
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
+<span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>website_data</span> <span class='kw'>=</span> <span class='fu'>target</span>(
     <span class='fu'>download_data</span>(<span class='st'>"www.your_url.com"</span>),
     <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"always"</span>,
     <span class='kw'>custom_column</span> <span class='kw'>=</span> <span class='fl'>5</span>
   ),
   <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'>analyze</span>(<span class='no'>website_data</span>)
-)
-<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 4
-#&gt;   target       command                               trigger custom_column
-#&gt;   &lt;chr&gt;        &lt;chr&gt;                                 &lt;chr&gt;           &lt;dbl&gt;
-#&gt; 1 website_data "download_data(\"www.your_url.com\")" always              5
-#&gt; 2 analysis     analyze(website_data)                 &lt;NA&gt;               NA</div><div class='input'><span class='co'># make(plan) # nolint</span>
-<span class='co'># Call target() inside or outside drake_plan().</span>
-<span class='fu'>target</span>(
-  <span class='fu'>download_data</span>(<span class='st'>"www.your_url.com"</span>),
-  <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"always"</span>,
-  <span class='kw'>custom_column</span> <span class='kw'>=</span> <span class='fl'>5</span>
-)</div><div class='output co'>#&gt; # A tibble: 1 x 3
-#&gt;   command                               trigger custom_column
-#&gt;   &lt;chr&gt;                                 &lt;chr&gt;           &lt;dbl&gt;
-#&gt; 1 "download_data(\"www.your_url.com\")" always              5</div></pre>
+)</div><div class='output co'>#&gt; # A tibble: 2 x 4
+#&gt;   target       command                               trigger       custom_column
+#&gt;   &lt;chr&gt;        &lt;chr&gt;                                 &lt;chr&gt;                 &lt;dbl&gt;
+#&gt; 1 website_data "download_data(\"www.your_url.com\")" "\"always\""              5
+#&gt; 2 analysis     analyze(website_data)                 NA_character_            NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -192,8 +169,6 @@ e.g. <code>target(f(x), trigger = trigger(condition = TRUE)</code> instead of
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

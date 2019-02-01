@@ -135,8 +135,8 @@ code strings or a list of language objects.</p>
     </div>
 
     <pre class="usage"><span class='fu'>drake_plan</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>file_targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,8 +179,11 @@ by <code><a href='target.html'>target()</a></code>. See the examples for details
     <tr>
       <th>trace</th>
       <td><p>Logical, whether to add columns to show
-what happened during target transformations, e.g.
-<code>drake_plan(x = target(..., transform = ...), transform = TRUE)</code>.</p></td>
+what happens during target transformations.</p></td>
+    </tr>
+    <tr>
+      <th>envir</th>
+      <td><p>Environment for tidy evaluation.</p></td>
     </tr>
     </table>
     
@@ -207,10 +210,6 @@ properly accounted for (<code><a href='file_in.html'>file_in()</a></code>, <code
 <p>Besides <code>"target"</code> and <code>"command"</code>, you may include
 optional columns in your workflow plan. For details, visit
 <a href='https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan'>https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan</a></p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='transform_plan.html'>transform_plan()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -304,8 +303,6 @@ optional columns in your workflow plan. For details, visit
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
