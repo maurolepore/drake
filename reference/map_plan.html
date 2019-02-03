@@ -200,18 +200,18 @@ each row of arguments.</p>
 <span class='co'># print(args) # Requires `args` to be a tibble # nolint</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 45 x 2
-#&gt;    target       command                                                   
-#&gt;    &lt;chr&gt;        &lt;chr&gt;                                                     
-#&gt;  1 fit_cyl_disp "my_model_fit(x1 = \"cyl\", x2 = \"disp\", data = mtcars)"
-#&gt;  2 fit_cyl_hp   "my_model_fit(x1 = \"cyl\", x2 = \"hp\", data = mtcars)"  
-#&gt;  3 fit_cyl_drat "my_model_fit(x1 = \"cyl\", x2 = \"drat\", data = mtcars)"
-#&gt;  4 fit_cyl_wt   "my_model_fit(x1 = \"cyl\", x2 = \"wt\", data = mtcars)"  
-#&gt;  5 fit_cyl_qsec "my_model_fit(x1 = \"cyl\", x2 = \"qsec\", data = mtcars)"
-#&gt;  6 fit_cyl_vs   "my_model_fit(x1 = \"cyl\", x2 = \"vs\", data = mtcars)"  
-#&gt;  7 fit_cyl_am   "my_model_fit(x1 = \"cyl\", x2 = \"am\", data = mtcars)"  
-#&gt;  8 fit_cyl_gear "my_model_fit(x1 = \"cyl\", x2 = \"gear\", data = mtcars)"
-#&gt;  9 fit_cyl_carb "my_model_fit(x1 = \"cyl\", x2 = \"carb\", data = mtcars)"
-#&gt; 10 fit_disp_hp  "my_model_fit(x1 = \"disp\", x2 = \"hp\", data = mtcars)" 
+#&gt;    target       command                                             
+#&gt;    &lt;chr&gt;        &lt;S3: langs&gt;                                         
+#&gt;  1 fit_cyl_disp my_model_fit(x1 = "cyl", x2 = "disp", data = mtcars)
+#&gt;  2 fit_cyl_hp   my_model_fit(x1 = "cyl", x2 = "hp", data = mtcars)  
+#&gt;  3 fit_cyl_drat my_model_fit(x1 = "cyl", x2 = "drat", data = mtcars)
+#&gt;  4 fit_cyl_wt   my_model_fit(x1 = "cyl", x2 = "wt", data = mtcars)  
+#&gt;  5 fit_cyl_qsec my_model_fit(x1 = "cyl", x2 = "qsec", data = mtcars)
+#&gt;  6 fit_cyl_vs   my_model_fit(x1 = "cyl", x2 = "vs", data = mtcars)  
+#&gt;  7 fit_cyl_am   my_model_fit(x1 = "cyl", x2 = "am", data = mtcars)  
+#&gt;  8 fit_cyl_gear my_model_fit(x1 = "cyl", x2 = "gear", data = mtcars)
+#&gt;  9 fit_cyl_carb my_model_fit(x1 = "cyl", x2 = "carb", data = mtcars)
+#&gt; 10 fit_disp_hp  my_model_fit(x1 = "disp", x2 = "hp", data = mtcars) 
 #&gt; # … with 35 more rows</div><div class='input'><span class='co'># Consider `trace = TRUE` to include the columns in `args`</span>
 <span class='co'># in your plan.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>map_plan</span>(<span class='no'>args</span>, <span class='no'>my_model_fit</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)

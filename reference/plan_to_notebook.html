@@ -195,8 +195,8 @@ for details.</p></td>
 #&gt; fit &lt;- lm(Sepal.Width ~ Petal.Width + Species, data)
 #&gt; ```</div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target   command                                      
-#&gt;   &lt;chr&gt;    &lt;chr&gt;                                        
-#&gt; 1 raw_data "read_excel(file_in(\"raw_data.xlsx\"))"     
+#&gt;   &lt;chr&gt;    &lt;S3: langs&gt;                                  
+#&gt; 1 raw_data read_excel(file_in("raw_data.xlsx"))         
 #&gt; 2 data     raw_data                                     
 #&gt; 3 hist     create_plot(data)                            
 #&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)</div></pre>

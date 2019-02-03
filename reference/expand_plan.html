@@ -125,7 +125,8 @@ for the details.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>expand_plan</span>(<span class='no'>plan</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)</pre>
+    <pre class="usage"><span class='fu'>expand_plan</span>(<span class='no'>plan</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
+  <span class='kw'>sanitize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,6 +151,10 @@ based on the <code>values</code>. See the examples for a demo.</p></td>
 target names and the values to append to create the new
 target names. Only relevant when <code>rename</code> is <code>TRUE</code>.</p></td>
     </tr>
+    <tr>
+      <th>sanitize</th>
+      <td><p>Logical, whether to sanitize the plan.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -171,12 +176,13 @@ so targets still have unique names.</p>
     <pre class="examples"><div class='input'><span class='co'># Create the part of the workflow plan for the datasets.</span>
 <span class='no'>datasets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>5</span>),
-  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>50</span>))
+  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>50</span>)
+)
 <span class='co'># Create replicates. If you want repeat targets,</span>
 <span class='co'># this is convenient.</span>
 <span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"rep1"</span>, <span class='st'>"rep2"</span>, <span class='st'>"rep3"</span>))</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target     command     
-#&gt;   &lt;chr&gt;      &lt;chr&gt;       
+#&gt;   &lt;chr&gt;      &lt;S3: langs&gt; 
 #&gt; 1 small_rep1 simulate(5) 
 #&gt; 2 small_rep2 simulate(5) 
 #&gt; 3 small_rep3 simulate(5) 
@@ -185,7 +191,7 @@ so targets still have unique names.</p>
 #&gt; 6 large_rep3 simulate(50)</div><div class='input'><span class='co'># Choose whether to rename the targets based on the values.</span>
 <span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target  command     
-#&gt;   &lt;chr&gt;   &lt;chr&gt;       
+#&gt;   &lt;chr&gt;   &lt;S3: langs&gt; 
 #&gt; 1 small_1 simulate(5) 
 #&gt; 2 small_2 simulate(5) 
 #&gt; 3 small_3 simulate(5) 
@@ -193,7 +199,7 @@ so targets still have unique names.</p>
 #&gt; 5 large_2 simulate(50)
 #&gt; 6 large_3 simulate(50)</div><div class='input'><span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target command     
-#&gt;   &lt;chr&gt;  &lt;chr&gt;       
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt; 
 #&gt; 1 small  simulate(5) 
 #&gt; 2 small  simulate(5) 
 #&gt; 3 small  simulate(5) 

@@ -158,10 +158,10 @@ arguments as columns.</p>
   ),
   <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'>analyze</span>(<span class='no'>website_data</span>)
 )</div><div class='output co'>#&gt; # A tibble: 2 x 4
-#&gt;   target       command                               trigger       custom_column
-#&gt;   &lt;chr&gt;        &lt;chr&gt;                                 &lt;chr&gt;                 &lt;dbl&gt;
-#&gt; 1 website_data "download_data(\"www.your_url.com\")" "\"always\""              5
-#&gt; 2 analysis     analyze(website_data)                 NA_character_            NA</div></pre>
+#&gt;   target       command                           trigger     custom_column
+#&gt;   &lt;chr&gt;        &lt;S3: langs&gt;                       &lt;S3: langs&gt;         &lt;dbl&gt;
+#&gt; 1 website_data download_data("www.your_url.com") always                  5
+#&gt; 2 analysis     analyze(website_data)             NA                     NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

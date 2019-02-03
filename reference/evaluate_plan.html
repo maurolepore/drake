@@ -240,7 +240,7 @@ as names and vectors of possible values as list elements.</p>
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>
 )</div><div class='output co'>#&gt; <span class='message'>The interface at https://ropenscilabs.github.io/drake-manual/plans.html#large-plans is better than evaluate_plan(), map_plan(), gather_by(), etc.</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target            command    
-#&gt;   &lt;chr&gt;             &lt;chr&gt;      
+#&gt;   &lt;chr&gt;             &lt;S3: langs&gt;
 #&gt; 1 regression1_small reg1(small)
 #&gt; 2 regression1_large reg1(large)
 #&gt; 3 regression2_small reg2(small)
@@ -253,13 +253,13 @@ as names and vectors of possible values as list elements.</p>
 )
 <span class='no'>ans</span></div><div class='output co'>#&gt; # A tibble: 2 x 2
 #&gt;   target      command    
-#&gt;   &lt;chr&gt;       &lt;chr&gt;      
+#&gt;   &lt;chr&gt;       &lt;S3: langs&gt;
 #&gt; 1 regression1 reg1(small)
 #&gt; 2 regression2 reg2(large)</div><div class='input'><span class='co'># For the complete workflow plan, row bind the pieces together.</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='no'>datasets</span>, <span class='no'>ans</span>)
 <span class='no'>my_plan</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target      command     
-#&gt;   &lt;chr&gt;       &lt;chr&gt;       
+#&gt;   &lt;chr&gt;       &lt;S3: langs&gt; 
 #&gt; 1 small       simulate(5) 
 #&gt; 2 large       simulate(50)
 #&gt; 3 regression1 reg1(small) 
@@ -276,7 +276,7 @@ as names and vectors of possible values as list elements.</p>
   )
 )</div><div class='output co'>#&gt; # A tibble: 4 x 2
 #&gt;   target       command                     
-#&gt;   &lt;chr&gt;        &lt;chr&gt;                       
+#&gt;   &lt;chr&gt;        &lt;S3: langs&gt;                 
 #&gt; 1 numbers_10_3 sample.int(n = 10, size = 3)
 #&gt; 2 numbers_10_4 sample.int(n = 10, size = 4)
 #&gt; 3 numbers_13_3 sample.int(n = 13, size = 3)
@@ -286,7 +286,7 @@ as names and vectors of possible values as list elements.</p>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>draws</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>Size</span>))
 <span class='fu'>evaluate_plan</span>(<span class='no'>x</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>10</span>:<span class='fl'>13</span>, <span class='kw'>Size</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>))</div><div class='output co'>#&gt; # A tibble: 8 x 2
 #&gt;   target     command                     
-#&gt;   &lt;chr&gt;      &lt;chr&gt;                       
+#&gt;   &lt;chr&gt;      &lt;S3: langs&gt;                 
 #&gt; 1 draws_10_1 sample.int(n = 10, size = 1)
 #&gt; 2 draws_10_2 sample.int(n = 10, size = 2)
 #&gt; 3 draws_11_1 sample.int(n = 11, size = 1)
@@ -304,19 +304,19 @@ as names and vectors of possible values as list elements.</p>
   <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>always</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>),
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"command"</span>, <span class='st'>"cpu"</span>)
 )</div><div class='output co'>#&gt; # A tibble: 4 x 3
-#&gt;   target command        cpu  
-#&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt;
-#&gt; 1 x      "\"1 + 1\""    any  
-#&gt; 2 y_1    "\"sqrt(4)\""  1    
-#&gt; 3 y_2    "\"sqrt(4)\""  2    
-#&gt; 4 z      "\"sqrt(16)\"" any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
+#&gt;   target command     cpu  
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt; &lt;chr&gt;
+#&gt; 1 x      1 + 1       any  
+#&gt; 2 y_1    sqrt(4)     1    
+#&gt; 3 y_2    sqrt(4)     2    
+#&gt; 4 z      sqrt(16)    any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
 <span class='co'># you can generate columns that show how the wildcards</span>
 <span class='co'># were evaluated.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>sqrt</a></span>(<span class='no'>n__</span>))
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 4
 #&gt;   target command       n__   n___from
-#&gt;   &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;   &lt;chr&gt; &lt;chr&gt;   
 #&gt; 1 x_1    sample.int(1) 1     x       
 #&gt; 2 x_2    sample.int(2) 2     x       
 #&gt; 3 y_1    sqrt(1)       1     y       
@@ -328,7 +328,7 @@ as names and vectors of possible values as list elements.</p>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 4
 #&gt;   target command       n__   n___from
-#&gt;   &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;   &lt;chr&gt; &lt;chr&gt;   
 #&gt; 1 x_1    sqrt(1)       1     x       
 #&gt; 2 x_2    sqrt(2)       2     x       
 #&gt; 3 y_1    sample.int(1) 1     y       

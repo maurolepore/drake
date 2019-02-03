@@ -10,6 +10,9 @@
     <loc>https://ropensci.github.io/drake/reference/analysis_wildcard.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/as_langs.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/available_hash_algos.html</loc>
   </url>
   <url>
@@ -23,6 +26,9 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/built.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/drake/reference/c.langs.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/cache_namespaces.html</loc>
@@ -313,6 +319,9 @@
     <loc>https://ropensci.github.io/drake/reference/predict_runtime.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/print.drake_plan.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/process_import.html</loc>
   </url>
   <url>
@@ -380,6 +389,9 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/static_drake_graph.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/drake/reference/sub-.langs.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/target.html</loc>

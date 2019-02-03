@@ -196,23 +196,23 @@ operator to pairs of targets to produce one target).</p>
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>8</span>
 )
 <span class='no'>x_plan</span></div><div class='output co'>#&gt; # A tibble: 8 x 2
-#&gt;   target command
-#&gt;   &lt;chr&gt;  &lt;chr&gt;  
-#&gt; 1 x_1    1      
-#&gt; 2 x_2    2      
-#&gt; 3 x_3    3      
-#&gt; 4 x_4    4      
-#&gt; 5 x_5    5      
-#&gt; 6 x_6    6      
-#&gt; 7 x_7    7      
-#&gt; 8 x_8    8      </div><div class='input'><span class='co'># Create a new target from the sum of the others.</span>
+#&gt;   target command    
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;
+#&gt; 1 x_1    1          
+#&gt; 2 x_2    2          
+#&gt; 3 x_3    3          
+#&gt; 4 x_4    4          
+#&gt; 5 x_5    5          
+#&gt; 6 x_6    6          
+#&gt; 7 x_7    7          
+#&gt; 8 x_8    8          </div><div class='input'><span class='co'># Create a new target from the sum of the others.</span>
 <span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;   target command                                      
-#&gt;   &lt;chr&gt;  &lt;chr&gt;                                        
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;                                  
 #&gt; 1 x_sum  x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8</div><div class='input'><span class='co'># Optionally include the original rows with `append = TRUE`.</span>
 <span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 2
 #&gt;   target command                                      
-#&gt;   &lt;chr&gt;  &lt;chr&gt;                                        
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;                                  
 #&gt; 1 x_1    1                                            
 #&gt; 2 x_2    2                                            
 #&gt; 3 x_3    3                                            
@@ -225,7 +225,7 @@ operator to pairs of targets to produce one target).</p>
 <span class='co'># reduce pairwise:</span>
 <span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 2
 #&gt;   target  command          
-#&gt;   &lt;chr&gt;   &lt;chr&gt;            
+#&gt;   &lt;chr&gt;   &lt;S3: langs&gt;      
 #&gt; 1 x_sum_1 x_1 + x_2        
 #&gt; 2 x_sum_2 x_3 + x_4        
 #&gt; 3 x_sum_3 x_5 + x_6        
@@ -240,22 +240,22 @@ operator to pairs of targets to produce one target).</p>
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>9</span>
 )
 <span class='no'>x_plan</span></div><div class='output co'>#&gt; # A tibble: 9 x 2
-#&gt;   target command
-#&gt;   &lt;chr&gt;  &lt;chr&gt;  
-#&gt; 1 x_1    1      
-#&gt; 2 x_2    2      
-#&gt; 3 x_3    3      
-#&gt; 4 x_4    4      
-#&gt; 5 x_5    5      
-#&gt; 6 x_6    6      
-#&gt; 7 x_7    7      
-#&gt; 8 x_8    8      
-#&gt; 9 x_9    9      </div><div class='input'><span class='fu'>reduce_plan</span>(
+#&gt;   target command    
+#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;
+#&gt; 1 x_1    1          
+#&gt; 2 x_2    2          
+#&gt; 3 x_3    3          
+#&gt; 4 x_4    4          
+#&gt; 5 x_5    5          
+#&gt; 6 x_6    6          
+#&gt; 7 x_7    7          
+#&gt; 8 x_8    8          
+#&gt; 9 x_9    9          </div><div class='input'><span class='fu'>reduce_plan</span>(
   <span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>begin</span> <span class='kw'>=</span> <span class='st'>"fun("</span>, <span class='kw'>op</span> <span class='kw'>=</span> <span class='st'>", "</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>")"</span>
 )</div><div class='output co'>#&gt; # A tibble: 8 x 2
 #&gt;   target  command              
-#&gt;   &lt;chr&gt;   &lt;chr&gt;                
+#&gt;   &lt;chr&gt;   &lt;S3: langs&gt;          
 #&gt; 1 x_sum_1 fun(x_1, x_2)        
 #&gt; 2 x_sum_2 fun(x_3, x_4)        
 #&gt; 3 x_sum_3 fun(x_5, x_6)        

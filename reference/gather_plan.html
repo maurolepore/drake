@@ -180,7 +180,7 @@ existing targets in the supplied plan.</p>
 <span class='co'># Create a new target that brings the datasets together.</span>
 <span class='fu'>gather_plan</span>(<span class='no'>datasets</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"my_datasets"</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;   target      command                           
-#&gt;   &lt;chr&gt;       &lt;chr&gt;                             
+#&gt;   &lt;chr&gt;       &lt;S3: langs&gt;                       
 #&gt; 1 my_datasets list(small = small, large = large)</div><div class='input'><span class='co'># This time, the new target just appends the rows of 'small' and 'large'</span>
 <span class='co'># into a single matrix or data frame.</span>
 <span class='no'>gathered</span> <span class='kw'>&lt;-</span> <span class='fu'>gather_plan</span>(
@@ -191,11 +191,11 @@ existing targets in the supplied plan.</p>
 )
 <span class='no'>gathered</span></div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;   target          command                            
-#&gt;   &lt;chr&gt;           &lt;chr&gt;                              
+#&gt;   &lt;chr&gt;           &lt;S3: langs&gt;                        
 #&gt; 1 aggregated_data rbind(small = small, large = large)</div><div class='input'><span class='co'># For the complete workflow plan, row bind the pieces together.</span>
 <span class='fu'><a href='bind_plans.html'>bind_plans</a></span>(<span class='no'>datasets</span>, <span class='no'>gathered</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 2
 #&gt;   target          command                            
-#&gt;   &lt;chr&gt;           &lt;chr&gt;                              
+#&gt;   &lt;chr&gt;           &lt;S3: langs&gt;                        
 #&gt; 1 small           simulate(5)                        
 #&gt; 2 large           simulate(50)                       
 #&gt; 3 aggregated_data rbind(small = small, large = large)</div><div class='input'><span class='co'># Alternatively, you can set `append = TRUE` to incorporate</span>
@@ -207,7 +207,7 @@ existing targets in the supplied plan.</p>
   <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; # A tibble: 3 x 2
 #&gt;   target          command                            
-#&gt;   &lt;chr&gt;           &lt;chr&gt;                              
+#&gt;   &lt;chr&gt;           &lt;S3: langs&gt;                        
 #&gt; 1 small           simulate(5)                        
 #&gt; 2 large           simulate(50)                       
 #&gt; 3 aggregated_data rbind(small = small, large = large)</div></pre>
