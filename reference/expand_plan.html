@@ -182,7 +182,7 @@ so targets still have unique names.</p>
 <span class='co'># this is convenient.</span>
 <span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"rep1"</span>, <span class='st'>"rep2"</span>, <span class='st'>"rep3"</span>))</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target     command     
-#&gt;   &lt;chr&gt;      &lt;S3: langs&gt; 
+#&gt;   &lt;chr&gt;      &lt;expr&gt;      
 #&gt; 1 small_rep1 simulate(5) 
 #&gt; 2 small_rep2 simulate(5) 
 #&gt; 3 small_rep3 simulate(5) 
@@ -191,7 +191,7 @@ so targets still have unique names.</p>
 #&gt; 6 large_rep3 simulate(50)</div><div class='input'><span class='co'># Choose whether to rename the targets based on the values.</span>
 <span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target  command     
-#&gt;   &lt;chr&gt;   &lt;S3: langs&gt; 
+#&gt;   &lt;chr&gt;   &lt;expr&gt;      
 #&gt; 1 small_1 simulate(5) 
 #&gt; 2 small_2 simulate(5) 
 #&gt; 3 small_3 simulate(5) 
@@ -199,7 +199,7 @@ so targets still have unique names.</p>
 #&gt; 5 large_2 simulate(50)
 #&gt; 6 large_3 simulate(50)</div><div class='input'><span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 2
 #&gt;   target command     
-#&gt;   &lt;chr&gt;  &lt;S3: langs&gt; 
+#&gt;   &lt;chr&gt;  &lt;expr&gt;      
 #&gt; 1 small  simulate(5) 
 #&gt; 2 small  simulate(5) 
 #&gt; 3 small  simulate(5) 

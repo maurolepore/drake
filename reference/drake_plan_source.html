@@ -163,7 +163,7 @@ is a call to <code><a href='drake_plan.html'>drake_plan()</a></code> that produc
 )
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 4
 #&gt;   target     command               trigger                               timeout
-#&gt;   &lt;chr&gt;      &lt;S3: langs&gt;           &lt;S3: langs&gt;                             &lt;dbl&gt;
+#&gt;   &lt;chr&gt;      &lt;expr&gt;                &lt;expr&gt;                                  &lt;dbl&gt;
 #&gt; 1 small_data download_data("https… NA                                  …      NA
 #&gt; 2 large_dat… download_data("https… trigger(change = time_last_modified(…    1000</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"styler"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
   <span class='no'>source</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan_source</span>(<span class='no'>plan</span>)

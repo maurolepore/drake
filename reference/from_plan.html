@@ -165,7 +165,7 @@ and <code>column</code> is the name of the column of the plan you provide.</p>
     <pre class="examples"><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>my_target</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='fu'>from_plan</span>(<span class='st'>"a"</span>), <span class='kw'>a</span> <span class='kw'>=</span> <span class='st'>"a_value"</span>))
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 1 x 3
 #&gt;   target    command        a      
-#&gt;   &lt;chr&gt;     &lt;S3: langs&gt;    &lt;chr&gt;  
+#&gt;   &lt;chr&gt;     &lt;expr&gt;         &lt;chr&gt;  
 #&gt; 1 my_target from_plan("a") a_value</div><div class='input'>
 <span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>target my_target</span></div><div class='input'><span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>my_target</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><div class='output co'>#&gt; [1] "a_value"</div><div class='input'>
@@ -187,7 +187,7 @@ and <code>column</code> is the name of the column of the plan you provide.</p>
 
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
 #&gt;   target command                                                      cores
-#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;                                                  &lt;dbl&gt;
+#&gt;   &lt;chr&gt;  &lt;expr&gt;                                                       &lt;dbl&gt;
 #&gt; 1 a      parallel::mclapply(1:8, sqrt, mc.cores = from_plan("cores"))     4
 #&gt; 2 b      parallel::mclapply(1:4, sqrt, mc.cores = from_plan("cores"))     2</div><div class='input'>
 <span class='co'># If make(plan, parallelism = "loop") fails,</span>
@@ -210,7 +210,7 @@ and <code>column</code> is the name of the column of the plan you provide.</p>
 <span class='no'>plan</span>$<span class='no'>cores</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
 #&gt;   target command                                                      cores
-#&gt;   &lt;chr&gt;  &lt;S3: langs&gt;                                                  &lt;dbl&gt;
+#&gt;   &lt;chr&gt;  &lt;expr&gt;                                                       &lt;dbl&gt;
 #&gt; 1 a      parallel::mclapply(1:8, sqrt, mc.cores = from_plan("cores"))     1
 #&gt; 2 b      parallel::mclapply(1:4, sqrt, mc.cores = from_plan("cores"))     1</div><div class='input'>
 # make(plan) # nolint

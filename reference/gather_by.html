@@ -200,14 +200,14 @@ and then row-bind the new targets to the plan.</p>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='evaluate_plan.html'>evaluate_plan</a></span>(<span class='no'>plan</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>mu__</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>), <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 5 x 4
 #&gt;   target          command                                mu__  mu___from    
-#&gt;   &lt;chr&gt;           &lt;S3: langs&gt;                            &lt;chr&gt; &lt;chr&gt;        
+#&gt;   &lt;chr&gt;           &lt;expr&gt;                                 &lt;chr&gt; &lt;chr&gt;        
 #&gt; 1 data            get_data()                             &lt;NA&gt;  &lt;NA&gt;         
 #&gt; 2 informal_look_1 inspect_data(data, mu = 1)             1     informal_look
 #&gt; 3 informal_look_2 inspect_data(data, mu = 2)             2     informal_look
 #&gt; 4 bayes_model_1   bayesian_model_fit(data, prior_mu = 1) 1     bayes_model  
 #&gt; 5 bayes_model_2   bayesian_model_fit(data, prior_mu = 2) 2     bayes_model  </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>gather</span> <span class='kw'>=</span> <span class='st'>"rbind"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 4
 #&gt;   target         command                                       mu__  mu___from  
-#&gt;   &lt;chr&gt;          &lt;S3: langs&gt;                                   &lt;chr&gt; &lt;chr&gt;      
+#&gt;   &lt;chr&gt;          &lt;expr&gt;                                        &lt;chr&gt; &lt;chr&gt;      
 #&gt; 1 data           get_data()                                  … &lt;NA&gt;  &lt;NA&gt;       
 #&gt; 2 informal_look… inspect_data(data, mu = 1)                  … 1     informal_l…
 #&gt; 3 informal_look… inspect_data(data, mu = 2)                  … 2     informal_l…
@@ -217,7 +217,7 @@ and then row-bind the new targets to the plan.</p>
 #&gt; 7 target_inform… rbind(informal_look_1 = informal_look_1, inf… &lt;NA&gt;  informal_l…
 #&gt; 8 target_NA      rbind(data = data)                          … &lt;NA&gt;  &lt;NA&gt;       </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 4
 #&gt;   target         command                                       mu__  mu___from  
-#&gt;   &lt;chr&gt;          &lt;S3: langs&gt;                                   &lt;chr&gt; &lt;chr&gt;      
+#&gt;   &lt;chr&gt;          &lt;expr&gt;                                        &lt;chr&gt; &lt;chr&gt;      
 #&gt; 1 data           get_data()                                  … &lt;NA&gt;  &lt;NA&gt;       
 #&gt; 2 informal_look… inspect_data(data, mu = 1)                  … 1     informal_l…
 #&gt; 3 informal_look… inspect_data(data, mu = 2)                  … 2     informal_l…
@@ -227,12 +227,12 @@ and then row-bind the new targets to the plan.</p>
 #&gt; 7 target_inform… list(informal_look_1 = informal_look_1, info… &lt;NA&gt;  informal_l…
 #&gt; 8 target_NA      list(data = data)                           … &lt;NA&gt;  &lt;NA&gt;       </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu___from</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 3
 #&gt;   target          command                                            mu___from  
-#&gt;   &lt;chr&gt;           &lt;S3: langs&gt;                                        &lt;chr&gt;      
+#&gt;   &lt;chr&gt;           &lt;expr&gt;                                             &lt;chr&gt;      
 #&gt; 1 target_bayes_m… list(bayes_model_1 = bayes_model_1, bayes_model_2… bayes_model
 #&gt; 2 target_informa… list(informal_look_1 = informal_look_1, informal_… informal_l…
 #&gt; 3 target_NA       list(data = data)                                … &lt;NA&gt;       </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>, <span class='no'>mu__</span>, <span class='no'>mu___from</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"x"</span>)</div><div class='output co'>#&gt; # A tibble: 10 x 4
 #&gt;    target            command                                 mu__  mu___from    
-#&gt;    &lt;chr&gt;             &lt;S3: langs&gt;                             &lt;chr&gt; &lt;chr&gt;        
+#&gt;    &lt;chr&gt;             &lt;expr&gt;                                  &lt;chr&gt; &lt;chr&gt;        
 #&gt;  1 data              get_data()                              &lt;NA&gt;  &lt;NA&gt;         
 #&gt;  2 informal_look_1   inspect_data(data, mu = 1)              1     informal_look
 #&gt;  3 informal_look_2   inspect_data(data, mu = 2)              2     informal_look
@@ -244,7 +244,7 @@ and then row-bind the new targets to the plan.</p>
 #&gt;  9 x_2_informal_look list(informal_look_2 = informal_look_2) 2     informal_look
 #&gt; 10 x_NA_NA           list(data = data)                       &lt;NA&gt;  &lt;NA&gt;         </div><div class='input'><span class='fu'>gather_by</span>(<span class='no'>plan</span>) <span class='co'># Gather everything and append a row.</span></div><div class='output co'>#&gt; # A tibble: 6 x 4
 #&gt;   target       command                                         mu__  mu___from  
-#&gt;   &lt;chr&gt;        &lt;S3: langs&gt;                                     &lt;chr&gt; &lt;chr&gt;      
+#&gt;   &lt;chr&gt;        &lt;expr&gt;                                          &lt;chr&gt; &lt;chr&gt;      
 #&gt; 1 data         get_data()                                    … &lt;NA&gt;  &lt;NA&gt;       
 #&gt; 2 informal_lo… inspect_data(data, mu = 1)                    … 1     informal_l…
 #&gt; 3 informal_lo… inspect_data(data, mu = 2)                    … 2     informal_l…
@@ -263,7 +263,7 @@ and then row-bind the new targets to the plan.</p>
   <span class='kw'>filter</span> <span class='kw'>=</span> <span class='no'>mu___from</span> <span class='kw'>==</span> <span class='st'>"bayes_model"</span>
 )</div><div class='output co'>#&gt; # A tibble: 6 x 4
 #&gt;   target         command                                       mu__  mu___from  
-#&gt;   &lt;chr&gt;          &lt;S3: langs&gt;                                   &lt;chr&gt; &lt;chr&gt;      
+#&gt;   &lt;chr&gt;          &lt;expr&gt;                                        &lt;chr&gt; &lt;chr&gt;      
 #&gt; 1 data           get_data()                                  … &lt;NA&gt;  &lt;NA&gt;       
 #&gt; 2 informal_look… inspect_data(data, mu = 1)                  … 1     informal_l…
 #&gt; 3 informal_look… inspect_data(data, mu = 2)                  … 2     informal_l…
