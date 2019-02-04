@@ -174,7 +174,7 @@
 <li>Require a <code>config</code> argument to <code><a href="../reference/drake_build.html">drake_build()</a></code> and <code><a href="../reference/readd.html">loadd(deps = TRUE)</a></code>.</li>
 <li>
 <code><a href="../reference/drake_envir.html">drake_envir()</a></code> now throws an error, not a warning, if called in the incorrect context. Should be called only inside commands in the user’s <code>drake</code> plan.</li>
-<li>Replace <code>*expr*()</code> <code>rlang</code> functions with their <code>*quo*()</code> counterparts. We still keep <code><a href="https://rlang.r-lib.org/reference/quotation.html">rlang::expr()</a></code> in the few places where we know the expressions need to be evalutated in <code>config$eval</code>.</li>
+<li>Replace <code>*expr*()</code> <code>rlang</code> functions with their <code>*quo*()</code> counterparts. We still keep <code><a href="https://rlang.r-lib.org/reference/quotation.html">rlang::expr()</a></code> in the few places where we know the expressions need to be evaluated in <code>config$eval</code>.</li>
 <li>The <code>prework</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code> can now be an expression (language object) or list of expressions. Character vectors are still acceptable.</li>
 </ul>
 </div>
