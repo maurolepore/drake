@@ -133,15 +133,16 @@ for an overview of the documentation.</p>
   <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>,
   <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='st'>"loop"</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs_preprocess</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/zpackages'>.packages</a></span>()), <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>),
-  <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(),
-  <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caching</span> <span class='kw'>=</span> <span class='st'>"master"</span>, <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/zpackages'>.packages</a></span>()), <span class='kw'>lib_loc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
+  <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
+  <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>caching</span> <span class='kw'>=</span> <span class='st'>"master"</span>, <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
   <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>,
@@ -254,24 +255,22 @@ in a certain order, especially if <code>parallelism</code> is
 or <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>require()</a></code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>loadNamespace()</a></code> or
 <code><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>attachNamespace()</a></code> to load any libraries beforehand.
 Just list your packages in the <code>packages</code> argument in the order
-you want them to be loaded.
-If <code>parallelism</code> is <code>"mclapply"</code>,
-the necessary packages
-are loaded once before any targets are built. If <code>parallelism</code> is
-<code>"Makefile"</code>, the necessary packages are loaded once on
-initialization and then once again for each target right
-before that target is built.</p></td>
+you want them to be loaded.</p></td>
+    </tr>
+    <tr>
+      <th>lib_loc</th>
+      <td><p>Character vector, optional.
+Same as in <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library()</a></code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>require()</a></code>.
+Applies to the <code>packages</code> argument (see above).</p></td>
     </tr>
     <tr>
       <th>prework</th>
-      <td><p>Character vector of lines of code to run
-before build time. This code can be used to
-load packages, set options, etc., although the packages in the
-<code>packages</code> argument are loaded before any prework is done.
-If <code>parallelism</code> is <code>"mclapply"</code>, the <code>prework</code>
-is run once before any targets are built. If <code>parallelism</code> is
-<code>"Makefile"</code>, the prework is run once on initialization
-and then once again for each target right before that target is built.</p></td>
+      <td><p>Expression (language object), list of expressions,
+or character vector.
+Code to run right before targets build.
+Called only once if <code>parallelism</code> is <code>"loop"</code>
+and once per target otherwise.
+This code can be used to set global options, etc.</p></td>
     </tr>
     <tr>
       <th>prepend</th>
