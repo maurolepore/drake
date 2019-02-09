@@ -129,12 +129,12 @@ targets built by <code><a href='make.html'>make()</a></code>.</p>
   <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span>
   <span class='no'>verbose</span>), <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>loadd</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>imported_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span>
-  <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>lazy</span> <span class='kw'>=</span> <span class='st'>"eager"</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tidyselect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>loadd</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>imported_only</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(),
+  <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(),
+  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>lazy</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
+  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>tidyselect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -208,8 +208,7 @@ cache. Similar to the <code>list</code> argument of <code><a href='https://www.r
     </tr>
     <tr>
       <th>imported_only</th>
-      <td><p>Logical, whether only imported objects
-should be loaded.</p></td>
+      <td><p>Logical, deprecated.</p></td>
     </tr>
     <tr>
       <th>envir</th>
@@ -346,18 +345,12 @@ interacting with the cache.</p>
 <span class='co'># Load the dependencies of the target, coef_regression2_small</span>
 <span class='fu'>loadd</span>(<span class='no'>coef_regression2_small</span>, <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ls'>ls</a></span>()
-<span class='co'># Load all the imported objects/functions.</span>
-<span class='fu'>loadd</span>(<span class='kw'>imported_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ls'>ls</a></span>()
 <span class='co'># Load all the targets listed in the workflow plan</span>
 <span class='co'># of the previous `make()`.</span>
+<span class='co'># If you do not supply any target names, `loadd()` loads all the targets.</span>
 <span class='co'># Be sure your computer has enough memory.</span>
 <span class='fu'>loadd</span>()
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ls'>ls</a></span>()
-<span class='co'># With files, you just get the fingerprint.</span>
-<span class='fu'>loadd</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ls'>ls</a></span>() <span class='co'># Should include "\"report.md\"".</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.md"</span>))
 }
 })
 <span class='co'># }</span></pre>
