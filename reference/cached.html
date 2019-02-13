@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enumerate cached targets or check if a target is cached. — cached • drake</title>
+<title>List targets in the cache. — cached • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Enumerate cached targets or check if a target is cached. — cached" />
+<meta property="og:title" content="List targets in the cache. — cached" />
 
-<meta property="og:description" content="Read/load a cached item with readd()
+<meta property="og:description" content="Tip: read/load a cached item with readd()
 or loadd()." />
 <meta name="twitter:card" content="summary" />
 
@@ -109,46 +109,42 @@ or loadd()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Enumerate cached targets or check if a target is cached.</h1>
+    <h1>List targets in the cache.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-cache.R'><code>R/api-cache.R</code></a></small>
     <div class="hidden name"><code>cached.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Read/load a cached item with <code><a href='readd.html'>readd()</a></code>
+    <p>Tip: read/load a cached item with <code><a href='readd.html'>readd()</a></code>
 or <code><a href='readd.html'>loadd()</a></code>.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>cached</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+  <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Objects to load from the cache, as names (unquoted)
+      <td><p>Deprecated. Do not use.
+Objects to load from the cache, as names (unquoted)
 or character strings (quoted). Similar to <code>...</code> in
 <code><a href='https://www.rdocumentation.org/packages/base/topics/rm'>remove()</a></code>.</p></td>
     </tr>
     <tr>
       <th>list</th>
-      <td><p>Character vector naming objects to be loaded from the
+      <td><p>Deprecated. Do not use.
+Character vector naming objects to be loaded from the
 cache. Similar to the <code>list</code> argument of <code><a href='https://www.rdocumentation.org/packages/base/topics/rm'>remove()</a></code>.</p></td>
     </tr>
     <tr>
       <th>no_imported_objects</th>
-      <td><p>Logical, applies only when
-no targets are specified and a list of cached targets is returned.
-If <code>no_imported_objects</code> is <code>TRUE</code>, then <code>cached()</code>
-shows built targets (with commands) plus imported files,
-ignoring imported objects. Otherwise, the full collection of
-all cached objects will be listed. Since all your functions and
-all their global variables are imported, the full list of
-imported objects could get really cumbersome.</p></td>
+      <td><p>Logical, deprecated. Use
+<code>targets_only</code> instead.</p></td>
     </tr>
     <tr>
       <th>path</th>
@@ -190,6 +186,11 @@ to use for listing objects.</p></td>
       <th>jobs</th>
       <td><p>Number of jobs/workers for parallel processing.</p></td>
     </tr>
+    <tr>
+      <th>targets_only</th>
+      <td><p>Logical. If <code>TRUE</code> just list the targets.
+If <code>FALSE</code>, list files and imported objects too.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -200,7 +201,7 @@ items, depending on whether any targets are specified.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>cached()</code>, <code><a href='readd.html'>readd()</a></code>, <code><a href='readd.html'>loadd()</a></code>,
+    <div class='dont-index'><p><code><a href='readd.html'>readd()</a></code>, <code><a href='readd.html'>loadd()</a></code>,
 <code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
     
 
@@ -211,23 +212,8 @@ items, depending on whether any targets are specified.</p>
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"lubridate"</span>)) {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Load drake's canonical example.</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build all the targets.</span>
-<span class='fu'>cached</span>(<span class='kw'>list</span> <span class='kw'>=</span> <span class='st'>'reg1'</span>) <span class='co'># Is 'reg1' in the cache?</span>
-<span class='co'># List all the targets and imported files in the cache.</span>
-<span class='co'># Exclude R objects imported from your workspace.</span>
-<span class='fu'>cached</span>(<span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># List all targets and imports in the cache.</span>
 <span class='fu'>cached</span>()
-<span class='co'># Clean the main data.</span>
-<span class='fu'><a href='clean.html'>clean</a></span>()
-<span class='co'># The targets and imports are gone.</span>
-<span class='fu'>cached</span>()
-<span class='co'># But there is still metadata.</span>
-<span class='fu'><a href='build_times.html'>build_times</a></span>()
-<span class='fu'>cached</span>(<span class='kw'>namespace</span> <span class='kw'>=</span> <span class='st'>"build_times"</span>)
-<span class='co'># Clear that too.</span>
-<span class='fu'><a href='clean.html'>clean</a></span>(<span class='kw'>purge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>cached</span>(<span class='kw'>namespace</span> <span class='kw'>=</span> <span class='st'>"build_times"</span>)
-<span class='fu'><a href='build_times.html'>build_times</a></span>()
+<span class='fu'>cached</span>(<span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 }
 }
 })
