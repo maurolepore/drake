@@ -166,7 +166,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-basic" class="hasAnchor"><a href="#section-basic" class="anchor"></a>Basic</h2>
+          <h2 id="section-build-targets" class="hasAnchor"><a href="#section-build-targets" class="anchor"></a>Build targets</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -199,7 +199,7 @@ used internally in <code>make()</code>.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-workflow-plan-data-frames" class="hasAnchor"><a href="#section-workflow-plan-data-frames" class="anchor"></a>Workflow plan data frames</h2>
+          <h2 id="section-drake-plans" class="hasAnchor"><a href="#section-drake-plans" class="anchor"></a>drake plans</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -216,87 +216,6 @@ for the <code>plan</code> argument of <code>make()</code>.</p></td>
           <p><code><a href="bind_plans.html">bind_plans()</a></code> </p>
         </td>
         <td><p>Row-bind together drake plans</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="map_plan.html">map_plan()</a></code> </p>
-        </td>
-        <td><p>Create a plan that maps a function to a grid of arguments.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gather_plan.html">gather_plan()</a></code> </p>
-        </td>
-        <td><p>Write commands to combine several targets into one
-or more overarching targets.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gather_by.html">gather_by()</a></code> </p>
-        </td>
-        <td><p>Gather multiple groupings of targets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="reduce_plan.html">reduce_plan()</a></code> </p>
-        </td>
-        <td><p>Write commands to reduce several targets down to one.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="reduce_by.html">reduce_by()</a></code> </p>
-        </td>
-        <td><p>Reduce multiple groupings of targets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="file_in.html">file_in()</a></code> </p>
-        </td>
-        <td><p>Declare the file inputs of a workflow plan command.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="file_out.html">file_out()</a></code> </p>
-        </td>
-        <td><p>Declare the file outputs of a workflow plan command.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="file_store.html">file_store()</a></code> </p>
-        </td>
-        <td><p>Tell <code>drake</code> that you want information
-on a <em>file</em> (target or import), not an ordinary object.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="knitr_in.html">knitr_in()</a></code> </p>
-        </td>
-        <td><p>Declare the <code>knitr</code>/<code>rmarkdown</code> source files
-of a workflow plan command.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ignore.html">ignore()</a></code> </p>
-        </td>
-        <td><p>Ignore components of commands and imported functions.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drake_envir.html">drake_envir()</a></code> </p>
-        </td>
-        <td><p>Get the environment where drake builds targets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="from_plan.html">from_plan()</a></code> </p>
-        </td>
-        <td><p>Get a target's plan info from inside a plan's command.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="target.html">target()</a></code> </p>
-        </td>
-        <td><p>Define custom columns in a <code>drake_plan()</code>.</p></td>
       </tr><tr>
         
         <td>
@@ -324,19 +243,51 @@ into an R notebook,</p></td>
           <p><code><a href="drake_plan_source.html">drake_plan_source()</a></code> </p>
         </td>
         <td><p>Show the code required to produce a given workflow plan data frame</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-special-functions-for-commands" class="hasAnchor"><a href="#section-special-functions-for-commands" class="anchor"></a>Special functions for commands</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="file_in.html">file_in()</a></code> </p>
+        </td>
+        <td><p>Declare the file inputs of a workflow plan command.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="evaluate_plan.html">evaluate_plan()</a></code> </p>
+          <p><code><a href="file_out.html">file_out()</a></code> </p>
         </td>
-        <td><p>Use wildcard templating to create a
-workflow plan data frame from a template data frame.</p></td>
+        <td><p>Declare the file outputs of a workflow plan command.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="expand_plan.html">expand_plan()</a></code> </p>
+          <p><code><a href="knitr_in.html">knitr_in()</a></code> </p>
         </td>
-        <td><p>Create replicates of targets.</p></td>
+        <td><p>Declare the <code>knitr</code>/<code>rmarkdown</code> source files
+of a workflow plan command.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ignore.html">ignore()</a></code> </p>
+        </td>
+        <td><p>Ignore components of commands and imported functions.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="drake_envir.html">drake_envir()</a></code> </p>
+        </td>
+        <td><p>Get the environment where drake builds targets</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="from_plan.html">from_plan()</a></code> </p>
+        </td>
+        <td><p>Get a target's plan info from inside a plan's command.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -517,22 +468,16 @@ for non-staged parallel backends.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-caches" class="hasAnchor"><a href="#section-caches" class="anchor"></a>Caches</h2>
+          <h2 id="section-cache-utilities" class="hasAnchor"><a href="#section-cache-utilities" class="anchor"></a>Cache utilities</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="new_cache.html">new_cache()</a></code> </p>
+          <p><code><a href="readd.html">readd()</a></code> <code><a href="readd.html">loadd()</a></code> </p>
         </td>
-        <td><p>Make a new <code>drake</code> cache.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="this_cache.html">this_cache()</a></code> </p>
-        </td>
-        <td><p>Get the cache at the exact file path specified.</p></td>
+        <td><p>Read and return a drake target/import from the cache.</p></td>
       </tr><tr>
         
         <td>
@@ -545,6 +490,50 @@ for non-staged parallel backends.</p></td>
           <p><code><a href="clean.html">clean()</a></code> </p>
         </td>
         <td><p>Remove targets/imports from the cache.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="progress.html">progress()</a></code> </p>
+        </td>
+        <td><p>Get the build progress of your targets
+during a <code>make()</code>.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="running.html">running()</a></code> </p>
+        </td>
+        <td><p>List running targets.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="failed.html">failed()</a></code> </p>
+        </td>
+        <td><p>List failed targets.
+to <code>make()</code>.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_cache.html">get_cache()</a></code> </p>
+        </td>
+        <td><p>Get the default cache of a <code>drake</code> project.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="this_cache.html">this_cache()</a></code> </p>
+        </td>
+        <td><p>Get the cache at the exact file path specified.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="new_cache.html">new_cache()</a></code> </p>
+        </td>
+        <td><p>Make a new <code>drake</code> cache.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="find_cache.html">find_cache()</a></code> </p>
+        </td>
+        <td><p>Search up the file system for the nearest drake cache.</p></td>
       </tr><tr>
         
         <td>
@@ -574,38 +563,6 @@ of the last call to <code>make()</code>.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="failed.html">failed()</a></code> </p>
-        </td>
-        <td><p>List the targets that failed in the last call
-to <code>make()</code>.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_cache.html">find_cache()</a></code> </p>
-        </td>
-        <td><p>Search up the file system for the nearest drake cache.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_cache.html">get_cache()</a></code> </p>
-        </td>
-        <td><p>Get the default cache of a <code>drake</code> project.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readd.html">readd()</a></code> <code><a href="readd.html">loadd()</a></code> </p>
-        </td>
-        <td><p>Read and return a drake target/import from the cache.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="progress.html">progress()</a></code> </p>
-        </td>
-        <td><p>Get the build progress of your targets
-during a <code>make()</code>.</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="rescue_cache.html">rescue_cache()</a></code> </p>
         </td>
         <td><p>Try to repair a drake cache that is prone
@@ -622,6 +579,13 @@ to throwing <code>storr</code>-related errors.</p></td>
           <p><code><a href="read_drake_seed.html">read_drake_seed()</a></code> </p>
         </td>
         <td><p>Read the pseudo-random number generator seed of the project.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_store.html">file_store()</a></code> </p>
+        </td>
+        <td><p>Tell <code>drake</code> that you want information
+on a <em>file</em> (target or import), not an ordinary object.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -638,6 +602,58 @@ to throwing <code>storr</code>-related errors.</p></td>
         <td><p>Expose all the imports in a package so <code>make()</code> can detect
 all the package's nested functions.</p></td>
       </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-wildcard-interface" class="hasAnchor"><a href="#section-wildcard-interface" class="anchor"></a>Wildcard interface</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="map_plan.html">map_plan()</a></code> </p>
+        </td>
+        <td><p>Create a plan that maps a function to a grid of arguments.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gather_plan.html">gather_plan()</a></code> </p>
+        </td>
+        <td><p>Write commands to combine several targets into one
+or more overarching targets.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gather_by.html">gather_by()</a></code> </p>
+        </td>
+        <td><p>Gather multiple groupings of targets</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reduce_plan.html">reduce_plan()</a></code> </p>
+        </td>
+        <td><p>Write commands to reduce several targets down to one.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reduce_by.html">reduce_by()</a></code> </p>
+        </td>
+        <td><p>Reduce multiple groupings of targets</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="evaluate_plan.html">evaluate_plan()</a></code> </p>
+        </td>
+        <td><p>Use wildcard templating to create a
+workflow plan data frame from a template data frame.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="expand_plan.html">expand_plan()</a></code> </p>
+        </td>
+        <td><p>Create replicates of targets.</p></td>
+      </tr>
     </tbody>
     </table>
   </div>
@@ -647,14 +663,16 @@ all the package's nested functions.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-help">Help</a></li>
       <li><a href="#section-examples">Examples</a></li>
-      <li><a href="#section-basic">Basic</a></li>
-      <li><a href="#section-workflow-plan-data-frames">Workflow plan data frames</a></li>
+      <li><a href="#section-build-targets">Build targets</a></li>
+      <li><a href="#section-drake-plans">drake plans</a></li>
+      <li><a href="#section-special-functions-for-commands">Special functions for commands</a></li>
       <li><a href="#section-network-graphs-and-visualization">Network graphs and visualization</a></li>
       <li><a href="#section-debugging-and-testing">Debugging and testing</a></li>
       <li><a href="#section-high-performance-computing">High-performance computing</a></li>
       <li><a href="#section-time">Time</a></li>
-      <li><a href="#section-caches">Caches</a></li>
+      <li><a href="#section-cache-utilities">Cache utilities</a></li>
       <li><a href="#section-environments">Environments</a></li>
+      <li><a href="#section-wildcard-interface">Wildcard interface</a></li>
     </ul>
   </div>
 </div>
