@@ -97,6 +97,12 @@
     <loc>https://ropensci.github.io/drake/reference/deps_code.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/deps_knitr.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/drake/reference/deps_profile.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/deps_target.html</loc>
   </url>
   <url>

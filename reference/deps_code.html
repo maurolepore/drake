@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List the dependencies of a function, workflow plan command,
-or knitr report source file. — deps_code • drake</title>
+<title>List the dependencies of a function or command — deps_code • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,12 +30,10 @@ or knitr report source file. — deps_code • drake</title>
 
 
 
-<meta property="og:title" content="List the dependencies of a function, workflow plan command,
-or knitr report source file. — deps_code" />
+<meta property="og:title" content="List the dependencies of a function or command — deps_code" />
 
-<meta property="og:description" content="Intended for debugging and checking your project.
-The dependency structure of the components of your analysis
-decides which targets are built and when." />
+<meta property="og:description" content="Functions are assumed to be imported,
+and language/text are assumed to be commands in a plan." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,17 +109,15 @@ decides which targets are built and when." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List the dependencies of a function, workflow plan command,
-or knitr report source file.</h1>
+    <h1>List the dependencies of a function or command</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/exec-dependencies.R'><code>R/exec-dependencies.R</code></a></small>
     <div class="hidden name"><code>deps_code.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Intended for debugging and checking your project.
-The dependency structure of the components of your analysis
-decides which targets are built and when.</p>
+    <p>Functions are assumed to be imported,
+and language/text are assumed to be commands in a plan.</p>
     
     </div>
 
@@ -133,46 +128,17 @@ decides which targets are built and when.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A language object (code), character string (code as text),
-or imported function to analyze for dependencies.</p></td>
+      <td><p>A function, expression, or text.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Names of dependencies listed by type (object, input file, etc).
-The <code>globals</code> slot of the output list contains candidate globals only.
-Each global will be treated as an actual dependency if and only if
-it is either a target or an item in the <code>envir</code> argument to <code><a href='make.html'>make()</a></code>.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The <code>globals</code> slot of the output list contains candidate globals only.
-Each global will be treated as an actual dependency if and only if
-it is either a target or an item in the <code>envir</code> argument to <code><a href='make.html'>make()</a></code>.</p>
-<p>If the argument is a <code>knitr</code> report
-(for example, <code><a href='file_store.html'>file_store("report.Rmd")</a></code> or <code>"\"report.Rmd\""</code>)
-the the dependencies of the expected compiled
-output will be given. For example, <code>deps_code(file_store("report.Rmd"))</code>
-will return target names found in calls to <code><a href='readd.html'>loadd()</a></code>
-and <code><a href='readd.html'>readd()</a></code> in active code chunks.
-These <code><a href='readd.html'>loadd()</a></code>/<code><a href='readd.html'>readd()</a></code> targets are needed
-in order to run <code>knit(knitr_in("report.Rmd"))</code>
-to produce the output file <code>"report.md"</code>, so technically,
-they are dependencies of <code>"report.md"</code>, not <code>"report.Rmd"</code>.</p>
-<p>The <code><a href='file_store.html'>file_store()</a></code> function
-alerts <code>drake</code> utility functions to file names by
-enclosing them in literal double quotes.
-(For example, <code><a href='file_store.html'>file_store("report.Rmd")</a></code> is just <code>"\"report.Rmd\""</code>.)</p>
-<p><code>drake</code> takes special precautions so that a target/import
-does not depend on itself. For example, <code>deps_code(f)`` might return </code>"f"<code>if</code>f()` is a recursive function, but <code><a href='make.html'>make()</a></code> just ignores
-this conflict and runs as expected. In other words, <code><a href='make.html'>make()</a></code>
-automatically removes all self-referential loops in the dependency
-network.</p>
+    <p>A data frame of the dependencies.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='deps_target.html'>deps_target()</a></code> <code><a href='make.html'>make()</a></code> <code><a href='drake_plan.html'>drake_plan()</a></code> <code><a href='drake_config.html'>drake_config()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='deps_target.html'>deps_target()</a></code>, <code><a href='deps_knitr.html'>deps_knitr()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -185,7 +151,7 @@ network.</p>
 <span class='co'># in your workspace or packages. Any file names or target names</span>
 <span class='co'># will be ignored.</span>
 <span class='fu'>deps_code</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 2
-#&gt;   target  type   
+#&gt;   name    type   
 #&gt;   &lt;chr&gt;   &lt;chr&gt;  
 #&gt; 1 saveRDS globals
 #&gt; 2 g       globals</div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
@@ -197,21 +163,32 @@ network.</p>
 <span class='co'># Get the dependencies of workflow plan commands.</span>
 <span class='co'># Here, the dependencies could be R functions/objects from your workspace</span>
 <span class='co'># or packages, imported files, or other targets in the workflow plan.</span>
-<span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; # A tibble: 0 x 2
-#&gt; # … with 2 variables: target &lt;chr&gt;, type &lt;chr&gt;</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>2</span>])</div><div class='output co'>#&gt; # A tibble: 0 x 2
-#&gt; # … with 2 variables: target &lt;chr&gt;, type &lt;chr&gt;</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>3</span>])</div><div class='output co'>#&gt; # A tibble: 0 x 2
-#&gt; # … with 2 variables: target &lt;chr&gt;, type &lt;chr&gt;</div><div class='input'><span class='co'># New: you can also supply language objects.</span>
-<span class='fu'>deps_code</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expression'>expression</a></span>(<span class='no'>x</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 2
-#&gt;   target type   
-#&gt;   &lt;chr&gt;  &lt;chr&gt;  
-#&gt; 1 x      globals</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='co'># Dependencies of the knitr-generated targets like 'report.md'</span>
-<span class='co'># include targets/imports referenced with `readd()` or `loadd()`.</span>
-<span class='fu'>deps_code</span>(<span class='fu'><a href='file_store.html'>file_store</a></span>(<span class='st'>"report.Rmd"</span>))
-})
-<span class='co'># }</span></pre>
+<span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; # A tibble: 1 x 2
+#&gt;   name        type   
+#&gt;   &lt;chr&gt;       &lt;chr&gt;  
+#&gt; 1 some_object globals</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span><span class='kw'>[[</span><span class='fl'>2</span>]])</div><div class='output co'>#&gt; # A tibble: 3 x 2
+#&gt;   name                   type   
+#&gt;   &lt;chr&gt;                  &lt;chr&gt;  
+#&gt; 1 x                      globals
+#&gt; 2 readRDS                globals
+#&gt; 3 tracked_input_file.rds file_in</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span><span class='kw'>[[</span><span class='fl'>3</span>]])</div><div class='output co'>#&gt; # A tibble: 6 x 2
+#&gt;   name  type   
+#&gt;   &lt;chr&gt; &lt;chr&gt;  
+#&gt; 1 w     globals
+#&gt; 2 x     globals
+#&gt; 3 y     globals
+#&gt; 4 z     globals
+#&gt; 5 f     globals
+#&gt; 6 g     globals</div><div class='input'><span class='co'># You can also supply expressions or text.</span>
+<span class='fu'>deps_code</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote</a></span>(<span class='no'>x</span> + <span class='no'>y</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 2
+#&gt;   name  type   
+#&gt;   &lt;chr&gt; &lt;chr&gt;  
+#&gt; 1 x     globals
+#&gt; 2 y     globals</div><div class='input'><span class='fu'>deps_code</span>(<span class='st'>"x + y + 123"</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 2
+#&gt;   name  type   
+#&gt;   &lt;chr&gt; &lt;chr&gt;  
+#&gt; 1 x     globals
+#&gt; 2 y     globals</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -219,8 +196,6 @@ network.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
