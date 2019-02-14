@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deprecated in favor of <code><a href='predict_workers.html'>predict_workers()</a></code> — predict_load_balancing • drake</title>
+<title>Predict the load balancing of the next call to <code>make()</code>
+for non-staged parallel backends. — predict_workers • drake</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +31,15 @@
 
 
 
-<meta property="og:title" content="Deprecated in favor of <code><a href='predict_workers.html'>predict_workers()</a></code> — predict_load_balancing" />
+<meta property="og:title" content="Predict the load balancing of the next call to <code>make()</code>
+for non-staged parallel backends. — predict_workers" />
 
-<meta property="og:description" content="Deprecated on 2019-02-14." />
+<meta property="og:description" content="Take the past recorded runtimes times from
+build_times() and use them to predict how the targets
+will be distributed among the available workers in the
+next make().
+Predictions only include the time it takes to run the targets,
+not overhead/preprocessing from drake itself." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,18 +115,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Deprecated in favor of <code><a href='predict_workers.html'>predict_workers()</a></code></h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-deprecate.R'><code>R/utils-deprecate.R</code></a></small>
-    <div class="hidden name"><code>predict_load_balancing.Rd</code></div>
+    <h1>Predict the load balancing of the next call to <code>make()</code>
+for non-staged parallel backends.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-predict.R'><code>R/api-predict.R</code></a></small>
+    <div class="hidden name"><code>predict_workers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Deprecated on 2019-02-14.</p>
+    <p>Take the past recorded runtimes times from
+<code><a href='build_times.html'>build_times()</a></code> and use them to predict how the targets
+will be distributed among the available workers in the
+next <code><a href='make.html'>make()</a></code>.
+Predictions only include the time it takes to run the targets,
+not overhead/preprocessing from <code>drake</code> itself.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>predict_load_balancing</span>(<span class='no'>config</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>predict_workers</span>(<span class='no'>config</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a></span>(<span class='fl'>0</span>),
   <span class='kw'>default_time</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -183,7 +196,46 @@ targets default to <code>default_time</code>.</p></td>
     <p>A data frame showing one likely arrangement
 of targets assigned to parallel workers.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <div class='dont-index'><p><code><a href='predict_runtime.html'>predict_runtime()</a></code>, <code><a href='build_times.html'>build_times()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"knitr"</span>))) {
+<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
+<span class='no'>known_times</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>7200</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>my_plan</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>known_times</span>) <span class='kw'>&lt;-</span> <span class='no'>my_plan</span>$<span class='no'>target</span>
+<span class='no'>known_times</span>
+<span class='co'># Predict the runtime</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"lubridate"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+<span class='fu'><a href='predict_runtime.html'>predict_runtime</a></span>(
+  <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>,
+  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>
+)
+<span class='fu'><a href='predict_runtime.html'>predict_runtime</a></span>(
+  <span class='no'>config</span>,
+  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+  <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>
+)
+<span class='no'>balance</span> <span class='kw'>&lt;-</span> <span class='fu'>predict_workers</span>(
+  <span class='no'>config</span>,
+  <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>known_times</span> <span class='kw'>=</span> <span class='no'>known_times</span>
+)
+<span class='no'>balance</span>
+}
+}
+})
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -191,7 +243,11 @@ of targets assigned to parallel workers.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
