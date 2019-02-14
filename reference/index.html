@@ -166,7 +166,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-top-level" class="hasAnchor"><a href="#section-top-level" class="anchor"></a>Top level</h2>
+          <h2 id="section-build-and-configure" class="hasAnchor"><a href="#section-build-and-configure" class="anchor"></a>Build and configure</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -189,19 +189,6 @@ used internally in <code>make()</code>.</p></td>
           <p><code><a href="drake_build.html">drake_build()</a></code> </p>
         </td>
         <td><p>Build/process a single target or import.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="outdated.html">outdated()</a></code> </p>
-        </td>
-        <td><p>List the targets that are out of date.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="missed.html">missed()</a></code> </p>
-        </td>
-        <td><p>Report any import objects required by your drake_plan
-plan but missing from your workspace or file system.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -220,9 +207,9 @@ for the <code>plan</code> argument of <code>make()</code>.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="bind_plans.html">bind_plans()</a></code> </p>
+          <p><code><a href="drake_plan_source.html">drake_plan_source()</a></code> </p>
         </td>
-        <td><p>Row-bind together drake plans</p></td>
+        <td><p>Show the code required to produce a given workflow plan data frame</p></td>
       </tr><tr>
         
         <td>
@@ -247,9 +234,9 @@ into an R notebook,</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="drake_plan_source.html">drake_plan_source()</a></code> </p>
+          <p><code><a href="bind_plans.html">bind_plans()</a></code> </p>
         </td>
-        <td><p>Show the code required to produce a given workflow plan data frame</p></td>
+        <td><p>Row-bind together drake plans</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -367,11 +354,30 @@ of the graph visualizations.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-debugging-and-testing" class="hasAnchor"><a href="#section-debugging-and-testing" class="anchor"></a>Debugging and testing</h2>
+          <h2 id="section-target-status" class="hasAnchor"><a href="#section-target-status" class="anchor"></a>Target status</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       <tr>
+        
+        <td>
+          <p><code><a href="outdated.html">outdated()</a></code> </p>
+        </td>
+        <td><p>List the targets that are out of date.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="missed.html">missed()</a></code> </p>
+        </td>
+        <td><p>Report any import objects required by your drake_plan
+plan but missing from your workspace or file system.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tracked.html">tracked()</a></code> </p>
+        </td>
+        <td><p>List the targets and imports that are reproducibly tracked.</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="dependency_profile.html">dependency_profile()</a></code> </p>
@@ -393,6 +399,20 @@ or knitr report source file.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="knitr_deps.html">knitr_deps()</a></code> </p>
+        </td>
+        <td><p>Find the drake dependencies of a dynamic knitr report target.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-debugging-and-testing" class="hasAnchor"><a href="#section-debugging-and-testing" class="anchor"></a>Debugging and testing</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
           <p><code><a href="diagnose.html">diagnose()</a></code> </p>
         </td>
         <td><p>Get diagnostic metadata on a target.</p></td>
@@ -402,18 +422,6 @@ or knitr report source file.</p></td>
           <p><code><a href="drake_debug.html">drake_debug()</a></code> </p>
         </td>
         <td><p>Run a single target's command in debug mode.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="knitr_deps.html">knitr_deps()</a></code> </p>
-        </td>
-        <td><p>Find the drake dependencies of a dynamic knitr report target.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tracked.html">tracked()</a></code> </p>
-        </td>
-        <td><p>List the targets and imports that are reproducibly tracked.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -663,10 +671,11 @@ workflow plan data frame from a template data frame.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-help">Help</a></li>
       <li><a href="#section-examples">Examples</a></li>
-      <li><a href="#section-top-level">Top level</a></li>
+      <li><a href="#section-build-and-configure">Build and configure</a></li>
       <li><a href="#section-drake-plans">drake plans</a></li>
       <li><a href="#section-special-functions-within-plans">Special functions within plans</a></li>
       <li><a href="#section-network-graphs-and-visualization">Network graphs and visualization</a></li>
+      <li><a href="#section-target-status">Target status</a></li>
       <li><a href="#section-debugging-and-testing">Debugging and testing</a></li>
       <li><a href="#section-high-performance-computing">High-performance computing</a></li>
       <li><a href="#section-time">Time</a></li>
