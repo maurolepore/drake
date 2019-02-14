@@ -121,7 +121,7 @@ hidden folder named <code>.drake</code> (default).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>find_cache</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>find_cache</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,8 +132,12 @@ hidden folder named <code>.drake</code> (default).</p>
 Should be a subdirectory of the drake project.</p></td>
     </tr>
     <tr>
+      <th>dir</th>
+      <td><p>Character, name of the folder containing the cache.</p></td>
+    </tr>
+    <tr>
       <th>directory</th>
-      <td><p>Name of the folder containing the cache.</p></td>
+      <td><p>Deprecated. Use <code>dir</code>.</p></td>
     </tr>
     </table>
     
