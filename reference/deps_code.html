@@ -184,9 +184,11 @@ network.</p>
 <span class='co'># Find the dependencies of f. These could be R objects/functions</span>
 <span class='co'># in your workspace or packages. Any file names or target names</span>
 <span class='co'># will be ignored.</span>
-<span class='fu'>deps_code</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt; $globals
-#&gt; [1] "saveRDS" "g"      
-#&gt; </div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
+<span class='fu'>deps_code</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 2
+#&gt;   target  type   
+#&gt;   &lt;chr&gt;   &lt;chr&gt;  
+#&gt; 1 saveRDS globals
+#&gt; 2 g       globals</div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span> + <span class='no'>some_object</span>,
   <span class='kw'>my_target</span> <span class='kw'>=</span> <span class='no'>x</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/readRDS'>readRDS</a></span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"tracked_input_file.rds"</span>)),
@@ -195,10 +197,14 @@ network.</p>
 <span class='co'># Get the dependencies of workflow plan commands.</span>
 <span class='co'># Here, the dependencies could be R functions/objects from your workspace</span>
 <span class='co'># or packages, imported files, or other targets in the workflow plan.</span>
-<span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; list()</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>2</span>])</div><div class='output co'>#&gt; list()</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>3</span>])</div><div class='output co'>#&gt; list()</div><div class='input'><span class='co'># New: you can also supply language objects.</span>
-<span class='fu'>deps_code</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expression'>expression</a></span>(<span class='no'>x</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; $globals
-#&gt; [1] "x"
-#&gt; </div><span class='co'># NOT RUN {</span>
+<span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; # A tibble: 0 x 2
+#&gt; # … with 2 variables: target &lt;chr&gt;, type &lt;chr&gt;</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>2</span>])</div><div class='output co'>#&gt; # A tibble: 0 x 2
+#&gt; # … with 2 variables: target &lt;chr&gt;, type &lt;chr&gt;</div><div class='input'><span class='fu'>deps_code</span>(<span class='no'>my_plan</span>$<span class='no'>command</span>[<span class='fl'>3</span>])</div><div class='output co'>#&gt; # A tibble: 0 x 2
+#&gt; # … with 2 variables: target &lt;chr&gt;, type &lt;chr&gt;</div><div class='input'><span class='co'># New: you can also supply language objects.</span>
+<span class='fu'>deps_code</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expression'>expression</a></span>(<span class='no'>x</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 2
+#&gt;   target type   
+#&gt;   &lt;chr&gt;  &lt;chr&gt;  
+#&gt; 1 x      globals</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='test_with_dir.html'>test_with_dir</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='co'># Dependencies of the knitr-generated targets like 'report.md'</span>
