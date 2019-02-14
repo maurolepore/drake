@@ -147,14 +147,15 @@ cache is rescued.</p></td>
     </tr>
     <tr>
       <th>path</th>
-      <td><p>If <code>search = FALSE</code>, <code>path</code> must be the root
-directory of a <code>drake</code> project (a folder containing a <code>.drake</code> cache).
-For example, if your cache is a folder called
-<code>/home/you/my_project/.drake</code>, then
-<code><a href='get_cache.html'>get_cache(path = "/home/you/my_project", search = FALSE)</a></code>
-will return the cache.
-Otherwise, if <code>search = TRUE</code>, you can specify any
-subdirectory of the project. The following are equivalent and correct:</p><ul>
+      <td><p>Character, either the root file path of a <code>drake</code> project
+or a folder containing the root (top-level working directory
+where you plan to call <code><a href='make.html'>make()</a></code>).
+If this is too confusing, feel free to just use <code><a href='https://www.rdocumentation.org/packages/storr/topics/storr_rds'>storr::storr_rds()</a></code>
+to get the cache.
+If <code>search = FALSE</code>, <code>path</code> must be the root.
+If <code>search = TRUE</code>, you can specify any
+subdirectory of the project. Let's say <code>"/home/you/my_project"</code>
+is the root. The following are equivalent and correct:</p><ul>
 <li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project", search = FALSE)</a></code></p></li>
 <li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project", search = TRUE)</a></code></p></li>
 <li><p><code><a href='get_cache.html'>get_cache(path = "/home/you/my_project/subdir/x", search = TRUE)</a></code></p></li>
