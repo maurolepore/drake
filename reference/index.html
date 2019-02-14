@@ -166,7 +166,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-build-targets" class="hasAnchor"><a href="#section-build-targets" class="anchor"></a>Build targets</h2>
+          <h2 id="section-top-level" class="hasAnchor"><a href="#section-top-level" class="anchor"></a>Top level</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -192,9 +192,16 @@ used internally in <code>make()</code>.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="drake_debug.html">drake_debug()</a></code> </p>
+          <p><code><a href="outdated.html">outdated()</a></code> </p>
         </td>
-        <td><p>Run a single target's command in debug mode.</p></td>
+        <td><p>List the targets that are out of date.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="missed.html">missed()</a></code> </p>
+        </td>
+        <td><p>Report any import objects required by your drake_plan
+plan but missing from your workspace or file system.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -247,7 +254,7 @@ into an R notebook,</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-special-functions-for-commands" class="hasAnchor"><a href="#section-special-functions-for-commands" class="anchor"></a>Special functions for commands</h2>
+          <h2 id="section-special-functions-within-plans" class="hasAnchor"><a href="#section-special-functions-within-plans" class="anchor"></a>Special functions within plans</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -288,6 +295,12 @@ of a workflow plan command.</p></td>
           <p><code><a href="from_plan.html">from_plan()</a></code> </p>
         </td>
         <td><p>Get a target's plan info from inside a plan's command.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trigger.html">trigger()</a></code> </p>
+        </td>
+        <td><p>Customize the decision rules for rebuilding targets</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -386,34 +399,21 @@ or knitr report source file.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="drake_debug.html">drake_debug()</a></code> </p>
+        </td>
+        <td><p>Run a single target's command in debug mode.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="knitr_deps.html">knitr_deps()</a></code> </p>
         </td>
         <td><p>Find the drake dependencies of a dynamic knitr report target.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="missed.html">missed()</a></code> </p>
-        </td>
-        <td><p>Report any import objects required by your drake_plan
-plan but missing from your workspace or file system.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="outdated.html">outdated()</a></code> </p>
-        </td>
-        <td><p>List the targets that are out of date.</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="tracked.html">tracked()</a></code> </p>
         </td>
         <td><p>List the targets and imports that are reproducibly tracked.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="trigger.html">trigger()</a></code> </p>
-        </td>
-        <td><p>Customize the decision rules for rebuilding targets</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -663,9 +663,9 @@ workflow plan data frame from a template data frame.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-help">Help</a></li>
       <li><a href="#section-examples">Examples</a></li>
-      <li><a href="#section-build-targets">Build targets</a></li>
+      <li><a href="#section-top-level">Top level</a></li>
       <li><a href="#section-drake-plans">drake plans</a></li>
-      <li><a href="#section-special-functions-for-commands">Special functions for commands</a></li>
+      <li><a href="#section-special-functions-within-plans">Special functions within plans</a></li>
       <li><a href="#section-network-graphs-and-visualization">Network graphs and visualization</a></li>
       <li><a href="#section-debugging-and-testing">Debugging and testing</a></li>
       <li><a href="#section-high-performance-computing">High-performance computing</a></li>
