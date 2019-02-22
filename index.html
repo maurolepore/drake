@@ -96,7 +96,7 @@
     
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <center>
-<img src="https://ropensci.github.io/drake/images/infographic.svg" alt="infographic" align="center" style="border: none; float: center;">
+<img src="https://ropensci.github.io/drake/figures/infographic.svg" alt="infographic" align="center" style="border: none; float: center;">
 </center>
 <table class="table table table">
 <thead><tr class="header">
@@ -160,7 +160,7 @@ Development
 <p><br></p>
 <div id="the-drake-r-package" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#the-drake-r-package" class="anchor"></a>The drake R package <img src="https://ropensci.github.io/drake/images/logo.svg" align="right" alt="logo" width="120" height="139" style="border: none; float: right;">
+<a href="#the-drake-r-package" class="anchor"></a>The drake R package <img src="https://ropensci.github.io/drake/figures/logo.svg" align="right" alt="logo" width="120" height="139" style="border: none; float: right;">
 </h1></div>
 <p><code>drake</code> — or, Data Frames in R for Make — is a general-purpose workflow manager for data-driven tasks. It rebuilds intermediate data objects when their dependencies change, and it skips work when the results are already up to date. Not every runthrough starts from scratch, there is native support for parallel and distributed computing, and completed workflows have tangible evidence of reproducibility.</p>
 </div>
@@ -169,7 +169,7 @@ Development
 <a href="#minute-video" class="anchor"></a>6-minute video</h1>
 <p>Visit the <a href="https://ropenscilabs.github.io/drake-manual/">first page of the manual</a> to watch a short introduction.</p>
 <center>
-<a href="https://ropenscilabs.github.io/drake-manual"> <img src="https://ropensci.github.io/drake/images/video.png" alt="video" align="center" style="border: none; float: center;"></a>
+<a href="https://ropenscilabs.github.io/drake-manual"> <img src="https://ropensci.github.io/drake/figures/video.png" alt="video" align="center" style="border: none; float: center;"></a>
 </center>
 <p><br></p>
 </div>
@@ -185,7 +185,7 @@ Development
 </ol>
 <p>Ordinarily, it is hard to avoid rerunning the code from scratch. <br></p>
 <center>
-<img src="https://ropensci.github.io/drake/images/tweet.png" alt="tweet" align="center" style="border: none; float: center;">
+<img src="https://ropensci.github.io/drake/figures/tweet.png" alt="tweet" align="center" style="border: none; float: center;">
 </center>
 <p><br></p>
 <p>But with <code>drake</code>, you can automatically</p>
@@ -255,7 +255,7 @@ Development
 <p>You may look back on your work and see room for improvement, but it’s all good! The whole point of <code>drake</code> is to help you go back and change things quickly and painlessly. For example, we forgot to give our histogram a bin width.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">readd</a></span>(hist)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
-<p><img src="https://ropensci.github.io/drake/images/hist1.png" alt="hist1" align="center" style="border: none; float: center;" width="500px"></p>
+<p><img src="https://ropensci.github.io/drake/figures/hist1.png" alt="hist1" align="center" style="border: none; float: center;" width="500px"></p>
 <p>So let’s fix the plotting function.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">create_plot &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(data, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> Petal.Width, <span class="dt">fill =</span> Species)) <span class="op">+</span></a>
@@ -265,14 +265,14 @@ Development
 <p><code>drake</code> knows which results are affected.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">config &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_config.html">drake_config</a></span>(plan)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="reference/vis_drake_graph.html">vis_drake_graph</a></span>(config) <span class="co"># Interactive graph: zoom, drag, etc.</span></a></code></pre></div>
-<p><img src="https://ropensci.github.io/drake/images/graph.png" alt="hist1" align="center" style="border: none; float: center;" width="600px"></p>
+<p><img src="https://ropensci.github.io/drake/figures/graph.png" alt="hist1" align="center" style="border: none; float: center;" width="600px"></p>
 <p>The next <code><a href="reference/make.html">make()</a></code> just builds <code>hist</code> and <code>report.html</code>. No point in wasting time on the data or model.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; target hist</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; target report</span></a></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">loadd</a></span>(hist)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">hist</a></code></pre></div>
-<p><img src="https://ropensci.github.io/drake/images/hist2.png" alt="hist1" align="center" style="border: none; float: center;" width="500px"></p>
+<p><img src="https://ropensci.github.io/drake/figures/hist2.png" alt="hist1" align="center" style="border: none; float: center;" width="500px"></p>
 </div>
 <div id="reproducibility-with-confidence" class="section level1">
 <h1 class="hasAnchor">
@@ -611,7 +611,7 @@ Development
 <li><a href="https://github.com/krlmlr">Kirill Müller</a></li>
 <li><a href="http://github.com/mschubert">Michael Schubert</a></li>
 </ul>
-<p>Credit for images is <a href="https://ropensci.github.io/drake/images/image-credit.md">attributed here</a>.</p>
+<p>Credit for images is <a href="https://ropensci.github.io/drake/figures/image-credit.md">attributed here</a>.</p>
 <p><a href="https://ropensci.org"><img src="http://ropensci.org/public_images/github_footer.png" alt="ropensci_footer"></a></p>
 </div>
   </div>
