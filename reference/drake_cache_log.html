@@ -231,12 +231,15 @@ you can create your own <code>storr</code> cache and give it a hash algorithm
 <span class='co'># If you want a changelog, be sure to do this after every make().</span>
 <span class='no'>cache_log</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_cache_log</span>()
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>cache_log</span>)
-<span class='co'># Save the hash log as a flat text file.</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>write.table</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cache_log</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"drake_cache.log"</span>,
-  <span class='kw'>quote</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+<span class='co'># Suppress partial arg match warnings.</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(
+  <span class='co'># Save the hash log as a flat text file.</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>write.table</a></span>(
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>cache_log</span>,
+    <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"drake_cache.log"</span>,
+    <span class='kw'>quote</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  )
 )
 <span class='co'># At this point, put drake_cache.log under version control</span>
 <span class='co'># (e.g. with 'git add drake_cache.log') alongside your code.</span>
