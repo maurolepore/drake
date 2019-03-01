@@ -146,7 +146,7 @@ for an overview of the documentation.</p>
   <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
   <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -337,14 +337,24 @@ column in <code>plan</code>.</p></td>
     </tr>
     <tr>
       <th>force</th>
-      <td><p>Logical. If <code>FALSE</code> (default) then <code>drake</code> will stop you
-if the cache was created with an old
-and incompatible version of drake.
-This gives you an opportunity to
+      <td><p>Logical. If <code>FALSE</code> (default) then <code>drake</code>
+imposes the following safeguards
+to keep <code>make()</code> from mangling your project.</p><ol>
+<li><p>If you are running an interactive session
+(i.e. if <code><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive()</a></code> is <code>TRUE</code>)
+and some targets are outdated,
+then <code>make()</code> pauses with a menu to check if you really want to
+proceed. Ref: <a href='https://github.com/ropensci/drake/issues/761'>https://github.com/ropensci/drake/issues/761</a>.
+You can also disable this menu with
+<code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_force_interactive = TRUE)</a></code>.
+Save <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_force_interactive = TRUE)</a></code> in your
+<code>~/.Rprofile</code> file to never see the menu.</p></li>
+<li><p>If the cache was created with an old
+and incompatible version of drake, <code>make()</code> stops to
+give you an opportunity to
 downgrade <code>drake</code> to a compatible version
-rather than rerun all your targets from scratch.
-If <code>force</code> is <code>TRUE</code>, then <code>make()</code> executes your workflow
-regardless of the version of <code>drake</code> that last ran <code>make()</code> on the cache.</p></td>
+rather than rerun all your targets from scratch.</p></li>
+</ol></td>
     </tr>
     <tr>
       <th>graph</th>
@@ -642,8 +652,7 @@ and the reproducibility/credibility/trust you can place in your project.
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>,
 <code><a href='drake_config.html'>drake_config()</a></code>,
 <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>,
-<code><a href='outdated.html'>outdated()</a></code>,
-<code><a href='triggers.html'>triggers()</a></code></p></div>
+<code><a href='outdated.html'>outdated()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

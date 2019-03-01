@@ -164,7 +164,7 @@ and it could lead to false negative results from
   <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/zpackages'>.packages</a></span>()), <span class='kw'>lib_loc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -341,14 +341,24 @@ column in <code>plan</code>.</p></td>
     </tr>
     <tr>
       <th>force</th>
-      <td><p>Logical. If <code>FALSE</code> (default) then <code>drake</code> will stop you
-if the cache was created with an old
-and incompatible version of drake.
-This gives you an opportunity to
+      <td><p>Logical. If <code>FALSE</code> (default) then <code>drake</code>
+imposes the following safeguards
+to keep <code><a href='make.html'>make()</a></code> from mangling your project.</p><ol>
+<li><p>If you are running an interactive session
+(i.e. if <code><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive()</a></code> is <code>TRUE</code>)
+and some targets are outdated,
+then <code><a href='make.html'>make()</a></code> pauses with a menu to check if you really want to
+proceed. Ref: <a href='https://github.com/ropensci/drake/issues/761'>https://github.com/ropensci/drake/issues/761</a>.
+You can also disable this menu with
+<code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_force_interactive = TRUE)</a></code>.
+Save <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_force_interactive = TRUE)</a></code> in your
+<code>~/.Rprofile</code> file to never see the menu.</p></li>
+<li><p>If the cache was created with an old
+and incompatible version of drake, <code><a href='make.html'>make()</a></code> stops to
+give you an opportunity to
 downgrade <code>drake</code> to a compatible version
-rather than rerun all your targets from scratch.
-If <code>force</code> is <code>TRUE</code>, then <code><a href='make.html'>make()</a></code> executes your workflow
-regardless of the version of <code>drake</code> that last ran <code><a href='make.html'>make()</a></code> on the cache.</p></td>
+rather than rerun all your targets from scratch.</p></li>
+</ol></td>
     </tr>
     <tr>
       <th>log_progress</th>
