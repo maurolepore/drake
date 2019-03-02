@@ -146,7 +146,7 @@ for an overview of the documentation.</p>
   <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
   <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -338,23 +338,12 @@ column in <code>plan</code>.</p></td>
     <tr>
       <th>force</th>
       <td><p>Logical. If <code>FALSE</code> (default) then <code>drake</code>
-imposes the following safeguards
-to keep <code>make()</code> from mangling your project.</p><ol>
-<li><p>If you are running an interactive session
-(i.e. if <code><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive()</a></code> is <code>TRUE</code>)
-and some targets are outdated,
-then <code>make()</code> pauses with a menu to check if you really want to
-proceed. Ref: <a href='https://github.com/ropensci/drake/issues/761'>https://github.com/ropensci/drake/issues/761</a>.
-You can also disable this menu with
-<code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_force_interactive = TRUE)</a></code>.
-Save <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_force_interactive = TRUE)</a></code> in your
-<code>~/.Rprofile</code> file to never see the menu.</p></li>
-<li><p>If the cache was created with an old
-and incompatible version of drake, <code>make()</code> stops to
+imposes checks if the cache was created with an old
+and incompatible version of drake.
+If there is an incompatibility, <code>make()</code> stops to
 give you an opportunity to
 downgrade <code>drake</code> to a compatible version
-rather than rerun all your targets from scratch.</p></li>
-</ol></td>
+rather than rerun all your targets from scratch.</p></td>
     </tr>
     <tr>
       <th>graph</th>
@@ -647,6 +636,27 @@ and the reproducibility/credibility/trust you can place in your project.
 
     <p>nothing</p>
     
+    <h2 class="hasAnchor" id="interactive-mode"><a class="anchor" href="#interactive-mode"></a>Interactive mode</h2>
+
+    
+    <p>A serious drake workflow should be consistent and reliable,
+ideally with the help of a master R script.
+This script should begin in a fresh R session,
+load your packages and functions in a dependable manner,
+and then run <code>make()</code>. Example:
+<a href='https://github.com/wlandau/drake-examples/tree/master/gsp'>https://github.com/wlandau/drake-examples/tree/master/gsp</a>.
+Batch mode, especially within a container, is particularly helpful.</p>
+<p>Interactive R sessions are still useful,
+but they easily grow stale.
+Targets can falsely invalidate if you accidentally change
+a function or data object in your environment.
+So in interactive mode, <code>make()</code> now pauses with a menu
+to protect you from environment-related instability.</p>
+<p>You can control this menu with the <code>drake_make_menu</code> global option.
+Run <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_make_menu = TRUE)</a></code> to show the menu once per session
+and <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_make_menu = FALSE)</a></code> to disable it entirely.
+You may wish to add a call to <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options()</a></code> in your local <code>.Rprofile</code> file.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>,
@@ -688,6 +698,8 @@ and the reproducibility/credibility/trust you can place in your project.
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#interactive-mode">Interactive mode</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
