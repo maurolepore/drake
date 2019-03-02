@@ -657,6 +657,29 @@ Run <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>
 and <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_make_menu = FALSE)</a></code> to disable it entirely.
 You may wish to add a call to <code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options()</a></code> in your local <code>.Rprofile</code> file.</p>
     
+    <h2 class="hasAnchor" id="self-invalidation"><a class="anchor" href="#self-invalidation"></a>Self-invalidation</h2>
+
+    
+    <p>It is possible to construct a workflow that tries to invalidate itself.
+Example:</p><pre>plan &lt;- drake_plan(
+  x = {
+    data(mtcars)
+    mtcars$mpg
+  },
+  y = mean(x)
+)
+</pre>
+    <p>In this plan, the very act of building <code>x</code>
+changes the dependencies of <code>x</code>.
+In other words, without safeguards, <code>x</code> would not be up to date at
+the end of <code>make(plan)</code>.
+Please try to avoid workflows that modify the global environment.
+Otherwise, <code>make(plan)</code> will throw an error.
+To avoid this error, you can run <code>make(plan, lock_envir = FALSE)</code>.
+There are legitimate use cases for <code>lock_envir = FALSE</code>
+(example: <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#parallel-computing-within-targets'>https://ropenscilabs.github.io/drake-manual/hpc.html#parallel-computing-within-targets</a>) # nolint
+but most workflows should stick with the default <code>lock_envir = TRUE</code>.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>,
@@ -700,6 +723,8 @@ You may wish to add a call to <code><a href='https://www.rdocumentation.org/pack
       <li><a href="#value">Value</a></li>
 
       <li><a href="#interactive-mode">Interactive mode</a></li>
+
+      <li><a href="#self-invalidation">Self-invalidation</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
