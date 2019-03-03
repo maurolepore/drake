@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Experimental: call a drake function in a fresh new session. — r_make • drake</title>
+<title>Experimental: reproducible R session management for drake functions — r_make • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,7 +37,7 @@
 
 
 
-<meta property="og:title" content="Experimental: call a drake function in a fresh new session. — r_make" />
+<meta property="og:title" content="Experimental: reproducible R session management for drake functions — r_make" />
 
 <meta property="og:description" content="A word of caution: r_make() and friends are still
 new and experimental.
@@ -123,7 +123,7 @@ is old and stale." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Experimental: call a drake function in a fresh new session.</h1>
+    <h1>Experimental: reproducible R session management for drake functions</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-callr.R'><code>R/api-callr.R</code></a></small>
     <div class="hidden name"><code>r_make.Rd</code></div>
     </div>
@@ -140,7 +140,7 @@ is old and stale.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>r_make</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>())
+    <pre class="usage"><span class='fu'>r_make</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>())
 
 <span class='fu'>r_drake_build</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>())
 
@@ -165,12 +165,6 @@ is old and stale.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Arguments to the inner function. For example, if you want to call
-<code>r_vis_drake_graph()</code>, the inner function is <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, and
-<code>selfcontained</code> is an example argument you could supply to the ellipsis.</p></td>
-    </tr>
-    <tr>
       <th>source</th>
       <td><p>Path to an R script file that
 loads packages, functions, etc. and returns a <code><a href='drake_config.html'>drake_config()</a></code> object.
@@ -190,6 +184,12 @@ Example: <code>r_make(r_fn = callr::r)</code>.</p></td>
       <th>r_args</th>
       <td><p>List of arguments to <code>r_fn</code>, not including <code>func</code> or <code>args</code>.
 Example: <code>r_make(r_fn = callr::r_bg, r_args = list(stdout = "stdout.log"))</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments to the inner function. For example, if you want to call
+<code>r_vis_drake_graph()</code>, the inner function is <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, and
+<code>selfcontained</code> is an example argument you could supply to the ellipsis.</p></td>
     </tr>
     </table>
     
