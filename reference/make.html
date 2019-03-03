@@ -478,16 +478,7 @@ if targets fail.</p></td>
     </tr>
     <tr>
       <th>session</th>
-      <td><p>An optional <code>callr</code> function if you want to
-build all your targets in a separate master session:
-for example, <code>make(plan = my_plan, session = callr::r_vanilla)</code>.
-Running <code>make()</code> in a clean, isolated
-session can enhance reproducibility.
-But be warned: if you do this, <code>make()</code> will take longer to start.
-If <code>session</code> is <code>NULL</code> (default), then <code>make()</code> will just use
-your current R session as the master session. This is slightly faster,
-but it causes <code>make()</code> to populate your workspace/environment
-with the last few targets it builds.</p></td>
+      <td><p>Deprecated. Has no effect now.</p></td>
     </tr>
     <tr>
       <th>pruning_strategy</th>
