@@ -630,7 +630,10 @@ and the reproducibility/credibility/trust you can place in your project.
     <h2 class="hasAnchor" id="interactive-mode"><a class="anchor" href="#interactive-mode"></a>Interactive mode</h2>
 
     
-    <p>A serious drake workflow should be consistent and reliable,
+    <p>In interactive sessions, consider <code><a href='r_make.html'>r_make()</a></code>, <code><a href='r_make.html'>r_outdated()</a></code>, etc.
+rather than <code>make()</code>, <code><a href='outdated.html'>outdated()</a></code>, etc. The <code>r_*()</code> <code>drake</code> functions
+are more reproducible when the session is interactive.</p>
+<p>A serious drake workflow should be consistent and reliable,
 ideally with the help of a master R script.
 This script should begin in a fresh R session,
 load your packages and functions in a dependable manner,
