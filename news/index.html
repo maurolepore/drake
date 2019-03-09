@@ -164,6 +164,8 @@
 <li>The new <code><a href="../reference/from_plan.html">from_plan()</a></code> function allows the users to reference custom plan columns from within commands. Changes to values in these columns columns do not invalidate targets.</li>
 <li>Add a menu prompt (<a href="https://github.com/ropensci/drake/pull/762" class="uri">https://github.com/ropensci/drake/pull/762</a>) to safeguard against <code><a href="../reference/make.html">make()</a></code> pitfalls in interactive mode (<a href="https://github.com/ropensci/drake/issues/761" class="uri">https://github.com/ropensci/drake/issues/761</a>). Appears once per session. Disable with <code><a href="https://www.rdocumentation.org/packages/base/topics/options">options(drake_make_menu = FALSE)</a></code>.</li>
 <li>Add new API functions <code><a href="../reference/r_make.html">r_make()</a></code>, <code><a href="../reference/r_make.html">r_outdated()</a></code>, etc. to run <code>drake</code> functions more reproducibly in a clean session. See the help file of <code><a href="../reference/r_make.html">r_make()</a></code> for details.</li>
+<li>
+<code><a href="../reference/progress.html">progress()</a></code> gains a <code>progress</code> argument for filtering results. For example, <code><a href="../reference/progress.html">progress(progress = "failed")</a></code> will report targets that failed.</li>
 </ul>
 </div>
 <div id="enhancements" class="section level2">

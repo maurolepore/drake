@@ -137,7 +137,8 @@ Skipped objects are not listed.</p>
 
     <pre class="usage"><span class='fu'>progress</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span>
-  <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+  <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>progress</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,6 +194,12 @@ If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
     <tr>
       <th>jobs</th>
       <td><p>Number of jobs/workers for parallel processing.</p></td>
+    </tr>
+    <tr>
+      <th>progress</th>
+      <td><p>Character vector for filtering the build progress results.
+Defaults to <code>NULL</code> (no filtering) to report progress of all objects.
+Supported filters are <code>"done"</code>, <code>"running"</code>, <code>"failed"</code> and <code>"none"</code>.</p></td>
     </tr>
     </table>
     
