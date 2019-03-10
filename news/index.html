@@ -201,6 +201,7 @@
 <li>Deprecate and rename <code><a href="../reference/predict_load_balancing.html">predict_load_balancing()</a></code> to <code><a href="../reference/predict_workers.html">predict_workers()</a></code>.</li>
 <li>Deprecate <code><a href="../reference/this_cache.html">this_cache()</a></code> and defer to <code><a href="../reference/get_cache.html">get_cache()</a></code> and <code><a href="https://www.rdocumentation.org/packages/storr/topics/storr_rds">storr::storr_rds()</a></code> for simplicity.</li>
 <li>Change the default value of <code>hover</code> to <code>FALSE</code> in visualization functions. Improves speed. Also a breaking change.</li>
+<li>Deprecate <code><a href="../reference/drake_cache_log_file.html">drake_cache_log_file()</a></code>. We recommend using <code><a href="../reference/make.html">make()</a></code> with the <code>cache_log_file</code> argument to create the cache log. This way ensures that the log is always up to date with <code><a href="../reference/make.html">make()</a></code> results.</li>
 </ul>
 </div>
 </div>
