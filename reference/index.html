@@ -499,7 +499,33 @@ for non-staged parallel backends.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-cache-utilities" class="hasAnchor"><a href="#section-cache-utilities" class="anchor"></a>Cache utilities</h2>
+          <h2 id="section-caches" class="hasAnchor"><a href="#section-caches" class="anchor"></a>Caches</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="get_cache.html">get_cache()</a></code> </p>
+        </td>
+        <td><p>Get the default cache of a <code>drake</code> project.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="new_cache.html">new_cache()</a></code> </p>
+        </td>
+        <td><p>Make a new <code>drake</code> cache.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="find_cache.html">find_cache()</a></code> </p>
+        </td>
+        <td><p>Search up the file system for the nearest drake cache.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-cache-inspection" class="hasAnchor"><a href="#section-cache-inspection" class="anchor"></a>Cache inspection</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -518,10 +544,78 @@ for non-staged parallel backends.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="drake_cache_log.html">drake_cache_log()</a></code> </p>
+        </td>
+        <td><p>Get a table that represents the state of the cache.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="drake_cache_log_file.html">drake_cache_log_file()</a></code> </p>
+        </td>
+        <td><p>Deprecated. Generate a flat text log file to represent the state of
+the cache.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="drake_get_session_info.html">drake_get_session_info()</a></code> </p>
+        </td>
+        <td><p>Return the <code><a href='https://www.rdocumentation.org/packages/utils/topics/sessionInfo'>sessionInfo()</a></code>
+of the last call to <code>make()</code>.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read_drake_seed.html">read_drake_seed()</a></code> </p>
+        </td>
+        <td><p>Read the pseudo-random number generator seed of the project.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="show_source.html">show_source()</a></code> </p>
+        </td>
+        <td><p>Show how a target/import was produced.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_store.html">file_store()</a></code> </p>
+        </td>
+        <td><p>Tell <code>drake</code> that you want information
+on a <em>file</em> (target or import), not an ordinary object.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-cache-maintenance" class="hasAnchor"><a href="#section-cache-maintenance" class="anchor"></a>Cache maintenance</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
           <p><code><a href="clean.html">clean()</a></code> </p>
         </td>
         <td><p>Remove targets/imports from the cache.</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="drake_gc.html">drake_gc()</a></code> </p>
+        </td>
+        <td><p>Do garbage collection on the drake cache.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rescue_cache.html">rescue_cache()</a></code> </p>
+        </td>
+        <td><p>Try to repair a drake cache that is prone
+to throwing <code>storr</code>-related errors.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-progress" class="hasAnchor"><a href="#section-progress" class="anchor"></a>Progress</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="progress.html">progress()</a></code> </p>
@@ -541,69 +635,6 @@ during a <code>make()</code>.</p></td>
         </td>
         <td><p>List failed targets.
 to <code>make()</code>.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_cache.html">get_cache()</a></code> </p>
-        </td>
-        <td><p>Get the default cache of a <code>drake</code> project.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="new_cache.html">new_cache()</a></code> </p>
-        </td>
-        <td><p>Make a new <code>drake</code> cache.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_cache.html">find_cache()</a></code> </p>
-        </td>
-        <td><p>Search up the file system for the nearest drake cache.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drake_cache_log.html">drake_cache_log()</a></code> </p>
-        </td>
-        <td><p>Get a table that represents the state of the cache.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drake_gc.html">drake_gc()</a></code> </p>
-        </td>
-        <td><p>Do garbage collection on the drake cache.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="drake_get_session_info.html">drake_get_session_info()</a></code> </p>
-        </td>
-        <td><p>Return the <code><a href='https://www.rdocumentation.org/packages/utils/topics/sessionInfo'>sessionInfo()</a></code>
-of the last call to <code>make()</code>.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rescue_cache.html">rescue_cache()</a></code> </p>
-        </td>
-        <td><p>Try to repair a drake cache that is prone
-to throwing <code>storr</code>-related errors.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="show_source.html">show_source()</a></code> </p>
-        </td>
-        <td><p>Show how a target/import was produced.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_drake_seed.html">read_drake_seed()</a></code> </p>
-        </td>
-        <td><p>Read the pseudo-random number generator seed of the project.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="file_store.html">file_store()</a></code> </p>
-        </td>
-        <td><p>Tell <code>drake</code> that you want information
-on a <em>file</em> (target or import), not an ordinary object.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -690,7 +721,10 @@ workflow plan data frame from a template data frame.</p></td>
       <li><a href="#section-debugging-and-testing">Debugging and testing</a></li>
       <li><a href="#section-high-performance-computing">High-performance computing</a></li>
       <li><a href="#section-time">Time</a></li>
-      <li><a href="#section-cache-utilities">Cache utilities</a></li>
+      <li><a href="#section-caches">Caches</a></li>
+      <li><a href="#section-cache-inspection">Cache inspection</a></li>
+      <li><a href="#section-cache-maintenance">Cache maintenance</a></li>
+      <li><a href="#section-progress">Progress</a></li>
       <li><a href="#section-r-packages-as-drake-workflows">R packages as drake workflows</a></li>
       <li><a href="#section-wildcard-interface">Wildcard interface</a></li>
     </ul>
