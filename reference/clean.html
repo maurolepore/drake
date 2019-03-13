@@ -236,6 +236,16 @@ which includes
 file targets as well as the entire drake cache. Only use <code>clean()</code>
 if you're sure you won't lose anything important.</p>
     
+    <h2 class="hasAnchor" id="safeguards"><a class="anchor" href="#safeguards"></a>Safeguards</h2>
+
+    
+    <p>If you run <code>clean()</code> with no arguments, <code>drake</code>'s response is to
+remove all the targets etc. from the cache. To prevent you from
+doing this accidentally in an interactive session, <code>clean()</code>
+prompts you with a menu to confirm. The menu only appears
+once per session. You can disable it with
+<code><a href='https://www.rdocumentation.org/packages/base/topics/options'>options(drake_clean_menu = FALSE)</a></code>.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='drake_gc.html'>drake_gc()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
@@ -286,6 +296,8 @@ if you're sure you won't lose anything important.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#safeguards">Safeguards</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
