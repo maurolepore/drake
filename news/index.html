@@ -117,6 +117,7 @@
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>In <code>drake</code> 7.0.0, if you run <code><a href="../reference/make.html">make()</a></code> in interactive mode and respond to the menu prompt with an option other than <code>1</code> or <code>2</code>, targets will still build.</li>
+<li>Make sure file outputs show up in <code>drake_graph()</code>. The bug came from <code>append_output_file_nodes()</code>, a utility function of <code><a href="../reference/drake_graph_info.html">drake_graph_info()</a></code>.</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
@@ -130,8 +131,13 @@
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
-<li>Improve <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code>: hide node labels by default and render the arrows behind the nodes.</li>
+<li>Improve <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code>
+<ul>
+<li>Hide node labels by default and render the arrows behind the nodes.</li>
 <li>Print an informative error message when the user supplies a <code>drake</code> plan to the <code>config</code> argument of a function.</li>
+<li>By default, use gray arrows and a black-and-white background with no gridlines.</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
