@@ -4,9 +4,16 @@ body {
   color: #333E50;
 }
 
-li {
-
+a {
+  color: #6faef5;
 }
+
+a:focus, a:hover {
+  color: #6faef5;
+  text-decoration: underline;
+}
+
+
 
 .h1, .h2, .h3, h1, h2, h3{
   color: #5c677e;
@@ -20,12 +27,14 @@ li {
   background-color: #6faef5;
 }
 
-.navbar-default .navbar-toggle {
-  color: #c6deff;
-}
 
 .navbar .navbar-brand {
   color: #c6deff;
+}
+
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #c6deff;
 }
 
 .navbar-brand{
