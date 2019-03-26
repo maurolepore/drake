@@ -38,7 +38,6 @@
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script>
-<link href="../tidyverse-2.css" rel="stylesheet">
 
 
 
@@ -229,8 +228,7 @@ The function should take a single <code>config</code> argument
 from <code>drake</code>'s internals are the <code>backend_*()</code> functions:</p><ul>
 <li><p><code>backend_loop()</code></p></li>
 <li><p><code>backend_clustermq()</code></p></li>
-<li><p><code>backend_future()</code></p></li>
-<li><p><code>backend_hasty()</code> (unofficial)
+<li><p><code>backend_future()</code>
 However, this functionality is really a back door
 and should not be used for production purposes unless you really
 know what you are doing and you are willing to suffer setbacks
@@ -445,9 +443,8 @@ is reproducible.</p>
 <code>drake</code> workflows. Conversely, <code>make()</code> does not usually
 change <code>.Random.seed</code>,
 even when pseudo-random numbers are generated.
-The exceptions to this last point are
-<code>make(parallelism = "clustermq")</code> and
-<code>make(parallelism = "clustermq_staged")</code>,
+The exception to this last point is
+<code>make(parallelism = "clustermq")</code>
 because the <code>clustermq</code> package needs to generate random numbers
 to set up ports and sockets for ZeroMQ.</p>
 <p>On the first call to <code>make()</code> or <code><a href='drake_config.html'>drake_config()</a></code>, <code>drake</code>
@@ -462,9 +459,7 @@ use <code><a href='clean.html'>clean(destroy = TRUE)</a></code>.</p></td>
     </tr>
     <tr>
       <th>caching</th>
-      <td><p>Character string, only applies to
-<code>"clustermq"</code>, <code>"clustermq_staged"</code>, and <code>"future"</code> parallel backends.
-The <code>caching</code> argument can be either <code>"master"</code> or <code>"worker"</code>.</p><ul>
+      <td><p>Character string, either <code>"master"</code> or <code>"worker"</code>.</p><ul>
 <li><p><code>"master"</code>: Targets are built by remote workers and sent back to
 the master process. Then, the master process saves them to the
 cache (<code>config$cache</code>, usually a file system <code>storr</code>).
@@ -537,7 +532,7 @@ a target is built during <code>make()</code>.</p></td>
 placeholders in template files (e.g. from <code><a href='drake_hpc_template_file.html'>drake_hpc_template_file()</a></code>).
 Same as the <code>template</code> argument of <code><a href='https://www.rdocumentation.org/packages/clustermq/topics/Q'>clustermq::Q()</a></code> and
 <code><a href='https://www.rdocumentation.org/packages/clustermq/topics/workers'>clustermq::workers</a></code>.
-Enabled for <code>clustermq</code> only (<code>make(parallelism = "clustermq_staged")</code>),
+Enabled for <code>clustermq</code> only (<code>make(parallelism = "clustermq")</code>),
 not <code>future</code> or <code>batchtools</code> so far.
 For more information, see the <code>clustermq</code> package:
 <a href='https://github.com/mschubert/clustermq'>https://github.com/mschubert/clustermq</a>.
@@ -743,7 +738,7 @@ but most workflows should stick with the default <code>lock_envir = TRUE</code>.
 <div class="author">
   <p>
     Developed by William Michael Landau.
-    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a>.
+    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://ropensci.github.io/rotemplate/">rotemplate</a>.
   </p>
 </div>
       </footer>
