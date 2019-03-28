@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get a target's plan info from inside a plan's command. — from_plan • drake</title>
+<title>Defunct function. — from_plan • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,19 +44,10 @@
 
 
 
-<meta property="og:title" content="Get a target's plan info from inside a plan's command. — from_plan" />
+<meta property="og:title" content="Defunct function. — from_plan" />
 
-<meta property="og:description" content="Call this function inside the commands in your plan
-to get an entry from any column in the plan. Changes to custom
-columns referred to this way
-(for example, a in drake_plan(x = target(from_plan(&quot;a&quot;), a = 123)))
-do not invalidate targets, so be careful. Only use from_plan()
-to reference data that does not actually affect the output value
-of the target. For example, you might use from_plan() to set the
-number of parallel workers within a target:
-drake_plan(x = target(mclapply(..., from_plan(&quot;cores&quot;), cores = 4)).
-Now, if you change the cores column of the plan, the parallelism will
-change, but the target x will stay up to date." />
+<meta property="og:description" content="The from_plan() function is now defunct
+in order to reduce the demands on memory usage." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -127,24 +118,15 @@ change, but the target x will stay up to date." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get a target's plan info from inside a plan's command.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-plan.R'><code>R/api-plan.R</code></a></small>
+    <h1>Defunct function.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-defunct.R'><code>R/utils-defunct.R</code></a></small>
     <div class="hidden name"><code>from_plan.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Call this function inside the commands in your plan
-to get an entry from any column in the plan. Changes to custom
-columns referred to this way
-(for example, <code>a</code> in <code><a href='drake_plan.html'>drake_plan(x = target(from_plan("a"), a = 123))</a></code>)
-do not invalidate targets, so be careful. Only use <code>from_plan()</code>
-to reference data that does not actually affect the output value
-of the target. For example, you might use <code>from_plan()</code> to set the
-number of parallel workers within a target:
-<code>drake_plan(x = target(mclapply(..., from_plan("cores"), cores = 4))</code>.
-Now, if you change the <code>cores</code> column of the plan, the parallelism will
-change, but the target <code>x</code> will stay up to date.</p>
+    <p>The <code>from_plan()</code> function is now defunct
+in order to reduce the demands on memory usage.</p>
     
     </div>
 
@@ -159,83 +141,25 @@ change, but the target <code>x</code> will stay up to date.</p>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>plan[target, column]</code>, where <code>plan</code> is your workflow
-plan data frame, <code>target</code> is the target being built,
-and <code>column</code> is the name of the column of the plan you provide.</p>
+    <p>2019-03-28</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='drake_envir.html'>drake_envir()</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>my_target</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='fu'>from_plan</span>(<span class='st'>"a"</span>), <span class='kw'>a</span> <span class='kw'>=</span> <span class='st'>"a_value"</span>))
-<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 1 x 3
-#&gt;   target    command        a      
-#&gt;   &lt;chr&gt;     &lt;expr&gt;         &lt;chr&gt;  
-#&gt; 1 my_target from_plan("a") a_value</div><div class='input'>
-<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>target my_target</span></div><div class='input'><span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>my_target</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><div class='output co'>#&gt; [1] "a_value"</div><div class='input'>
-<span class='co'># Why do we care?</span>
-<span class='co'># Because this is a good way to apply parallel computing within targets</span>
-<span class='co'># and keep them up to date even when we change</span>
-<span class='co'># the number of "cores"</span>
-
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>a</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='kw pkg'>parallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/parallel/topics/mclapply'>mclapply</a></span>(<span class='fl'>1</span>:<span class='fl'>8</span>, <span class='no'>sqrt</span>, <span class='kw'>mc.cores</span> <span class='kw'>=</span> <span class='fu'>from_plan</span>(<span class='st'>"cores"</span>)),
-    <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>4</span>
-  ),
-  <span class='kw'>b</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='kw pkg'>parallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/parallel/topics/mclapply'>mclapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='no'>sqrt</span>, <span class='kw'>mc.cores</span> <span class='kw'>=</span> <span class='fu'>from_plan</span>(<span class='st'>"cores"</span>)),
-    <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>2</span>
-  )
-)
-
-<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;   target command                                                      cores
-#&gt;   &lt;chr&gt;  &lt;expr&gt;                                                       &lt;dbl&gt;
-#&gt; 1 a      parallel::mclapply(1:8, sqrt, mc.cores = from_plan("cores"))     4
-#&gt; 2 b      parallel::mclapply(1:4, sqrt, mc.cores = from_plan("cores"))     2</div><div class='input'>
-<span class='co'># If make(plan, parallelism = "loop") fails,</span>
-<span class='co'># try make(plan, lock_envir = FALSE)</span>
-<span class='co'># or another parallel computing option like parLapply()</span>
-<span class='co'># or furrr::future_map().</span>
-<span class='co'># See https://github.com/ropensci/drake/issues/675#issuecomment-454403818</span>
-<span class='co'># and the ensuing comments for a discussion.</span>
-
-<span class='co'># But usually, parallelism *among* targets happens through a cluster.</span>
-<span class='co'># drake_hpc_template_file("slurm_clustermq.tmpl") # Edit by hand. # nolint</span>
-<span class='co'># options(</span>
-<span class='co'>#   clustermq.scheduler = "slurm",</span>
-<span class='co'>#   clustermq.template = "slurm_clustermq.tmpl",</span>
-<span class='co'># )</span>
-<span class='co'># make(plan, parallelism = "clustermq", jobs = 2) # nolint</span>
-
-<span class='co'># Now, if you change the `cores` column of the plan, the parallelism will</span>
-<span class='co'># change, but the targets will stay up to date.</span>
-<span class='no'>plan</span>$<span class='no'>cores</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)
-<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;   target command                                                      cores
-#&gt;   &lt;chr&gt;  &lt;expr&gt;                                                       &lt;dbl&gt;
-#&gt; 1 a      parallel::mclapply(1:8, sqrt, mc.cores = from_plan("cores"))     1
-#&gt; 2 b      parallel::mclapply(1:4, sqrt, mc.cores = from_plan("cores"))     1</div><div class='input'>
-# make(plan) # nolint
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
