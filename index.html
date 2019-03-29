@@ -239,11 +239,16 @@ Development
 <a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 5 report   rmarkdown::render(knitr_in("report.Rmd"), output_file = file_ou…</span></a></code></pre></div>
 <p>So far, we have just been setting the stage. Use <code><a href="reference/make.html">make()</a></code> to do the real work. Targets are built in the correct order regardless of the row order of <code>plan</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; target raw_data</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; target data</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; target fit</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; target hist</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; target report</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">target raw_data</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">target data</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">target fit</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">target hist</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">target report</a></code></pre></div>
 <p>Except for files like <code>report.html</code>, your output is stored in a hidden <code>.drake/</code> folder. Reading it back is easy.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">readd</a></span>(data) <span class="co"># See also loadd().</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; # A tibble: 150 x 5</span></a>
@@ -271,8 +276,10 @@ Development
 <p><img src="https://ropensci.github.io/drake/figures/graph.png" alt="hist1" align="center" style="border: none; float: center;" width="600px"></p>
 <p>The next <code><a href="reference/make.html">make()</a></code> just builds <code>hist</code> and <code>report.html</code>. No point in wasting time on the data or model.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; target hist</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; target report</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">target hist</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">target report</a></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">loadd</a></span>(hist)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">hist</a></code></pre></div>
 <p><img src="https://ropensci.github.io/drake/figures/hist2.png" alt="hist1" align="center" style="border: none; float: center;" width="500px"></p>
@@ -286,11 +293,12 @@ Development
 <a href="#evidence" class="anchor"></a>Evidence</h2>
 <p>Suppose you are reviewing someone else’s data analysis project for reproducibility. You scrutinize it carefully, checking that the datasets are available and the documentation is thorough. But could you re-create the results without the help of the original author? With <code>drake</code>, it is quick and easy to find out.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; All targets are already up to date.</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">config &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_config.html">drake_config</a></span>(plan)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw"><a href="reference/outdated.html">outdated</a></span>(config)</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; character(0)</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">All targets are already up to date.</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">config &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_config.html">drake_config</a></span>(plan)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="kw"><a href="reference/outdated.html">outdated</a></span>(config)</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; character(0)</span></a></code></pre></div>
 <p>With everything already up to date, you have <strong>tangible evidence</strong> of reproducibility. Even though you did not re-create the results, you know the results are re-creatable. They <strong>faithfully show</strong> what the code is producing. Given the right <a href="https://rstudio.github.io/packrat/">package environment</a> and <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/html/sessionInfo.html">system configuration</a>, you have everything you need to reproduce all the output by yourself.</p>
 </div>
 <div id="ease" class="section level2">
@@ -299,11 +307,16 @@ Development
 <p>When it comes time to actually rerun the entire project, you have much more confidence. Starting over from scratch is trivially easy.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="reference/clean.html">clean</a></span>()       <span class="co"># Remove the original author's results.</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw"><a href="reference/make.html">make</a></span>(plan) <span class="co"># Independently re-create the results from the code and input data.</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; target raw_data</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; target data</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; target fit</span></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; target hist</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; target report</span></a></code></pre></div>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">target raw_data</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">target data</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">target fit</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">target hist</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12">target report</a></code></pre></div>
 </div>
 <div id="independent-replication" class="section level2">
 <h2 class="hasAnchor">

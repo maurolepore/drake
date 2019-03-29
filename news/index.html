@@ -156,6 +156,7 @@
 </ul>
 </li>
 <li>For the <code>map()</code> and <code>cross()</code> transformations in the DSL, prevent the <a href="https://github.com/ropensci/drake/issues/786">accidental sorting of targets by name</a>. Needed <code><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge(sort = FALSE)</a></code> in <code>dsl_left_outer_join()</code>.</li>
+<li>Simplify verbosity. The <code>verbose</code> argument of <code><a href="../reference/make.html">make()</a></code> now takes values 0, 1, and 2, and maximum verbosity in the console prints targets, retries, failures, and a spinner. The console log file, on the other hand, dumps maximally verbose runtime info regardless of the <code>verbose</code> argument.</li>
 </ul>
 </div>
 </div>

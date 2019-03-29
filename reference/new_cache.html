@@ -144,14 +144,10 @@ is a file system cache.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Logical or numeric, control printing to the console.</p><ul>
-<li><p><code>0</code> or <code>FALSE</code>: print nothing.</p></li>
-<li><p><code>1</code> or <code>TRUE</code>: print only targets to build.</p></li>
-<li><p><code>2</code>: plus checks and cache info.</p></li>
-<li><p><code>3</code>: plus missing imports.</p></li>
-<li><p><code>4</code>: plus all imports.</p></li>
-<li><p><code>5</code>: plus execution and total build times for targets.</p></li>
-<li><p><code>6</code>: plus notifications when targets are being stored.</p></li>
+      <td><p>Integer, control printing to the console/terminal.</p><ul>
+<li><p><code>0</code>: print nothing.</p></li>
+<li><p><code>1</code>: print targets, retries, and failures.</p></li>
+<li><p><code>2</code>: also show a spinner when preprocessing tasks are underway.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -178,19 +174,9 @@ See the <code>algo</code> argument of the <code>digest</code> package for your o
     </tr>
     <tr>
       <th>console_log_file</th>
-      <td><p>Character scalar,
-connection object (such as <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>) or <code>NULL</code>.
-If <code>NULL</code>, console output will be printed
-to the R console using <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>.
-If a character scalar, <code>console_log_file</code>
-should be the name of a flat file, and
-console output will be appended to that file.
-If a connection object (e.g. <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>)
-warnings and messages will be sent to the connection.
-For example, if <code>console_log_file</code> is <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>,
-warnings and messages are printed to the console in real time
-(in addition to the usual in-bulk printing
-after each target finishes).</p></td>
+      <td><p>Optional character scalar of a file name or
+connection object (such as <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>) to dump maximally verbose
+log information for <code><a href='make.html'>make()</a></code>. Independent of the <code>verbose</code> argument.</p></td>
     </tr>
     </table>
     
