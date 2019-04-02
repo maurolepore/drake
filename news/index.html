@@ -160,6 +160,7 @@
 <li>Simplify verbosity. The <code>verbose</code> argument of <code><a href="../reference/make.html">make()</a></code> now takes values 0, 1, and 2, and maximum verbosity in the console prints targets, retries, failures, and a spinner. The console log file, on the other hand, dumps maximally verbose runtime info regardless of the <code>verbose</code> argument.</li>
 <li>In previous versions, functions generated with <code>f &lt;- Rcpp::cppFunction(...)</code> did not stay up to date from session to session because the addresses corresponding to anonymous pointers were showing up in <code><a href="https://www.rdocumentation.org/packages/base/topics/deparse">deparse(f)</a></code>. Now, <code>drake</code> ignores those pointers, and <code>Rcpp</code> functions compiled inline appear to stay up to date. This problem was more of an edge case than a bug.</li>
 <li>Prepend time stamps with sub-second times to the lines of the console log file.</li>
+<li>In <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, deprecate the <code>tidy_evaluation</code> argument in favor of the new and more concise <code>tidy_eval</code>. To preserve back compatibility for now, if you supply a non-<code>NULL</code> value to <code>tidy_evaluation</code>, it overwrites <code>tidy_eval</code>.</li>
 </ul>
 </div>
 </div>

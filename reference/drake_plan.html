@@ -145,7 +145,7 @@ code strings or a list of language objects.</p>
 
     <pre class="usage"><span class='fu'>drake_plan</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>file_targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>())</pre>
+  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>tidy_eval</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,10 +169,7 @@ with commands assigned to them. See the examples for details.</p></td>
     </tr>
     <tr>
       <th>tidy_evaluation</th>
-      <td><p>Logical, whether to use tidy evaluation
-(e.g. unquoting/<code>!!</code>) when resolving commands.
-Tidy evaluation in transformations is always turned on
-regardless of this argument.</p></td>
+      <td><p>Deprecated. Use <code>tidy_eval</code> instead.</p></td>
     </tr>
     <tr>
       <th>transform</th>
@@ -192,6 +189,13 @@ what happens during target transformations.</p></td>
     <tr>
       <th>envir</th>
       <td><p>Environment for tidy evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>tidy_eval</th>
+      <td><p>Logical, whether to use tidy evaluation
+(e.g. unquoting/<code>!!</code>) when resolving commands.
+Tidy evaluation in transformations is always turned on
+regardless of the value you supply to this argument.</p></td>
     </tr>
     </table>
     
