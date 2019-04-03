@@ -527,8 +527,11 @@ cannot be set this way.</p></td>
     </tr>
     <tr>
       <th>sleep</th>
-      <td><p>Function on a single parameter <code>i</code>.
+      <td><p>Optional function on a single numeric argument <code>i</code>.
 Default: <code>function(i) 0.01</code>.</p>
+<p>To conserve memory, <code>drake</code> assigns a brand new closure to
+<code>sleep</code>, so your custom function should not depend on in-memory data
+except from loaded packages.</p>
 <p>For parallel processing, <code>drake</code> uses
 a central master process to check what the parallel
 workers are doing, and for the affected high-performance
