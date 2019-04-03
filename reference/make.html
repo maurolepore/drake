@@ -530,7 +530,9 @@ cannot be set this way.</p></td>
     </tr>
     <tr>
       <th>sleep</th>
-      <td><p>In its parallel processing, <code>drake</code> uses
+      <td><p>Function on a single parameter <code>i</code>.
+Default: <code>function(i) 0.01</code>.</p>
+<p>For parallel processing, <code>drake</code> uses
 a central master process to check what the parallel
 workers are doing, and for the affected high-performance
 computing workflows, wait for data to arrive over a network.
