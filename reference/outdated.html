@@ -166,7 +166,7 @@ normally supplied to <code><a href='make.html'>make()</a></code>.</p></td>
 described at
 <a href='https://ropenscilabs.github.io/drake-manual/debug.html'>https://ropenscilabs.github.io/drake-manual/debug.html</a>.
 For example, even if <code>outdated(...)</code> shows everything up to date,
-<code>outdated(..., trigger = "always")</code> will show
+<code>outdated(..., trigger = trigger(condition = TRUE))</code> will show
 all targets out of date.
 You must use a fresh <code>config</code> argument with an up-to-date
 <code>config$targets</code> element that was never modified by hand.
@@ -191,10 +191,6 @@ See the details in the help file for <code><a href='drake_config.html'>drake_con
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the projects, build the targets.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
 <span class='co'># Now, everything should be up to date (no targets listed).</span>
-<span class='fu'>outdated</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
-<span class='co'># outdated() is sensitive to triggers.</span>
-<span class='co'># See the debugging guide: https://ropenscilabs.github.io/drake-manual/debug.html # nolint</span>
-<span class='no'>config</span>$<span class='no'>trigger</span> <span class='kw'>&lt;-</span> <span class='st'>"always"</span>
 <span class='fu'>outdated</span>(<span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
 }
 })
