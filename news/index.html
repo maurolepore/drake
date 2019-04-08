@@ -123,6 +123,13 @@
 <h1 class="page-header">
 <a href="#version-7-1-0-9000" class="anchor"></a>Version 7.1.0.9000<small> Unreleased </small>
 </h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>In <code><a href="../reference/drake_plan.html">drake_plan()</a></code> transformations, allow the user to refer to a target’s own name using a special <code>.id_chr</code> symbol, which is treated like a character vector.</li>
+</ul>
+</div>
 </div>
     <div id="version-7-1-0" class="section level1">
 <h1 class="page-header">
@@ -138,9 +145,9 @@
 <li>Allow <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code> and <code><a href="../reference/sankey_drake_graph.html">sankey_drake_graph()</a></code> to work when the graph has no edges.</li>
 </ul>
 </div>
-<div id="new-features" class="section level2">
+<div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h2>
+<a href="#new-features-1" class="anchor"></a>New features</h2>
 <ul>
 <li>Add a new <code><a href="../reference/use_drake.html">use_drake()</a></code> function to write the <code>make.R</code> and <code>_drake.R</code> files from the <a href="https://github.com/wlandau/drake-examples/tree/master/main">main example</a>. Does not write other supporting scripts.</li>
 <li>With an optional logical <code>hpc</code> column in your <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, you can now select which targets to deploy to HPC and which to run locally.</li>
@@ -207,9 +214,9 @@
 <li>Require a <code>config</code> argument to <code><a href="../reference/drake_build.html">drake_build()</a></code> and <code><a href="../reference/readd.html">loadd(deps = TRUE)</a></code>.</li>
 </ul>
 </div>
-<div id="new-features-1" class="section level2">
+<div id="new-features-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-1" class="anchor"></a>New features</h2>
+<a href="#new-features-2" class="anchor"></a>New features</h2>
 <ul>
 <li>Introduce a new experimental domain-specific language for generating large plans (<a href='https://github.com/ropensci/drake/issues/233'>#233</a>). Details <a href="https://ropenscilabs.github.io/drake-manual/plans.html#large-plans">here</a>.</li>
 <li>Implement a <code>lock_envir</code> argument to safeguard reproducibility. See <a href="https://github.com/ropensci/drake/issues/615#issuecomment-447585359">this thread</a> for a demonstration of the problem solved by <code><a href="../reference/make.html">make(lock_envir = TRUE)</a></code>. More discussion: <a href='https://github.com/ropensci/drake/issues/619'>#619</a>, <a href='https://github.com/ropensci/drake/issues/620'>#620</a>.</li>
@@ -267,9 +274,9 @@
 <h1 class="page-header">
 <a href="#version-6-2-0" class="anchor"></a>Version 6.2.0<small> Unreleased </small>
 </h1>
-<div id="new-features-2" class="section level2">
+<div id="new-features-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-2" class="anchor"></a>New features</h2>
+<a href="#new-features-3" class="anchor"></a>New features</h2>
 <ul>
 <li>Add a <code>sep</code> argument to <code><a href="../reference/gather_by.html">gather_by()</a></code>, <code><a href="../reference/reduce_by.html">reduce_by()</a></code>, <code><a href="../reference/reduce_plan.html">reduce_plan()</a></code>, <code><a href="../reference/evaluate_plan.html">evaluate_plan()</a></code>, <code><a href="../reference/expand_plan.html">expand_plan()</a></code>, <code><a href="../reference/plan_analyses.html">plan_analyses()</a></code>, and <code><a href="../reference/plan_summaries.html">plan_summaries()</a></code>. Allows the user to set the delimiter for generating new target names.</li>
 <li>Expose a <code>hasty_build</code> argument to <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>. Here, the user can set the function that builds targets in “hasty mode” (<code><a href="../reference/make.html">make(parallelism = "hasty")</a></code>).</li>
@@ -317,9 +324,9 @@
 <h1 class="page-header">
 <a href="#version-6-1-0" class="anchor"></a>Version 6.1.0<small> 2018-10-26 </small>
 </h1>
-<div id="new-features-3" class="section level2">
+<div id="new-features-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-3" class="anchor"></a>New features</h2>
+<a href="#new-features-4" class="anchor"></a>New features</h2>
 <ul>
 <li><strong>Add a new <code><a href="../reference/map_plan.html">map_plan()</a></code> function to easily create a workflow plan data frame to execute a function call over a grid of arguments.</strong></li>
 <li>Add a new <code><a href="../reference/plan_to_code.html">plan_to_code()</a></code> function to turn <code>drake</code> plans into generic R scripts. New users can use this function to better understand the relationship between plans and code, and unsatisfied customers can use it to disentangle their projects from <code>drake</code> altogether. Similarly, <code><a href="../reference/plan_to_notebook.html">plan_to_notebook()</a></code> generates an R notebook from a <code>drake</code> plan.</li>
@@ -399,9 +406,9 @@
 <li>Work around mysterious <code>codetools</code> failures in R 3.3 (add a <code><a href="https://www.rdocumentation.org/packages/base/topics/conditions">tryCatch()</a></code> statement in <code>find_globals()</code>).</li>
 </ul>
 </div>
-<div id="new-features-4" class="section level2">
+<div id="new-features-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-4" class="anchor"></a>New features</h2>
+<a href="#new-features-5" class="anchor"></a>New features</h2>
 <ul>
 <li>Add a proper <a href="https://github.com/mschubert/clustermq"><code>clustermq</code></a>-based parallel backend: <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
 <li>
