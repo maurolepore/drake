@@ -143,7 +143,7 @@ targets built by <code><a href='make.html'>make()</a></code>.</p>
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>), <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(),
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>deps</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>lazy</span> <span class='kw'>=</span> <span class='st'>"eager"</span>,
   <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show_source</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>tidyselect</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>tidyselect</span> <span class='kw'>=</span> !<span class='no'>deps</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -232,16 +232,16 @@ just set jobs to be an integer greater than 1. On Windows,
       <th>deps</th>
       <td><p>Logical, whether to load any cached
 dependencies of the targets
-instead of the targets themselves.
-This is useful if you know your
-target failed and you want to debug the command in an interactive
-session with the dependencies in your workspace.
-One caveat: to find the dependencies,
-<code>loadd()</code> uses information that was stored
-in a <code><a href='drake_config.html'>drake_config()</a></code> list and cached
-during the last <code><a href='make.html'>make()</a></code>.
-That means you need to have already called <code><a href='make.html'>make()</a></code>
-if you set <code>deps</code> to <code>TRUE</code>.</p></td>
+instead of the targets themselves.</p>
+<p>Important note:
+<code>deps = TRUE</code> disables <code>tidyselect</code> functionality. For example,
+<code>loadd(starts_with("model_"), config = config, deps = TRUE)</code>
+does not work. For the selection mechanism to work,
+the <code>model_*</code> targets to need to already be in the cache,
+which is not always the case when you are debugging your projects.
+To help <code>drake</code> understand what you mean,
+you must name the targets <em>explicitly</em> when <code>deps</code> is <code>TRUE</code>, e.g.
+<code>loadd(model_A, model_B, config = config, deps = TRUE)</code>.</p></td>
     </tr>
     <tr>
       <th>lazy</th>

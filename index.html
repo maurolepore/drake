@@ -345,10 +345,10 @@ Development
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># Alternatively, install the development version from GitHub.</span></a>
 <a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
 <a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">install_github</span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
 <p>A few technical details:</p>
 <ul>
-<li>You must properly install <code>drake</code> using <code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages()</a></code>, <code><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::install_github()</a></code>, or similar. It is not enough to use <code><a href="https://www.rdocumentation.org/packages/devtools/topics/load_all">devtools::load_all()</a></code>, particularly for the parallel computing functionality, in which multiple R sessions initialize and then try to <code><a href="https://www.rdocumentation.org/packages/base/topics/library">require(drake)</a></code>.</li>
+<li>You must properly install <code>drake</code> using <code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages()</a></code>, <code>devtools::install_github()</code>, or similar. It is not enough to use <code>devtools::load_all()</code>, particularly for the parallel computing functionality, in which multiple R sessions initialize and then try to <code><a href="https://www.rdocumentation.org/packages/base/topics/library">require(drake)</a></code>.</li>
 <li>For <code><a href="reference/make.html">make(parallelism = "Makefile")</a></code>, Windows users may need to download and install <a href="https://cran.r-project.org/bin/windows/Rtools/"><code>Rtools</code></a>.</li>
 <li>To use <code><a href="reference/make.html">make(parallelism = "future")</a></code> or <code><a href="reference/make.html">make(parallelism = "future_lapply")</a></code> to deploy your work to a computing cluster (see the <a href="https://ropenscilabs.github.io/drake-manual/hpc.html">high-performance computing guide</a>), you will need the <a href="https://github.com/HenrikBengtsson/future.batchtools"><code>future.batchtools</code></a> package.</li>
 </ul>
@@ -406,10 +406,11 @@ Development
 <a href="#examples" class="anchor"></a>Examples</h2>
 <p>Here are some real-world applications of <code>drake</code> in the wild.</p>
 <ul>
-<li><a href="https://github.com/sol-eng/tensorflow-w-r">sol-eng/tensorflow-w-r</a></li>
 <li><a href="https://github.com/efcaguab/demografia-del-voto">efcaguab/demografia-del-voto</a></li>
 <li><a href="https://github.com/efcaguab/great-white-shark-nsw">efcaguab/great-white-shark-nsw</a></li>
 <li><a href="https://github.com/IndianaCHE/Detailed-SSP-Reports">IndianaCHE/Detailed-SSP-Reports</a></li>
+<li><a href="https://github.com/pat-s/pathogen-modeling">pat-s/pathogen-modeling</a></li>
+<li><a href="https://github.com/sol-eng/tensorflow-w-r">sol-eng/tensorflow-w-r</a></li>
 <li><a href="https://github.com/tiernanmartin/home-and-hope">tiernanmartin/home-and-hope</a></li>
 </ul>
 <p>There are also multiple <code>drake</code>-powered example projects <a href="https://github.com/wlandau/drake-examples">available here</a>, ranging from beginner-friendly stubs to demonstrations of high-performance computing. You can generate the files for a project with <code><a href="reference/drake_example.html">drake_example()</a></code> (e.g. <code><a href="reference/drake_example.html">drake_example("gsp")</a></code>), and you can list the available projects with <code><a href="reference/drake_examples.html">drake_examples()</a></code>. You can contribute your own example project with a <a href="https://github.com/wlandau/drake-examples/pulls">fork and pull request</a>.</p>
