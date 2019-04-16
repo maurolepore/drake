@@ -298,6 +298,9 @@
     <loc>https://ropensci.github.io/drake/reference/is_function_call.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/isolate_example.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/knitr_deps.html</loc>
   </url>
   <url>
@@ -491,9 +494,6 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/target_namespaces.html</loc>
-  </url>
-  <url>
-    <loc>https://ropensci.github.io/drake/reference/test_with_dir.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/this_cache.html</loc>
