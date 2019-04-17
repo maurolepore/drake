@@ -134,7 +134,7 @@ Install them with <code><a href='https://www.rdocumentation.org/packages/utils/t
     </div>
 
     <pre class="usage"><span class='fu'>render_drake_ggraph</span>(<span class='no'>graph_info</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>graph_info</span>$<span class='no'>default_title</span>,
-  <span class='kw'>label_nodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>label_nodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,6 +155,12 @@ and <code>legend_nodes</code>.</p></td>
       <td><p>Logical, whether to label the nodes.
 If <code>FALSE</code>, the graph will not have any text next to the nodes,
 which is recommended for large graphs with lots of targets.</p></td>
+    </tr>
+    <tr>
+      <th>transparency</th>
+      <td><p>Logical, whether to allow transparency in
+the rendered graph. Set to <code>FALSE</code> if you get warnings
+like "semi-transparency is not supported on this device".</p></td>
     </tr>
     </table>
     

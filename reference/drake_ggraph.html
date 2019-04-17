@@ -137,7 +137,8 @@ Install them with <code><a href='https://www.rdocumentation.org/packages/utils/t
   <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"out"</span>,
   <span class='st'>"in"</span>, <span class='st'>"all"</span>), <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_nodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_nodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -254,6 +255,12 @@ that you specify in the <code>group</code> argument to <code><a href='drake_grap
       <td><p>Logical, whether to label the nodes.
 If <code>FALSE</code>, the graph will not have any text next to the nodes,
 which is recommended for large graphs with lots of targets.</p></td>
+    </tr>
+    <tr>
+      <th>transparency</th>
+      <td><p>Logical, whether to allow transparency in
+the rendered graph. Set to <code>FALSE</code> if you get warnings
+like "semi-transparency is not supported on this device".</p></td>
     </tr>
     </table>
     
