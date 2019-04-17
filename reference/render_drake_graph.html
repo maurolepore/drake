@@ -135,10 +135,10 @@ call more often.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>render_drake_graph</span>(<span class='no'>graph_info</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>),
-  <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"layout_with_sugiyama"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"LR"</span>, <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>graph_info</span>$<span class='no'>default_title</span>, <span class='kw'>selfcontained</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>navigationButtons</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ncol_legend</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>render_drake_graph</span>(<span class='no'>graph_info</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='no'>graph_info</span>$<span class='no'>default_title</span>,
+  <span class='kw'>selfcontained</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>navigationButtons</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ncol_legend</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,19 +165,11 @@ interactive graph using a web browser.</p></td>
     </tr>
     <tr>
       <th>layout</th>
-      <td><p>Name of an igraph layout to use,
-such as 'layout_with_sugiyama'
-or 'layout_as_tree'.
-Be careful with 'layout_as_tree': the graph is a directed
-acyclic graph, but not necessarily a tree.</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>An argument to <code><a href='https://www.rdocumentation.org/packages/visNetwork/topics/visHierarchicalLayout'>visNetwork::visHierarchicalLayout()</a></code>
-indicating the direction of the graph.
-Options include 'LR', 'RL', 'DU', and 'UD'.
-At the time of writing this, the letters must be capitalized,
-but this may not always be the case ;) in the future.</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>hover</th>
