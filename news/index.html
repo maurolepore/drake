@@ -123,6 +123,13 @@
 <h1 class="page-header">
 <a href="#version-7-1-0-9000" class="anchor"></a>Version 7.1.0.9000<small> Unreleased </small>
 </h1>
+<div id="mildly-breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#mildly-breaking-changes" class="anchor"></a>Mildly breaking changes</h2>
+<ul>
+<li>In the DSL (e.g. <code><a href="../reference/drake_plan.html">drake_plan(x = target(..., transform = map(...)))</a></code> avoid inserting extra dots in target names when the grouping variables are character vectors (<a href="https://github.com/ropensci/drake/issues/847"><a href='https://github.com/ropensci/drake/issues/847'>#847</a></a>). Target names come out much nicer this way, but those name changes will invalidate some targets (i.e. they need to be rebuilt with <code><a href="../reference/make.html">make()</a></code>).</li>
+</ul>
+</div>
 <div id="bug-fixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
