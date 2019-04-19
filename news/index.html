@@ -70,7 +70,7 @@
         <a class="navbar-brand" href="../index.html">drake</a>
         <div class="info">
           <span class="partof">part of  <a href="https://ropensci.org"><img src='https://d33wubrfki0l68.cloudfront.net/88338b7637e084df5c43e7a9e6293719dbaf10e2/30903/img/icon_lettering_white.svg' height=24 alt = 'rOpenSci'/></a></span>
-          <span class="version label label-default version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.1.0.9000</span>
+          <span class="version label label-default version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.2.0</span>
         </div>
       </div>
     </div>
@@ -119,9 +119,9 @@
       <small>Source: <a href='https://github.com/ropensci/drake/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="version-7-1-0-9000" class="section level1">
+    <div id="version-7-2-0" class="section level1">
 <h1 class="page-header">
-<a href="#version-7-1-0-9000" class="anchor"></a>Version 7.1.0.9000<small> Unreleased </small>
+<a href="#version-7-2-0" class="anchor"></a>Version 7.2.0<small> Unreleased </small>
 </h1>
 <div id="mildly-breaking-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -137,13 +137,14 @@
 <li>Use <code>config$jobs_preprocess</code> (local jobs) in several places where <code>drake</code> was incorrectly using <code>config$jobs</code> (meant for targets).</li>
 <li>Allow <code><a href="../reference/readd.html">loadd(x, deps = TRUE, config = your_config)</a></code> to work even if <code>x</code> is not cached (<a href="https://github.com/ropensci/drake/issues/830"><a href='https://github.com/ropensci/drake/issues/830'>#830</a></a>). Required disabling <code>tidyselect</code> functionality when <code>deps</code> <code>TRUE</code>. There is a new note in the help file about this, and an informative console message prints out on <code><a href="../reference/readd.html">loadd(deps = TRUE, tidyselect = TRUE)</a></code>. The default value of <code>tidyselect</code> is now <code>!deps</code>.</li>
 <li>Minor: avoid printing messages and warnings twice to the console (<a href="https://github.com/ropensci/drake/issues/829"><a href='https://github.com/ropensci/drake/issues/829'>#829</a></a>).</li>
+<li>Ensure compatibility with <code>testthat</code> &gt;= 2.0.1.9000.</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
-<li>In <code><a href="../reference/drake_plan.html">drake_plan()</a></code> transformations, allow the user to refer to a target’s own name using a special <code>.id_chr</code> symbol, which is treated like a character vector.</li>
+<li>In <code><a href="../reference/drake_plan.html">drake_plan()</a></code> transformations, allow the user to refer to a target’s own name using a special <code>.id_chr</code> symbol, which is treated like a character string.</li>
 <li>Add a <code>transparency</code> argument to <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code> and <code><a href="../reference/render_drake_ggraph.html">render_drake_ggraph()</a></code> to disable transparency in the rendered graph. Useful for R installations without transparency support.</li>
 </ul>
 </div>
@@ -151,12 +152,11 @@
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
-<li>Use a custom layout to improve node positions and aspect ratios of <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code> displays.</li>
+<li>Use a custom layout to improve node positions and aspect ratios of <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code> displays. Only activated in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> when there are at least 10 nodes distributed in both the vertical and horizontal directions.</li>
+<li>Allow nodes to be dragged both vertically and horizontally in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Prevent dots from showing up in target names when you supply grouping variables to transforms in <code><a href="../reference/drake_plan.html">drake_plan()</a></code> (<a href="https://github.com/ropensci/drake/issues/847"><a href='https://github.com/ropensci/drake/issues/847'>#847</a></a>).</li>
 <li>Do not keep <code>drake</code> plans (<code><a href="../reference/drake_plan.html">drake_plan()</a></code>) inside <code><a href="../reference/drake_config.html">drake_config()</a></code> objects. When other bottlenecks are removed, this will reduce the burden on memory (re <a href="https://github.com/ropensci/drake/issues/800"><a href='https://github.com/ropensci/drake/issues/800'>#800</a></a>).</li>
 <li>Do not retain the <code>targets</code> argument inside <code><a href="../reference/drake_config.html">drake_config()</a></code> objects. This is to reduce memory consumption.</li>
-<li>Enforce a 1:1 aspect ratio in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
-<li>Allow nodes to be dragged horizontally in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Deprecate the <code>layout</code> and <code>direction</code> arguments of <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>. Direction is now always left to right and the layout is always Sugiyama.</li>
 <li>Write the cache log file in CSV format (now <code>drake_cache.csv</code> by default) to avoid issues with spaces (e.g. entry names with spaces in them, such as “file report.Rmd”)`.</li>
 </ul>
@@ -793,7 +793,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#version-7-1-0-9000">7.1.0.9000</a></li>
+        <li><a href="#version-7-2-0">7.2.0</a></li>
         <li><a href="#version-7-1-0">7.1.0</a></li>
         <li><a href="#version-7-0-0">7.0.0</a></li>
         <li><a href="#version-6-2-1">6.2.1</a></li>
