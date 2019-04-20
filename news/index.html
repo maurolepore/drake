@@ -123,6 +123,21 @@
 <h1 class="page-header">
 <a href="#version-7-2-0-9000" class="anchor"></a>Version 7.2.0.9000<small> Unreleased </small>
 </h1>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Move “<code>config$lock_envir &lt;- FALSE</code>” from <code>loop_build()</code> to <code>backend_loop()</code>. This makes sure <code>config$envir</code> is correctly locked in <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
+</ul>
+</div>
+<div id="enhancements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancements" class="anchor"></a>Enhancements</h2>
+<ul>
+<li>Delay the initialization of <code>clustermq</code> workers for as long as possible. Before launching them, build/check targets locally until we reach an outdated target with <code>hpc</code> equal to <code>FALSE</code>. In other words, if no targets actually require <code>clustermq</code> workers, no workers get created.</li>
+<li>In <code><a href="../reference/make.html">make(parallelism = "future")</a></code>, reset the <code>config$sleep()</code> backoff interval whenever a new target gets checked.</li>
+</ul>
+</div>
 </div>
     <div id="version-7-2-0" class="section level1">
 <h1 class="page-header">
@@ -135,9 +150,9 @@
 <li>In the DSL (e.g. <code><a href="../reference/drake_plan.html">drake_plan(x = target(..., transform = map(...)))</a></code> avoid inserting extra dots in target names when the grouping variables are character vectors (<a href="https://github.com/ropensci/drake/issues/847"><a href='https://github.com/ropensci/drake/issues/847'>#847</a></a>). Target names come out much nicer this way, but those name changes will invalidate some targets (i.e. they need to be rebuilt with <code><a href="../reference/make.html">make()</a></code>).</li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Use <code>config$jobs_preprocess</code> (local jobs) in several places where <code>drake</code> was incorrectly using <code>config$jobs</code> (meant for targets).</li>
 <li>Allow <code><a href="../reference/readd.html">loadd(x, deps = TRUE, config = your_config)</a></code> to work even if <code>x</code> is not cached (<a href="https://github.com/ropensci/drake/issues/830"><a href='https://github.com/ropensci/drake/issues/830'>#830</a></a>). Required disabling <code>tidyselect</code> functionality when <code>deps</code> <code>TRUE</code>. There is a new note in the help file about this, and an informative console message prints out on <code><a href="../reference/readd.html">loadd(deps = TRUE, tidyselect = TRUE)</a></code>. The default value of <code>tidyselect</code> is now <code>!deps</code>.</li>
@@ -153,9 +168,9 @@
 <li>Add a <code>transparency</code> argument to <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code> and <code><a href="../reference/render_drake_ggraph.html">render_drake_ggraph()</a></code> to disable transparency in the rendered graph. Useful for R installations without transparency support.</li>
 </ul>
 </div>
-<div id="enhancements" class="section level2">
+<div id="enhancements-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-1" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>Use a custom layout to improve node positions and aspect ratios of <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/drake_ggraph.html">drake_ggraph()</a></code> displays. Only activated in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> when there are at least 10 nodes distributed in both the vertical and horizontal directions.</li>
 <li>Allow nodes to be dragged both vertically and horizontally in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
@@ -171,9 +186,9 @@
 <h1 class="page-header">
 <a href="#version-7-1-0" class="anchor"></a>Version 7.1.0<small> 2019-04-07 </small>
 </h1>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>In <code>drake</code> 7.0.0, if you run <code><a href="../reference/make.html">make()</a></code> in interactive mode and respond to the menu prompt with an option other than <code>1</code> or <code>2</code>, targets will still build.</li>
 <li>Make sure file outputs show up in <code>drake_graph()</code>. The bug came from <code>append_output_file_nodes()</code>, a utility function of <code><a href="../reference/drake_graph_info.html">drake_graph_info()</a></code>.</li>
@@ -191,9 +206,9 @@
 <li>Add a new RStudio addin: ‘loadd target at cursor’ which can be bound a keyboard shortcut to load the target identified by the symbol at the cursor position to the global environment.</li>
 </ul>
 </div>
-<div id="enhancements-1" class="section level2">
+<div id="enhancements-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-1" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-2" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <code><a href="../reference/file_in.html">file_in()</a></code> and <code><a href="../reference/file_out.html">file_out()</a></code> can now handle entire directories, e.g. <code><a href="../reference/file_in.html">file_in("your_folder_of_input_data_files")</a></code> and <code><a href="../reference/file_out.html">file_out("directory_with_a_bunch_of_output_files")</a></code>.</li>
@@ -239,9 +254,9 @@
 <li>Change the default value of <code>hover</code> to <code>FALSE</code> in visualization functions. Improves speed.</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Allow <code><a href="../reference/bind_plans.html">bind_plans()</a></code> to work with lists of plans (<code><a href="../reference/bind_plans.html">bind_plans(list(plan1, plan2))</a></code> was returning <code>NULL</code> in <code>drake</code> 6.2.0 and 6.2.1).</li>
 <li>Ensure that <code><a href="../reference/get_cache.html">get_cache(path = "non/default/path", search = FALSE)</a></code> looks for the cache in <code>"non/default/path"</code> instead of <code><a href="https://www.rdocumentation.org/packages/base/topics/getwd">getwd()</a></code>.</li>
@@ -263,9 +278,9 @@
 <code><a href="../reference/progress.html">progress()</a></code> gains a <code>progress</code> argument for filtering results. For example, <code><a href="../reference/progress.html">progress(progress = "failed")</a></code> will report targets that failed.</li>
 </ul>
 </div>
-<div id="enhancements-2" class="section level2">
+<div id="enhancements-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-2" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-3" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <strong>Large speed boost</strong>: move away from <code>storr</code>’s key mangling in favor of <code>drake</code>’s own encoding of file paths and namespaced functions for <code>storr</code> keys.</li>
@@ -319,18 +334,18 @@
 <li>Add a new <code><a href="../reference/drake_envir.html">drake_envir()</a></code> function that returns the environment where <code>drake</code> builds targets. Can only be accessed from inside the commands in the workflow plan data frame. The primary use case is to allow users to remove individual targets from memory at predetermined build steps.</li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Ensure compatibility with <code>tibble</code> 2.0.0.</li>
 <li>Stop returning <code>0s</code> from <code><a href="../reference/predict_runtime.html">predict_runtime(targets_only = TRUE)</a></code> when some targets are outdated and others are not.</li>
 <li>Remove <code><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort(NULL)</a></code> warnings from <code>create_drake_layout()</code>. (Affects R-3.3.x.)</li>
 </ul>
 </div>
-<div id="enhancements-3" class="section level2">
+<div id="enhancements-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-3" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-4" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>Remove strict dependencies on packages <code>evaluate</code>, <code>formatR</code>, <code>fs</code>, <code>future</code>, <code>parallel</code>, <code>R.utils</code>, <code>stats</code>, and <code>stringi</code>.</li>
 <li>
@@ -376,9 +391,9 @@
 <li>Add a hasty mode: <code><a href="../reference/make.html">make(parallelism = "hasty")</a></code> skips all of <code>drake</code>’s expensive caching and checking. All targets run every single time and you are responsible for saving results to custom output files, but almost all the by-target overhead is gone.</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Ensure commands in the plan are re-analyzed for dependencies when new imports are added (<a href="https://github.com/ropensci/drake/issues/548" class="uri">https://github.com/ropensci/drake/issues/548</a>). Was a bug in version 6.0.0 only.</li>
 <li>Call <code><a href="https://www.rdocumentation.org/packages/base/topics/path.expand">path.expand()</a></code> on the <code>file</code> argument to <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code> and <code><a href="../reference/render_sankey_drake_graph.html">render_sankey_drake_graph()</a></code>. That way, tildes in file paths no longer interfere with the rendering of static image files. Compensates for <a href="https://github.com/wch/webshot" class="uri">https://github.com/wch/webshot</a>.</li>
@@ -389,9 +404,9 @@
 <li>Skip more tests and checks if the optional <code>visNetwork</code> package is not installed.</li>
 </ul>
 </div>
-<div id="enhancements-4" class="section level2">
+<div id="enhancements-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-4" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-5" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>Stop earlier in <code><a href="../reference/make_targets.html">make_targets()</a></code> if all the targets are already up to date.</li>
 <li>Improve the documentation of the <code>seed</code> argument in <code><a href="../reference/make.html">make()</a></code> and <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
@@ -424,9 +439,9 @@
 <li>Be more discerning in detecting dependencies. In <code>code_dependencies()</code>, restrict the possible global variables to the ones mentioned in the new <code>globals</code> argument (turned off when <code>NULL</code>. In practical workflows, global dependencies are restricted to items in <code>envir</code> and proper targets in the plan. In <code><a href="../reference/deps_code.html">deps_code()</a></code>, the <code>globals</code> slot of the output list is now a list of <em>candidate</em> globals, not necessarily actual globals (some may not be targets or variables in <code>envir</code>).</li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>In the call to <code><a href="https://www.rdocumentation.org/packages/base/topics/unlink">unlink()</a></code> in <code><a href="../reference/clean.html">clean()</a></code>, set <code>recursive</code> and <code>force</code> to <code>FALSE</code>. This should prevent the accidental deletion of whole directories.</li>
 <li>Previously, <code><a href="../reference/clean.html">clean()</a></code> deleted input-only files if no targets from the plan were cached. A patch and a unit test are included in this release.</li>
@@ -456,9 +471,9 @@
 <li>Deprecate <code><a href="../reference/deps_targets.html">deps_targets()</a></code> in favor of a new <code><a href="../reference/deps_target.html">deps_target()</a></code> function (singular) that behaves more like <code><a href="../reference/deps_code.html">deps_code()</a></code>.</li>
 </ul>
 </div>
-<div id="enhancements-5" class="section level2">
+<div id="enhancements-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-5" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-6" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>Smooth the edges in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
 <li>Make hover text slightly more readable in in <code><a href="../reference/vis_drake_graph.html">vis_drake_graph()</a></code> and <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code>.</li>
