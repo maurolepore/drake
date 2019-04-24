@@ -136,6 +136,7 @@
 <ul>
 <li>Delay the initialization of <code>clustermq</code> workers for as long as possible. Before launching them, build/check targets locally until we reach an outdated target with <code>hpc</code> equal to <code>FALSE</code>. In other words, if no targets actually require <code>clustermq</code> workers, no workers get created.</li>
 <li>In <code><a href="../reference/make.html">make(parallelism = "future")</a></code>, reset the <code>config$sleep()</code> backoff interval whenever a new target gets checked.</li>
+<li>Add a “done” message to the console log file when the workflow has completed.</li>
 </ul>
 </div>
 </div>
