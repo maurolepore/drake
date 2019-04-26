@@ -135,7 +135,7 @@ call more often. See <code><a href='text_drake_graph.html'>?text_drake_graph</a>
     
     </div>
 
-    <pre class="usage"><span class='fu'>render_text_drake_graph</span>(<span class='no'>graph_info</span>, <span class='kw'>nchar</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</pre>
+    <pre class="usage"><span class='fu'>render_text_drake_graph</span>(<span class='no'>graph_info</span>, <span class='kw'>nchar</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>print</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,11 +154,19 @@ to show. Can be 0, in which case each node is a colored box
 instead of a node label.
 Caution: <code>nchar</code> &gt; 0 will mess with the layout.</p></td>
     </tr>
+    <tr>
+      <th>print</th>
+      <td><p>Logical. If <code>TRUE</code>, the graph will print to the console
+via <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>. If <code>FALSE</code>, nothing is printed. However, you still
+have the visualization because <code><a href='text_drake_graph.html'>text_drake_graph()</a></code> and
+<code>render_text_drake_graph()</code> still invisibly return a character string
+that you can print yourself with <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Text printed to your terminal window.</p>
+    <p>The lines of text in the visualization.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

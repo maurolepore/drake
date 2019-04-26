@@ -137,7 +137,7 @@
 <li>Delay the initialization of <code>clustermq</code> workers for as long as possible. Before launching them, build/check targets locally until we reach an outdated target with <code>hpc</code> equal to <code>FALSE</code>. In other words, if no targets actually require <code>clustermq</code> workers, no workers get created.</li>
 <li>In <code><a href="../reference/make.html">make(parallelism = "future")</a></code>, reset the <code>config$sleep()</code> backoff interval whenever a new target gets checked.</li>
 <li>Add a “done” message to the console log file when the workflow has completed.</li>
-<li>Add <code><a href="../reference/text_drake_graph.html">text_drake_graph()</a></code>. Uses text art to print a dependency graph to the terminal window. Handy for when users SSH into remote machines without X Window support.</li>
+<li>Add <code><a href="../reference/text_drake_graph.html">text_drake_graph()</a></code> (and <code><a href="../reference/r_make.html">r_text_drake_graph()</a></code> and <code><a href="../reference/render_text_drake_graph.html">render_text_drake_graph()</a></code>). Uses text art to print a dependency graph to the terminal window. Handy for when users SSH into remote machines without X Window support.</li>
 </ul>
 </div>
 </div>

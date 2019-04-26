@@ -142,7 +142,8 @@ with SSH and you do not have access to X Window support.</p>
     <pre class="usage"><span class='fu'>text_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>),
   <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nchar</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</pre>
+  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nchar</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>print</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -234,6 +235,14 @@ that you specify in the <code>group</code> argument to <code><a href='drake_grap
 to show. Can be 0, in which case each node is a colored box
 instead of a node label.
 Caution: <code>nchar</code> &gt; 0 will mess with the layout.</p></td>
+    </tr>
+    <tr>
+      <th>print</th>
+      <td><p>Logical. If <code>TRUE</code>, the graph will print to the console
+via <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>. If <code>FALSE</code>, nothing is printed. However, you still
+have the visualization because <code>text_drake_graph()</code> and
+<code><a href='render_text_drake_graph.html'>render_text_drake_graph()</a></code> still invisibly return a character string
+that you can print yourself with <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>.</p></td>
     </tr>
     </table>
     
