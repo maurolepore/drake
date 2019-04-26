@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show a <code>ggraph</code>/<code>ggplot2</code> representation
-of your drake project. — drake_ggraph • drake</title>
+<title>Use text art to show a visual representation of
+your workflow's dependency graph in your terminal window. — text_drake_graph • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,11 +45,14 @@ of your drake project. — drake_ggraph • drake</title>
 
 
 
-<meta property="og:title" content="Show a <code>ggraph</code>/<code>ggplot2</code> representation
-of your drake project. — drake_ggraph" />
+<meta property="og:title" content="Use text art to show a visual representation of
+your workflow's dependency graph in your terminal window. — text_drake_graph" />
 
-<meta property="og:description" content="This function requires packages ggplot2 and ggraph.
-Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))." />
+<meta property="og:description" content="This is a low-tech version of vis_drake_graph()
+and friends. It is designed for when you do not have access
+to the usual graphics devices for viewing visuals in an interactive
+R session: for example, if you are logged into a remote machine
+with SSH and you do not have access to X Window support." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -120,25 +123,26 @@ Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))."
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show a <code>ggraph</code>/<code>ggplot2</code> representation
-of your drake project.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/vis-ggraph.R'><code>R/vis-ggraph.R</code></a></small>
-    <div class="hidden name"><code>drake_ggraph.Rd</code></div>
+    <h1>Use text art to show a visual representation of
+your workflow's dependency graph in your terminal window.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/vis-txtplot.R'><code>R/vis-txtplot.R</code></a></small>
+    <div class="hidden name"><code>text_drake_graph.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function requires packages <code>ggplot2</code> and <code>ggraph</code>.
-Install them with <code><a href='https://www.rdocumentation.org/packages/utils/topics/install.packages'>install.packages(c("ggplot2", "ggraph"))</a></code>.</p>
+    <p>This is a low-tech version of <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>
+and friends. It is designed for when you do not have access
+to the usual graphics devices for viewing visuals in an interactive
+R session: for example, if you are logged into a remote machine
+with SSH and you do not have access to X Window support.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_ggraph</span>(<span class='no'>config</span>, <span class='kw'>build_times</span> <span class='kw'>=</span> <span class='st'>"build"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"out"</span>,
-  <span class='st'>"in"</span>, <span class='st'>"all"</span>), <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>full_legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>label_nodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>transparency</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>text_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>),
+  <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nchar</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,32 +151,6 @@ Install them with <code><a href='https://www.rdocumentation.org/packages/utils/t
       <th>config</th>
       <td><p>A <code><a href='drake_config.html'>drake_config()</a></code> configuration list.
 You can get one as a return value from <code><a href='make.html'>make()</a></code> as well.</p></td>
-    </tr>
-    <tr>
-      <th>build_times</th>
-      <td><p>Character string or logical.
-If character, the choices are
-1. <code>"build"</code>: runtime of the command plus the time
-it take to store the target or import.
-2. <code>"command"</code>: just the runtime of the command.
-3. <code>"none"</code>: no build times.
-If logical, <code>build_times</code> selects whether to show the
-times from `build_times(..., type = "build")`` or use
-no build times at all. See <code><a href='build_times.html'>build_times()</a></code> for details.</p></td>
-    </tr>
-    <tr>
-      <th>digits</th>
-      <td><p>Number of digits for rounding the build times</p></td>
-    </tr>
-    <tr>
-      <th>targets_only</th>
-      <td><p>Logical,
-whether to skip the imports and only include the
-targets in the workflow plan.</p></td>
-    </tr>
-    <tr>
-      <th>main</th>
-      <td><p>Character string, title of the graph.</p></td>
     </tr>
     <tr>
       <th>from</th>
@@ -214,6 +192,12 @@ If you do not select all the intermediate nodes,
 edges will drop from the graph.</p></td>
     </tr>
     <tr>
+      <th>targets_only</th>
+      <td><p>Logical,
+whether to skip the imports and only include the
+targets in the workflow plan.</p></td>
+    </tr>
+    <tr>
       <th>make_imports</th>
       <td><p>Logical, whether to make the imports first.
 Set to <code>FALSE</code> to increase speed and risk using obsolete information.</p></td>
@@ -224,12 +208,6 @@ Set to <code>FALSE</code> to increase speed and risk using obsolete information.
 will be made from scratch on the next <code><a href='make.html'>make()</a></code>.
 Makes all targets outdated, but keeps information about
 build progress in previous <code><a href='make.html'>make()</a></code>s.</p></td>
-    </tr>
-    <tr>
-      <th>full_legend</th>
-      <td><p>Logical. If <code>TRUE</code>, all the node types
-are printed in the legend. If <code>FALSE</code>, only the
-node types used are printed in the legend.</p></td>
     </tr>
     <tr>
       <th>group</th>
@@ -251,41 +229,42 @@ that you specify in the <code>group</code> argument to <code><a href='drake_grap
 <code><a href='file_out.html'>file_out()</a></code> files in the graph.</p></td>
     </tr>
     <tr>
-      <th>label_nodes</th>
-      <td><p>Logical, whether to label the nodes.
-If <code>FALSE</code>, the graph will not have any text next to the nodes,
-which is recommended for large graphs with lots of targets.</p></td>
-    </tr>
-    <tr>
-      <th>transparency</th>
-      <td><p>Logical, whether to allow transparency in
-the rendered graph. Set to <code>FALSE</code> if you get warnings
-like "semi-transparency is not supported on this device".</p></td>
+      <th>nchar</th>
+      <td><p>For each node, maximum number of characters of the node label
+to show. Can be 0, in which case each node is a colored box
+instead of a node label.
+Caution: <code>nchar</code> &gt; 0 will mess with the layout.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>ggplot2</code> object, which you can modify with more layers,
-show with <code><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot()</a></code>, or save as a file with <code>ggsave()</code>.</p>
+    <p>A <code>visNetwork</code> graph.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, <code><a href='sankey_drake_graph.html'>sankey_drake_graph()</a></code>,
-<code><a href='render_drake_ggraph.html'>render_drake_ggraph()</a></code>, <code><a href='text_drake_graph.html'>text_drake_graph()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='render_text_drake_graph.html'>render_text_drake_graph()</a></code>, <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>,
+<code><a href='sankey_drake_graph.html'>sankey_drake_graph()</a></code>, <code><a href='drake_ggraph.html'>drake_ggraph()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='co'># Plot the network graph representation of the workflow.</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"ggraph"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-  <span class='fu'>drake_ggraph</span>(<span class='no'>config</span>) <span class='co'># Save to a file with `ggplot2::ggsave()`.</span>
+    <pre class="examples"># NOT RUN {
+isolate_example("Quarantine side effects.", {
+if (suppressWarnings(require("knitr"))) {
+load_mtcars_example() # Get the code with drake_example("mtcars").
+config <- drake_config(my_plan)
+# Plot the network graph representation of the workflow.
+pkg <- requireNamespace("txtplot", quietly = TRUE) &&
+  requireNamespace("visNetwork", quietly = TRUE)
+if () {
+text_drake_graph(config)
+make(my_plan) # Run the project, build the targets.
+text_drake_graph(config) # The black nodes from before are now green.
+}
 }
 })
-<span class='co'># }</span></pre>
+# }
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
