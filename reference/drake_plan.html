@@ -145,7 +145,8 @@ code strings or a list of language objects.</p>
 
     <pre class="usage"><span class='fu'>drake_plan</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>file_targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>strings_in_dots</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_evaluation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>tidy_eval</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>tidy_eval</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>max_expand</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,6 +197,14 @@ what happens during target transformations.</p></td>
 (e.g. unquoting/<code>!!</code>) when resolving commands.
 Tidy evaluation in transformations is always turned on
 regardless of the value you supply to this argument.</p></td>
+    </tr>
+    <tr>
+      <th>max_expand</th>
+      <td><p>Positive integer, optional upper bound on the lengths
+of grouping variables for <code>map()</code> and <code>cross()</code>. Comes in handy
+when you have a massive number of targets and you want to test
+on a miniature version of your workflow before you scale up
+to production.</p></td>
     </tr>
     </table>
     
