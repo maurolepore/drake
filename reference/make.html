@@ -659,13 +659,16 @@ Example:</p><pre>plan &lt;- drake_plan(
   y = mean(x)
 )
 </pre>
-    <p>In this plan, the very act of building <code>x</code>
-changes the dependencies of <code>x</code>.
+    <p>Here, because <code><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data()</a></code> loads <code>mtcars</code> into the global environment,
+the very act of building <code>x</code> changes the dependencies of <code>x</code>.
 In other words, without safeguards, <code>x</code> would not be up to date at
 the end of <code>make(plan)</code>.
 Please try to avoid workflows that modify the global environment.
-Otherwise, <code>make(plan)</code> will throw an error.
-To avoid this error, you can run <code>make(plan, lock_envir = FALSE)</code>.
+Functions such as <code><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data()</a></code> belong in your setup scripts
+prior to <code>make()</code>, not in any functions or commands that get called
+during <code>make()</code> itself.</p>
+<p>To avoid environment-locking errors,
+you can run <code>make(plan, lock_envir = FALSE)</code>.
 There are legitimate use cases for <code>lock_envir = FALSE</code>
 (example: <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#parallel-computing-within-targets'>https://ropenscilabs.github.io/drake-manual/hpc.html#parallel-computing-within-targets</a>) # nolint
 but most workflows should stick with the default <code>lock_envir = TRUE</code>.</p>
