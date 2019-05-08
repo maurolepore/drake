@@ -122,7 +122,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
-<li>Core <code><a href="../reference/make.html">make()</a></code> functionality</li>
+<li>Accommodate <code>rlang</code>’s new interpolation operator <code>{{</code>, which was causing <code><a href="../reference/make.html">make()</a></code> to fail when <code><a href="../reference/drake_plan.html">drake_plan()</a></code> commands are enclosed in curly braces (<a href="https://github.com/ropensci/drake/issues/864"><a href='https://github.com/ropensci/drake/issues/864'>#864</a></a>).</li>
 <li>Move “<code>config$lock_envir &lt;- FALSE</code>” from <code>loop_build()</code> to <code>backend_loop()</code>. This makes sure <code>config$envir</code> is correctly locked in <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
 <li>Convert factors to characters in the optional <code>.data</code> argument of <code>map()</code> and <code>cross()</code> in the DSL.</li>
 <li>In the DSL of <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, repair <code>cross(.data = !!args)</code>, where <code>args</code> is an optional data frame of grouping variables.</li>
