@@ -126,7 +126,7 @@
 <li>Move “<code>config$lock_envir &lt;- FALSE</code>” from <code>loop_build()</code> to <code>backend_loop()</code>. This makes sure <code>config$envir</code> is correctly locked in <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
 <li>Convert factors to characters in the optional <code>.data</code> argument of <code>map()</code> and <code>cross()</code> in the DSL.</li>
 <li>In the DSL of <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, repair <code>cross(.data = !!args)</code>, where <code>args</code> is an optional data frame of grouping variables.</li>
-<li>Handle trailing slashes from <code><a href="../reference/file_in.html">file_in()</a></code>/<code><a href="../reference/file_out.html">file_out()</a></code> directories on Windows (<a href="https://github.com/ropensci/drake/issues/855"><a href='https://github.com/ropensci/drake/issues/855'>#855</a></a>).</li>
+<li>Handle trailing slashes in <code><a href="../reference/file_in.html">file_in()</a></code>/<code><a href="../reference/file_out.html">file_out()</a></code> directories for Windows (<a href="https://github.com/ropensci/drake/issues/855"><a href='https://github.com/ropensci/drake/issues/855'>#855</a></a>).</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
