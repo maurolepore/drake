@@ -128,6 +128,7 @@
 <li>In the DSL of <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, repair <code>cross(.data = !!args)</code>, where <code>args</code> is an optional data frame of grouping variables.</li>
 <li>Handle trailing slashes in <code><a href="../reference/file_in.html">file_in()</a></code>/<code><a href="../reference/file_out.html">file_out()</a></code> directories for Windows (<a href="https://github.com/ropensci/drake/issues/855"><a href='https://github.com/ropensci/drake/issues/855'>#855</a></a>).</li>
 <li>Make <code>.id_chr</code> work with <code>combine()</code> in the DSL (<a href="https://github.com/ropensci/drake/issues/867"><a href='https://github.com/ropensci/drake/issues/867'>#867</a></a>).</li>
+<li>Do not try <code>make_spinner()</code> unless the version of <code>cli</code> is at least 1.1.0.</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
