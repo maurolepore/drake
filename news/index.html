@@ -143,6 +143,9 @@
 <li>Delay the initialization of <code>clustermq</code> workers for as long as possible. Before launching them, build/check targets locally until we reach an outdated target with <code>hpc</code> equal to <code>FALSE</code>. In other words, if no targets actually require <code>clustermq</code> workers, no workers get created.</li>
 <li>In <code><a href="../reference/make.html">make(parallelism = "future")</a></code>, reset the <code>config$sleep()</code> backoff interval whenever a new target gets checked.</li>
 <li>Add a “done” message to the console log file when the workflow has completed.</li>
+<li>Replace <code>CodeDepends</code> with a base R solution in <code><a href="../reference/code_to_plan.html">code_to_plan()</a></code>. Fixes a CRAN note.</li>
+<li>The DSL (transformations in <code><a href="../reference/drake_plan.html">drake_plan()</a></code>) is no longer experimental.</li>
+<li>The <code>callr</code> API (<code><a href="../reference/r_make.html">r_make()</a></code> and friends) is no longer experimental.</li>
 </ul>
 </div>
 </div>

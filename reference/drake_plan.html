@@ -168,11 +168,8 @@ with commands assigned to them. See the examples for details.</p></td>
       <th>transform</th>
       <td><p>Logical, whether to transform the plan
 into a larger plan with more targets.
-This is still an experimental feature,
-so please check your workflow with <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>
-before running it with <code><a href='make.html'>make()</a></code>.
-Requires the <code>transform</code> and <code>group</code> fields identified
-by <code><a href='target.html'>target()</a></code>. See the examples for details.</p></td>
+Requires the <code>transform</code> field in
+<code><a href='target.html'>target()</a></code>. See the examples for details.</p></td>
     </tr>
     <tr>
       <th>trace</th>
@@ -245,9 +242,6 @@ optional columns in your workflow plan. For details, visit
 <span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='st'>"report.Rmd"</span>)
 
 <span class='co'># Use transformations to generate large plans.</span>
-<span class='co'># This feature is experimental, so please</span>
-<span class='co'># check your workflow with `vis_drake_graph()`</span>
-<span class='co'># before running `make()`.</span>
 <span class='co'># Read more at</span>
 <span class='co'># &lt;https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way&gt;. # nolint</span>
 <span class='fu'>drake_plan</span>(

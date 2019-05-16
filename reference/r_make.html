@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Experimental: reproducible R session management for drake functions — r_make • drake</title>
+<title>Reproducible R session management for drake functions — r_make • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,11 +39,9 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Experimental: reproducible R session management for drake functions — r_make" />
+<meta property="og:title" content="Reproducible R session management for drake functions — r_make" />
 
-<meta property="og:description" content="A word of caution: r_make() and friends are still
-new and experimental.
-drake searches your environment
+<meta property="og:description" content="drake searches your environment
 to detect dependencies, so functions like make(), outdated(), etc.
 are designed to run in fresh clean R sessions. Wrappers r_make(),
 r_outdated(), etc. run reproducibly even if your current R session
@@ -115,16 +113,14 @@ is old and stale." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Experimental: reproducible R session management for drake functions</h1>
+    <h1>Reproducible R session management for drake functions</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-callr.R'><code>R/api-callr.R</code></a></small>
     <div class="hidden name"><code>r_make.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A word of caution: <code>r_make()</code> and friends are still
-new and experimental.</p>
-<p><code>drake</code> searches your environment
+    <p><code>drake</code> searches your environment
 to detect dependencies, so functions like <code><a href='make.html'>make()</a></code>, <code><a href='outdated.html'>outdated()</a></code>, etc.
 are designed to run in fresh clean R sessions. Wrappers <code>r_make()</code>,
 <code>r_outdated()</code>, etc. run reproducibly even if your current R session
