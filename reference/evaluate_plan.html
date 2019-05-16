@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Use wildcard templating to create a
+<title>Deprecated: use wildcard templating to create a
 workflow plan data frame from a template data frame. — evaluate_plan • drake</title>
 
 <!-- favicons -->
@@ -40,11 +40,11 @@ workflow plan data frame from a template data frame. — evaluate_plan • drake
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Use wildcard templating to create a
+<meta property="og:title" content="Deprecated: use wildcard templating to create a
 workflow plan data frame from a template data frame. — evaluate_plan" />
 
-<meta property="og:description" content="Wildcards are no longer recommended.
-Consider using transformations instead. Visit
+<meta property="og:description" content="Deprecated on 2019-05-16. Use drake_plan()
+transformations instead. See
 https://ropenscilabs.github.io/drake-manual/plans.html#large-plans
 for the details." />
 
@@ -114,16 +114,16 @@ for the details." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Use wildcard templating to create a
+    <h1>Deprecated: use wildcard templating to create a
 workflow plan data frame from a template data frame.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-wildcards.R'><code>R/api-wildcards.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-deprecate.R'><code>R/utils-deprecate.R</code></a></small>
     <div class="hidden name"><code>evaluate_plan.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Wildcards are no longer recommended.
-Consider using transformations instead. Visit
+    <p>Deprecated on 2019-05-16. Use <code><a href='drake_plan.html'>drake_plan()</a></code>
+transformations instead. See
 <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>
 for the details.</p>
     
@@ -221,7 +221,9 @@ as names and vectors of possible values as list elements.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create the part of the workflow plan for the datasets.</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>({
+<span class='co'># Create the part of the workflow plan for the datasets.</span>
 <span class='no'>datasets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>5</span>),
   <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/simulate'>simulate</a></span>(<span class='fl'>50</span>)
@@ -239,32 +241,19 @@ as names and vectors of possible values as list elements.</p>
   <span class='no'>methods</span>,
   <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>
-)</div><div class='output co'>#&gt; <span class='message'>The interface at https://ropenscilabs.github.io/drake-manual/plans.html#large-plans is better than evaluate_plan(), map_plan(), gather_by(), etc.</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
-#&gt;   target            command    
-#&gt;   &lt;chr&gt;             &lt;expr&gt;     
-#&gt; 1 regression1_small reg1(small)
-#&gt; 2 regression1_large reg1(large)
-#&gt; 3 regression2_small reg2(small)
-#&gt; 4 regression2_large reg2(large)</div><div class='input'><span class='co'># Only choose some combinations of dataset and analysis method.</span>
+)
+<span class='co'># Only choose some combinations of dataset and analysis method.</span>
 <span class='no'>ans</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(
   <span class='no'>methods</span>,
   <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"dataset__"</span>,
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>datasets</span>$<span class='no'>target</span>,
   <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
-<span class='no'>ans</span></div><div class='output co'>#&gt; # A tibble: 2 x 2
-#&gt;   target      command    
-#&gt;   &lt;chr&gt;       &lt;expr&gt;     
-#&gt; 1 regression1 reg1(small)
-#&gt; 2 regression2 reg2(large)</div><div class='input'><span class='co'># For the complete workflow plan, row bind the pieces together.</span>
+<span class='no'>ans</span>
+<span class='co'># For the complete workflow plan, row bind the pieces together.</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='no'>datasets</span>, <span class='no'>ans</span>)
-<span class='no'>my_plan</span></div><div class='output co'>#&gt; # A tibble: 4 x 2
-#&gt;   target      command     
-#&gt;   &lt;chr&gt;       &lt;expr&gt;      
-#&gt; 1 small       simulate(5) 
-#&gt; 2 large       simulate(50)
-#&gt; 3 regression1 reg1(small) 
-#&gt; 4 regression2 reg2(large) </div><div class='input'><span class='co'># Wildcards for evaluate_plan() do not need the double-underscore suffix.</span>
+<span class='no'>my_plan</span>
+<span class='co'># Wildcards for evaluate_plan() do not need the double-underscore suffix.</span>
 <span class='co'># Any valid symbol will do.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>numbers</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>`{Number}`</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>..size</span>)
@@ -275,27 +264,13 @@ as names and vectors of possible values as list elements.</p>
     <span class='st'>"`{Number}`"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>13</span>),
     <span class='kw'>..size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>4</span>)
   )
-)</div><div class='output co'>#&gt; # A tibble: 4 x 2
-#&gt;   target       command                     
-#&gt;   &lt;chr&gt;        &lt;expr&gt;                      
-#&gt; 1 numbers_10_3 sample.int(n = 10, size = 3)
-#&gt; 2 numbers_10_4 sample.int(n = 10, size = 4)
-#&gt; 3 numbers_13_3 sample.int(n = 13, size = 3)
-#&gt; 4 numbers_13_4 sample.int(n = 13, size = 4)</div><div class='input'><span class='co'># Workflow plans can have multiple wildcards.</span>
+)
+<span class='co'># Workflow plans can have multiple wildcards.</span>
 <span class='co'># Each combination of wildcard values will be used</span>
 <span class='co'># Except when expand is FALSE.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>draws</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>Size</span>))
-<span class='fu'>evaluate_plan</span>(<span class='no'>x</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>10</span>:<span class='fl'>13</span>, <span class='kw'>Size</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>))</div><div class='output co'>#&gt; # A tibble: 8 x 2
-#&gt;   target     command                     
-#&gt;   &lt;chr&gt;      &lt;expr&gt;                      
-#&gt; 1 draws_10_1 sample.int(n = 10, size = 1)
-#&gt; 2 draws_10_2 sample.int(n = 10, size = 2)
-#&gt; 3 draws_11_1 sample.int(n = 11, size = 1)
-#&gt; 4 draws_11_2 sample.int(n = 11, size = 2)
-#&gt; 5 draws_12_1 sample.int(n = 12, size = 1)
-#&gt; 6 draws_12_2 sample.int(n = 12, size = 2)
-#&gt; 7 draws_13_1 sample.int(n = 13, size = 1)
-#&gt; 8 draws_13_2 sample.int(n = 13, size = 2)</div><div class='input'><span class='co'># You can use wildcards on columns other than "command"</span>
+<span class='fu'>evaluate_plan</span>(<span class='no'>x</span>, <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>10</span>:<span class='fl'>13</span>, <span class='kw'>Size</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>))
+<span class='co'># You can use wildcards on columns other than "command"</span>
 <span class='fu'>evaluate_plan</span>(
   <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='st'>"1 + 1"</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='st'>"any"</span>),
@@ -304,37 +279,22 @@ as names and vectors of possible values as list elements.</p>
   ),
   <span class='kw'>rules</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>always</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>),
   <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"command"</span>, <span class='st'>"cpu"</span>)
-)</div><div class='output co'>#&gt; # A tibble: 4 x 3
-#&gt;   target command  cpu  
-#&gt;   &lt;chr&gt;  &lt;expr&gt;   &lt;chr&gt;
-#&gt; 1 x      1 + 1    any  
-#&gt; 2 y_1    sqrt(4)  1    
-#&gt; 3 y_2    sqrt(4)  2    
-#&gt; 4 z      sqrt(16) any  </div><div class='input'><span class='co'># With the `trace` argument,</span>
+)
+<span class='co'># With the `trace` argument,</span>
 <span class='co'># you can generate columns that show how the wildcards</span>
 <span class='co'># were evaluated.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>sqrt</a></span>(<span class='no'>n__</span>))
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 4
-#&gt;   target command       n__   n___from
-#&gt;   &lt;chr&gt;  &lt;expr&gt;        &lt;chr&gt; &lt;chr&gt;   
-#&gt; 1 x_1    sample.int(1) 1     x       
-#&gt; 2 x_2    sample.int(2) 2     x       
-#&gt; 3 y_1    sqrt(1)       1     y       
-#&gt; 4 y_2    sqrt(2)       2     y       </div><div class='input'><span class='co'># With the `trace` argument,</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plan</span>)
+<span class='co'># With the `trace` argument,</span>
 <span class='co'># you can generate columns that show how the wildcards</span>
 <span class='co'># were evaluated. Then you can visualize the wildcard groups</span>
 <span class='co'># as clusters.</span>
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>sqrt</a></span>(<span class='no'>n__</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='no'>n__</span>))
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>evaluate_plan</span>(<span class='no'>plan</span>, <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 4
-#&gt;   target command       n__   n___from
-#&gt;   &lt;chr&gt;  &lt;expr&gt;        &lt;chr&gt; &lt;chr&gt;   
-#&gt; 1 x_1    sqrt(1)       1     x       
-#&gt; 2 x_2    sqrt(2)       2     x       
-#&gt; 3 y_1    sample.int(1) 1     y       
-#&gt; 4 y_2    sample.int(2) 2     y       </div><div class='input'><span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plan</span>)
+<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>()
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"1"</span>)
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"n__"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>))
@@ -342,6 +302,7 @@ as names and vectors of possible values as list elements.</p>
 <span class='co'># Optionally cluster on columns supplied by `drake_graph_info()$nodes`.</span>
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"status"</span>, <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='st'>"up to date"</span>)
 }
+})
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

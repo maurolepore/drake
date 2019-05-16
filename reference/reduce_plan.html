@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Write commands to reduce several targets down to one. — reduce_plan • drake</title>
+<title>Deprecated:
+write commands to reduce several targets down to one. — reduce_plan • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,10 +40,11 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Write commands to reduce several targets down to one. — reduce_plan" />
+<meta property="og:title" content="Deprecated:
+write commands to reduce several targets down to one. — reduce_plan" />
 
-<meta property="og:description" content="reduce_plan() is no longer recommended.
-Consider using transformations instead. Visit
+<meta property="og:description" content="Deprecated on 2019-05-16. Use drake_plan()
+transformations instead. See
 https://ropenscilabs.github.io/drake-manual/plans.html#large-plans
 for the details." />
 
@@ -112,15 +114,16 @@ for the details." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Write commands to reduce several targets down to one.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-mapreduce.R'><code>R/api-mapreduce.R</code></a></small>
+    <h1>Deprecated:
+write commands to reduce several targets down to one.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/utils-deprecate.R'><code>R/utils-deprecate.R</code></a></small>
     <div class="hidden name"><code>reduce_plan.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>reduce_plan()</code> is no longer recommended.
-Consider using transformations instead. Visit
+    <p>Deprecated on 2019-05-16. Use <code><a href='drake_plan.html'>drake_plan()</a></code>
+transformations instead. See
 <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>
 for the details.</p>
     
@@ -190,81 +193,36 @@ operator to pairs of targets to produce one target).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Workflow plan for datasets:</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>({
+<span class='co'># Workflow plan for datasets:</span>
 <span class='no'>x_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='evaluate_plan.html'>evaluate_plan</a></span>(
   <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>VALUE</span>),
   <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"VALUE"</span>,
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>8</span>
 )
-<span class='no'>x_plan</span></div><div class='output co'>#&gt; # A tibble: 8 x 2
-#&gt;   target command
-#&gt;   &lt;chr&gt;  &lt;expr&gt; 
-#&gt; 1 x_1    1      
-#&gt; 2 x_2    2      
-#&gt; 3 x_3    3      
-#&gt; 4 x_4    4      
-#&gt; 5 x_5    5      
-#&gt; 6 x_6    6      
-#&gt; 7 x_7    7      
-#&gt; 8 x_8    8      </div><div class='input'><span class='co'># Create a new target from the sum of the others.</span>
-<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
-#&gt;   target command                                      
-#&gt;   &lt;chr&gt;  &lt;expr&gt;                                       
-#&gt; 1 x_sum  x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8</div><div class='input'><span class='co'># Optionally include the original rows with `append = TRUE`.</span>
-<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 2
-#&gt;   target command                                      
-#&gt;   &lt;chr&gt;  &lt;expr&gt;                                       
-#&gt; 1 x_1    1                                            
-#&gt; 2 x_2    2                                            
-#&gt; 3 x_3    3                                            
-#&gt; 4 x_4    4                                            
-#&gt; 5 x_5    5                                            
-#&gt; 6 x_6    6                                            
-#&gt; 7 x_7    7                                            
-#&gt; 8 x_8    8                                            
-#&gt; 9 x_sum  x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8</div><div class='input'><span class='co'># For memory efficiency and parallel computing,</span>
+<span class='no'>x_plan</span>
+<span class='co'># Create a new target from the sum of the others.</span>
+<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='co'># Optionally include the original rows with `append = TRUE`.</span>
+<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># For memory efficiency and parallel computing,</span>
 <span class='co'># reduce pairwise:</span>
-<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 2
-#&gt;   target  command          
-#&gt;   &lt;chr&gt;   &lt;expr&gt;           
-#&gt; 1 x_sum_1 x_1 + x_2        
-#&gt; 2 x_sum_2 x_3 + x_4        
-#&gt; 3 x_sum_3 x_5 + x_6        
-#&gt; 4 x_sum_4 x_7 + x_8        
-#&gt; 5 x_sum_5 x_sum_1 + x_sum_2
-#&gt; 6 x_sum_6 x_sum_3 + x_sum_4
-#&gt; 7 x_sum   x_sum_5 + x_sum_6</div><div class='input'><span class='co'># Optionally define your own function and use it as the</span>
+<span class='fu'>reduce_plan</span>(<span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='co'># Optionally define your own function and use it as the</span>
 <span class='co'># binary operator in the reduction.</span>
 <span class='no'>x_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='evaluate_plan.html'>evaluate_plan</a></span>(
   <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>VALUE</span>),
   <span class='kw'>wildcard</span> <span class='kw'>=</span> <span class='st'>"VALUE"</span>,
   <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>9</span>
 )
-<span class='no'>x_plan</span></div><div class='output co'>#&gt; # A tibble: 9 x 2
-#&gt;   target command
-#&gt;   &lt;chr&gt;  &lt;expr&gt; 
-#&gt; 1 x_1    1      
-#&gt; 2 x_2    2      
-#&gt; 3 x_3    3      
-#&gt; 4 x_4    4      
-#&gt; 5 x_5    5      
-#&gt; 6 x_6    6      
-#&gt; 7 x_7    7      
-#&gt; 8 x_8    8      
-#&gt; 9 x_9    9      </div><div class='input'><span class='fu'>reduce_plan</span>(
+<span class='no'>x_plan</span>
+<span class='fu'>reduce_plan</span>(
   <span class='no'>x_plan</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"x_sum"</span>, <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>begin</span> <span class='kw'>=</span> <span class='st'>"fun("</span>, <span class='kw'>op</span> <span class='kw'>=</span> <span class='st'>", "</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='st'>")"</span>
-)</div><div class='output co'>#&gt; # A tibble: 8 x 2
-#&gt;   target  command              
-#&gt;   &lt;chr&gt;   &lt;expr&gt;               
-#&gt; 1 x_sum_1 fun(x_1, x_2)        
-#&gt; 2 x_sum_2 fun(x_3, x_4)        
-#&gt; 3 x_sum_3 fun(x_5, x_6)        
-#&gt; 4 x_sum_4 fun(x_7, x_8)        
-#&gt; 5 x_sum_5 fun(x_9, x_sum_1)    
-#&gt; 6 x_sum_6 fun(x_sum_2, x_sum_3)
-#&gt; 7 x_sum_7 fun(x_sum_4, x_sum_5)
-#&gt; 8 x_sum   fun(x_sum_6, x_sum_7)</div></pre>
+)
+})
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
