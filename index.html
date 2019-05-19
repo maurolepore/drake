@@ -61,9 +61,6 @@
   <a href="reference/index.html">Functions</a>
 </li>
 <li>
-  <a href="articles/drake.html">Resources</a>
-</li>
-<li>
   <a href="https://ropenscilabs.github.io/drake-manual">Full manual</a>
 </li>
 <li>
@@ -343,10 +340,12 @@ Development
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">jobs =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb14-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># Or scale up to a supercomputer.</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw"><a href="reference/drake_batchtools_tmpl_file.html">drake_batchtools_tmpl_file</a></span>(<span class="st">"slurm"</span>) <span class="co"># https://slurm.schedmd.com/</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(future.batchtools)</a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">future<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/future/topics/plan">plan</a></span>(batchtools_slurm, <span class="dt">template =</span> <span class="st">"batchtools.slurm.tmpl"</span>, <span class="dt">workers =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">parallelism =</span> <span class="st">"future_lapply"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw"><a href="reference/drake_hpc_template_file.html">drake_hpc_template_file</a></span>(<span class="st">"slurm_clustermq.tmpl"</span>) <span class="co"># https://slurm.schedmd.com/</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">  <span class="dt">clustermq.scheduler =</span> <span class="st">"clustermq"</span>,</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">clustermq.template =</span> <span class="st">"slurm_clustermq.tmpl"</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">parallelism =</span> <span class="st">"clustermq"</span>, <span class="dt">jobs =</span> <span class="dv">4</span>)</a></code></pre></div>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -359,38 +358,10 @@ Development
 <a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
 <a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)</a>
 <a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">install_github</span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
-<p>A few technical details:</p>
-<ul>
-<li>You must properly install <code>drake</code> using <code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages()</a></code>, <code>devtools::install_github()</code>, or similar. It is not enough to use <code>devtools::load_all()</code>, particularly for the parallel computing functionality, in which multiple R sessions initialize and then try to <code><a href="https://www.rdocumentation.org/packages/base/topics/library">require(drake)</a></code>.</li>
-<li>For <code><a href="reference/make.html">make(parallelism = "Makefile")</a></code>, Windows users may need to download and install <a href="https://cran.r-project.org/bin/windows/Rtools/"><code>Rtools</code></a>.</li>
-<li>To use <code><a href="reference/make.html">make(parallelism = "future")</a></code> or <code><a href="reference/make.html">make(parallelism = "future_lapply")</a></code> to deploy your work to a computing cluster (see the <a href="https://ropenscilabs.github.io/drake-manual/hpc.html">high-performance computing guide</a>), you will need the <a href="https://github.com/HenrikBengtsson/future.batchtools"><code>future.batchtools</code></a> package.</li>
-</ul>
 </div>
-<div id="documentation" class="section level1">
+<div id="function-reference" class="section level1">
 <h1 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h1>
-<p>The main resources to learn <code>drake</code> are the <a href="https://ropenscilabs.github.io/drake-manual/">user manual</a> and the <a href="https://ropensci.github.io/drake/">reference website</a>. Others are below.</p>
-<div id="shiny-app" class="section level2">
-<h2 class="hasAnchor">
-<a href="#shiny-app" class="anchor"></a>Shiny app</h2>
-<p>The Shiny app at <a href="https://wlandau.shinyapps.io/drakeplanner">wlandau.shinyapps.io/drakeplanner</a> makes it easier to learn <code>drake</code> and create new <code>drake</code>-powered projects. If you have trouble accessing it, you can install and run it locally.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"remotes"</span>)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"wlandau/drakeplanner"</span>)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">drakeplanner<span class="op">::</span><span class="kw">drakeplanner</span>()</a></code></pre></div>
-</div>
-<div id="cheat-sheet" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cheat-sheet" class="anchor"></a>Cheat sheet</h2>
-<p>Thanks to <a href="https://github.com/krlmlr">Kirill</a> for preparing a <a href="https://github.com/krlmlr/drake-sib-zurich/blob/master/cheat-sheet.pdf"><code>drake</code> cheat sheet</a> for the <a href="https://github.com/krlmlr/drake-sib-zurich">workshop</a>.</p>
-</div>
-<div id="frequently-asked-questions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#frequently-asked-questions" class="anchor"></a>Frequently asked questions</h2>
-<p>The <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ page</a> is an index of links to <a href="https://github.com/ropensci/drake/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+label%3A%22frequently+asked+question%22+">appropriately-labeled issues on GitHub</a>. To contribute, please <a href="https://github.com/ropensci/drake/issues/new">submit a new issue</a> and ask that it be labeled as a frequently asked question.</p>
-</div>
-<div id="function-reference" class="section level2">
-<h2 class="hasAnchor">
-<a href="#function-reference" class="anchor"></a>Function reference</h2>
+<a href="#function-reference" class="anchor"></a>Function reference</h1>
 <p>The <a href="https://ropensci.github.io/drake/reference/index.html">reference section</a> lists all the available functions. Here are the most important ones.</p>
 <ul>
 <li>
@@ -417,15 +388,24 @@ Development
 <code><a href="reference/diagnose.html">diagnose()</a></code>: return the full context of a build, including errors, warnings, and messages.</li>
 </ul>
 </div>
-<div id="tutorials" class="section level2">
+<div id="documentation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#documentation" class="anchor"></a>Documentation</h1>
+<ul>
+<li>The <a href="https://ropenscilabs.github.io/drake-manual/">user manual</a>
+</li>
+<li>The <a href="https://ropensci.github.io/drake/">reference website</a>.</li>
+<li>The <a href="https://github.com/wlandau/drake-examples">official repository of example code</a>. Download an example workflow from here with <code><a href="reference/drake_example.html">drake_example()</a></code>.</li>
+<li>
+<a href="https://github.com/wlandau/drakeplanner"><code>drakeplanner</code></a>, an R/Shiny app to help learn <code>drake</code> and create new projects. Run locally with <code>drakeplanner::drakeplanner()</code> or access it at <a href="https://wlandau.shinyapps.io/drakeplanner" class="uri">https://wlandau.shinyapps.io/drakeplanner</a>.</li>
+<li>Presentations and workshops by <a href="https://github.com/wlandau">Will Landau</a>, <a href="https://github.com/krlmlr">Kirill Müller</a>, <a href="https://github.com/aedobbyn">Amanda Dobbyn</a>, <a href="http://github.com/karthik">Karthik Ram</a>, <a href="https://github.com/sinarueeger">Sina Rüeger</a>, <a href="https://github.com/cstawitz">Christine Stawitz</a>, and others. See specific links at <a href="https://ropenscilabs.github.io/drake-manual/index.html#presentations" class="uri">https://ropenscilabs.github.io/drake-manual/index.html#presentations</a>
+</li>
+<li>The <a href="https://ropenscilabs.github.io/drake-manual/faq.html">FAQ page</a>, which links to <a href="https://github.com/ropensci/drake/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+label%3A%22frequently+asked+question%22+">appropriately-labeled issues on GitHub</a>.</li>
+</ul>
+<div id="use-cases" class="section level2">
 <h2 class="hasAnchor">
-<a href="#tutorials" class="anchor"></a>Tutorials</h2>
-<p>Thanks to <a href="https://github.com/krlmlr">Kirill</a> for constructing two interactive <a href="https://rstudio.github.io/learnr/"><code>learnr</code></a> tutorials: <a href="https://krlmlr.shinyapps.io/cooking-drake-tutorial/">one supporting <code>drake</code> itself</a>, and a <a href="https://krlmlr.shinyapps.io/cooking-tutorial/">prerequisite walkthrough</a> of the <a href="https://github.com/krlmlr/cooking"><code>cooking</code> package</a>.</p>
-</div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
-<p>The official <a href="https://ropensci.org/usecases/">rOpenSci use cases</a> and <a href="https://discuss.ropensci.org/c/usecases">associated discussion threads</a> describe applications of <code>drake</code> in action. Here are some more real-world sightings of <code>drake</code> in the wild.</p>
+<a href="#use-cases" class="anchor"></a>Use cases</h2>
+<p>The official <a href="https://ropensci.org/usecases/">rOpenSci use cases</a> and <a href="https://discuss.ropensci.org/c/usecases">associated discussion threads</a> describe applications of <code>drake</code> in action. Here are some more applications of <code>drake</code> in real-world projects.</p>
 <ul>
 <li><a href="https://github.com/efcaguab/demografia-del-voto">efcaguab/demografia-del-voto</a></li>
 <li><a href="https://github.com/efcaguab/great-white-shark-nsw">efcaguab/great-white-shark-nsw</a></li>
@@ -434,86 +414,6 @@ Development
 <li><a href="https://github.com/sol-eng/tensorflow-w-r">sol-eng/tensorflow-w-r</a></li>
 <li><a href="https://github.com/tiernanmartin/home-and-hope">tiernanmartin/home-and-hope</a></li>
 </ul>
-<p>There are also multiple <code>drake</code>-powered example projects <a href="https://github.com/wlandau/drake-examples">available here</a>, ranging from beginner-friendly stubs to demonstrations of high-performance computing. You can generate the files for a project with <code><a href="reference/drake_example.html">drake_example()</a></code> (e.g. <code><a href="reference/drake_example.html">drake_example("gsp")</a></code>), and you can list the available projects with <code><a href="reference/drake_examples.html">drake_examples()</a></code>. You can contribute your own example project with a <a href="https://github.com/wlandau/drake-examples/pulls">fork and pull request</a>.</p>
-</div>
-<div id="presentations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#presentations" class="anchor"></a>Presentations</h2>
-<table class="table table">
-<colgroup>
-<col width="22%">
-<col width="22%">
-<col width="22%">
-<col width="31%">
-</colgroup>
-<thead><tr class="header">
-<th>Author</th>
-<th>Venue</th>
-<th>Date</th>
-<th>Materials</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><a href="https://github.com/aedobbyn">Amanda Dobbyn</a></td>
-<td><a href="https://www.rladiesnyc.org/">R-Ladies NYC</a></td>
-<td>2019-02-12</td>
-<td>
-<a href="https://aedobbyn.github.io/nyc-fires/index.html#1">slides</a>, <a href="https://github.com/aedobbyn/nyc-fires">source</a>
-</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/wlandau">Will Landau</a></td>
-<td><a href="https://projects.iq.harvard.edu/datafest2019/home">Harvard DataFest</a></td>
-<td>2019-01-22</td>
-<td>
-<a href="https://wlandau.github.io/drake-datafest-2019">slides</a>, <a href="https://github.com/wlandau/drake-datafest-2019">source</a>
-</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/karthik">Karthik Ram</a></td>
-<td><a href="https://www.rstudio.com/conference">RStudio Conference</a></td>
-<td>2019-01-18</td>
-<td>
-<a href="https://resources.rstudio.com/rstudio-conf-2019/a-guide-to-modern-reproducible-data-science-with-r">video</a>, <a href="http://inundata.org/talks/rstd19/#/">slides</a>, <a href="https://github.com/karthik/rstudio2019">resources</a>
-</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/sinarueeger">Sina Rüeger</a></td>
-<td><a href="https://www.meetup.com/Geneve-R-User-Group">Geneva R User Group</a></td>
-<td>2018-10-04</td>
-<td>
-<a href="https://sinarueeger.github.io/20181004-geneve-rug">slides</a>, <a href="https://github.com/sinarueeger/workflow-example">example code</a>
-</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/wlandau">Will Landau</a></td>
-<td><a href="http://rinpharma.com/">R in Pharma</a></td>
-<td>2018-08-16</td>
-<td>
-<a href="https://ropenscilabs.github.io/drake-manual/">video</a>, <a href="https://wlandau.github.io/drake-talk">slides</a>, <a href="https://github.com/wlandau/drake-talk">source</a>
-</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/cstawitz">Christine Stawitz</a></td>
-<td><a href="https://www.meetup.com/rladies-seattle">R-Ladies Seattle</a></td>
-<td>2018-06-25</td>
-<td><a href="https://github.com/cstawitz/RLadies_Sea_drake">materials</a></td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/krlmlr">Kirill Müller</a></td>
-<td><a href="https://www.sib.swiss">Swiss Institute of Bioinformatics</a></td>
-<td>2018-03-05</td>
-<td>
-<a href="https://www.sib.swiss/training/course/2018-03-remake">workshop</a>, <a href="https://krlmlr.github.io/slides/drake-sib-zurich">slides</a>, <a href="https://github.com/krlmlr/drake-sib-zurich">source</a>, <a href="https://krlmlr.github.io/slides/drake-sib-zurich/cooking.html">exercises</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="context-and-history" class="section level2">
-<h2 class="hasAnchor">
-<a href="#context-and-history" class="anchor"></a>Context and history</h2>
-<p>For context and history, check out <a href="https://ropensci.org/blog/2018/02/06/drake/">this post on the rOpenSci blog</a> and <a href="https://www.r-podcast.org/episode/022-diving-in-to-drake-with-will-landau/">episode 22 of the R Podcast</a>.</p>
 </div>
 </div>
 <div id="help-and-troubleshooting" class="section level1">
