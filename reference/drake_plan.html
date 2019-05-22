@@ -204,9 +204,10 @@ custom columns.</p>
     <p><code>drake</code> has special syntax for generating large plans.
 Your code will look something like
 <code>drake_plan(x = target(cmd, transform = f(y, z), group = g)</code>
-where <code>f()</code> is either <code>map()</code>, <code>cross()</code>, or <code>combine()</code>
-(similar to <code><a href='https://purrr.tidyverse.org/reference/map2.html'>purrr::pmap()</a></code>, <code>tidy::crossing()</code>, and <code><a href='https://dplyr.tidyverse.org/reference/summarise.html'>dplyr::summarize()</a></code>,
-respectively). These verbs mimic Tidyverse behavior to scale up
+where <code>f()</code> is either <code>map()</code>, <code>cross()</code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/split'>split()</a></code>, or <code>combine()</code>
+(similar to <code><a href='https://purrr.tidyverse.org/reference/map2.html'>purrr::pmap()</a></code>, <code>tidy::crossing()</code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/split'>base::split()</a></code>,
+and  <code><a href='https://dplyr.tidyverse.org/reference/summarise.html'>dplyr::summarize()</a></code>, respectively).
+These verbs mimic Tidyverse behavior to scale up
 existing plans to large numbers of targets.
 You can read about this interface at
 <a href='https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way'>https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way</a>. # nolint</p>
@@ -258,6 +259,20 @@ optional columns in your workflow plan. For details, visit
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span>(<span class='no'>summ</span>),
     <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>summ</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>))
+  )
+)
+
+<span class='co'># Split data among multiple targets.</span>
+<span class='fu'>drake_plan</span>(
+  <span class='kw'>large_data</span> <span class='kw'>=</span> <span class='fu'>get_data</span>(),
+  <span class='kw'>slice_analysis</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='no'>large_data</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'>analyze</span>(),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/split'>split</a></span>(<span class='no'>large_data</span>, <span class='kw'>slices</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+  ),
+  <span class='kw'>results</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='no'>slice_analysis</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>slice_analysis</span>)
   )
 )
 
