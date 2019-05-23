@@ -128,7 +128,7 @@ with SSH and you do not have access to X Window support.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>text_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>),
+    <pre class="usage"><span class='fu'>text_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"out"</span>, <span class='st'>"in"</span>, <span class='st'>"all"</span>),
   <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>from_scratch</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show_output_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nchar</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
@@ -228,10 +228,10 @@ Caution: <code>nchar</code> &gt; 0 will mess with the layout.</p></td>
     <tr>
       <th>print</th>
       <td><p>Logical. If <code>TRUE</code>, the graph will print to the console
-via <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>. If <code>FALSE</code>, nothing is printed. However, you still
+via <code><a href='https://rdrr.io/r/base/message.html'>message()</a></code>. If <code>FALSE</code>, nothing is printed. However, you still
 have the visualization because <code>text_drake_graph()</code> and
 <code><a href='render_text_drake_graph.html'>render_text_drake_graph()</a></code> still invisibly return a character string
-that you can print yourself with <code><a href='https://www.rdocumentation.org/packages/base/topics/message'>message()</a></code>.</p></td>
+that you can print yourself with <code><a href='https://rdrr.io/r/base/message.html'>message()</a></code>.</p></td>
     </tr>
     </table>
     
@@ -248,12 +248,12 @@ that you can print yourself with <code><a href='https://www.rdocumentation.org/p
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"knitr"</span>))) {
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"knitr"</span>))) {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
 <span class='co'># Plot the network graph representation of the workflow.</span>
-<span class='no'>pkg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"txtplot"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>&amp;&amp;</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>pkg</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"txtplot"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>&amp;&amp;</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='kw'>if</span> (<span class='no'>pkg</span>) {
 <span class='fu'>text_drake_graph</span>(<span class='no'>config</span>)
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>

@@ -140,22 +140,22 @@ because it already has everything it needs in <code>config</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_config</span>(<span class='no'>plan</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/get_cache'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span>
+    <pre class="usage"><span class='fu'>drake_config</span>(<span class='no'>plan</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/drake/man/get_cache.html'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span>
   <span class='no'>verbose</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='st'>"loop"</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs_preprocess</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/zpackages'>.packages</a></span>()), <span class='kw'>lib_loc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/zpackages.html'>.packages</a></span>()), <span class='kw'>lib_loc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>prework</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>prepend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>recipe_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timeout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cpu</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
   <span class='kw'>elapsed</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='kw'>retries</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>log_progress</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/drake/topics/trigger'>trigger</a></span>(), <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/drake/man/trigger.html'>trigger</a></span>(), <span class='kw'>skip_targets</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>skip_imports</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>skip_safety_checks</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caching</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"master"</span>, <span class='st'>"worker"</span>), <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caching</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"master"</span>, <span class='st'>"worker"</span>), <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
-  <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>,
+  <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
+  <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"memory"</span>,
   <span class='st'>"lookahead"</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -251,21 +251,21 @@ and doing other preprocessing tasks.</p></td>
     <tr>
       <th>packages</th>
       <td><p>Character vector packages to load, in the order
-they should be loaded. Defaults to <code><a href='https://www.rdocumentation.org/packages/base/topics/rev'>rev(.packages())</a></code>, so you
+they should be loaded. Defaults to <code><a href='https://rdrr.io/r/base/rev.html'>rev(.packages())</a></code>, so you
 should not usually need to set this manually. Just call
-<code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library()</a></code> to load your packages before <code><a href='make.html'>make()</a></code>.
+<code><a href='https://rdrr.io/r/base/library.html'>library()</a></code> to load your packages before <code><a href='make.html'>make()</a></code>.
 However, sometimes packages need to be strictly forced to load
 in a certain order, especially if <code>parallelism</code> is
-<code>"Makefile"</code>. To do this, do not use <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library()</a></code>
-or <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>require()</a></code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>loadNamespace()</a></code> or
-<code><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>attachNamespace()</a></code> to load any libraries beforehand.
+<code>"Makefile"</code>. To do this, do not use <code><a href='https://rdrr.io/r/base/library.html'>library()</a></code>
+or <code><a href='https://rdrr.io/r/base/library.html'>require()</a></code> or <code><a href='https://rdrr.io/r/base/ns-load.html'>loadNamespace()</a></code> or
+<code><a href='https://rdrr.io/r/base/ns-load.html'>attachNamespace()</a></code> to load any libraries beforehand.
 Just list your packages in the <code>packages</code> argument in the order
 you want them to be loaded.</p></td>
     </tr>
     <tr>
       <th>lib_loc</th>
       <td><p>Character vector, optional.
-Same as in <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library()</a></code> or <code><a href='https://www.rdocumentation.org/packages/base/topics/library'>require()</a></code>.
+Same as in <code><a href='https://rdrr.io/r/base/library.html'>library()</a></code> or <code><a href='https://rdrr.io/r/base/library.html'>require()</a></code>.
 Applies to the <code>packages</code> argument (see above).</p></td>
     </tr>
     <tr>
@@ -299,14 +299,14 @@ This code can be used to set global options, etc.</p></td>
     </tr>
     <tr>
       <th>cpu</th>
-      <td><p>Same as the <code>cpu</code> argument of <code><a href='https://www.rdocumentation.org/packages/base/topics/setTimeLimit'>setTimeLimit()</a></code>.
+      <td><p>Same as the <code>cpu</code> argument of <code><a href='https://rdrr.io/r/base/setTimeLimit.html'>setTimeLimit()</a></code>.
 Seconds of cpu time before a target times out.
 Assign target-level cpu timeout times with an optional <code>cpu</code>
 column in <code>plan</code>.</p></td>
     </tr>
     <tr>
       <th>elapsed</th>
-      <td><p>Same as the <code>elapsed</code> argument of <code><a href='https://www.rdocumentation.org/packages/base/topics/setTimeLimit'>setTimeLimit()</a></code>.
+      <td><p>Same as the <code>elapsed</code> argument of <code><a href='https://rdrr.io/r/base/setTimeLimit.html'>setTimeLimit()</a></code>.
 Seconds of elapsed time before a target times out.
 Assign target-level elapsed timeout times with an optional <code>elapsed</code>
 column in <code>plan</code>.</p></td>
@@ -369,10 +369,10 @@ on your workflow. Use at your own peril.</p></td>
       <th>lazy_load</th>
       <td><p>Either a character vector or a logical. Choices:</p><ul>
 <li><p><code>"eager"</code>: no lazy loading. The target is loaded right away
-with <code><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign()</a></code>.</p></li>
-<li><p><code>"promise"</code>: lazy loading with <code><a href='https://www.rdocumentation.org/packages/base/topics/delayedAssign'>delayedAssign()</a></code></p></li>
+with <code><a href='https://rdrr.io/r/base/assign.html'>assign()</a></code>.</p></li>
+<li><p><code>"promise"</code>: lazy loading with <code><a href='https://rdrr.io/r/base/delayedAssign.html'>delayedAssign()</a></code></p></li>
 <li><p><code>"bind"</code>: lazy loading with active bindings:
-<code><a href='https://www.rdocumentation.org/packages/bindr/topics/create_env'>bindr::populate_env()</a></code>.</p></li>
+<code><a href='https://rdrr.io/pkg/bindr/man/create_env.html'>bindr::populate_env()</a></code>.</p></li>
 <li><p><code>TRUE</code>: same as <code>"promise"</code>.</p></li>
 <li><p><code>FALSE</code>: same as <code>"eager"</code>.</p></li>
 </ul>
@@ -380,7 +380,7 @@ with <code><a href='https://www.rdocumentation.org/packages/base/topics/assign'>
 <p><code>lazy_load</code> should not be <code>"promise"</code>
 for <code>"parLapply"</code> parallelism combined with <code>jobs</code> greater than 1.
 For local multi-session parallelism and lazy loading, try
-<code><a href='https://www.rdocumentation.org/packages/base/topics/library'>library(future); future::plan(multisession)</a></code> and then
+<code><a href='https://rdrr.io/r/base/library.html'>library(future); future::plan(multisession)</a></code> and then
 <code><a href='make.html'>make(..., parallelism = "future_lapply", lazy_load = "bind")</a></code>.</p>
 <p>If <code>lazy_load</code> is <code>"eager"</code>,
 drake prunes the execution environment before each target/stage,
@@ -395,10 +395,10 @@ it may duplicate the loading of dependencies, costing time.</p></td>
     </tr>
     <tr>
       <th>session_info</th>
-      <td><p>Logical, whether to save the <code><a href='https://www.rdocumentation.org/packages/utils/topics/sessionInfo'>sessionInfo()</a></code>
+      <td><p>Logical, whether to save the <code><a href='https://rdrr.io/r/utils/sessionInfo.html'>sessionInfo()</a></code>
 to the cache. This behavior is recommended for serious <code><a href='make.html'>make()</a></code>s
 for the sake of reproducibility. This argument only exists to
-speed up tests. Apparently, <code><a href='https://www.rdocumentation.org/packages/utils/topics/sessionInfo'>sessionInfo()</a></code> is a bottleneck
+speed up tests. Apparently, <code><a href='https://rdrr.io/r/utils/sessionInfo.html'>sessionInfo()</a></code> is a bottleneck
 for small <code><a href='make.html'>make()</a></code>s.</p></td>
     </tr>
     <tr>
@@ -424,7 +424,7 @@ and the target name. That way, different pseudo-random numbers
 are generated for different targets, and this pseudo-randomness
 is reproducible.</p>
 <p>To ensure reproducibility across different R sessions,
-<code><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed()</a></code> and <code>.Random.seed</code> are ignored and have no affect on
+<code><a href='https://rdrr.io/r/base/Random.html'>set.seed()</a></code> and <code>.Random.seed</code> are ignored and have no affect on
 <code>drake</code> workflows. Conversely, <code><a href='make.html'>make()</a></code> does not usually
 change <code>.Random.seed</code>,
 even when pseudo-random numbers are generated.
@@ -482,7 +482,7 @@ Example: <code><a href='make.html'>make(parallelism = "Makefile", makefile_path 
     <tr>
       <th>console_log_file</th>
       <td><p>Optional character scalar of a file name or
-connection object (such as <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>) to dump maximally verbose
+connection object (such as <code><a href='https://rdrr.io/r/base/showConnections.html'>stdout()</a></code>) to dump maximally verbose
 log information for <code><a href='make.html'>make()</a></code>. Independent of the <code>verbose</code> argument.</p></td>
     </tr>
     <tr>
@@ -491,22 +491,22 @@ log information for <code><a href='make.html'>make()</a></code>. Independent of 
 should wait for the workers to post before assigning them
 targets. Should usually be <code>TRUE</code>. Set to <code>FALSE</code>
 for <code><a href='make.html'>make(parallelism = "future_lapply", jobs = n)</a></code>
-(<code>n &gt; 1</code>) when combined with <code><a href='https://www.rdocumentation.org/packages/future/topics/plan'>future::plan(future::sequential)</a></code>.
+(<code>n &gt; 1</code>) when combined with <code><a href='https://rdrr.io/pkg/future/man/plan.html'>future::plan(future::sequential)</a></code>.
 This argument only applies to parallel computing with persistent workers
 (<code><a href='make.html'>make(parallelism = x)</a></code>, where <code>x</code> could be <code>"mclapply"</code>,
 <code>"parLapply"</code>, or <code>"future_lapply"</code>).</p></td>
     </tr>
     <tr>
       <th>garbage_collection</th>
-      <td><p>Logical, whether to call <code><a href='https://www.rdocumentation.org/packages/base/topics/gc'>gc()</a></code> each time
+      <td><p>Logical, whether to call <code><a href='https://rdrr.io/r/base/gc.html'>gc()</a></code> each time
 a target is built during <code><a href='make.html'>make()</a></code>.</p></td>
     </tr>
     <tr>
       <th>template</th>
       <td><p>A named list of values to fill in the <code>{{ ... }}</code>
 placeholders in template files (e.g. from <code><a href='drake_hpc_template_file.html'>drake_hpc_template_file()</a></code>).
-Same as the <code>template</code> argument of <code><a href='https://www.rdocumentation.org/packages/clustermq/topics/Q'>clustermq::Q()</a></code> and
-<code><a href='https://www.rdocumentation.org/packages/clustermq/topics/workers'>clustermq::workers</a></code>.
+Same as the <code>template</code> argument of <code><a href='https://rdrr.io/pkg/clustermq/man/Q.html'>clustermq::Q()</a></code> and
+<code><a href='https://rdrr.io/pkg/clustermq/man/workers.html'>clustermq::workers</a></code>.
 Enabled for <code>clustermq</code> only (<code><a href='make.html'>make(parallelism = "clustermq")</a></code>),
 not <code>future</code> or <code>batchtools</code> so far.
 For more information, see the <code>clustermq</code> package:
@@ -531,7 +531,7 @@ allows you to customize how much time the master process spends
 sleeping.</p>
 <p>The <code>sleep</code> argument is a function that takes an argument
 <code>i</code> and returns a numeric scalar, the number of seconds to
-supply to <code><a href='https://www.rdocumentation.org/packages/base/topics/Sys.sleep'>Sys.sleep()</a></code> after iteration <code>i</code> of checking.
+supply to <code><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep()</a></code> after iteration <code>i</code> of checking.
 (Here, <code>i</code> starts at 1.)
 If the checking loop does something other than sleeping
 on iteration <code>i</code>, then <code>i</code> is reset back to 1.</p>
@@ -620,9 +620,9 @@ and the reproducibility/credibility/trust you can place in your project.
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='co'># Construct the master internal configuration list.</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_config</span>(<span class='no'>my_plan</span>)
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>)) {
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>)) {
   <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See the dependency graph.</span>
-  <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"networkD3"</span>)) {
+  <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"networkD3"</span>)) {
     <span class='fu'><a href='sankey_drake_graph.html'>sankey_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See the dependency graph.</span>
   }
 }

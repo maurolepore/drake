@@ -119,8 +119,8 @@ or <code><a href='readd.html'>loadd()</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>cached</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+    <pre class="usage"><span class='fu'>cached</span>(<span class='no'>...</span>, <span class='kw'>list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>0</span>), <span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
   <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -131,13 +131,13 @@ or <code><a href='readd.html'>loadd()</a></code>.</p>
       <td><p>Deprecated. Do not use.
 Objects to load from the cache, as names (unquoted)
 or character strings (quoted). Similar to <code>...</code> in
-<code><a href='https://www.rdocumentation.org/packages/base/topics/rm'>remove()</a></code>.</p></td>
+<code><a href='https://rdrr.io/r/base/rm.html'>remove()</a></code>.</p></td>
     </tr>
     <tr>
       <th>list</th>
       <td><p>Deprecated. Do not use.
 Character vector naming objects to be loaded from the
-cache. Similar to the <code>list</code> argument of <code><a href='https://www.rdocumentation.org/packages/base/topics/rm'>remove()</a></code>.</p></td>
+cache. Similar to the <code>list</code> argument of <code><a href='https://rdrr.io/r/base/rm.html'>remove()</a></code>.</p></td>
     </tr>
     <tr>
       <th>no_imported_objects</th>
@@ -202,8 +202,8 @@ items, depending on whether any targets are specified.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/warning'>suppressWarnings</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"knitr"</span>))) {
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"lubridate"</span>)) {
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"knitr"</span>))) {
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"lubridate"</span>)) {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Load drake's canonical example.</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build all the targets.</span>
 <span class='fu'>cached</span>()

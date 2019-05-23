@@ -148,7 +148,7 @@ See the examples in this help file for a demonstration.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>expose_imports</span>(<span class='no'>package</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(),
+    <pre class="usage"><span class='fu'>expose_imports</span>(<span class='no'>package</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
   <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -193,9 +193,9 @@ for the idea that makes this function work.</p>
 <span class='co'># Suppose you have a workflow that uses the `digest()` function,</span>
 <span class='co'># which computes the hash of an object.</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>digest</span>) <span class='co'># Has the digest() function.</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>digest</span>) <span class='co'># Has the digest() function.</span>
 <span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/digest/topics/digest'>digest</a></span>(<span class='no'>x</span>)
+  <span class='fu'><a href='https://rdrr.io/pkg/digest/man/digest.html'>digest</a></span>(<span class='no'>x</span>)
 }
 <span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
   <span class='fu'>g</span>(<span class='no'>x</span>)
@@ -207,7 +207,7 @@ for the idea that makes this function work.</p>
 <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
 
 <span class='co'># But the digest() function has dependencies too.</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>digest</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='no'>digest</span>))
 
 <span class='co'># Why doesn't `drake` import them? Because it knows `digest()`</span>
 <span class='co'># is from a package, and it doesn't usually dive into functions</span>
@@ -217,16 +217,16 @@ for the idea that makes this function work.</p>
 <span class='fu'>expose_imports</span>(<span class='no'>digest</span>)
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
 <span class='no'>new_objects</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>new_objects</span>, <span class='fl'>10</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>new_objects</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>new_objects</span>, <span class='fl'>10</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>new_objects</span>)
 
 <span class='co'># Now when you call `make()`, `drake` will dive into `digest`</span>
 <span class='co'># to import dependencies.</span>
 
-<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/storr/topics/storr_environment'>storr_environment</a></span>() <span class='co'># just for examples</span>
+<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/storr/man/storr_environment.html'>storr_environment</a></span>() <span class='co'># just for examples</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>), <span class='fl'>10</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>), <span class='fl'>10</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>))
 
 <span class='co'># Why would you want to expose a whole package like this?</span>
 <span class='co'># Because you may want to wrap up your data science project</span>
@@ -238,7 +238,7 @@ for the idea that makes this function work.</p>
 <span class='co'># Note: if you use `digest::digest()`` instead of just `digest()`,</span>
 <span class='co'># `drake` does not dive into the function body anymore.</span>
 <span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='kw pkg'>digest</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/digest/topics/digest'>digest</a></span>(<span class='no'>x</span>) <span class='co'># Was previously just digest()</span>
+  <span class='kw pkg'>digest</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/digest/man/digest.html'>digest</a></span>(<span class='no'>x</span>) <span class='co'># Was previously just digest()</span>
 }
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
 <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)

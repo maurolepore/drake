@@ -164,7 +164,7 @@ See the <code>algo</code> argument of the <code>digest</code> package for your o
     <tr>
       <th>console_log_file</th>
       <td><p>Optional character scalar of a file name or
-connection object (such as <code><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout()</a></code>) to dump maximally verbose
+connection object (such as <code><a href='https://rdrr.io/r/base/showConnections.html'>stdout()</a></code>) to dump maximally verbose
 log information for <code><a href='make.html'>make()</a></code>. Independent of the <code>verbose</code> argument.</p></td>
     </tr>
     </table>
@@ -182,7 +182,7 @@ log information for <code><a href='make.html'>make()</a></code>. Independent of 
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"Quarantine new_cache() side effects."</span>, {
 <span class='fu'><a href='clean.html'>clean</a></span>(<span class='kw'>destroy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># Should not be necessary.</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlink'>unlink</a></span>(<span class='st'>"not_hidden"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># Should not be necessary.</span>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"not_hidden"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># Should not be necessary.</span>
 <span class='no'>cache1</span> <span class='kw'>&lt;-</span> <span class='fu'>new_cache</span>() <span class='co'># Creates a new hidden '.drake' folder.</span>
 <span class='no'>cache2</span> <span class='kw'>&lt;-</span> <span class='fu'>new_cache</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"not_hidden"</span>, <span class='kw'>hash_algorithm</span> <span class='kw'>=</span> <span class='st'>"md5"</span>)
 <span class='fu'><a href='clean.html'>clean</a></span>(<span class='kw'>destroy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache2</span>)

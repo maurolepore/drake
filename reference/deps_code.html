@@ -143,7 +143,7 @@ and language/text are assumed to be commands in a plan.</p>
     <pre class="examples"><div class='input'><span class='co'># Your workflow likely depends on functions in your workspace.</span>
 <span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>) {
   <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> + <span class='no'>y</span> + <span class='fu'>g</span>(<span class='no'>x</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/readRDS'>saveRDS</a></span>(<span class='no'>out</span>, <span class='st'>"out.rds"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span>(<span class='no'>out</span>, <span class='st'>"out.rds"</span>)
 }
 <span class='co'># Find the dependencies of f. These could be R objects/functions</span>
 <span class='co'># in your workspace or packages. Any file names or target names</span>
@@ -155,7 +155,7 @@ and language/text are assumed to be commands in a plan.</p>
 #&gt; 2 g       globals</div><div class='input'><span class='co'># Define a workflow plan data frame that uses your function f().</span>
 <span class='no'>my_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span> + <span class='no'>some_object</span>,
-  <span class='kw'>my_target</span> <span class='kw'>=</span> <span class='no'>x</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/readRDS'>readRDS</a></span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"tracked_input_file.rds"</span>)),
+  <span class='kw'>my_target</span> <span class='kw'>=</span> <span class='no'>x</span> + <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"tracked_input_file.rds"</span>)),
   <span class='kw'>return_value</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='fu'>g</span>(<span class='no'>z</span> + <span class='no'>w</span>))
 )
 <span class='co'># Get the dependencies of workflow plan commands.</span>
@@ -178,7 +178,7 @@ and language/text are assumed to be commands in a plan.</p>
 #&gt; 4 z     globals
 #&gt; 5 f     globals
 #&gt; 6 g     globals</div><div class='input'><span class='co'># You can also supply expressions or text.</span>
-<span class='fu'>deps_code</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote</a></span>(<span class='no'>x</span> + <span class='no'>y</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 2
+<span class='fu'>deps_code</span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span>(<span class='no'>x</span> + <span class='no'>y</span> + <span class='fl'>123</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 2
 #&gt;   name  type   
 #&gt;   &lt;chr&gt; &lt;chr&gt;  
 #&gt; 1 x     globals

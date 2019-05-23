@@ -206,9 +206,9 @@ Development
 <h1 class="hasAnchor">
 <a href="#how-it-works" class="anchor"></a>How it works</h1>
 <p>To set up a project, load your packages,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(drake)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(drake)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; Registered S3 methods overwritten by 'ggplot2':</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt;   method         from </span></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt;   [.quosures     rlang</span></a>
@@ -216,14 +216,14 @@ Development
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt;   print.quosures rlang</span></a></code></pre></div>
 <p>load your custom functions,</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">create_plot &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(data, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> Petal.Width, <span class="dt">fill =</span> Species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_histogram">geom_histogram</a></span>()</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span>(data, <span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span>(<span class="dt">x =</span> Petal.Width, <span class="dt">fill =</span> Species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span>()</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4">}</a></code></pre></div>
 <p>check any supporting files (optional),</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Get the files with drake_example("main").</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/files">file.exists</a></span>(<span class="st">"raw_data.xlsx"</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="st">"raw_data.xlsx"</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/files">file.exists</a></span>(<span class="st">"report.Rmd"</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="st">"report.Rmd"</span>)</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>and plan what you are going to do.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">plan &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_plan.html">drake_plan</a></span>(</a>
@@ -231,8 +231,8 @@ Development
 <a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">data =</span> raw_data <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Species =</span> forcats<span class="op">::</span><span class="kw"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span>(Species)),</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">hist =</span> <span class="kw">create_plot</span>(data),</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">fit =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Width <span class="op">+</span><span class="st"> </span>Species, data),</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">report =</span> rmarkdown<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rmarkdown/topics/render">render</a></span>(</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">fit =</span> <span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Width <span class="op">+</span><span class="st"> </span>Species, data),</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">report =</span> rmarkdown<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span>(</a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="kw"><a href="reference/knitr_in.html">knitr_in</a></span>(<span class="st">"report.Rmd"</span>),</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="dt">output_file =</span> <span class="kw"><a href="reference/file_out.html">file_out</a></span>(<span class="st">"report.html"</span>),</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">quiet =</span> <span class="ot">TRUE</span></a>
@@ -271,9 +271,9 @@ Development
 <p><img src="https://ropensci.github.io/drake/figures/hist1.png" alt="hist1" align="center" style="border: none; float: center;" width="500px"></p>
 <p>So let’s fix the plotting function.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">create_plot &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(data, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> Petal.Width, <span class="dt">fill =</span> Species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_histogram">geom_histogram</a></span>(<span class="dt">binwidth =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_gray</a></span>(<span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span>(data, <span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span>(<span class="dt">x =</span> Petal.Width, <span class="dt">fill =</span> Species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span>(<span class="dt">binwidth =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_gray</a></span>(<span class="dv">20</span>)</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5">}</a></code></pre></div>
 <p><code>drake</code> knows which results are affected.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">config &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_config.html">drake_config</a></span>(plan)</a>
@@ -341,7 +341,7 @@ Development
 <a class="sourceLine" id="cb14-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># Or scale up to a supercomputer.</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw"><a href="reference/drake_hpc_template_file.html">drake_hpc_template_file</a></span>(<span class="st">"slurm_clustermq.tmpl"</span>) <span class="co"># https://slurm.schedmd.com/</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(</a>
 <a class="sourceLine" id="cb14-7" data-line-number="7">  <span class="dt">clustermq.scheduler =</span> <span class="st">"clustermq"</span>,</a>
 <a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">clustermq.template =</span> <span class="st">"slurm_clustermq.tmpl"</span></a>
 <a class="sourceLine" id="cb14-9" data-line-number="9">)</a>
@@ -352,11 +352,11 @@ Development
 <a href="#installation" class="anchor"></a>Installation</h1>
 <p>You can choose among different versions of <code>drake</code>. The CRAN release often lags behind the <a href="https://ropenscilabs.github.io/drake-manual/">online manual</a> but may have fewer bugs.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Install the latest stable release from CRAN.</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"drake"</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"drake"</span>)</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># Alternatively, install the development version from GitHub.</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
 <a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">install_github</span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
 </div>
 <div id="function-reference" class="section level1">
@@ -369,7 +369,7 @@ Development
 <li>
 <code><a href="reference/make.html">make()</a></code>: build your project.</li>
 <li>
-<code><a href="reference/r_make.html">r_make()</a></code>: launch a fresh <a href="https://github.com/r-lib/callr"><code><a href="https://www.rdocumentation.org/packages/callr/topics/r">callr::r()</a></code></a> process to build your project. Called from an interactive R session, <code><a href="reference/r_make.html">r_make()</a></code> is more reproducible than <code><a href="reference/make.html">make()</a></code>.</li>
+<code><a href="reference/r_make.html">r_make()</a></code>: launch a fresh <a href="https://github.com/r-lib/callr"><code><a href="https://rdrr.io/pkg/callr/man/r.html">callr::r()</a></code></a> process to build your project. Called from an interactive R session, <code><a href="reference/r_make.html">r_make()</a></code> is more reproducible than <code><a href="reference/make.html">make()</a></code>.</li>
 <li>
 <code><a href="reference/readd.html">loadd()</a></code>: load one or more built targets into your R session.</li>
 <li>

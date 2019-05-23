@@ -142,7 +142,7 @@ packages, imported functions, etc.</p></li>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plan_to_code</span>(<span class='no'>plan</span>, <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/showConnections'>stdout</a></span>())</pre>
+    <pre class="usage"><span class='fu'>plan_to_code</span>(<span class='no'>plan</span>, <span class='kw'>con</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/showConnections.html'>stdout</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,13 +169,13 @@ for details.</p></td>
   <span class='kw'>raw_data</span> <span class='kw'>=</span> <span class='fu'>read_excel</span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"raw_data.xlsx"</span>)),
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>raw_data</span>,
   <span class='kw'>hist</span> <span class='kw'>=</span> <span class='fu'>create_plot</span>(<span class='no'>data</span>),
-  <span class='kw'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>Sepal.Width</span> ~ <span class='no'>Petal.Width</span> + <span class='no'>Species</span>, <span class='no'>data</span>)
+  <span class='kw'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>Sepal.Width</span> ~ <span class='no'>Petal.Width</span> + <span class='no'>Species</span>, <span class='no'>data</span>)
 )
-<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>()
+<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 <span class='co'># Turn the plan into an R script a the given file path.</span>
 <span class='fu'>plan_to_code</span>(<span class='no'>plan</span>, <span class='no'>file</span>)
 <span class='co'># Here is what the script looks like.</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cat'>cat</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/readLines'>readLines</a></span>(<span class='no'>file</span>), <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; raw_data &lt;- read_excel(file_in("raw_data.xlsx"))
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span>(<span class='no'>file</span>), <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)</div><div class='output co'>#&gt; raw_data &lt;- read_excel(file_in("raw_data.xlsx"))
 #&gt; data &lt;- raw_data
 #&gt; hist &lt;- create_plot(data)
 #&gt; fit &lt;- lm(Sepal.Width ~ Petal.Width + Species, data)</div><div class='input'><span class='co'># Convert back to a drake plan.</span>

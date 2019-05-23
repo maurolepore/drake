@@ -118,7 +118,7 @@ Install them with install.packages(c(&quot;ggplot2&quot;, &quot;ggraph&quot;))."
     <div class="ref-description">
     
     <p>This function requires packages <code>ggplot2</code> and <code>ggraph</code>.
-Install them with <code><a href='https://www.rdocumentation.org/packages/utils/topics/install.packages'>install.packages(c("ggplot2", "ggraph"))</a></code>.</p>
+Install them with <code><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages(c("ggplot2", "ggraph"))</a></code>.</p>
     
     </div>
 
@@ -156,7 +156,7 @@ like "semi-transparency is not supported on this device".</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>ggplot2</code> object, which you can modify with more layers,
-show with <code><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot()</a></code>, or save as a file with <code>ggsave()</code>.</p>
+show with <code><a href='https://rdrr.io/r/graphics/plot.html'>plot()</a></code>, or save as a file with <code>ggsave()</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -167,7 +167,7 @@ show with <code><a href='https://www.rdocumentation.org/packages/graphics/topics
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"Quarantine side effects."</span>, {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"ggraph"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggraph"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
   <span class='co'># Instead of jumpting right to vis_drake_graph(), get the data frames</span>
   <span class='co'># of nodes, edges, and legend nodes.</span>
   <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>) <span class='co'># Internal configuration list</span>
