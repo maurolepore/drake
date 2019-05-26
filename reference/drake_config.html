@@ -60,6 +60,15 @@ because it already has everything it needs in config." />
 
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-462421-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-462421-8');
+</script>
   </head>
 
   <body>
@@ -141,7 +150,7 @@ because it already has everything it needs in <code>config</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>drake_config</span>(<span class='no'>plan</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/drake/man/get_cache.html'>get_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span>
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>hook</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/drake/man/drake_cache.html'>drake_cache</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span>
   <span class='no'>verbose</span>, <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='no'>console_log_file</span>), <span class='kw'>fetch_cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>parallelism</span> <span class='kw'>=</span> <span class='st'>"loop"</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs_preprocess</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
   <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/zpackages.html'>.packages</a></span>()), <span class='kw'>lib_loc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -209,7 +218,7 @@ then reproducibly tracked as dependencies.</p></td>
     <tr>
       <th>cache</th>
       <td><p>drake cache as created by <code><a href='new_cache.html'>new_cache()</a></code>.
-See also <code><a href='get_cache.html'>get_cache()</a></code>.</p></td>
+See also <code><a href='drake_cache.html'>drake_cache()</a></code>.</p></td>
     </tr>
     <tr>
       <th>fetch_cache</th>
@@ -656,7 +665,7 @@ and the reproducibility/credibility/trust you can place in your project.
 <div class="author">
   <p>
     Developed by William Michael Landau.
-    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://ropensci.github.io/rotemplate/">rotemplate</a>.
+    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://docs.ropensci.org/rotemplate/">rotemplate</a>.
   </p>
 </div>
       </footer>

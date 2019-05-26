@@ -46,6 +46,15 @@
 
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-462421-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-462421-8');
+</script>
   </head>
 
   <body>
@@ -515,9 +524,9 @@ for non-staged parallel backends.</p></td>
       <tr>
         
         <td>
-          <p><code><a href="get_cache.html">get_cache()</a></code> </p>
+          <p><code><a href="drake_cache.html">drake_cache()</a></code> </p>
         </td>
-        <td><p>Get the default cache of a <code>drake</code> project.</p></td>
+        <td><p>Get the cache of a <code>drake</code> project.</p></td>
       </tr><tr>
         
         <td>
@@ -695,7 +704,7 @@ all the package's nested functions.</p></td>
 <div class="author">
   <p>
     Developed by William Michael Landau.
-    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://ropensci.github.io/rotemplate/">rotemplate</a>.
+    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://docs.ropensci.org/rotemplate/">rotemplate</a>.
   </p>
 </div>
       </footer>

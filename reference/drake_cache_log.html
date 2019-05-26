@@ -51,6 +51,15 @@ is a step toward better data versioning tools." />
 
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-462421-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-462421-8');
+</script>
   </head>
 
   <body>
@@ -123,31 +132,26 @@ is a step toward better data versioning tools.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_cache_log</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(), <span class='kw'>search</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/drake/man/get_cache.html'>get_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='no'>search</span>, <span class='kw'>verbose</span> <span class='kw'>=</span>
-  <span class='no'>verbose</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>drake_cache_log</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/drake/man/drake_cache.html'>drake_cache</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>verbose</span>),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>targets_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>Root directory of the drake project,
-or if <code>search</code> is <code>TRUE</code>, either the
-project root or a subdirectory of the project.
-Ignored if a <code>cache</code> is supplied.</p></td>
+      <td><p>Path to a <code>drake</code> cache
+(usually a hidden <code>.drake/</code> folder) or <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>search</th>
-      <td><p>Logical. If <code>TRUE</code>, search parent directories
-to find the nearest drake cache. Otherwise, look in the
-current working directory only.
-Ignored if a <code>cache</code> is supplied.</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>cache</th>
       <td><p>drake cache. See <code><a href='new_cache.html'>new_cache()</a></code>.
-If supplied, <code>path</code> and <code>search</code> are ignored.</p></td>
+If supplied, <code>path</code> is ignored.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -201,7 +205,7 @@ you can create your own <code>storr</code> cache and give it a hash algorithm
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='cached.html'>cached()</a></code>, <code><a href='get_cache.html'>get_cache()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='cached.html'>cached()</a></code>, <code><a href='drake_cache.html'>drake_cache()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -262,7 +266,7 @@ you can create your own <code>storr</code> cache and give it a hash algorithm
 <div class="author">
   <p>
     Developed by William Michael Landau.
-    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://ropensci.github.io/rotemplate/">rotemplate</a>.
+    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://docs.ropensci.org/rotemplate/">rotemplate</a>.
   </p>
 </div>
       </footer>
