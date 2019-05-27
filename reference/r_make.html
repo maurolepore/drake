@@ -136,11 +136,15 @@ is old and stale.</p>
 
     <pre class="usage"><span class='fu'>r_make</span>(<span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
-<span class='fu'>r_drake_build</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
+<span class='fu'>r_drake_build</span>(<span class='no'>target</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
 <span class='fu'>r_outdated</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
 <span class='fu'>r_missed</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
+
+<span class='fu'>r_deps_target</span>(<span class='no'>target</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
 <span class='fu'>r_drake_graph_info</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
@@ -180,6 +184,16 @@ Example: <code>r_make(r_fn = callr::r)</code>.</p></td>
       <th>r_args</th>
       <td><p>List of arguments to <code>r_fn</code>, not including <code>func</code> or <code>args</code>.
 Example: <code>r_make(r_fn = callr::r_bg, r_args = list(stdout = "stdout.log"))</code>.</p></td>
+    </tr>
+    <tr>
+      <th>target</th>
+      <td><p>Name of the target.</p></td>
+    </tr>
+    <tr>
+      <th>character_only</th>
+      <td><p>Logical, whether <code>name</code> should be treated
+as a character or a symbol
+(just like <code>character.only</code> in <code><a href='https://rdrr.io/r/base/library.html'>library()</a></code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
