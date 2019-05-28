@@ -174,7 +174,13 @@ See the <code>algo</code> argument of the <code>digest</code> package for your o
       <th>console_log_file</th>
       <td><p>Optional character scalar of a file name or
 connection object (such as <code><a href='https://rdrr.io/r/base/showConnections.html'>stdout()</a></code>) to dump maximally verbose
-log information for <code><a href='make.html'>make()</a></code>. Independent of the <code>verbose</code> argument.</p></td>
+log information for <code><a href='make.html'>make()</a></code> and other functions (all functions that
+accept a <code>config</code> argument, plus <code><a href='drake_config.html'>drake_config()</a></code>).
+The <code>console_log_file</code> argument is
+independent of the <code>verbose</code> argument.
+If you choose to use a text file as the console log,
+it will persist over multiple function calls
+until you delete it manually.</p></td>
     </tr>
     </table>
     
