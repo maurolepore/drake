@@ -314,7 +314,7 @@ Development
 <h2 class="hasAnchor">
 <a href="#ease" class="anchor"></a>Ease</h2>
 <p>When it comes time to actually rerun the entire project, you have much more confidence. Starting over from scratch is trivially easy.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="reference/clean.html">clean</a></span>()       <span class="co"># Remove the original author's results.</span></a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="reference/clean.html">clean</a></span>()    <span class="co"># Remove the original author's results.</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw"><a href="reference/make.html">make</a></span>(plan) <span class="co"># Independently re-create the results from the code and input data.</span></a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; target raw_data</span></a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; target data</span></a>
@@ -446,9 +446,13 @@ Development
 <div id="similar-work" class="section level1">
 <h1 class="hasAnchor">
 <a href="#similar-work" class="anchor"></a>Similar work</h1>
-<div id="gnu-make" class="section level2">
+<p><code>drake</code> enhances reproducibility and high-performance computing, but not in all respects. <a href="https://rmarkdown.rstudio.com/">Literate programming</a>, <a href="https://rstudio.github.io/packrat">local library managers</a>, <a href="https://www.docker.com/">containerization</a>, and <a href="https://github.com/tidyverse/reprex">strict session managers</a> offer more robust solutions in their respective domains. And for the problems <code>drake</code> <em>does</em> solve, it stands on the shoulders of the giants that came before.</p>
+<div id="pipeline-tools" class="section level2">
 <h2 class="hasAnchor">
-<a href="#gnu-make" class="anchor"></a>GNU Make</h2>
+<a href="#pipeline-tools" class="anchor"></a>Pipeline tools</h2>
+<div id="gnu-make" class="section level3">
+<h3 class="hasAnchor">
+<a href="#gnu-make" class="anchor"></a>GNU Make</h3>
 <p>The original idea of a time-saving reproducible build system extends back at least as far as <a href="https://www.gnu.org/software/make/">GNU Make</a>, which still aids the work of <a href="http://blog.kaggle.com/2012/10/15/make-for-data-scientists/">data scientists</a> as well as the original user base of complied language programmers. In fact, the name “drake” stands for “Data Frames in R for Make”. <a href="https://kbroman.org/minimal_make/">Make</a> is used widely in reproducible research. Below are some examples from <a href="https://kbroman.org/minimal_make/">Karl Broman’s website</a>.</p>
 <ul>
 <li>Bostock, Mike (2013). “A map of flowlines from NHDPlus.” <a href="https://github.com/mbostock/us-rivers" class="uri">https://github.com/mbostock/us-rivers</a>. Powered by the Makefile at <a href="https://github.com/mbostock/us-rivers/blob/master/Makefile" class="uri">https://github.com/mbostock/us-rivers/blob/master/Makefile</a>.</li>
@@ -456,54 +460,49 @@ Development
 <li>Broman, Karl W (2012). “Genotype Probabilities at Intermediate Generations in the Construction of Recombinant Inbred Lines.” *Genetics 190(2), 403-412. Powered by the Makefile at <a href="https://github.com/kbroman/preCCProbPaper/blob/master/Makefile" class="uri">https://github.com/kbroman/preCCProbPaper/blob/master/Makefile</a>.</li>
 <li>Broman, Karl W and Kim, Sungjin and Sen, Saunak and Ane, Cecile and Payseur, Bret A (2012). “Mapping Quantitative Trait Loci onto a Phylogenetic Tree.” <em>Genetics</em> 192(2), 267-279. Powered by the <code>Makefile</code> at <a href="https://github.com/kbroman/phyloQTLpaper/blob/master/Makefile" class="uri">https://github.com/kbroman/phyloQTLpaper/blob/master/Makefile</a>.</li>
 </ul>
-<p>There are several reasons for R users to prefer <code>drake</code> instead.</p>
+<p>Whereas <a href="https://www.gnu.org/software/make/">GNU Make</a> is language-agnostic, <code>drake</code> is fundamentally designed for R.</p>
 <ul>
-<li>
-<code>drake</code> already has a <a href="https://kbroman.org/minimal_make/">Make</a>-powered parallel backend. Just run <code><a href="reference/make.html">make(..., parallelism = "Makefile", jobs = 2)</a></code> to enjoy most of the original benefits of <a href="https://kbroman.org/minimal_make/">Make</a> itself.</li>
-<li>Improved scalability. With <a href="https://kbroman.org/minimal_make/">Make</a>, you must write a potentially large and cumbersome <a href="https://github.com/kbroman/preCCProbPaper/blob/master/Makefile">Makefile</a> by hand. But with <code>drake</code>, you can use <a href="https://ropenscilabs.github.io/drake-manual/mtcars.html#generate-the-workflow-plan">wildcard templating</a> to automatically generate massive collections of targets with minimal code.</li>
-<li>Lower overhead for light-weight tasks. For each <a href="https://kbroman.org/minimal_make/">Make</a> target that uses R, a brand new R session must spawn. For projects with thousands of small targets, that means more time may be spent loading R sessions than doing the actual work. With <code><a href="reference/make.html">make(..., parallelism = "mclapply, jobs = 4")</a></code>, <code>drake</code> launches 4 persistent workers up front and efficiently processes the targets in R.</li>
-<li>Convenient organization of output. With <a href="https://kbroman.org/minimal_make/">Make</a>, the user must save each target as a file. <code>drake</code> saves all the results for you automatically in a <a href="https://github.com/richfitz/storr">storr cache</a> so you do not have to micromanage the results.</li>
+<li>Instead of a <a href="https://github.com/kbroman/preCCProbPaper/blob/master/Makefile">Makefile</a>, <code>drake</code> supports an R-friendly <a href="https://ropenscilabs.github.io/drake-manual/plans.html#large-plans">domain-specific language</a> for declaring targets.</li>
+<li>Targets in <a href="https://www.gnu.org/software/make/">GNU Make</a> are files, whereas targets in <code>drake</code> are arbitrary variables in memory. (<code>drake</code> does have opt-in support for files via <code><a href="reference/file_out.html">file_out()</a></code>, <code><a href="reference/file_in.html">file_in()</a></code>, and <code><a href="reference/knitr_in.html">knitr_in()</a></code>.) <code>drake</code> caches these objects in its own <a href="https://github.com/richfitz/storr">storage system</a> so R users rarely have to think about output files.</li>
 </ul>
 </div>
-<div id="remake" class="section level2">
-<h2 class="hasAnchor">
-<a href="#remake" class="anchor"></a>Remake</h2>
-<p><a href="https://github.com/ropensci/drake">drake</a> overlaps with its direct predecessor, <a href="https://github.com/richfitz/remake">remake</a>. In fact, <a href="https://github.com/ropensci/drake">drake</a> owes its core ideas to <a href="https://github.com/richfitz/remake">remake</a> and <a href="https://github.com/richfitz/remake">Rich FitzJohn</a>. <a href="https://github.com/richfitz/remake">Remake</a>’s development repository lists several <a href="https://github.com/richfitz/remake/blob/master/README.md#real-world-examples">real-world applications</a>. <a href="https://github.com/ropensci/drake">drake</a> surpasses <a href="https://github.com/richfitz/remake">remake</a> in several important ways, including but not limited to the following.</p>
-<ol style="list-style-type: decimal">
-<li>High-performance computing. <a href="https://github.com/richfitz/remake"><code>Remake</code></a> has no native parallel computing support. <a href="https://github.com/ropensci/drake"><code>drake</code></a>, on the other hand, has a thorough selection of parallel computing technologies and scheduling algorithms. Thanks to <a href="github.com/HenrikBengtsson/future"><code>future</code></a>, <a href="github.com/HenrikBengtsson/future.batchtools"><code>future.batchtools</code></a>, and <a href="github.com/mllg/batchtools"><code>batchtools</code></a>, it is straightforward to configure a <a href="https://github.com/ropensci/drake"><code>drake</code></a> project for most popular job schedulers, such as <a href="https://slurm.schedmd.com/">SLURM</a>, <a href="https://www.adaptivecomputing.com/products/torque/">TORQUE</a>, and the <a href="https://www.oracle.com/technetwork/oem/grid-engine-166852.html">Grid Engine</a>, as well as systems contained in <a href="https://www.docker.com/">Docker images</a>.</li>
-<li>A friendly interface. In <a href="https://github.com/richfitz/remake"><code>remake</code></a>, the user must manually write a <a href="https://github.com/richfitz/remake/blob/master/doc/remake.yml">YAML</a> configuration file to arrange the steps of a workflow, which leads to some of the same scalability problems as <a href="https://www.gnu.org/software/make/">Make</a>. <a href="https://github.com/ropensci/drake"><code>drake</code></a>’s <a href="https://ropenscilabs.github.io/drake-manual/plans.html#large-plans">domain-specific language</a> easily generates workflows at scale.</li>
-<li>Thorough documentation. <a href="https://github.com/ropensci/drake"><code>drake</code></a> contains <a href="https://ropenscilabs.github.io/drake-manual/">thorough user manual</a>, a <a href="https://ropensci.github.io/drake/">reference website</a>, a <a href="https://github.com/ropensci/drake/blob/master/README.md">comprehensive README</a>, examples in the help files of user-side functions, and <a href="https://github.com/wlandau/drake-examples">accessible example code</a> that users can write with <code><a href="reference/example_drake.html">drake::example_drake()</a></code>.</li>
-<li>Active maintenance. <a href="https://github.com/ropensci/drake"><code>drake</code></a> is actively developed and maintained, and <a href="https://github.com/ropensci/drake/issues">issues</a> are usually addressed promptly.</li>
-<li>Presence on CRAN. At the time of writing, <a href="https://github.com/ropensci/drake"><code>drake</code></a> is <a href="https://cran.r-project.org/package=drake">available on CRAN</a>, but <a href="https://github.com/richfitz/remake"><code>remake</code></a> is not.</li>
-</ol>
+<div id="remake" class="section level3">
+<h3 class="hasAnchor">
+<a href="#remake" class="anchor"></a>Remake</h3>
+<p><a href="https://github.com/richfitz/remake">remake</a> itself is no longer maintained, but its founding design goals and principles live on through <a href="https://github.com/ropensci/drake">drake</a>. In fact, <a href="https://github.com/ropensci/drake">drake</a> is a direct reimagining of <a href="https://github.com/richfitz/remake">remake</a> with enhanced scalability, reproducibility, high-performance computing, visualization, and documentation.</p>
 </div>
-<div id="memoise" class="section level2">
-<h2 class="hasAnchor">
-<a href="#memoise" class="anchor"></a>Memoise</h2>
-<p>Memoization is the strategic caching of the return values of functions. Every time a memoized function is called with a new set of arguments, the return value is saved for future use. Later, whenever the same function is called with the same arguments, the previous return value is salvaged, and the function call is skipped to save time. The <a href="https://github.com/r-lib/memoise">memoise package</a> is an excellent implementation of memoization in R.</p>
-<p>However, memoization does not go far enough. In reality, the return value of a function depends not only on the function body and the arguments, but also on any nested functions and global variables, the dependencies of those dependencies, and so on upstream. <code>drake</code> surpasses <a href="https://github.com/r-lib/memoise">memoise</a> because it uses the <em>entire dependency network graph</em> of a project to decide which pieces need to be rebuilt and which ones can be skipped.</p>
-</div>
-<div id="knitr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#knitr" class="anchor"></a>Knitr</h2>
-<p>Much of the R community uses <a href="https://yihui.name/knitr/">knitr</a> for reproducible research. The idea is to intersperse code chunks in an <a href="https://rmarkdown.rstudio.com/">R Markdown</a> or <code>*.Rnw</code> file and then generate a dynamic report that weaves together code, output, and prose. <a href="https://yihui.name/knitr/">Knitr</a> is not designed to be a serious <a href="https://github.com/pditommaso/awesome-pipeline">pipeline toolkit</a>, and it should not be the primary computational engine for medium to large data analysis projects.</p>
-<ol style="list-style-type: decimal">
-<li>
-<a href="https://yihui.name/knitr/">Knitr</a> scales far worse than <a href="https://www.gnu.org/software/make/">Make</a> or <a href="https://github.com/richfitz/remake">remake</a>. The whole point is to consolidate output and prose, so it deliberately lacks the essential modularity.</li>
-<li>There is no obvious high-performance computing support.</li>
-<li>While there is a way to skip chunks that are already up to date (with code chunk options <code>cache</code> and <code>autodep</code>), this functionality is not the focus of <a href="https://yihui.name/knitr/">knitr</a>. It is deactivated by default, and <a href="https://github.com/richfitz/remake">remake</a> and <code>drake</code> are more dependable ways to skip work that is already up to date.</li>
-</ol>
-<p><code>drake</code> was designed to manage the entire workflow with <a href="https://yihui.name/knitr/">knitr</a> reports as targets. The strategy is analogous for <a href="https://yihui.name/knitr/">knitr</a> reports within <a href="https://github.com/richfitz/remake">remake</a> projects.</p>
-</div>
-<div id="factuals-drake" class="section level2">
-<h2 class="hasAnchor">
-<a href="#factuals-drake" class="anchor"></a>Factual’s Drake</h2>
+<div id="factuals-drake" class="section level3">
+<h3 class="hasAnchor">
+<a href="#factuals-drake" class="anchor"></a>Factual’s Drake</h3>
 <p><a href="https://github.com/Factual/drake">Factual’s Drake</a> is similar in concept, but the development effort is completely unrelated to the <a href="https://github.com/ropensci/drake">drake R package</a>.</p>
 </div>
-<div id="other-pipeline-toolkits" class="section level2">
-<h2 class="hasAnchor">
-<a href="#other-pipeline-toolkits" class="anchor"></a>Other pipeline toolkits</h2>
+<div id="other-pipeline-tools" class="section level3">
+<h3 class="hasAnchor">
+<a href="#other-pipeline-tools" class="anchor"></a>Other pipeline tools</h3>
 <p>There are <a href="https://github.com/pditommaso/awesome-pipeline">countless other successful pipeline toolkits</a>. The <code>drake</code> package distinguishes itself with its R-focused approach, Tidyverse-friendly interface, and a <a href="https://ropenscilabs.github.io/drake-manual/hpc.html">thorough selection of parallel computing technologies and scheduling algorithms</a>.</p>
+</div>
+</div>
+<div id="memoization" class="section level2">
+<h2 class="hasAnchor">
+<a href="#memoization" class="anchor"></a>Memoization</h2>
+<p>Memoization is the strategic caching of the return values of functions. It is a lightweight approach to the core problem that <code>drake</code> and other pipeline tools are trying to solve. Every time a memoized function is called with a new set of arguments, the return value is saved for future use. Later, whenever the same function is called with the same arguments, the previous return value is salvaged, and the function call is skipped to save time. The <a href="https://github.com/r-lib/memoise"><code>memoise</code></a> package is the primary implementation of memoization in R.</p>
+<p>Memoization saves time for small projects, but it arguably does not go far enough for large reproducible pipelines. In reality, the return value of a function depends not only on the function body and the arguments, but also on any nested functions and global variables, the dependencies of those dependencies, and so on upstream. <code>drake</code> tracks this deeper context, while <a href="https://github.com/r-lib/memoise">memoise</a> does not.</p>
+</div>
+<div id="literate-programming" class="section level2">
+<h2 class="hasAnchor">
+<a href="#literate-programming" class="anchor"></a>Literate programming</h2>
+<p><a href="https://rmarkdown.rstudio.com/">Literate programming</a> is the practice of narrating code in plain vernacular. The goal is to communicate the research process clearly, transparently, and reproducibly. Whereas commented code is still mostly code, literate <a href="https://yihui.name/knitr/">knitr</a> / <a href="https://rmarkdown.rstudio.com/">R Markdown</a> reports can become websites, presentation slides, lecture notes, serious scientific manuscripts, and even books.</p>
+<div id="knitr-and-r-markdown" class="section level3">
+<h3 class="hasAnchor">
+<a href="#knitr-and-r-markdown" class="anchor"></a>knitr and R Markdown</h3>
+<p><code>drake</code> and <a href="https://yihui.name/knitr/">knitr</a> are symbiotic. <code>drake</code>’s job is to manage large computation and orchestrate the demanding tasks of a complex data analysis pipeline. <a href="https://yihui.name/knitr/">knitr</a>’s job is to communicate those expensive results after <code>drake</code> computes them. <a href="https://yihui.name/knitr/">knitr</a> / <a href="https://rmarkdown.rstudio.com/">R Markdown</a> reports are small pieces of an overarching <code>drake</code> pipeline. They should focus on communication, and they should do as little computation as possible.</p>
+<p>To insert a <a href="https://yihui.name/knitr/">knitr</a> report in a <code>drake</code> pipeline, use the <code><a href="reference/knitr_in.html">knitr_in()</a></code> function inside your <a href="https://ropenscilabs.github.io/drake-manual/plans.html"><code>drake</code> plan</a>, and use <code><a href="reference/readd.html">loadd()</a></code> and <code><a href="reference/readd.html">readd()</a></code> to refer to targets in the report itself. See an <a href="https://github.com/wlandau/drake-examples/tree/master/main">example here</a>.</p>
+</div>
+<div id="workflowr" class="section level3">
+<h3 class="hasAnchor">
+<a href="#workflowr" class="anchor"></a>workflowr</h3>
+<p>The <a href="https://github.com/jdblischak/workflowr"><code>workflowr</code></a> package is a project manager that focuses on literate programming, sharing over the web, file organization, and version control. Its brand of reproducibility is all about transparency, communication, and discoverability. For an example of <a href="https://github.com/jdblischak/workflowr"><code>workflowr</code></a> and <code>drake</code> working together, see <a href="https://2019-feature-selection.pjs-web.de/report-defoliation.html">this machine learning project</a> by <a href="https://github.com/pat-s">Patrick Schratz</a> (<a href="https://github.com/pat-s/2019-feature-selection">source</a>).</p>
+</div>
 </div>
 </div>
 <div id="acknowledgements" class="section level1">
