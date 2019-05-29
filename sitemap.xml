@@ -475,6 +475,15 @@
     <loc>https://ropensci.github.io/drake/reference/rs_addin_loadd.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/rs_addin_r_make.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/drake/reference/rs_addin_r_outdated.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/drake/reference/rs_addin_r_vis_drake_graph.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/running.html</loc>
   </url>
   <url>
