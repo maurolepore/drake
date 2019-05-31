@@ -161,7 +161,7 @@
 <li>Stop removing the console log file on each call to <code><a href="../reference/drake_config.html">drake_config()</a></code>.</li>
 <li>Log the node name (short host name) and process ID in the console log file.</li>
 <li>Log the name of the calling function in the console log file, e.g. “begin make()” and “end make()”. Applies to all functions that accept a <code>config</code> argument.</li>
-<li>Memory management: set <code>use_cache</code> to <code>FALSE</code> in <code>storr</code> function calls for loading and reading targets. Also, at the end of <code><a href="../reference/make.html">make()</a></code>, call <code>flush_cache()</code> (and then <code><a href="https://rdrr.io/r/base/gc.html">gc()</a></code> if garbage collection is enabled).</li>
+<li>Memory management: set <code>use_cache</code> to <code>FALSE</code> in <code>storr</code> function calls for saving and loading targets. Also, at the end of <code><a href="../reference/make.html">make()</a></code>, call <code>flush_cache()</code> (and then <code><a href="https://rdrr.io/r/base/gc.html">gc()</a></code> if garbage collection is enabled).</li>
 </ul>
 </div>
 </div>
