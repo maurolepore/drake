@@ -675,8 +675,13 @@ Please try to avoid workflows that modify the global environment.
 Functions such as <code><a href='https://rdrr.io/r/utils/data.html'>data()</a></code> belong in your setup scripts
 prior to <code>make()</code>, not in any functions or commands that get called
 during <code>make()</code> itself.</p>
-<p>To avoid environment-locking errors,
-you can run <code>make(plan, lock_envir = FALSE)</code>.
+<p>For each target that is still problematic  (e.g.
+<a href='https://github.com/rstudio/gt/issues/297'>https://github.com/rstudio/gt/issues/297</a>)
+you can safely run the command in its own special <code><a href='https://rdrr.io/pkg/callr/man/r.html'>callr::r()</a></code> process.
+Example: <a href='https://github.com/rstudio/gt/issues/297#issuecomment-497778735'>https://github.com/rstudio/gt/issues/297#issuecomment-497778735</a>. # nolint</p>
+<p>If that fails, you can run <code>make(plan, lock_envir = FALSE)</code>
+to suppress environment-locking for all targets.
+However, this is not usually recommended.
 There are legitimate use cases for <code>lock_envir = FALSE</code>
 (example: <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#parallel-computing-within-targets'>https://ropenscilabs.github.io/drake-manual/hpc.html#parallel-computing-within-targets</a>) # nolint
 but most workflows should stick with the default <code>lock_envir = TRUE</code>.</p>
