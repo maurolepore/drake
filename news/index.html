@@ -140,6 +140,8 @@
 <li>Clear up cache confusion when a custom cache exists adjacent to the default cache (<a href="https://github.com/ropensci/drake/issues/883"><a href='https://github.com/ropensci/drake/issues/883'>#883</a></a>).</li>
 <li>Accept targets as symbols in <code><a href="../reference/r_make.html">r_drake_build()</a></code>.</li>
 <li>Log progress during <code><a href="../reference/r_make.html">r_make()</a></code> (<a href="https://github.com/ropensci/drake/issues/889"><a href='https://github.com/ropensci/drake/issues/889'>#889</a></a>).</li>
+<li>Repair <code><a href="../reference/expose_imports.html">expose_imports()</a></code>: do not do the <code>environment&lt;-</code> trick unless the object is a non-primitive function.</li>
+<li>Use different static analyses of <code><a href="https://rdrr.io/r/base/assign.html">assign()</a></code> vs <code><a href="https://rdrr.io/r/base/delayedAssign.html">delayedAssign()</a></code>.</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
