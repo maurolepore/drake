@@ -165,6 +165,7 @@
 <li>Log the name of the calling function in the console log file, e.g. “begin make()” and “end make()”. Applies to all functions that accept a <code>config</code> argument.</li>
 <li>Memory management: set <code>use_cache</code> to <code>FALSE</code> in <code>storr</code> function calls for saving and loading targets. Also, at the end of <code><a href="../reference/make.html">make()</a></code>, call <code>flush_cache()</code> (and then <code><a href="https://rdrr.io/r/base/gc.html">gc()</a></code> if garbage collection is enabled).</li>
 <li>Mention <code><a href="https://rdrr.io/pkg/callr/man/r.html">callr::r()</a></code> within commands as <a href="https://github.com/rstudio/gt/issues/297#issuecomment-497778735">a safe alternative to <code>lock_envir = FALSE</code></a> in the self-invalidation section of the <code><a href="../reference/make.html">make()</a></code> help file.</li>
+<li>Use file size to help decide when to rehash <code><a href="../reference/file_in.html">file_in()</a></code>/<code><a href="../reference/file_out.html">file_out()</a></code>/<code><a href="../reference/knitr_in.html">knitr_in()</a></code> files. We now rehash files if the file is less than 100 KB or the time stamp changed or the <strong>file size</strong> changed.</li>
 </ul>
 </div>
 </div>
