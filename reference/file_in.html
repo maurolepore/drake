@@ -143,6 +143,19 @@
 
     <p>A character vector of declared input file or directory paths.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>As of <code>drake</code> 7.4.0, <code>file_in()</code> and <code><a href='file_out.html'>file_out()</a></code> have
+experimental support for URLs. If the file name begins with
+"http://", "https://", or "ftp://", <code><a href='make.html'>make()</a></code> attempts
+to check the ETag to see if the data changed from last time.
+If no ETag can be found, <code>drake</code> simply uses the ETag
+from last <code><a href='make.html'>make()</a></code> and registers the file as unchanged
+(which prevents your workflow from breaking if you lose
+internet access). If this approach to tracking remote data
+does not work for you, consider a custom trigger:
+<a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='file_out.html'>file_out()</a></code>, <code><a href='knitr_in.html'>knitr_in()</a></code>, <code><a href='ignore.html'>ignore()</a></code></p></div>
@@ -196,6 +209,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
