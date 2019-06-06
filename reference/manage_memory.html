@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manage in-memory targets — manage_memory • drake</title>
+<title>Manage the in-memory dependencies of a target. — manage_memory • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,13 +39,10 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Manage in-memory targets — manage_memory" />
+<meta property="og:title" content="Manage the in-memory dependencies of a target. — manage_memory" />
 
-<meta property="og:description" content="Load targets that you need to build the targets
-and unload the ones you will never need again in the
-current runthrough of the pipeline. This function should
-not be used directly by users. Only exported for
-internal reasons." />
+<meta property="og:description" content="Load/unload a target's dependencies.
+Not a user-side function." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -119,29 +116,26 @@ internal reasons." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Manage in-memory targets</h1>
+    <h1>Manage the in-memory dependencies of a target.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/exec-memory.R'><code>R/exec-memory.R</code></a></small>
     <div class="hidden name"><code>manage_memory.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Load targets that you need to build the targets
-and unload the ones you will never need again in the
-current runthrough of the pipeline. This function should
-not be used directly by users. Only exported for
-internal reasons.</p>
+    <p>Load/unload a target's dependencies.
+Not a user-side function.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>manage_memory</span>(<span class='no'>targets</span>, <span class='no'>config</span>, <span class='kw'>downstream</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>manage_memory</span>(<span class='no'>target</span>, <span class='no'>config</span>, <span class='kw'>downstream</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>targets</th>
-      <td><p>Character vector of targets.</p></td>
+      <th>target</th>
+      <td><p>Character, name of the target.</p></td>
     </tr>
     <tr>
       <th>config</th>
