@@ -300,14 +300,21 @@ calls to <code>loadd()</code> and <code>readd()</code> in active code chunks,
 and then treat those loaded targets as dependencies.
 That way, <code><a href='make.html'>make()</a></code> will automatically (re)run the report if those
 dependencies change.</p></li>
+<li><p>If you are using <code><a href='make.html'>make(memory_strategy = "none")</a></code>
+or <code><a href='make.html'>make(memory_strategy = "unload")</a></code>,
+<code>loadd()</code> and <code>readd()</code> can manually load dependencies
+into memory for the target that is being built.
+If you do this, you must carefully inspect <code><a href='deps_target.html'>deps_target()</a></code>
+and <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code> before running <code><a href='make.html'>make()</a></code>
+to be sure the dependency relationships among targets
+are correct. If you do not wish to incur extra dependencies
+with <code>loadd()</code> or <code>readd()</code>, you will need to use <code><a href='ignore.html'>ignore()</a></code>,
+e.g. <code><a href='drake_plan.html'>drake_plan(x = 1, y = ignore(readd(x)))</a></code> or
+<code><a href='drake_plan.html'>drake_plan(x = 1, y = readd(ignore("x"), character_only = TRUE))</a></code>.
+Compare those plans to <code><a href='drake_plan.html'>drake_plan(x = 1, y = readd(x))</a></code>
+and <code><a href='drake_plan.html'>drake_plan(x = 1, y = readd("x", character_only = TRUE))</a></code>
+using <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code> and <code><a href='deps_target.html'>deps_target()</a></code>.</p></li>
 </ol>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Please do not put calls to <code>loadd()</code> or <code>readd()</code> inside
-your custom (imported) functions or the commands in your <code><a href='drake_plan.html'>drake_plan()</a></code>.
-This creates confusion inside <code><a href='make.html'>make()</a></code>, which has its own ways of
-interacting with the cache.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -361,8 +368,6 @@ interacting with the cache.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#note">Note</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
