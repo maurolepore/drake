@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ignore code — ignore • drake</title>
+<title>Suppress dependency detection. — no_deps • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,9 +39,9 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Ignore code — ignore" />
+<meta property="og:title" content="Suppress dependency detection. — no_deps" />
 
-<meta property="og:description" content="Ignore sections of commands and imported functions." />
+<meta property="og:description" content="Tell drake to not search for dependencies in a chunk of code." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -115,25 +115,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Ignore code</h1>
+    <h1>Suppress dependency detection.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-plan.R'><code>R/api-plan.R</code></a></small>
-    <div class="hidden name"><code>ignore.Rd</code></div>
+    <div class="hidden name"><code>no_deps.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Ignore sections of commands and imported functions.</p>
+    <p>Tell <code>drake</code> to not search for dependencies in a chunk of code.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ignore</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>no_deps</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>Code to ignore.</p></td>
+      <td><p>Code for which dependency detection is suppressed.</p></td>
     </tr>
     </table>
     
@@ -143,17 +143,12 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>In user-defined functions and <code><a href='drake_plan.html'>drake_plan()</a></code> commands, you can
-wrap code chunks in <code>ignore()</code> to</p><ol>
-<li><p>Tell <code>drake</code> to not search for dependencies
-(targets etc. mentioned in the code) and</p></li>
-<li><p>Ignore changes to the code so downstream targets remain up to date.
-To enforce (1) without (2), use <code><a href='no_deps.html'>no_deps()</a></code>.</p></li>
-</ol>
+    <p><code>no_deps()</code> is similar to <code><a href='ignore.html'>ignore()</a></code>, but it still lets <code>drake</code>
+track meaningful changes to the code itself.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='file_in.html'>file_in()</a></code>, <code><a href='file_out.html'>file_out()</a></code>, <code><a href='knitr_in.html'>knitr_in()</a></code>, <code><a href='no_deps.html'>no_deps()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='file_in.html'>file_in()</a></code>, <code><a href='file_out.html'>file_out()</a></code>, <code><a href='knitr_in.html'>knitr_in()</a></code>, <code>no_deps()</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -165,30 +160,27 @@ To enforce (1) without (2), use <code><a href='no_deps.html'>no_deps()</a></code
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>5</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='no'>x</span>)))
 <span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>4</span>) + <span class='no'>x</span>))
-<span class='co'># But not with ignore().</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>4</span>) + <span class='fu'>ignore</span>(<span class='no'>x</span>))) <span class='co'># Builds y.</span>
+<span class='co'># But not with no_deps().</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>4</span>) + <span class='fu'>no_deps</span>(<span class='no'>x</span>))) <span class='co'># Builds y.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>6</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>4</span>) + <span class='fu'>ignore</span>(<span class='no'>x</span>))) <span class='co'># Skips y.</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>4</span>) + <span class='fu'>ignore</span>(<span class='no'>x</span> + <span class='fl'>1</span>))) <span class='co'># Skips y.</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>4</span>) + <span class='fu'>no_deps</span>(<span class='no'>x</span>))) <span class='co'># Skips y.</span>
+<span class='co'># However, `drake` *does* react to changes</span>
+<span class='co'># to the *literal code* inside `no_deps()`.</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fl'>4</span>) + <span class='fu'><a href='ignore.html'>ignore</a></span>(<span class='no'>x</span> + <span class='fl'>1</span>))) <span class='co'># Builds y.</span>
 
-<span class='co'># ignore() works with functions and multiline code chunks.</span>
+<span class='co'># Like ignore(), no_deps() works with functions and multiline code chunks.</span>
+<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
 <span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='fu'>ignore</span>({
-    <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> + <span class='fl'>1</span>
+  <span class='fu'>no_deps</span>({
+    <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>y</span> + <span class='fl'>1</span>
     <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> + <span class='fl'>2</span>
   })
-  <span class='no'>x</span> <span class='co'># Not ignored.</span>
+  <span class='no'>x</span>
 }
-<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='fl'>2</span>)))
+<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='fl'>2</span>)))
 <span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>x</span>)
-<span class='co'># Changes the content of the ignore() block:</span>
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-  <span class='fu'>ignore</span>({
-    <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>x</span> + <span class='fl'>1</span>
-  })
-  <span class='no'>x</span> <span class='co'># Not ignored.</span>
-}
-<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='fl'>2</span>)))
+<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fl'>2</span> <span class='co'># Changed dependency is not tracked.</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='kw'>plan</span> <span class='kw'>=</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='fl'>2</span>)))
 <span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>x</span>)
 })
 <span class='co'># }</span></pre>
