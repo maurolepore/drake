@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Declare output files and directories. — file_out" />
 
-<meta property="og:description" content="file_in() marks individual files
+<meta property="og:description" content="file_out() marks individual files
 (and whole directories) that your targets create." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
@@ -125,7 +125,7 @@
 
     <div class="ref-description">
     
-    <p><code><a href='file_in.html'>file_in()</a></code> marks individual files
+    <p><code>file_out()</code> marks individual files
 (and whole directories) that your targets create.</p>
     
     </div>
@@ -156,8 +156,7 @@
 <span class='co'># The `file_out()` and `file_in()` functions</span>
 <span class='co'># just takes in strings and returns them.</span>
 <span class='fu'>file_out</span>(<span class='st'>"summaries.txt"</span>)
-<span class='co'># Their main purpose is to orchestrate your custom files</span>
-<span class='co'># in your workflow plan data frame.</span>
+<span class='co'># Their main purpose is to flag custom files for tracking.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(
   <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
     <span class='kw'>out</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span>(<span class='no'>mtcars</span>, <span class='fu'>file_out</span>(<span class='st'>"mtcars.csv"</span>)),
