@@ -332,19 +332,19 @@ Development
 <a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;   target  time        hash   exists command            runtime latest quiet</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;lgl&gt;  &lt;chr&gt;                &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 1 data    2019-06-23… e580e… TRUE   raw_data %&gt;% muta… 0.001   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 1 data    2019-06-23… e580e… TRUE   raw_data %&gt;% muta… 0.002   TRUE   NA   </span></a>
 <a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 2 fit     2019-06-23… 62a16… TRUE   lm(Sepal.Width ~ … 0.004   TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 3 hist    2019-06-23… 10bcd… TRUE   create_plot(data)  0.00900 FALSE  NA   </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 3 hist    2019-06-23… 10bcd… TRUE   create_plot(data)  0.009   FALSE  NA   </span></a>
 <a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; 4 hist    2019-06-23… 5252f… TRUE   create_plot(data)  0.00500 TRUE   NA   </span></a>
 <a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; 5 raw_da… 2019-06-23… 63172… TRUE   "readxl::read_exc… 0.01    TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; 6 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende… 0.948   FALSE  TRUE </span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 7 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende… 0.639   TRUE   TRUE</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; 6 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende… 0.890   FALSE  TRUE </span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 7 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende… 0.606   TRUE   TRUE</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
 <li>The <code>quiet</code> column appears above because one of the <code><a href="reference/drake_plan.html">drake_plan()</a></code> commands has <code>knit(quiet = TRUE)</code>.</li>
 <li>The <code>hash</code> column identifies all the previous the versions of your targets. As long as <code>exists</code> is <code>TRUE</code>, you can recover old data.</li>
 </ul>
-<p>Let’s use the history to get the old histogram.</p>
+<p>Let’s use the history to recover the old histogram.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">hash &lt;-<span class="st"> </span>history <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(target <span class="op">==</span><span class="st"> "hist"</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>latest) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Get the old histogram.</span></a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(hash)</a>
