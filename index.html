@@ -323,22 +323,22 @@ Development
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; target hist</span></a>
 <a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; target report</span></a></code></pre></div>
 </div>
-<div id="history" class="section level2">
+<div id="history-and-provenance" class="section level2">
 <h2 class="hasAnchor">
-<a href="#history" class="anchor"></a>History</h2>
-<p>As of version 7.5.0, <code>drake</code> can track the history of your analysis: what you built, when you built it, how you built it, the arguments you used in your function calls, and how to get the data back.</p>
+<a href="#history-and-provenance" class="anchor"></a>History and provenance</h2>
+<p>As of version 7.5.0, <code>drake</code> can track the history and provenance of your targets: what you built, when you built it, how you built it, the arguments you used in your function calls, and how to get the data back.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">history &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_history.html">drake_history</a></span>(<span class="dt">analyze =</span> <span class="ot">TRUE</span>) <span class="co"># Requires make(history = TRUE)</span></a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">history</a>
 <a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;   target  time        hash   exists command            runtime latest quiet</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;lgl&gt;  &lt;chr&gt;                &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 1 data    2019-06-23… e580e… TRUE   raw_data %&gt;% muta…  0.002  TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 2 fit     2019-06-23… 62a16… TRUE   lm(Sepal.Width ~ …  0.004  TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 3 hist    2019-06-23… 10bcd… TRUE   create_plot(data)   0.009  FALSE  NA   </span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; 4 hist    2019-06-23… 5252f… TRUE   create_plot(data)   0.005  TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; 5 raw_da… 2019-06-23… 63172… TRUE   "readxl::read_exc…  0.0110 TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; 6 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende…  0.949  FALSE  TRUE </span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 7 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende…  0.644  TRUE   TRUE</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 1 data    2019-06-23… e580e… TRUE   raw_data %&gt;% muta… 0.001   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 2 fit     2019-06-23… 62a16… TRUE   lm(Sepal.Width ~ … 0.004   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 3 hist    2019-06-23… 10bcd… TRUE   create_plot(data)  0.00900 FALSE  NA   </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; 4 hist    2019-06-23… 5252f… TRUE   create_plot(data)  0.00500 TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; 5 raw_da… 2019-06-23… 63172… TRUE   "readxl::read_exc… 0.01    TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; 6 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende… 0.948   FALSE  TRUE </span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 7 report  2019-06-23… 9b398… TRUE   "rmarkdown::rende… 0.639   TRUE   TRUE</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
 <li>The <code>quiet</code> column appears above because one of the <code><a href="reference/drake_plan.html">drake_plan()</a></code> commands has <code>knit(quiet = TRUE)</code>.</li>
