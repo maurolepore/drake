@@ -251,7 +251,7 @@ Development
 <a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                  …</span></a>
 <a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 5 report   rmarkdown::render(knitr_in("report.Rmd"), output_file = file_ou…</span></a></code></pre></div>
 <p>So far, we have just been setting the stage. Use <code><a href="reference/make.html">make()</a></code> to do the real work. Targets are built in the correct order regardless of the row order of <code>plan</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">history =</span> <span class="ot">TRUE</span>) <span class="co"># History is optional.</span></a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">history =</span> <span class="ot">TRUE</span>) <span class="co"># History is new in drake 7.5.0.</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; target raw_data</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; target data</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; target fit</span></a>
@@ -331,10 +331,10 @@ Development
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
 <a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt;   target  time        hash    exists command           runtime latest quiet</span></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;   &lt;lgl&gt;  &lt;chr&gt;               &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; 1 data    2019-06-23… e580e1… TRUE   raw_data %&gt;% mut… 0.00200 TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 2 fit     2019-06-23… 62a16b… TRUE   lm(Sepal.Width ~… 0.00600 TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 3 hist    2019-06-23… 10bcd8… TRUE   create_plot(data) 0.0110  FALSE  NA   </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 4 hist    2019-06-23… 5252f8… TRUE   create_plot(data) 0.006   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; 1 data    2019-06-23… e580e1… TRUE   raw_data %&gt;% mut… 0.002   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 2 fit     2019-06-23… 62a16b… TRUE   lm(Sepal.Width ~… 0.005   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 3 hist    2019-06-23… 10bcd8… TRUE   create_plot(data) 0.01    FALSE  NA   </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 4 hist    2019-06-23… 5252f8… TRUE   create_plot(data) 0.00500 TRUE   NA   </span></a>
 <a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; 5 raw_da… 2019-06-23… 63172a… TRUE   "readxl::read_ex… 0.012   TRUE   NA   </span></a>
 <a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; # … with 2 more rows</span></a></code></pre></div>
 <p>See the <a href="https://ropensci.github.io/drake/reference/drake_history.html"><code><a href="reference/drake_history.html">drake_history()</a></code></a> help file for details and examples.</p>
