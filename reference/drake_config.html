@@ -168,7 +168,7 @@ because it already has everything it needs in <code>config</code>.</p>
   <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
   <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"autoclean"</span>,
   <span class='st'>"preclean"</span>, <span class='st'>"lookahead"</span>, <span class='st'>"unload"</span>, <span class='st'>"none"</span>, <span class='st'>"memory"</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -642,6 +642,14 @@ This is extremely important for ensuring the purity of your functions
 and the reproducibility/credibility/trust you can place in your project.
 <code>lock_envir</code> will be set to a default of <code>TRUE</code> in <code>drake</code> version
 7.0.0 and higher.</p></td>
+    </tr>
+    <tr>
+      <th>history</th>
+      <td><p>Logical, whether to record the build history
+of your targets. You can also supply a
+<a href='https://github.com/wlandau/txtq'>txtq</a>, which is
+how <code>drake</code> records history.
+Required for <code><a href='drake_history.html'>drake_history()</a></code>.</p></td>
     </tr>
     </table>
     

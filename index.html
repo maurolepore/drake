@@ -251,7 +251,7 @@ Development
 <a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                  …</span></a>
 <a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 5 report   rmarkdown::render(knitr_in("report.Rmd"), output_file = file_ou…</span></a></code></pre></div>
 <p>So far, we have just been setting the stage. Use <code><a href="reference/make.html">make()</a></code> to do the real work. Targets are built in the correct order regardless of the row order of <code>plan</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">history =</span> <span class="ot">TRUE</span>) <span class="co"># History is optional.</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; target raw_data</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; target data</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; target fit</span></a>
@@ -283,7 +283,7 @@ Development
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="reference/vis_drake_graph.html">vis_drake_graph</a></span>(config) <span class="co"># Interactive graph: zoom, drag, etc.</span></a></code></pre></div>
 <p><img src="https://ropensci.github.io/drake/figures/graph.png" alt="hist1" align="center" style="border: none; float: center;" width="600px"></p>
 <p>The next <code><a href="reference/make.html">make()</a></code> just builds <code>hist</code> and <code>report.html</code>. No point in wasting time on the data or model.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">history =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; target hist</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; target report</span></a></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">loadd</a></span>(hist)</a>
@@ -323,6 +323,22 @@ Development
 <a href="#independent-replication" class="anchor"></a>Independent replication</h2>
 <p>With even more evidence and confidence, you can invest the time to independently replicate the original code base if necessary. Up until this point, you relied on basic <code>drake</code> functions such as <code><a href="reference/make.html">make()</a></code>, so you may not have needed to peek at any substantive author-defined code in advance. In that case, you can stay usefully ignorant as you reimplement the original author’s methodology. In other words, <code>drake</code> could potentially improve the integrity of independent replication.</p>
 </div>
+<div id="history" class="section level2">
+<h2 class="hasAnchor">
+<a href="#history" class="anchor"></a>History</h2>
+<p>As of version 7.5.0, <code>drake</code> can track the history of your analysis: what you built, when you built it, how you built it, the arguments you used in your function calls, and how to get the data back.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="reference/drake_history.html">drake_history</a></span>(<span class="dt">analyze =</span> <span class="ot">TRUE</span>) <span class="co"># Requires a prior make(history = TRUE)</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; # A tibble: 7 x 8</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt;   target  time        hash    exists command           runtime latest quiet</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;   &lt;lgl&gt;  &lt;chr&gt;               &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt;</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; 1 data    2019-06-23… e580e1… TRUE   raw_data %&gt;% mut… 0.00200 TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 2 fit     2019-06-23… 62a16b… TRUE   lm(Sepal.Width ~… 0.00600 TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 3 hist    2019-06-23… 10bcd8… TRUE   create_plot(data) 0.0110  FALSE  NA   </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 4 hist    2019-06-23… 5252f8… TRUE   create_plot(data) 0.006   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; 5 raw_da… 2019-06-23… 63172a… TRUE   "readxl::read_ex… 0.012   TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; # … with 2 more rows</span></a></code></pre></div>
+<p>See the <a href="https://ropensci.github.io/drake/reference/drake_history.html"><code><a href="reference/drake_history.html">drake_history()</a></code></a> help file for details and examples.</p>
+</div>
 <div id="readability-and-transparency" class="section level2">
 <h2 class="hasAnchor">
 <a href="#readability-and-transparency" class="anchor"></a>Readability and transparency</h2>
@@ -339,28 +355,28 @@ Development
 <h1 class="hasAnchor">
 <a href="#aggressively-scale-up-" class="anchor"></a>Aggressively scale up.</h1>
 <p>Not every project can complete in a single R session on your laptop. Some projects need more speed or computing power. Some require a few local processor cores, and some need large high-performance computing systems. But parallel computing is hard. Your tables and figures depend on your analysis results, and your analyses depend on your datasets, so some tasks must finish before others even begin. <code>drake</code> knows what to do. Parallelism is implicit and automatic. See the <a href="https://ropenscilabs.github.io/drake-manual/hpc.html">high-performance computing guide</a> for all the details.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Use the spare cores on your local machine.</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">jobs =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># Or scale up to a supercomputer.</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw"><a href="reference/drake_hpc_template_file.html">drake_hpc_template_file</a></span>(<span class="st">"slurm_clustermq.tmpl"</span>) <span class="co"># https://slurm.schedmd.com/</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(</a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">  <span class="dt">clustermq.scheduler =</span> <span class="st">"clustermq"</span>,</a>
-<a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">clustermq.template =</span> <span class="st">"slurm_clustermq.tmpl"</span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9">)</a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">parallelism =</span> <span class="st">"clustermq"</span>, <span class="dt">jobs =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Use the spare cores on your local machine.</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">jobs =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># Or scale up to a supercomputer.</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw"><a href="reference/drake_hpc_template_file.html">drake_hpc_template_file</a></span>(<span class="st">"slurm_clustermq.tmpl"</span>) <span class="co"># https://slurm.schedmd.com/</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">  <span class="dt">clustermq.scheduler =</span> <span class="st">"clustermq"</span>,</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">  <span class="dt">clustermq.template =</span> <span class="st">"slurm_clustermq.tmpl"</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">parallelism =</span> <span class="st">"clustermq"</span>, <span class="dt">jobs =</span> <span class="dv">4</span>)</a></code></pre></div>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
 <p>You can choose among different versions of <code>drake</code>. The CRAN release often lags behind the <a href="https://ropenscilabs.github.io/drake-manual/">online manual</a> but may have fewer bugs.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Install the latest stable release from CRAN.</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"drake"</span>)</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># Alternatively, install the development version from GitHub.</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">install_github</span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># Install the latest stable release from CRAN.</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"drake"</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co"># Alternatively, install the development version from GitHub.</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="kw">install_github</span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
 </div>
 <div id="function-reference" class="section level1">
 <h1 class="hasAnchor">
@@ -371,6 +387,8 @@ Development
 <code><a href="reference/drake_plan.html">drake_plan()</a></code>: create a workflow data frame (like <code>my_plan</code>).</li>
 <li>
 <code><a href="reference/make.html">make()</a></code>: build your project.</li>
+<li>
+<code><a href="reference/drake_history.html">drake_history()</a></code>: show what you built, along with how and when you built it.</li>
 <li>
 <code><a href="reference/r_make.html">r_make()</a></code>: launch a fresh <a href="https://github.com/r-lib/callr"><code><a href="https://rdrr.io/pkg/callr/man/r.html">callr::r()</a></code></a> process to build your project. Called from an interactive R session, <code><a href="reference/r_make.html">r_make()</a></code> is more reproducible than <code><a href="reference/make.html">make()</a></code>.</li>
 <li>
