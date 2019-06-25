@@ -333,12 +333,12 @@ Development
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;   target  time    hash  exists command     runtime latest quiet output_file</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt; &lt;chr&gt;      </span></a>
 <a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 1 data    2019-0… e580… TRUE   raw_data %… 0.002   TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 2 fit     2019-0… 62a1… TRUE   lm(Sepal.W… 0.004   TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 2 fit     2019-0… 62a1… TRUE   lm(Sepal.W… 0.00500 TRUE   NA    &lt;NA&gt;       </span></a>
 <a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 3 hist    2019-0… 10bc… TRUE   create_plo… 0.01    FALSE  NA    &lt;NA&gt;       </span></a>
 <a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; 4 hist    2019-0… 5252… TRUE   create_plo… 0.00600 TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; 5 raw_da… 2019-0… 6317… TRUE   "readxl::r… 0.0110  TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; 6 report  2019-0… 9b39… TRUE   "rmarkdown… 0.923   FALSE  TRUE  report.html</span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 7 report  2019-0… 9b39… TRUE   "rmarkdown… 0.614   TRUE   TRUE  report.html</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; 5 raw_da… 2019-0… 6317… TRUE   "readxl::r… 0.011   TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; 6 report  2019-0… 9b39… TRUE   "rmarkdown… 0.965   FALSE  TRUE  report.html</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 7 report  2019-0… 9b39… TRUE   "rmarkdown… 0.633   TRUE   TRUE  report.html</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
 <li>The <code>quiet</code> column appears above because one of the <code><a href="reference/drake_plan.html">drake_plan()</a></code> commands has <code>knit(quiet = TRUE)</code>.</li>
@@ -533,6 +533,11 @@ Development
 <a href="#knitr-and-r-markdown" class="anchor"></a>knitr and R Markdown</h3>
 <p><code>drake</code> and <a href="https://yihui.name/knitr/">knitr</a> are symbiotic. <code>drake</code>’s job is to manage large computation and orchestrate the demanding tasks of a complex data analysis pipeline. <a href="https://yihui.name/knitr/">knitr</a>’s job is to communicate those expensive results after <code>drake</code> computes them. <a href="https://yihui.name/knitr/">knitr</a> / <a href="https://rmarkdown.rstudio.com/">R Markdown</a> reports are small pieces of an overarching <code>drake</code> pipeline. They should focus on communication, and they should do as little computation as possible.</p>
 <p>To insert a <a href="https://yihui.name/knitr/">knitr</a> report in a <code>drake</code> pipeline, use the <code><a href="reference/knitr_in.html">knitr_in()</a></code> function inside your <a href="https://ropenscilabs.github.io/drake-manual/plans.html"><code>drake</code> plan</a>, and use <code><a href="reference/readd.html">loadd()</a></code> and <code><a href="reference/readd.html">readd()</a></code> to refer to targets in the report itself. See an <a href="https://github.com/wlandau/drake-examples/tree/master/main">example here</a>.</p>
+</div>
+<div id="containerization-and-r-package-environments" class="section level3">
+<h3 class="hasAnchor">
+<a href="#containerization-and-r-package-environments" class="anchor"></a>Containerization and R package environments</h3>
+<p><code>drake</code> does not track R packages or system dependencies for changes. Instead, it defers to tools like <a href="https://www.docker.com">Docker</a>, <a href="https://sylabs.io/singularity/">Singularity</a>, <a href="https://github.com/rstudio/renv"><code>renv</code></a>, and <a href="https://github.com/rstudio/packrat"><code>packrat</code></a>, which create self-contained portable environments to reproducibly isolate and ship data analysis projects. <code>drake</code> is fully compatible with these tools.</p>
 </div>
 <div id="workflowr" class="section level3">
 <h3 class="hasAnchor">
