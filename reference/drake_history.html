@@ -132,26 +132,24 @@ you used, and how to get old data back.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_history</span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>analyze</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>make_imports</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>do_prework</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>drake_history</span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>analyze</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>cache</th>
-      <td><p>An optional
-<code>drake</code>/<a href='https://github.com/richfitz/storr'>storr</a> cache.
-If not supplied, <code>drake</code> will try to find the default cache:
-a folder called <code>.drake/</code> in the current working directory
-or one of its ancestor directories.</p></td>
+      <td><p>drake cache as created by <code><a href='new_cache.html'>new_cache()</a></code>.
+See also <code><a href='drake_cache.html'>drake_cache()</a></code>.</p></td>
     </tr>
     <tr>
       <th>history</th>
-      <td><p>An optional <a href='https://github.com/wlandau/txtq'>txtq</a>
-produced by <code><a href='make.html'>make(history = TRUE)</a></code>. If not supplied,
-<code>drake</code> will try to find it next to the cache in a folder
-called <code>.drake_history/</code>.</p></td>
+      <td><p>Logical, whether to record the build history
+of your targets. You can also supply a
+<a href='https://github.com/wlandau/txtq'>txtq</a>, which is
+how <code>drake</code> records history.
+Must be <code>TRUE</code> for <code>drake_history()</code> to work later.</p></td>
     </tr>
     <tr>
       <th>analyze</th>
@@ -159,16 +157,6 @@ called <code>.drake_history/</code>.</p></td>
 commands for arguments to function calls.
 Could be slow because this requires parsing and analyzing
 lots of R code.</p></td>
-    </tr>
-    <tr>
-      <th>make_imports</th>
-      <td><p>Logical, whether to make the imports first.
-Set to <code>FALSE</code> to save some time and risk obsolete output.</p></td>
-    </tr>
-    <tr>
-      <th>do_prework</th>
-      <td><p>Whether to do the <code>prework</code>
-normally supplied to <code><a href='make.html'>make()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -222,7 +210,7 @@ NB: in <code>process_data(filename = file_in("a", "b"))</code>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>out</span>)
 <span class='co'># Let's use the history to recover the oldest version</span>
 <span class='co'># of our regression2_small target.</span>
-<span class='no'>oldest_reg2_small</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>out</span>$<span class='no'>target</span> <span class='kw'>==</span> <span class='st'>"regression2_small"</span>))
+<span class='no'>oldest_reg2_smsall</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>out</span>$<span class='no'>target</span> <span class='kw'>==</span> <span class='st'>"regression2_small"</span>))
 <span class='no'>hash_oldest_reg2_small</span> <span class='kw'>&lt;-</span> <span class='no'>out</span>[<span class='no'>oldest_reg2_small</span>, ]$<span class='no'>hash</span>
 <span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_cache.html'>drake_cache</a></span>()
 <span class='no'>cache</span>$<span class='fu'>get_value</span>(<span class='no'>hash_oldest_reg2_small</span>)
