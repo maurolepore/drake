@@ -154,9 +154,8 @@ for an overview of the documentation.</p>
   <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
-  <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"speed"</span>, <span class='st'>"autoclean"</span>,
-  <span class='st'>"preclean"</span>, <span class='st'>"lookahead"</span>, <span class='st'>"unload"</span>, <span class='st'>"none"</span>, <span class='st'>"memory"</span>), <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='st'>"speed"</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -652,7 +651,7 @@ and the reproducibility/credibility/trust you can place in your project.
 of your targets. You can also supply a
 <a href='https://github.com/wlandau/txtq'>txtq</a>, which is
 how <code>drake</code> records history.
-Required for <code><a href='drake_history.html'>drake_history()</a></code>.</p></td>
+Must be <code>TRUE</code> for <code><a href='drake_history.html'>drake_history()</a></code> to work later.</p></td>
     </tr>
     </table>
     

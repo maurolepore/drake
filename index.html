@@ -251,7 +251,7 @@ Development
 <a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 4 fit      lm(Sepal.Width ~ Petal.Width + Species, data)                  …</span></a>
 <a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 5 report   rmarkdown::render(knitr_in("report.Rmd"), output_file = file_ou…</span></a></code></pre></div>
 <p>So far, we have just been setting the stage. Use <code><a href="reference/make.html">make()</a></code> to do the real work. Targets are built in the correct order regardless of the row order of <code>plan</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">history =</span> <span class="ot">TRUE</span>) <span class="co"># History is new in drake 7.5.0.</span></a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; target raw_data</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; target data</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; target fit</span></a>
@@ -288,7 +288,7 @@ Development
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="reference/vis_drake_graph.html">vis_drake_graph</a></span>(config) <span class="co"># Interactive graph: zoom, drag, etc.</span></a></code></pre></div>
 <p><img src="https://ropensci.github.io/drake/figures/graph.png" alt="hist1" align="center" style="border: none; float: center;" width="600px"></p>
 <p>The next <code><a href="reference/make.html">make()</a></code> just builds <code>hist</code> and <code>report.html</code>. No point in wasting time on the data or model.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">history =</span> <span class="ot">TRUE</span>)</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; target hist</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; target report</span></a></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/readd.html">loadd</a></span>(hist)</a>
@@ -326,31 +326,38 @@ Development
 <div id="history-and-provenance" class="section level2">
 <h2 class="hasAnchor">
 <a href="#history-and-provenance" class="anchor"></a>History and provenance</h2>
-<p>As of version 7.5.0, <code>drake</code> can track the history and provenance of your targets: what you built, when you built it, how you built it, the arguments you used in your function calls, and how to get the data back.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">history &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_history.html">drake_history</a></span>(<span class="dt">analyze =</span> <span class="ot">TRUE</span>) <span class="co"># Requires make(history = TRUE)</span></a>
+<p>As of version 7.5.0, <code>drake</code> tracks the history and provenance of your targets: what you built, when you built it, how you built it, the arguments you used in your function calls, and how to get the data back. (Disable with <code><a href="reference/make.html">make(history = FALSE)</a></code>)</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">history &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_history.html">drake_history</a></span>(<span class="dt">analyze =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">history</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 7 x 9</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;   target  time    hash  exists command     runtime latest quiet output_file</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt; &lt;chr&gt;      </span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 1 data    2019-0… e580… TRUE   raw_data %…   0.002 TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; 2 fit     2019-0… 62a1… TRUE   lm(Sepal.W…   0.004 TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt; 3 hist    2019-0… 10bc… TRUE   create_plo…   0.01  FALSE  NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt; 4 hist    2019-0… 5252… TRUE   create_plo…   0.006 TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; 5 raw_da… 2019-0… 6317… TRUE   "readxl::r…   0.01  TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; 6 report  2019-0… 9b39… TRUE   "rmarkdown…   0.911 FALSE  TRUE  report.html</span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 7 report  2019-0… 9b39… TRUE   "rmarkdown…   0.623 TRUE   TRUE  report.html</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 12 x 9</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;    target  time    hash  exists command    runtime latest quiet output_file</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt; &lt;chr&gt;      </span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  1 data    2019-0… e580… TRUE   raw_data… 0.002    FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  2 data    2019-0… e580… TRUE   raw_data… 0.001000 TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit     2019-0… 62a1… TRUE   lm(Sepal… 0.004    FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit     2019-0… 62a1… TRUE   lm(Sepal… 0.001000 TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist    2019-0… 10bc… TRUE   create_p… 0.011    FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  6 hist    2019-0… 5252… TRUE   create_p… 0.006    FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;  7 hist    2019-0… 00fa… TRUE   create_p… 0.018    TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_da… 2019-0… 6317… TRUE   "readxl:… 0.01     FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  9 raw_da… 2019-0… 6317… TRUE   "readxl:… 0.009    TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report  2019-0… c5fa… TRUE   "rmarkdo… 0.933    FALSE  TRUE  report.html</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report  2019-0… c5fa… TRUE   "rmarkdo… 0.630    FALSE  TRUE  report.html</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report  2019-0… c5fa… TRUE   "rmarkdo… 0.593    TRUE   TRUE  report.html</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
 <li>The <code>quiet</code> column appears above because one of the <code><a href="reference/drake_plan.html">drake_plan()</a></code> commands has <code>knit(quiet = TRUE)</code>.</li>
 <li>The <code>hash</code> column identifies all the previous the versions of your targets. As long as <code>exists</code> is <code>TRUE</code>, you can recover old data.</li>
+<li>Advanced: if you use <code><a href="reference/make.html">make(cache_log_file = TRUE)</a></code> and put the cache log file under version control, you can match the hashes from <code><a href="reference/drake_history.html">drake_history()</a></code> with the <code>git</code> commit history of your code.</li>
 </ul>
-<p>Let’s use the history to recover the old histogram.</p>
+<p>Let’s use the history to recover the oldest histogram.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">hash &lt;-<span class="st"> </span>history <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(target <span class="op">==</span><span class="st"> "hist"</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>latest) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Get the old histogram.</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(hash)</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">cache &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_cache.html">drake_cache</a></span>()</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">cache<span class="op">$</span><span class="kw">get_value</span>(hash)</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(target <span class="op">==</span><span class="st"> "hist"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(hash) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">cache &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_cache.html">drake_cache</a></span>()</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">cache<span class="op">$</span><span class="kw">get_value</span>(hash)</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
 <p><img src="https://ropensci.github.io/drake/figures/hist1.png" alt="hist1" align="center" style="border: none; float: center;" width="600px"></p>
 </div>
 <div id="independent-replication" class="section level2">
