@@ -164,7 +164,7 @@ because it already has everything it needs in <code>config</code>.</p>
   <span class='kw'>lazy_load</span> <span class='kw'>=</span> <span class='st'>"eager"</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>caching</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"master"</span>, <span class='st'>"worker"</span>), <span class='kw'>keep_going</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pruning_strategy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>makefile_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
   <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='st'>"speed"</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -504,14 +504,7 @@ computer (from <code>Sys.info()["nodename"]</code>).
     </tr>
     <tr>
       <th>ensure_workers</th>
-      <td><p>Logical, whether the master process
-should wait for the workers to post before assigning them
-targets. Should usually be <code>TRUE</code>. Set to <code>FALSE</code>
-for <code><a href='make.html'>make(parallelism = "future_lapply", jobs = n)</a></code>
-(<code>n &gt; 1</code>) when combined with <code><a href='https://rdrr.io/pkg/future/man/plan.html'>future::plan(future::sequential)</a></code>.
-This argument only applies to parallel computing with persistent workers
-(<code><a href='make.html'>make(parallelism = x)</a></code>, where <code>x</code> could be <code>"mclapply"</code>,
-<code>"parLapply"</code>, or <code>"future_lapply"</code>).</p></td>
+      <td><p>Deprecated.</p></td>
     </tr>
     <tr>
       <th>garbage_collection</th>
