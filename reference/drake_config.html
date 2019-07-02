@@ -48,12 +48,7 @@ parameters and settings that make() needs to do its job:
 the plan, packages,
 the environment of functions and initial data objects,
 parallel computing instructions,
-verbosity level, etc. Other functions such as outdated(),
-vis_drake_graph(), and predict_runtime() require output from
-drake_config() for the config argument.
-If you supply a drake_config() object to the config
-argument of make(), then drake will ignore all the other arguments
-because it already has everything it needs in config." />
+verbosity level, etc." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -142,12 +137,7 @@ parameters and settings that <code><a href='make.html'>make()</a></code> needs t
 the plan, packages,
 the environment of functions and initial data objects,
 parallel computing instructions,
-verbosity level, etc. Other functions such as <code><a href='outdated.html'>outdated()</a></code>,
-<code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, and <code><a href='predict_runtime.html'>predict_runtime()</a></code> require output from
-<code>drake_config()</code> for the <code>config</code> argument.
-If you supply a <code>drake_config()</code> object to the <code>config</code>
-argument of <code><a href='make.html'>make()</a></code>, then <code>drake</code> will ignore all the other arguments
-because it already has everything it needs in <code>config</code>.</p>
+verbosity level, etc.</p>
     
     </div>
 
@@ -649,6 +639,17 @@ Must be <code>TRUE</code> for <code><a href='drake_history.html'>drake_history()
 
     <p>The master internal configuration list of a project.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Once you create a list with <code>drake_config()</code>,
+do not modify it by hand.</p>
+<p>Utility functions such as <code><a href='outdated.html'>outdated()</a></code>,
+<code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code>, and <code><a href='predict_runtime.html'>predict_runtime()</a></code> require output from
+<code>drake_config()</code> for the <code>config</code> argument.
+If you supply a <code>drake_config()</code> object to the <code>config</code>
+argument of <code><a href='make.html'>make()</a></code>, then <code>drake</code> will ignore all the other arguments
+because it already has everything it needs in <code>config</code>.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='make.html'>make()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='vis_drake_graph.html'>vis_drake_graph()</a></code></p></div>
@@ -679,6 +680,8 @@ Must be <code>TRUE</code> for <code><a href='drake_history.html'>drake_history()
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

@@ -332,18 +332,18 @@ Development
 <a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 12 x 9</span></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;    target  time    hash  exists command    runtime latest quiet output_file</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;lgl&gt;  &lt;lgl&gt; &lt;chr&gt;      </span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  1 data    2019-0… e580… TRUE   raw_data … 0.00300 FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  1 data    2019-0… e580… TRUE   raw_data … 0.003   FALSE  NA    &lt;NA&gt;       </span></a>
 <a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  2 data    2019-0… e580… TRUE   raw_data … 0.001   TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit     2019-0… 62a1… TRUE   lm(Sepal.… 0.004   FALSE  NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit     2019-0… 62a1… TRUE   lm(Sepal.… 0.002   TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist    2019-0… 10bc… TRUE   create_pl… 0.01    FALSE  NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  6 hist    2019-0… 5252… TRUE   create_pl… 0.007   FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit     2019-0… 62a1… TRUE   lm(Sepal.… 0.00500 FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit     2019-0… 62a1… TRUE   lm(Sepal.… 0.00200 TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist    2019-0… 10bc… TRUE   create_pl… 0.0110  FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  6 hist    2019-0… 5252… TRUE   create_pl… 0.00600 FALSE  NA    &lt;NA&gt;       </span></a>
 <a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;  7 hist    2019-0… 00fa… TRUE   create_pl… 0.0180  TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_da… 2019-0… 6317… TRUE   "readxl::… 0.0110  FALSE  NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  9 raw_da… 2019-0… 6317… TRUE   "readxl::… 0.00900 TRUE   NA    &lt;NA&gt;       </span></a>
-<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report  2019-0… ecd0… TRUE   "rmarkdow… 0.922   FALSE  TRUE  report.html</span></a>
-<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report  2019-0… ecd0… TRUE   "rmarkdow… 0.629   FALSE  TRUE  report.html</span></a>
-<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report  2019-0… ecd0… TRUE   "rmarkdow… 0.586   TRUE   TRUE  report.html</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_da… 2019-0… 6317… TRUE   "readxl::… 0.011   FALSE  NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  9 raw_da… 2019-0… 6317… TRUE   "readxl::… 0.008   TRUE   NA    &lt;NA&gt;       </span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report  2019-0… 66bf… TRUE   "rmarkdow… 0.954   FALSE  TRUE  report.html</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report  2019-0… 66bf… TRUE   "rmarkdow… 0.633   FALSE  TRUE  report.html</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report  2019-0… 66bf… TRUE   "rmarkdow… 0.593   TRUE   TRUE  report.html</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
 <li>The <code>quiet</code> column appears above because one of the <code><a href="reference/drake_plan.html">drake_plan()</a></code> commands has <code>knit(quiet = TRUE)</code>.</li>
