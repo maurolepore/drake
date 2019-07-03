@@ -657,7 +657,8 @@ Must be <code>TRUE</code> for <code><a href='drake_history.html'>drake_history()
     <h2 class="hasAnchor" id="interactive-mode"><a class="anchor" href="#interactive-mode"></a>Interactive mode</h2>
 
     
-    <p>In interactive sessions, consider <code><a href='r_make.html'>r_make()</a></code>, <code><a href='r_make.html'>r_outdated()</a></code>, etc.
+
+<p>In interactive sessions, consider <code><a href='r_make.html'>r_make()</a></code>, <code><a href='r_make.html'>r_outdated()</a></code>, etc.
 rather than <code>make()</code>, <code><a href='outdated.html'>outdated()</a></code>, etc. The <code>r_*()</code> <code>drake</code> functions
 are more reproducible when the session is interactive.</p>
 <p>A serious drake workflow should be consistent and reliable,
@@ -681,7 +682,8 @@ You may wish to add a call to <code><a href='https://rdrr.io/r/base/options.html
     <h2 class="hasAnchor" id="self-invalidation"><a class="anchor" href="#self-invalidation"></a>Self-invalidation</h2>
 
     
-    <p>It is possible to construct a workflow that tries to invalidate itself.
+
+<p>It is possible to construct a workflow that tries to invalidate itself.
 Example:</p><pre>plan &lt;- drake_plan(
   x = {
     data(mtcars)
@@ -690,7 +692,8 @@ Example:</p><pre>plan &lt;- drake_plan(
   y = mean(x)
 )
 </pre>
-    <p>Here, because <code><a href='https://rdrr.io/r/utils/data.html'>data()</a></code> loads <code>mtcars</code> into the global environment,
+
+<p>Here, because <code><a href='https://rdrr.io/r/utils/data.html'>data()</a></code> loads <code>mtcars</code> into the global environment,
 the very act of building <code>x</code> changes the dependencies of <code>x</code>.
 In other words, without safeguards, <code>x</code> would not be up to date at
 the end of <code>make(plan)</code>.
