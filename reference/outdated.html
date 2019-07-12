@@ -160,22 +160,9 @@ normally supplied to <code><a href='make.html'>make()</a></code>.</p></td>
 
     <p>Character vector of the names of outdated targets.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>outdated()</code> is sensitive to the alternative triggers
-described at
-<a href='https://ropenscilabs.github.io/drake-manual/debug.html'>https://ropenscilabs.github.io/drake-manual/debug.html</a>.
-For example, even if <code>outdated(...)</code> shows everything up to date,
-<code>outdated(..., trigger = trigger(condition = TRUE))</code> will show
-all targets out of date.
-You must use a fresh <code>config</code> argument with an up-to-date
-dependency graph that was never modified by hand.
-If needed, rerun <code><a href='drake_config.html'>drake_config()</a></code> early and often.
-See the details in the help file for <code><a href='drake_config.html'>drake_config()</a></code>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='drake_config.html'>drake_config()</a></code>, <code><a href='missed.html'>missed()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>,
+    <div class='dont-index'><p><code><a href='r_make.html'>r_outdated()</a></code>, <code><a href='drake_config.html'>drake_config()</a></code>, <code><a href='missed.html'>missed()</a></code>, <code><a href='drake_plan.html'>drake_plan()</a></code>,
 <code><a href='make.html'>make()</a></code></p></div>
     
 
@@ -202,8 +189,6 @@ See the details in the help file for <code><a href='drake_config.html'>drake_con
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
