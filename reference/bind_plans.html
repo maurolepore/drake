@@ -161,11 +161,11 @@ correctly fills in missing entries.</p>
 )
 <span class='no'>your_plan</span> <span class='kw'>&lt;-</span> <span class='fu'>bind_plans</span>(<span class='no'>download_plan</span>, <span class='no'>analysis_plan</span>)
 <span class='no'>your_plan</span></div><div class='output co'>#&gt; # A tibble: 3 x 3
-#&gt;   target  command                    trigger
-#&gt;   &lt;chr&gt;   &lt;expr&gt;                     &lt;expr&gt; 
-#&gt; 1 data    download_data()            always 
-#&gt; 2 usage   get_usage_metrics(data)    NA     
-#&gt; 3 topline scrape_topline_table(data) NA     </div><div class='input'># make(your_plan) # nolint
+#&gt;   target  command                    trigger 
+#&gt;   &lt;chr&gt;   &lt;expr&gt;                     &lt;expr&gt;  
+#&gt; 1 data    download_data()            "always"
+#&gt; 2 usage   get_usage_metrics(data)    NA      
+#&gt; 3 topline scrape_topline_table(data) NA      </div><div class='input'># make(your_plan) # nolint
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
