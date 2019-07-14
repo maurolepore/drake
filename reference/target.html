@@ -119,7 +119,7 @@ drake_plan() only." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Define custom columns in a <code><a href='drake_plan.html'>drake_plan()</a></code>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-plan.R'><code>R/api-plan.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/drake_plan_keywords.R'><code>R/drake_plan_keywords.R</code></a></small>
     <div class="hidden name"><code>target.Rd</code></div>
     </div>
 
@@ -151,6 +151,30 @@ fields of the workflow plan.</p></td>
     <p>A one-row workflow plan data frame with the named
 arguments as columns.</p>
     
+    <h2 class="hasAnchor" id="keywords"><a class="anchor" href="#keywords"></a>Keywords</h2>
+
+    
+
+<p><code><a href='drake_plan.html'>drake_plan()</a></code> understands special keyword functions for your commands.
+With the exception of <code>target()</code>, each one is a proper function
+with its own help file.</p><ul>
+<li><p><code>target()</code>: declare more than just the command,
+e.g. assign a trigger or transform.
+Examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>. # nolint</p></li>
+<li><p><code><a href='file_in.html'>file_in()</a></code>: declare an input file dependency.</p></li>
+<li><p><code><a href='file_out.html'>file_out()</a></code>: declare an output file to be produced
+when the target is built.</p></li>
+<li><p><code><a href='knitr_in.html'>knitr_in()</a></code>: declare a <code>knitr</code> file dependency such as an
+R Markdown (<code>*.Rmd</code>) or R LaTeX (<code>*.Rnw</code>) file.</p></li>
+<li><p><code><a href='ignore.html'>ignore()</a></code>: force <code>drake</code> to entirely ignore a piece of code:
+do not track it for changes and do not analyze it for dependencies.</p></li>
+<li><p><code><a href='no_deps.html'>no_deps()</a></code>: tell <code>drake</code> to not track the dependencies
+of a piece of code. <code>drake</code> still tracks the code itself for changes.</p></li>
+<li><p><code><a href='drake_envir.html'>drake_envir()</a></code>: get the environment where drake builds targets.
+Intended for advanced custom memory management.</p></li>
+</ul>
+
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code>, <code><a href='make.html'>make()</a></code></p></div>
@@ -178,6 +202,8 @@ arguments as columns.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#keywords">Keywords</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
