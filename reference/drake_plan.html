@@ -210,6 +210,42 @@ custom columns.</p>
 understands a special set of optional columns. For details, visit
 <a href='https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan'>https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan</a></p>
     
+    <h2 class="hasAnchor" id="columns"><a class="anchor" href="#columns"></a>Columns</h2>
+
+    
+
+<p><code>drake_plan()</code> creates a special data frame. At minimum, that data frame
+must have columns <code>target</code> and <code>command</code> with the target names and the
+R code chunks to build them, respectively.</p>
+<p>You can add custom columns yourself, either with <code><a href='target.html'>target()</a></code>
+(e.g. <code>drake_plan(targ = target(my_cmd(), custom = "column"))</code>)
+or by appending columns post-hoc (e.g. <code>plan$col &lt;- vals</code>).</p>
+<p>Some of these custom columns are special. They are optional,
+but <code>drake</code> looks for them at various points in the workflow.</p><ul>
+<li><p><code>elapsed</code> and <code>cpu</code>: number of seconds to wait for the target to build
+before timing out (<code>elapsed</code> for elapsed time and <code>cpu</code> for CPU time).</p></li>
+<li><p><code>hpc</code>: logical values (<code>TRUE</code>/<code>FALSE</code>/<code>NA</code>) whether to send each target
+to parallel workers.
+Visit <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity'>https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity</a>
+to learn more.</p></li>
+<li><p><code>resources</code>: target-specific lists of resources for a computing cluster.
+See
+<a href='https://ropenscilabs.github.io/drake-manual/hpc.html#advanced-options'>https://ropenscilabs.github.io/drake-manual/hpc.html#advanced-options</a>
+for details.</p></li>
+<li><p><code>retries</code>: number of times to retry building a target
+in the event of an error.</p></li>
+<li><p><code>seed</code>: an optional pseudo-random number generator (RNG)
+seed for each target. <code>drake</code> usually comes up with its own
+unique reproducible target-specific seeds using the global seed
+(the <code>seed</code> argument to <code><a href='make.html'>make()</a></code> and <code><a href='drake_config.html'>drake_config()</a></code>)
+and the target names, but you can overwrite these automatic seeds.
+<code>NA</code> entries default back to <code>drake</code>'s automatic seeds.</p></li>
+<li><p><code>trigger</code>: rule to decide whether a target needs to run.
+It is recommended that you define this one with <code><a href='target.html'>target()</a></code>.
+Details: <a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>.</p></li>
+</ul>
+
+    
     <h2 class="hasAnchor" id="keywords"><a class="anchor" href="#keywords"></a>Keywords</h2>
 
     
@@ -352,6 +388,8 @@ You can read about this interface at
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#columns">Columns</a></li>
 
       <li><a href="#keywords">Keywords</a></li>
 
