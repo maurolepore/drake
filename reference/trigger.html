@@ -138,7 +138,7 @@ in the user manual:
     
     </div>
 
-    <pre class="usage"><span class='fu'>trigger</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>depend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <pre class="usage"><span class='fu'>trigger</span>(<span class='kw'>command</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>depend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>condition</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>change</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"whitelist"</span>,
   <span class='st'>"blacklist"</span>, <span class='st'>"condition"</span>))</pre>
     
@@ -159,6 +159,13 @@ non-file dependency changes.</p></td>
       <th>file</th>
       <td><p>Logical, whether to rebuild the target
 if a <code><a href='file_in.html'>file_in()</a></code>/<code><a href='file_out.html'>file_out()</a></code>/<code><a href='knitr_in.html'>knitr_in()</a></code> file changes.</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>Logical, whether to rebuild the target
+if the seed changes. Only makes a difference if you set
+a custom <code>seed</code> column in your <code><a href='drake_plan.html'>drake_plan()</a></code> at some point
+in your workflow.</p></td>
     </tr>
     <tr>
       <th>condition</th>
@@ -236,6 +243,9 @@ into memory before evaluating these triggers.</p></li>
 #&gt; $file
 #&gt; [1] TRUE
 #&gt; 
+#&gt; $seed
+#&gt; [1] TRUE
+#&gt; 
 #&gt; $condition
 #&gt; [1] FALSE
 #&gt; 
@@ -253,6 +263,9 @@ into memory before evaluating these triggers.</p></li>
 #&gt; [1] TRUE
 #&gt; 
 #&gt; $file
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $seed
 #&gt; [1] TRUE
 #&gt; 
 #&gt; $condition

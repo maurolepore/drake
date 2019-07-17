@@ -44,12 +44,16 @@
 <meta property="og:description" content="The dependency profile can give you
 a hint as to why a target is out of date.
 It can tell you if
+the command changed
+(deps_profile() reports the hash of the command,
+not the command itself)
 at least one input file changed,
 at least one output file changed,
 or a non-file dependency changed. For this last part,
 the imports need to be up to date in the cache,
 which you can do with outdated() or
 make(skip_targets = TRUE).
+the pseudo-random number generator seed changed.
 Unfortunately, deps_profile() does not
 currently get more specific than that.
 
@@ -139,12 +143,16 @@ currently get more specific than that.
     <p>The dependency profile can give you
 a hint as to why a target is out of date.
 It can tell you if</p><ul>
+<li><p>the command changed
+(<code>deps_profile()</code> reports the <em>hash</em> of the command,
+not the command itself)</p></li>
 <li><p>at least one input file changed,</p></li>
 <li><p>at least one output file changed,</p></li>
 <li><p>or a non-file dependency changed. For this last part,
 the imports need to be up to date in the cache,
 which you can do with <code><a href='outdated.html'>outdated()</a></code> or
-<code><a href='make.html'>make(skip_targets = TRUE)</a></code>.
+<code><a href='make.html'>make(skip_targets = TRUE)</a></code>.</p></li>
+<li><p>the pseudo-random number generator seed changed.
 Unfortunately, <code>deps_profile()</code> does not
 currently get more specific than that.</p></li>
 </ul>
@@ -175,9 +183,9 @@ is a character string rather than a symbol.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of the old hashes and
-new hashes of the data frame, along with
-an indication of which hashes changed since
+    <p>A data frame of old and new values for each
+of the main triggers, along with
+an indication of which values changed since
 the last <code><a href='make.html'>make()</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

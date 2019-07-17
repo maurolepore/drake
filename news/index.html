@@ -131,6 +131,8 @@
 <li>Add a new <code><a href="../reference/no_deps.html">no_deps()</a></code> function, similar to <code><a href="../reference/ignore.html">ignore()</a></code>. <code><a href="../reference/no_deps.html">no_deps()</a></code> suppresses dependency detection but still tracks changes to the literal code (<a href="https://github.com/ropensci/drake/issues/910"><a href='https://github.com/ropensci/drake/issues/910'>#910</a></a>).</li>
 <li>Add a new “autoclean” memory strategy (<a href='https://github.com/ropensci/drake/issues/917'>#917</a>).</li>
 <li>Export <code><a href="../reference/transform_plan.html">transform_plan()</a></code>.</li>
+<li>Allow a custom <code>seed</code> column of <code>drake</code> plans to set custom seeds (<a href='https://github.com/ropensci/drake/issues/947'>#947</a>).</li>
+<li>Add a new <code>seed</code> trigger to optionally ignore changes to the target seed (<a href='https://github.com/ropensci/drake/issues/947'>#947</a>).</li>
 </ul>
 </div>
 <div id="enhancements" class="section level2">
@@ -145,6 +147,8 @@
 <li>Warn when the user supplies additional arguments to <code><a href="../reference/make.html">make()</a></code> after <code>config</code> is already supplied.</li>
 <li>Prevent users from running <code><a href="../reference/make.html">make()</a></code> from inside the cache (<a href='https://github.com/ropensci/drake/issues/927'>#927</a>).</li>
 <li>Add <code>CITATION</code> file with JOSS paper.</li>
+<li>In <code><a href="../reference/deps_profile.html">deps_profile()</a></code>, include the seed and change the names.</li>
+<li>Allow the user to set a different seed in <code><a href="../reference/make.html">make()</a></code>. All this does is invalidate old targets.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
