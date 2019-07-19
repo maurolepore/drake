@@ -334,16 +334,16 @@ Development
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt;      &lt;dbl&gt;  &lt;int&gt; &lt;lgl&gt;  &lt;lgl&gt;</span></a>
 <a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  1 data   2019… e580… TRUE   raw_da… 0.002    1.29e9 FALSE  NA   </span></a>
 <a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  2 data   2019… e580… TRUE   raw_da… 0.001000 1.29e9 TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit    2019… 62a1… TRUE   lm(Sep… 0.00500  1.11e9 FALSE  NA   </span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit    2019… 62a1… TRUE   lm(Sep… 0.00200  1.11e9 TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist   2019… 10bc… TRUE   create… 0.01     2.10e8 FALSE  NA   </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit    2019… 62a1… TRUE   lm(Sep… 0.004    1.11e9 FALSE  NA   </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit    2019… 62a1… TRUE   lm(Sep… 0.001000 1.11e9 TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist   2019… 10bc… TRUE   create… 0.00900  2.10e8 FALSE  NA   </span></a>
 <a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  6 hist   2019… 5252… TRUE   create… 0.007    2.10e8 FALSE  NA   </span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;  7 hist   2019… 00fa… TRUE   create… 0.011    2.10e8 TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… 2019… 6317… TRUE   "readx… 0.0110   1.20e9 FALSE  NA   </span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;  7 hist   2019… 00fa… TRUE   create… 0.01     2.10e8 TRUE   NA   </span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… 2019… 6317… TRUE   "readx… 0.01     1.20e9 FALSE  NA   </span></a>
 <a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  9 raw_d… 2019… 6317… TRUE   "readx… 0.008    1.20e9 TRUE   NA   </span></a>
-<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report 2019… 2af0… TRUE   "rmark… 0.943    1.30e9 FALSE  TRUE </span></a>
-<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report 2019… 2af0… TRUE   "rmark… 0.631    1.30e9 FALSE  TRUE </span></a>
-<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report 2019… 2af0… TRUE   "rmark… 0.608    1.30e9 TRUE   TRUE </span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report 2019… 5d39… TRUE   "rmark… 0.92     1.30e9 FALSE  TRUE </span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report 2019… 5d39… TRUE   "rmark… 0.632    1.30e9 FALSE  TRUE </span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report 2019… 5d39… TRUE   "rmark… 0.598    1.30e9 TRUE   TRUE </span></a>
 <a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; # … with 1 more variable: output_file &lt;chr&gt;</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
@@ -365,7 +365,7 @@ Development
 <h2 class="hasAnchor">
 <a href="#automated-recovery-and-renaming" class="anchor"></a>Automated recovery and renaming</h2>
 <p>Note: this feature is still experimental.</p>
-<p>In <code>drake</code> version 7.5.0 and above, <code><a href="reference/make.html">make(recover = TRUE)</a></code> can salvage old targets from the distant past. This may not be a good idea if your external dependencies have changed a lot over time (R version, package environment, etc) but it can be super handy.</p>
+<p>In <code>drake</code> version 7.5.0 and above, <code><a href="reference/make.html">make(recover = TRUE)</a></code> can salvage old targets from the distant past. This may not be a good idea if your external dependencies have changed a lot over time (R version, package environment, etc) but it can be useful under the right circumstances.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># Is the data really gone?</span></a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="reference/clean.html">clean</a></span>() <span class="co"># garbage_collection = FALSE</span></a>
 <a class="sourceLine" id="cb16-3" data-line-number="3"></a>
@@ -379,7 +379,7 @@ Development
 <a class="sourceLine" id="cb16-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co"># When was the raw data *really* first built?</span></a>
 <a class="sourceLine" id="cb16-13" data-line-number="13"><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(raw_data)<span class="op">$</span>date</a>
-<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt; [1] "2019-07-19 01:13:39.138838 +0000 GMT"</span></a></code></pre></div>
+<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt; [1] "2019-07-19 01:34:25.544340 +0000 GMT"</span></a></code></pre></div>
 <p>You can even rename your targets! All you have to do is use the same target seed as last time. Just be aware that renaming invalidates downstream targets.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Get the old seed.</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2">old_seed &lt;-<span class="st"> </span><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(data)<span class="op">$</span>seed</a>
