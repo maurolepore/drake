@@ -330,20 +330,20 @@ Development
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">history &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_history.html">drake_history</a></span>(<span class="dt">analyze =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">history</a>
 <a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 12 x 10</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;    target built latest hash  exists command   seed  runtime quiet</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;lgl&gt;</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  1 data   2019… FALSE  e580… TRUE   raw_da… 1.29e9 0.002    NA   </span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  2 data   2019… TRUE   e580… TRUE   raw_da… 1.29e9 0.001000 NA   </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit    2019… FALSE  62a1… TRUE   lm(Sep… 1.11e9 0.005    NA   </span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit    2019… TRUE   62a1… TRUE   lm(Sep… 1.11e9 0.00200  NA   </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist   2019… FALSE  10bc… TRUE   create… 2.10e8 0.01     NA   </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  6 hist   2019… FALSE  5252… TRUE   create… 2.10e8 0.007    NA   </span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;  7 hist   2019… TRUE   00fa… TRUE   create… 2.10e8 0.01000  NA   </span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… 2019… FALSE  6317… TRUE   "readx… 1.20e9 0.0110   NA   </span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  9 raw_d… 2019… TRUE   6317… TRUE   "readx… 1.20e9 0.00900  NA   </span></a>
-<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report 2019… FALSE  4bd4… TRUE   "rmark… 1.30e9 0.937    TRUE </span></a>
-<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report 2019… FALSE  4bd4… TRUE   "rmark… 1.30e9 0.634    TRUE </span></a>
-<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report 2019… TRUE   4bd4… TRUE   "rmark… 1.30e9 0.597    TRUE </span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;    target current built exists hash  command   seed  runtime quiet</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;  &lt;lgl&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;lgl&gt;</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  1 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.003    NA   </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  2 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.001000 NA   </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.004    NA   </span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.002    NA   </span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist   FALSE   2019… TRUE   10bc… create… 2.10e8 0.01     NA   </span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  6 hist   FALSE   2019… TRUE   5252… create… 2.10e8 0.007    NA   </span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;  7 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.01     NA   </span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.01     NA   </span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  9 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.008    NA   </span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report TRUE    2019… TRUE   adc8… "rmark… 1.30e9 0.909    TRUE </span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report TRUE    2019… TRUE   adc8… "rmark… 1.30e9 0.626    TRUE </span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report TRUE    2019… TRUE   adc8… "rmark… 1.30e9 0.586    TRUE </span></a>
 <a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; # … with 1 more variable: output_file &lt;chr&gt;</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
@@ -379,7 +379,7 @@ Development
 <a class="sourceLine" id="cb16-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co"># When was the raw data *really* first built?</span></a>
 <a class="sourceLine" id="cb16-13" data-line-number="13"><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(raw_data)<span class="op">$</span>date</a>
-<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt; [1] "2019-07-19 13:09:06.260955 +0000 GMT"</span></a></code></pre></div>
+<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt; [1] "2019-07-19 14:05:56.689887 +0000 GMT"</span></a></code></pre></div>
 <p>You can even rename your targets! All you have to do is use the same target seed as last time. Just be aware that renaming invalidates downstream targets.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Get the old seed.</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2">old_seed &lt;-<span class="st"> </span><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(data)<span class="op">$</span>seed</a>

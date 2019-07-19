@@ -174,7 +174,38 @@ lots of R code.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If <code>analyze</code> is <code>TRUE</code>, <code>drake</code>
+    <p><code>drake_history()</code> returns a data frame with the following columns.</p><ul>
+<li><p><code>target</code>: the name of the target.</p></li>
+<li><p><code>current</code>: logical, whether the row describes the data
+actually assigned to the target name in the cache,
+e.g. what you get with <code><a href='readd.html'>loadd(target)</a></code> and <code><a href='readd.html'>readd(target)</a></code>.
+Does <strong>NOT</strong> tell you if the target is up to date.</p></li>
+<li><p><code>built</code>: when the target's value was stored in the cache.
+This is the true creation date of the target's value,
+not the recovery date from <code><a href='make.html'>make(recover = TRUE)</a></code>.</p></li>
+<li><p><code>exists</code>: logical, whether the target's historical value
+still exists in the cache. Garbage collection via
+(<code><a href='clean.html'>clean(garbage_collection = TRUE)</a></code> and <code>drake_cache()$gc()</code>)
+remove these historical values, but <code><a href='clean.html'>clean()</a></code> under the default
+settings does not.</p></li>
+<li><p><code>hash</code>: fingerprint of the target's historical value in the cache.
+If the value still exists, you can read it with
+<code>drake_cache()$get_value(hash)</code>.</p></li>
+<li><p><code>command</code>: the <code><a href='drake_plan.html'>drake_plan()</a></code> command executed to build the target.</p></li>
+<li><p><code>seed</code>: random number generator seed.</p></li>
+<li><p><code>runtime</code>: the time it took to execute the <code><a href='drake_plan.html'>drake_plan()</a></code> command.
+Does not include overhead due to <code>drake</code>'s processing.</p></li>
+</ul>
+
+<p>If <code>analyze</code> is <code>TRUE</code>, various other columns are included to show
+the explicitly-named length-1 arguments to function calls in the commands.
+See the "Provenance" section for more details.</p>
+    
+    <h2 class="hasAnchor" id="provenance"><a class="anchor" href="#provenance"></a>Provenance</h2>
+
+    
+
+<p>If <code>analyze</code> is <code>TRUE</code>, <code>drake</code>
 scans your <code><a href='drake_plan.html'>drake_plan()</a></code> commands
 for function arguments and mentions them in the history.
 A function argument shows up if and only if
@@ -232,6 +263,8 @@ NB: in <code>process_data(filename = file_in("a", "b"))</code>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#provenance">Provenance</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
