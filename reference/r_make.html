@@ -143,6 +143,8 @@ is old and stale.</p>
 
 <span class='fu'>r_outdated</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
+<span class='fu'>r_recoverable</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
+
 <span class='fu'>r_missed</span>(<span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_fn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>r_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
 <span class='fu'>r_deps_target</span>(<span class='no'>target</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -220,6 +222,36 @@ with the <code>config</code> argument from step 2.</p></li>
 </ol>
 
     
+    <h2 class="hasAnchor" id="recovery"><a class="anchor" href="#recovery"></a>Recovery</h2>
+
+    
+
+<p><code><a href='make.html'>make(recover = TRUE, recoverable = TRUE)</a></code>
+powers automated data recovery.
+The default of <code>recover</code> is <code>FALSE</code> because</p><ol>
+<li><p>Automated data recovery is still experimental.</p></li>
+<li><p>It has reproducibility issues.
+Targets recovered from the distant past may have been generated
+with earlier versions of R and earlier package environments
+that no longer exist.</p></li>
+</ol>
+
+<p>How it works: if <code>recover</code> is <code>TRUE</code>,
+<code>drake</code> tries to salvage old target values from the cache
+instead of running commands from the plan.
+A target is recoverable if</p><ol>
+<li><p>There is an old value somewhere in the cache that
+shares the command, dependencies, etc.
+of the target about to be built.</p></li>
+<li><p>The old value was generated with <code><a href='make.html'>make(recoverable = TRUE)</a></code>.</p></li>
+</ol>
+
+<p>If both conditions are met, <code>drake</code> will</p><ol>
+<li><p>Assign the most recently-generated admissible data to the target, and</p></li>
+<li><p>skip the target's command.</p></li>
+</ol>
+
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='make.html'>make()</a></code></p></div>
@@ -249,6 +281,8 @@ with the <code>config</code> argument from step 2.</p></li>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#recovery">Recovery</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

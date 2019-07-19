@@ -157,7 +157,8 @@ verbosity level, etc.</p>
   <span class='kw'>console_log_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ensure_workers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>sleep</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>i</span>)
   <span class='fl'>0.01</span>, <span class='kw'>hasty_build</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>memory_strategy</span> <span class='kw'>=</span> <span class='st'>"speed"</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>lock_envir</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>recover</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>recoverable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -332,10 +333,10 @@ rather than rerun all your targets from scratch.</p></td>
       <th>log_progress</th>
       <td><p>Logical, whether to log the progress
 of individual targets as they are being built. Progress logging
-creates a lot of little files in the cache, and it may make builds
-a tiny bit slower. So you may see gains in storage efficiency
-and speed with
-<code><a href='make.html'>make(..., log_progress = FALSE)</a></code>.</p></td>
+creates extra files in the cache (usually the <code>.drake/</code> folder)
+and slows down <code><a href='make.html'>make()</a></code> a little.
+If you need to reduce or limit the number of files in the cache,
+call <code><a href='make.html'>make(log_progress = FALSE, recover = FALSE)</a></code>.</p></td>
     </tr>
     <tr>
       <th>graph</th>
@@ -633,6 +634,46 @@ of your targets. You can also supply a
 how <code>drake</code> records history.
 Must be <code>TRUE</code> for <code><a href='drake_history.html'>drake_history()</a></code> to work later.</p></td>
     </tr>
+    <tr>
+      <th>recover</th>
+      <td><p>Logical, whether to activate automated data recovery.
+The default is <code>FALSE</code> because</p><ol>
+<li><p>Automated data recovery is still experimental.</p></li>
+<li><p>It has reproducibility issues.
+Targets recovered from the distant past may have been generated
+with earlier versions of R and earlier package environments
+that no longer exist.</p></li>
+</ol>
+
+<p>How it works: if <code>recover</code> is <code>TRUE</code>,
+<code>drake</code> tries to salvage old target values from the cache
+instead of running commands from the plan.
+A target is recoverable if</p><ol>
+<li><p>There is an old value somewhere in the cache that
+shares the command, dependencies, etc.
+of the target about to be built.</p></li>
+<li><p>The old value was generated with <code><a href='make.html'>make(recoverable = TRUE)</a></code>.</p></li>
+</ol>
+
+<p>If both conditions are met, <code>drake</code> will</p><ol>
+<li><p>Assign the most recently-generated admissible data to the target, and</p></li>
+<li><p>skip the target's command.</p></li>
+</ol>
+
+<p>Functions <code><a href='recoverable.html'>recoverable()</a></code> and <code><a href='r_make.html'>r_recoverable()</a></code> show the most upstream
+outdated targets that will be recovered in this way in the next
+<code><a href='make.html'>make()</a></code> or <code><a href='r_make.html'>r_make()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>recoverable</th>
+      <td><p>Logical, whether to make target values recoverable
+with <code><a href='make.html'>make(recover = TRUE)</a></code>.
+This requires writing extra files to the cache,
+and it prevents old metadata from being removed with garbage collection
+(<code><a href='clean.html'>clean(garbage_collection = TRUE)</a></code>, <code><a href='https://rdrr.io/r/base/gc.html'>gc()</a></code> in <code>storr</code>s).
+If you need to limit the cache size or the number of files in the cache,
+consider <code><a href='make.html'>make(recoverable = FALSE, progress = FALSE)</a></code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -649,6 +690,36 @@ do not modify it by hand.</p>
 If you supply a <code>drake_config()</code> object to the <code>config</code>
 argument of <code><a href='make.html'>make()</a></code>, then <code>drake</code> will ignore all the other arguments
 because it already has everything it needs in <code>config</code>.</p>
+    
+    <h2 class="hasAnchor" id="recovery"><a class="anchor" href="#recovery"></a>Recovery</h2>
+
+    
+
+<p><code><a href='make.html'>make(recover = TRUE, recoverable = TRUE)</a></code>
+powers automated data recovery.
+The default of <code>recover</code> is <code>FALSE</code> because</p><ol>
+<li><p>Automated data recovery is still experimental.</p></li>
+<li><p>It has reproducibility issues.
+Targets recovered from the distant past may have been generated
+with earlier versions of R and earlier package environments
+that no longer exist.</p></li>
+</ol>
+
+<p>How it works: if <code>recover</code> is <code>TRUE</code>,
+<code>drake</code> tries to salvage old target values from the cache
+instead of running commands from the plan.
+A target is recoverable if</p><ol>
+<li><p>There is an old value somewhere in the cache that
+shares the command, dependencies, etc.
+of the target about to be built.</p></li>
+<li><p>The old value was generated with <code><a href='make.html'>make(recoverable = TRUE)</a></code>.</p></li>
+</ol>
+
+<p>If both conditions are met, <code>drake</code> will</p><ol>
+<li><p>Assign the most recently-generated admissible data to the target, and</p></li>
+<li><p>skip the target's command.</p></li>
+</ol>
+
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -682,6 +753,8 @@ because it already has everything it needs in <code>config</code>.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#recovery">Recovery</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
