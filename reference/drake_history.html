@@ -241,7 +241,7 @@ NB: in <code>process_data(filename = file_in("a", "b"))</code>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>out</span>)
 <span class='co'># Let's use the history to recover the oldest version</span>
 <span class='co'># of our regression2_small target.</span>
-<span class='no'>oldest_reg2_smsall</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>out</span>$<span class='no'>target</span> <span class='kw'>==</span> <span class='st'>"regression2_small"</span>))
+<span class='no'>oldest_reg2_small</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>out</span>$<span class='no'>target</span> <span class='kw'>==</span> <span class='st'>"regression2_small"</span>))
 <span class='no'>hash_oldest_reg2_small</span> <span class='kw'>&lt;-</span> <span class='no'>out</span>[<span class='no'>oldest_reg2_small</span>, ]$<span class='no'>hash</span>
 <span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_cache.html'>drake_cache</a></span>()
 <span class='no'>cache</span>$<span class='fu'>get_value</span>(<span class='no'>hash_oldest_reg2_small</span>)
