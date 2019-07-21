@@ -80,7 +80,7 @@ R code to produce it." />
 
       <div class="navbar-brand-container">
         <a href="https://ropensci.org"><img src="../hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
-        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.0</small></i></a>
+        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.1</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -287,8 +287,12 @@ You can read about this interface at
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"Contain side effects"</span>, {
-<span class='co'># Create workflow plan data frames.</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"contain side effects"</span>, {
+<span class='co'># For more examples, visit</span>
+<span class='co'># https://ropenscilabs.github.io/drake-manual/plans.html.</span>
+
+<span class='co'># Create drake plans:</span>
 <span class='no'>mtcars_plan</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan</span>(
   <span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span>(<span class='no'>mtcars</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mpg"</span>, <span class='st'>"cyl"</span>)], <span class='fu'><a href='file_out.html'>file_out</a></span>(<span class='st'>"mtcars.csv"</span>)),
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='file_in.html'>file_in</a></span>(<span class='st'>"mtcars.csv"</span>))
@@ -297,8 +301,10 @@ You can read about this interface at
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>mtcars_plan</span>) <span class='co'># Makes `mtcars.csv` and then `value`</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>value</span>))
 <span class='co'># You can use knitr inputs too. See the top command below.</span>
+
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>my_plan</span>)
+
 <span class='co'># The `knitr_in("report.Rmd")` tells `drake` to dive into the active</span>
 <span class='co'># code chunks to find dependencies.</span>
 <span class='co'># There, `drake` sees that `small`, `large`, and `coef_regression2_small`</span>
@@ -378,7 +384,8 @@ You can read about this interface at
 <span class='co'># Tidy evaluation can help generate super large plans.</span>
 <span class='no'>sms</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a></span>(<span class='no'>letters</span>) <span class='co'># To sub in character args, skip this.</span>
 <span class='fu'>drake_plan</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='fu'>f</span>(<span class='no'>char</span>), <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>char</span> <span class='kw'>=</span> !!<span class='no'>sms</span>)))
-})</div></pre>
+})
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

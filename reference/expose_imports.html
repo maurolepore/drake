@@ -91,7 +91,7 @@ See the examples in this help file for a demonstration." />
 
       <div class="navbar-brand-container">
         <a href="https://ropensci.org"><img src="../hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
-        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.0</small></i></a>
+        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.1</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -200,7 +200,6 @@ for the idea that makes this function work.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"contain this example's side effects"</span>, {
 <span class='co'># Suppose you have a workflow that uses the `digest()` function,</span>
 <span class='co'># which computes the hash of an object.</span>
 
@@ -212,9 +211,10 @@ for the idea that makes this function work.</p>
   <span class='fu'>g</span>(<span class='no'>x</span>)
 }
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>f</span>(<span class='fl'>1</span>))
+<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/storr/man/storr_environment.html'>storr_environment</a></span>() <span class='co'># optional</span>
 
 <span class='co'># Here are the reproducibly tracked objects in the workflow.</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
 
 <span class='co'># But the digest() function has dependencies too.</span>
@@ -226,7 +226,7 @@ for the idea that makes this function work.</p>
 <span class='co'># a package's inner functions.</span>
 
 <span class='fu'>expose_imports</span>(<span class='no'>digest</span>)
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>new_objects</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>new_objects</span>, <span class='fl'>10</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>new_objects</span>)
@@ -234,8 +234,7 @@ for the idea that makes this function work.</p>
 <span class='co'># Now when you call `make()`, `drake` will dive into `digest`</span>
 <span class='co'># to import dependencies.</span>
 
-<span class='no'>cache</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/storr/man/storr_environment.html'>storr_environment</a></span>() <span class='co'># just for examples</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>), <span class='fl'>10</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>))
 
@@ -251,9 +250,8 @@ for the idea that makes this function work.</p>
 <span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
   <span class='kw pkg'>digest</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/digest/man/digest.html'>digest</a></span>(<span class='no'>x</span>) <span class='co'># Was previously just digest()</span>
 }
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>)
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>, <span class='kw'>history</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='tracked.html'>tracked</a></span>(<span class='no'>config</span>)
-})
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
