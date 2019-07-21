@@ -85,7 +85,7 @@ See the examples to learn why splitting is useful in drake." />
 
       <div class="navbar-brand-container">
         <a href="https://ropensci.org"><img src="../hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
-        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.1</small></i></a>
+        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.2</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -207,6 +207,7 @@ If <code>TRUE</code>,<code> the result is coerced to the lowest possible dimensi
 #&gt; [4,]    4    9
 #&gt; [5,]    5   10</div><div class='input'># In drake, you can split a large dataset over multiple targets.
 </div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"contain side effects"</span>, {
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>large_data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
   <span class='kw'>data_split</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
@@ -219,6 +220,7 @@ If <code>TRUE</code>,<code> the result is coerced to the lowest possible dimensi
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>, <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>data_split_1L</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
 <span class='fu'><a href='readd.html'>readd</a></span>(<span class='no'>data_split_2L</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='no'>cache</span>)
+})
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

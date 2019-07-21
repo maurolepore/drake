@@ -75,7 +75,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://ropensci.org"><img src="../hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
-        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.1</small></i></a>
+        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.2</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -157,15 +157,6 @@
     <p>Deprecated on 2018-08-30.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"Quarantine side effects."</span>, {
-<span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
-<span class='fu'>deps_targets</span>(<span class='st'>"regression1_small"</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>)
-<span class='fu'>deps_targets</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"small"</span>, <span class='st'>"large"</span>), <span class='kw'>config</span> <span class='kw'>=</span> <span class='no'>config</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-})
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -175,9 +166,7 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

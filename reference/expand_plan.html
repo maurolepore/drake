@@ -78,7 +78,7 @@ for the details." />
 
       <div class="navbar-brand-container">
         <a href="https://ropensci.org"><img src="../hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
-        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.1</small></i></a>
+        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.2</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -181,22 +181,6 @@ so targets still have unique names.</p>
     <div class='dont-index'><p><code><a href='drake_plan.html'>drake_plan()</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>({
-<span class='co'># Create the part of the workflow plan for the datasets.</span>
-<span class='no'>datasets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>small</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/simulate.html'>simulate</a></span>(<span class='fl'>5</span>),
-  <span class='kw'>large</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/simulate.html'>simulate</a></span>(<span class='fl'>50</span>)
-)
-<span class='co'># Create replicates. If you want repeat targets,</span>
-<span class='co'># this is convenient.</span>
-<span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"rep1"</span>, <span class='st'>"rep2"</span>, <span class='st'>"rep3"</span>))
-<span class='co'># Choose whether to rename the targets based on the values.</span>
-<span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>expand_plan</span>(<span class='no'>datasets</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-})
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -208,9 +192,7 @@ so targets still have unique names.</p>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

@@ -79,7 +79,7 @@ for ordinary error messages printed to the console." />
 
       <div class="navbar-brand-container">
         <a href="https://ropensci.org"><img src="../hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
-        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.1</small></i></a>
+        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.2</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -180,6 +180,7 @@ If supplied, <code>path</code> is ignored.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"contain side effects"</span>, {
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"knitr"</span>))) {
 <span class='co'># Build a plan doomed to fail:</span>
 <span class='no'>bad_plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>function_doesnt_exist</span>())
@@ -194,6 +195,7 @@ If supplied, <code>path</code> is ignored.</p></td>
 <span class='no'>e</span>$<span class='no'>error</span>
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>e</span>$<span class='no'>error</span>)
 }
+})
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

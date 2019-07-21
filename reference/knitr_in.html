@@ -82,7 +82,7 @@ computation as possible." />
 
       <div class="navbar-brand-container">
         <a href="https://ropensci.org"><img src="../hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
-        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.1</small></i></a>
+        <a class="navbar-brand" href="../index.html"><i>drake <small>v7.5.2</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -193,6 +193,7 @@ Intended for advanced custom memory management.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"contain side effects"</span>, {
 <span class='co'># `knitr_in()` is like `file_in()`</span>
 <span class='co'># except that it analyzes active code chunks in your `knitr`</span>
 <span class='co'># source file and detects non-file dependencies.</span>
@@ -212,6 +213,7 @@ Intended for advanced custom memory management.</p></li>
 <span class='co'># to analyze the active code chunks. There, it spotted</span>
 <span class='co'># where `small`, `large`, and `coef_regression2_small`</span>
 <span class='co'># were read from the cache using calls to `loadd()` and `readd()`.</span>
+})
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
