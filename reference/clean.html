@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove targets/imports from the cache. — clean • drake</title>
+<title>Invalidate and unregister targets. — clean • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,9 +39,10 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Remove targets/imports from the cache. — clean" />
+<meta property="og:title" content="Invalidate and unregister targets. — clean" />
 
-<meta property="og:description" content="Cleans up the work done by make()." />
+<meta property="og:description" content="Force targets to be out of date and remove target names
+from the data in the cache." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -117,14 +118,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove targets/imports from the cache.</h1>
+    <h1>Invalidate and unregister targets.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-clean.R'><code>R/api-clean.R</code></a></small>
     <div class="hidden name"><code>clean.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Cleans up the work done by <code><a href='make.html'>make()</a></code>.</p>
+    <p>Force targets to be out of date and remove target names
+from the data in the cache.</p>
     
     </div>
 
@@ -212,28 +214,21 @@ metadata namespaces such as "meta", "build_times", and "errors".</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>By default, <code>clean()</code> removes references to cached data.
-To deep-clean the data to free up storage/memory, use
-<code>clean(garbage_collection = TRUE)</code>. Garbage collection is slower,
-but it purges data with no remaining references. To just do garbage
-collection without cleaning, see <code><a href='drake_gc.html'>drake_gc()</a></code>.
-Also, for <code>clean()</code>, you must be in your project's working directory
-or a subdirectory of it.
-WARNING: This deletes ALL work done with <code><a href='make.html'>make()</a></code>,
-which includes
-file targets as well as the entire drake cache. Only use <code>clean()</code>
-if you're sure you won't lose anything important.</p>
-    
-    <h2 class="hasAnchor" id="safeguards"><a class="anchor" href="#safeguards"></a>Safeguards</h2>
+    <p>By default, <code>clean()</code> invalidates <strong>all</strong> targets,
+so be careful. <code>clean()</code> always:</p><ol>
+<li><p>Forces targets to be out of date so the next <code><a href='make.html'>make()</a></code>
+does not skip them.</p></li>
+<li><p>Dissociates targets' names from their values, so
+<code><a href='readd.html'>loadd(your_target)</a></code> and <code><a href='readd.html'>readd(your_target)</a></code> no longer work.</p></li>
+</ol>
 
-    
-
-<p>If you run <code>clean()</code> with no arguments, <code>drake</code>'s response is to
-remove all the targets etc. from the cache. To prevent you from
-doing this accidentally in an interactive session, <code>clean()</code>
-prompts you with a menu to confirm. The menu only appears
-once per session. You can disable it with
-<code><a href='https://rdrr.io/r/base/options.html'>options(drake_clean_menu = FALSE)</a></code>.</p>
+<p>By default, <code>clean()</code> does not actually remove the underlying data.
+Even old targets from the distant past are still in the cache
+and recoverable via <code><a href='drake_history.html'>drake_history()</a></code> and <code><a href='make.html'>make(recover = TRUE)</a></code>.
+To actually remove target data from the cache, as well as any
+<code><a href='file_out.html'>file_out()</a></code> files associated with as-yet uncleaned targets,
+run <code>clean(garbage_collection = TRUE)</code>.
+Garbage collection is slow, but it reduces the storage burden of the cache.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -246,33 +241,25 @@ once per session. You can disable it with
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"knitr"</span>))) {
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
-<span class='co'># List objects in the cache, excluding R objects</span>
-<span class='co'># imported from your workspace.</span>
-<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># Remove 'summ_regression1_large' and 'small' from the cache.</span>
-<span class='fu'>clean</span>(<span class='no'>summ_regression1_large</span>, <span class='no'>small</span>)
-<span class='co'># Those objects should be gone.</span>
-<span class='fu'><a href='cached.html'>cached</a></span>(<span class='kw'>no_imported_objects</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># Rebuild the missing targets.</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)
-<span class='co'># Remove all the targets and imports.</span>
-<span class='co'># On non-Windows machines, parallelize over at most 2 jobs.</span>
-<span class='fu'>clean</span>(<span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='co'># Make the targets again.</span>
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)
-<span class='co'># Garbage collection removes data whose references are no longer present.</span>
-<span class='co'># It is slow, but you should enable it if you want to reduce the</span>
-<span class='co'># size of the cache.</span>
-<span class='fu'>clean</span>(<span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># All the targets and imports are gone.</span>
+<span class='co'># Show all registered targets in the cache.</span>
 <span class='fu'><a href='cached.html'>cached</a></span>()
-<span class='co'># But there is still cached metadata.</span>
-<span class='fu'><a href='build_times.html'>build_times</a></span>()
-<span class='co'># To make even more room, use the "purge" flag.</span>
-<span class='fu'>clean</span>(<span class='kw'>purge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='build_times.html'>build_times</a></span>()
-<span class='co'># Completely remove the entire cache (default: '.drake/' folder).</span>
-<span class='fu'>clean</span>(<span class='kw'>destroy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># Unregister 'summ_regression1_large' and 'small' in the cache.</span>
+<span class='fu'>clean</span>(<span class='no'>summ_regression1_large</span>, <span class='no'>small</span>)
+<span class='co'># Those objects are no longer registered as targets.</span>
+<span class='fu'><a href='cached.html'>cached</a></span>()
+<span class='co'># Rebuild the invalidated/outdated targets.</span>
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>)
+<span class='co'># Clean everything.</span>
+<span class='fu'>clean</span>()
+<span class='co'># But the data objects and files are not actually gone!</span>
+<span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span>(<span class='st'>"report.md"</span>)
+<span class='fu'><a href='drake_history.html'>drake_history</a></span>()
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>, <span class='kw'>recover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># You need garbage collection to actually remove the data</span>
+<span class='co'># and any file_out() files of any uncleaned targets.</span>
+<span class='fu'>clean</span>(<span class='kw'>garbage_collection</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'><a href='drake_history.html'>drake_history</a></span>()
+<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>, <span class='kw'>recover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 }
 })
 <span class='co'># }</span></pre>
@@ -285,8 +272,6 @@ once per session. You can disable it with
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#safeguards">Safeguards</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
