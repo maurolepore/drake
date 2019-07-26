@@ -226,20 +226,6 @@ of class <code>"error"</code>.</p>
 <span class='no'>error</span> <span class='kw'>&lt;-</span> <span class='fu'>diagnose</span>(<span class='no'>my_target</span>)$<span class='no'>error</span> <span class='co'># See also warnings and messages.</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>error</span>) <span class='co'># See what's inside the error log.</span>
 <span class='no'>error</span>$<span class='no'>calls</span> <span class='co'># View the traceback. (See the traceback() function).</span>
-<span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span>(
-  <span class='fu'><a href='make.html'>make</a></span>(
-    <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-      <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-      <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span>(<span class='fl'>123</span>),
-      <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/warning.html'>warning</a></span>(<span class='fl'>456</span>)
-    ),
-    <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-  )
-)
-<span class='no'>targets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='built.html'>built</a></span>(<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>targets</span>, <span class='no'>diagnose</span>, <span class='kw'>character_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>out</span>) <span class='kw'>&lt;-</span> <span class='no'>targets</span>
-<span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='no'>out</span>)
 })
 <span class='co'># }</span></pre>
   </div>
