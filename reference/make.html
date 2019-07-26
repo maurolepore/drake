@@ -768,7 +768,7 @@ but most workflows should stick with the default <code>lock_envir = TRUE</code>.
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_config.html'>drake_config</a></span>(<span class='no'>my_plan</span>)
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Which targets need to be (re)built?</span>
-<span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>jobs</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='co'># Build what needs to be built.</span>
+<span class='fu'>make</span>(<span class='no'>my_plan</span>) <span class='co'># Build what needs to be built.</span>
 <span class='fu'><a href='outdated.html'>outdated</a></span>(<span class='no'>config</span>) <span class='co'># Everything is up to date.</span>
 <span class='co'># Change one of your imported function dependencies.</span>
 <span class='no'>reg2</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>d</span>) {
@@ -782,6 +782,9 @@ but most workflows should stick with the default <code>lock_envir = TRUE</code>.
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># See how they fit in an interactive graph.</span>
 <span class='fu'>make</span>(<span class='no'>my_plan</span>, <span class='kw'>cache_log_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># Write a CSV log file this time.</span>
 <span class='fu'><a href='vis_drake_graph.html'>vis_drake_graph</a></span>(<span class='no'>config</span>) <span class='co'># The colors changed in the graph.</span>
+<span class='co'># Run targets in parallel:</span>
+<span class='co'># options(clustermq.scheduler = "multicore") # nolint</span>
+<span class='co'># make(my_plan, parallelism = "clustermq", jobs = 2) # nolint</span>
 }
 <span class='fu'><a href='clean.html'>clean</a></span>() <span class='co'># Start from scratch next time around.</span>
 }
