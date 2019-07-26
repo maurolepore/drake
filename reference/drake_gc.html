@@ -41,10 +41,8 @@
 
 <meta property="og:title" content="Do garbage collection on the drake cache. — drake_gc" />
 
-<meta property="og:description" content="The cache is a key-value store.
-By default, the clean() function removes
-values, but not keys.
-Garbage collection removes the remaining dangling files." />
+<meta property="og:description" content="Garbage collection removes obsolete target values
+from the cache." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -127,10 +125,8 @@ Garbage collection removes the remaining dangling files." />
 
     <div class="ref-description">
     
-    <p>The cache is a key-value store.
-By default, the <code><a href='clean.html'>clean()</a></code> function removes
-values, but not keys.
-Garbage collection removes the remaining dangling files.</p>
+    <p>Garbage collection removes obsolete target values
+from the cache.</p>
     
     </div>
 
@@ -175,6 +171,13 @@ running version of drake.</p></td>
 
     <p><code>NULL</code></p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Caution: garbage collection <em>actually</em> removes data
+so it is no longer recoverable with <code><a href='drake_history.html'>drake_history()</a></code> or
+<code><a href='make.html'>make(recover = TRUE)</a></code>. You cannot undo this operation.
+Use at your own risk.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='clean.html'>clean()</a></code></p></div>
@@ -202,6 +205,8 @@ running version of drake.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

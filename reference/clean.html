@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Invalidate and unregister targets. — clean • drake</title>
+<title>Invalidate and deregister targets. — clean • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,7 +39,7 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Invalidate and unregister targets. — clean" />
+<meta property="og:title" content="Invalidate and deregister targets. — clean" />
 
 <meta property="og:description" content="Force targets to be out of date and remove target names
 from the data in the cache." />
@@ -118,7 +118,7 @@ from the data in the cache." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Invalidate and unregister targets.</h1>
+    <h1>Invalidate and deregister targets.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/api-clean.R'><code>R/api-clean.R</code></a></small>
     <div class="hidden name"><code>clean.Rd</code></div>
     </div>
@@ -218,15 +218,15 @@ metadata namespaces such as "meta", "build_times", and "errors".</p></td>
 so be careful. <code>clean()</code> always:</p><ol>
 <li><p>Forces targets to be out of date so the next <code><a href='make.html'>make()</a></code>
 does not skip them.</p></li>
-<li><p>Dissociates targets' names from their values, so
-<code><a href='readd.html'>loadd(your_target)</a></code> and <code><a href='readd.html'>readd(your_target)</a></code> no longer work.</p></li>
+<li><p>Deregisters targets so <code><a href='readd.html'>loadd(your_target)</a></code> and <code><a href='readd.html'>readd(your_target)</a></code>
+no longer work.</p></li>
 </ol>
 
 <p>By default, <code>clean()</code> does not actually remove the underlying data.
 Even old targets from the distant past are still in the cache
 and recoverable via <code><a href='drake_history.html'>drake_history()</a></code> and <code><a href='make.html'>make(recover = TRUE)</a></code>.
 To actually remove target data from the cache, as well as any
-<code><a href='file_out.html'>file_out()</a></code> files associated with as-yet uncleaned targets,
+<code><a href='file_out.html'>file_out()</a></code> files from any targets you are currently cleaning,
 run <code>clean(garbage_collection = TRUE)</code>.
 Garbage collection is slow, but it reduces the storage burden of the cache.</p>
     
@@ -243,7 +243,7 @@ Garbage collection is slow, but it reduces the storage burden of the cache.</p>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
 <span class='co'># Show all registered targets in the cache.</span>
 <span class='fu'><a href='cached.html'>cached</a></span>()
-<span class='co'># Unregister 'summ_regression1_large' and 'small' in the cache.</span>
+<span class='co'># Deregister 'summ_regression1_large' and 'small' in the cache.</span>
 <span class='fu'>clean</span>(<span class='no'>summ_regression1_large</span>, <span class='no'>small</span>)
 <span class='co'># Those objects are no longer registered as targets.</span>
 <span class='fu'><a href='cached.html'>cached</a></span>()
