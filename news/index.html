@@ -123,6 +123,13 @@
 <h1 class="page-header">
 <a href="#version-7-5-2-9000" class="anchor"></a>Version 7.5.2.9000<small> Unreleased </small>
 </h1>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Repair <code><a href="../reference/clean.html">clean(garbage_collection = TRUE, destroy = TRUE)</a></code>. Previously it threw an error.</li>
+</ul>
+</div>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
@@ -145,9 +152,9 @@
 <h1 class="page-header">
 <a href="#version-7-5-2" class="anchor"></a>Version 7.5.2<small> 2019-07-21 </small>
 </h1>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Eliminate accidental creations of <code>.drake_history</code> in <code><a href="../reference/plan_to_code.html">plan_to_code()</a></code>, <code><a href="../reference/plan_to_notebook.html">plan_to_notebook()</a></code>, and the examples in the help files.</li>
 </ul>
@@ -157,9 +164,9 @@
 <h1 class="page-header">
 <a href="#version-7-5-1" class="anchor"></a>Version 7.5.1<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Change .drake_history$ to ^.drake_history$ in .Rbuildignore appease CRAN checks.</li>
 <li>Repair help file examples.</li>
@@ -201,9 +208,9 @@
 <li>Use <code>set_hash()</code> and <code>get_hash()</code> in <code>storr</code> to double the speed of progress tracking.</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>In the static code analysis for dependency detection, ignore list elements referenced with <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> (<a href='https://github.com/ropensci/drake/issues/938'>#938</a>).</li>
 <li>Minor: handle strings embedded in language objects (<a href='https://github.com/ropensci/drake/issues/934'>#934</a>).</li>
@@ -224,9 +231,9 @@
 <code><a href="../reference/rescue_cache.html">rescue_cache()</a></code> no longer returns a value.</li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Restore compatibility with <code>clustermq</code> (<a href="https://github.com/ropensci/drake/issues/898"><a href='https://github.com/ropensci/drake/issues/898'>#898</a></a>). Suggest version &gt;= 0.8.8 but allow 0.8.7 as well.</li>
 <li>Ensure <code>drake</code> recomputes <code>config$layout</code> when <code>knitr</code> reports change (<a href="https://github.com/ropensci/drake/issues/887"><a href='https://github.com/ropensci/drake/issues/887'>#887</a></a>).</li>
@@ -273,9 +280,9 @@
 <h1 class="page-header">
 <a href="#version-7-3-0" class="anchor"></a>Version 7.3.0<small> 2019-05-19 </small>
 </h1>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Accommodate <code>rlang</code>’s new interpolation operator <code>{{</code>, which was causing <code><a href="../reference/make.html">make()</a></code> to fail when <code><a href="../reference/drake_plan.html">drake_plan()</a></code> commands are enclosed in curly braces (<a href="https://github.com/ropensci/drake/issues/864"><a href='https://github.com/ropensci/drake/issues/864'>#864</a></a>).</li>
 <li>Move “<code>config$lock_envir &lt;- FALSE</code>” from <code>loop_build()</code> to <code>backend_loop()</code>. This makes sure <code>config$envir</code> is correctly locked in <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
@@ -320,9 +327,9 @@
 <li>In the DSL (e.g. <code><a href="../reference/drake_plan.html">drake_plan(x = target(..., transform = map(...)))</a></code> avoid inserting extra dots in target names when the grouping variables are character vectors (<a href="https://github.com/ropensci/drake/issues/847"><a href='https://github.com/ropensci/drake/issues/847'>#847</a></a>). Target names come out much nicer this way, but those name changes will invalidate some targets (i.e. they need to be rebuilt with <code><a href="../reference/make.html">make()</a></code>).</li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Use <code>config$jobs_preprocess</code> (local jobs) in several places where <code>drake</code> was incorrectly using <code>config$jobs</code> (meant for targets).</li>
 <li>Allow <code><a href="../reference/readd.html">loadd(x, deps = TRUE, config = your_config)</a></code> to work even if <code>x</code> is not cached (<a href="https://github.com/ropensci/drake/issues/830"><a href='https://github.com/ropensci/drake/issues/830'>#830</a></a>). Required disabling <code>tidyselect</code> functionality when <code>deps</code> <code>TRUE</code>. There is a new note in the help file about this, and an informative console message prints out on <code><a href="../reference/readd.html">loadd(deps = TRUE, tidyselect = TRUE)</a></code>. The default value of <code>tidyselect</code> is now <code>!deps</code>.</li>
@@ -356,9 +363,9 @@
 <h1 class="page-header">
 <a href="#version-7-1-0" class="anchor"></a>Version 7.1.0<small> 2019-04-07 </small>
 </h1>
-<div id="bug-fixes-6" class="section level2">
+<div id="bug-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-7" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>In <code>drake</code> 7.0.0, if you run <code><a href="../reference/make.html">make()</a></code> in interactive mode and respond to the menu prompt with an option other than <code>1</code> or <code>2</code>, targets will still build.</li>
 <li>Make sure file outputs show up in <code>drake_graph()</code>. The bug came from <code>append_output_file_nodes()</code>, a utility function of <code><a href="../reference/drake_graph_info.html">drake_graph_info()</a></code>.</li>
@@ -424,9 +431,9 @@
 <li>Change the default value of <code>hover</code> to <code>FALSE</code> in visualization functions. Improves speed.</li>
 </ul>
 </div>
-<div id="bug-fixes-7" class="section level2">
+<div id="bug-fixes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-7" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-8" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Allow <code><a href="../reference/bind_plans.html">bind_plans()</a></code> to work with lists of plans (<code><a href="../reference/bind_plans.html">bind_plans(list(plan1, plan2))</a></code> was returning <code>NULL</code> in <code>drake</code> 6.2.0 and 6.2.1).</li>
 <li>Ensure that <code><a href="../reference/get_cache.html">get_cache(path = "non/default/path", search = FALSE)</a></code> looks for the cache in <code>"non/default/path"</code> instead of <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code>.</li>
@@ -504,9 +511,9 @@
 <li>Add a new <code><a href="../reference/drake_envir.html">drake_envir()</a></code> function that returns the environment where <code>drake</code> builds targets. Can only be accessed from inside the commands in the workflow plan data frame. The primary use case is to allow users to remove individual targets from memory at predetermined build steps.</li>
 </ul>
 </div>
-<div id="bug-fixes-8" class="section level2">
+<div id="bug-fixes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-8" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-9" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Ensure compatibility with <code>tibble</code> 2.0.0.</li>
 <li>Stop returning <code>0s</code> from <code><a href="../reference/predict_runtime.html">predict_runtime(targets_only = TRUE)</a></code> when some targets are outdated and others are not.</li>
@@ -561,9 +568,9 @@
 <li>Add a hasty mode: <code><a href="../reference/make.html">make(parallelism = "hasty")</a></code> skips all of <code>drake</code>’s expensive caching and checking. All targets run every single time and you are responsible for saving results to custom output files, but almost all the by-target overhead is gone.</li>
 </ul>
 </div>
-<div id="bug-fixes-9" class="section level2">
+<div id="bug-fixes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-9" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-10" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Ensure commands in the plan are re-analyzed for dependencies when new imports are added (<a href="https://github.com/ropensci/drake/issues/548" class="uri">https://github.com/ropensci/drake/issues/548</a>). Was a bug in version 6.0.0 only.</li>
 <li>Call <code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code> on the <code>file</code> argument to <code><a href="../reference/render_drake_graph.html">render_drake_graph()</a></code> and <code><a href="../reference/render_sankey_drake_graph.html">render_sankey_drake_graph()</a></code>. That way, tildes in file paths no longer interfere with the rendering of static image files. Compensates for <a href="https://github.com/wch/webshot" class="uri">https://github.com/wch/webshot</a>.</li>
@@ -609,9 +616,9 @@
 <li>Be more discerning in detecting dependencies. In <code>code_dependencies()</code>, restrict the possible global variables to the ones mentioned in the new <code>globals</code> argument (turned off when <code>NULL</code>. In practical workflows, global dependencies are restricted to items in <code>envir</code> and proper targets in the plan. In <code><a href="../reference/deps_code.html">deps_code()</a></code>, the <code>globals</code> slot of the output list is now a list of <em>candidate</em> globals, not necessarily actual globals (some may not be targets or variables in <code>envir</code>).</li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level2">
+<div id="bug-fixes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-10" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-11" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>In the call to <code><a href="https://rdrr.io/r/base/unlink.html">unlink()</a></code> in <code><a href="../reference/clean.html">clean()</a></code>, set <code>recursive</code> and <code>force</code> to <code>FALSE</code>. This should prevent the accidental deletion of whole directories.</li>
 <li>Previously, <code><a href="../reference/clean.html">clean()</a></code> deleted input-only files if no targets from the plan were cached. A patch and a unit test are included in this release.</li>
