@@ -145,8 +145,9 @@ Skipped objects are not listed.</p>
     <tr>
       <th>...</th>
       <td><p>Objects to load from the cache, as names (unquoted)
-or character strings (quoted). Similar to <code>...</code> in
-<code><a href='https://rdrr.io/r/base/rm.html'>remove()</a></code> and <code><a href='https://rdrr.io/r/base/rm.html'>rm()</a></code>.</p></td>
+or character strings (quoted). If the <code>tidyselect</code> package is installed,
+you can also supply <code>dplyr</code>-style <code>tidyselect</code>
+commands such as <code>starts_with()</code>, <code>ends_with()</code>, and <code>one_of()</code>.</p></td>
     </tr>
     <tr>
       <th>list</th>
@@ -189,7 +190,7 @@ If supplied, <code>path</code> is ignored.</p></td>
       <th>progress</th>
       <td><p>Character vector for filtering the build progress results.
 Defaults to <code>NULL</code> (no filtering) to report progress of all objects.
-Supported filters are <code>"done"</code>, <code>"running"</code>, <code>"failed"</code> and <code>"none"</code>.</p></td>
+Supported filters are <code>"done"</code>, <code>"running"</code>, and <code>"failed"</code>.</p></td>
     </tr>
     </table>
     
