@@ -187,6 +187,12 @@ computer (from <code>Sys.info()["nodename"]</code>).
     <p>A drake/storr cache in a folder called <code>.drake/</code>,
 if available. <code>NULL</code> otherwise.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>drake_cache()</code> actually returns a <em>decorated</em> <code>storr</code>,
+an object that <em>contains</em> a <code>storr</code> (plus bells and whistles).
+To get the <em>actual</em> inner <code>storr</code>, use <code>drake_cache()$storr</code>.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='new_cache.html'>new_cache()</a></code>, <code><a href='drake_config.html'>drake_config()</a></code></p></div>
@@ -202,9 +208,12 @@ if available. <code>NULL</code> otherwise.</p>
 <span class='fu'><a href='load_mtcars_example.html'>load_mtcars_example</a></span>() <span class='co'># Get the code with drake_example("mtcars").</span>
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_cache</span>() <span class='co'># Now, there is a cache.</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/storr/man/storr_rds.html'>storr_rds</a></span>(<span class='st'>".drake"</span>) <span class='co'># Equivalent.</span>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/storr/man/storr_rds.html'>storr_rds</a></span>(<span class='st'>".drake"</span>) <span class='co'># Nearly equivalent.</span>
 <span class='co'># List the objects readable from the cache with readd().</span>
 <span class='no'>x</span>$<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
+<span class='co'># drake_cache() actually returns a *decorated* storr.</span>
+<span class='co'># The *real* storr is inside.</span>
+<span class='fu'>drake_cache</span>()$<span class='no'>storr</span>
 }
 })
 <span class='co'># }</span></pre>
@@ -215,6 +224,8 @@ if available. <code>NULL</code> otherwise.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

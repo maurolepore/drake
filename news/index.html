@@ -140,6 +140,7 @@
 <h2 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
+<li>Support specialized data storage via a decorated cache and <code>return_*()</code> functions (<a href='https://github.com/ropensci/drake/issues/971'>#971</a>). This allows users to leverage faster ways to save and load targets, such as <code>write_fst()</code> for data frames and <code>save_model_hdf5()</code> for Keras models. It also improves memory because it prevents <code>storr</code> from making a serialized in-memory copy of large data objects.</li>
 <li>Add <code>tidyselect</code> functionality for <code>...</code> in <code><a href="../reference/progress.html">progress()</a></code>, analogous to <code><a href="../reference/readd.html">loadd()</a></code>, <code><a href="../reference/build_times.html">build_times()</a></code>, and <code><a href="../reference/clean.html">clean()</a></code>.</li>
 <li>Support S3 for user-defined generics (<a href='https://github.com/ropensci/drake/issues/959'>#959</a>). If the generic <code>do_stuff()</code> and the method <code>stuff.your_class()</code> are defined in <code>envir</code>, and if <code>do_stuff()</code> has a call to <code><a href="https://rdrr.io/r/base/UseMethod.html">UseMethod("stuff")</a></code>, then <code>drake</code>’s code analysis will detect <code>stuff.your_class()</code> as a dependency of <code>do_stuff()</code>.</li>
 </ul>

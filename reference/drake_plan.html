@@ -212,7 +212,7 @@ custom columns.</p>
 
     <p>Besides <code>"target"</code> and <code>"command"</code>, <code>drake_plan()</code>
 understands a special set of optional columns. For details, visit
-<a href='https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan'>https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan</a></p>
+<a href='https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan'>https://ropenscilabs.github.io/drake-manual/plans.html#special-custom-columns-in-your-plan</a> # nolint</p>
     
     <h2 class="hasAnchor" id="columns"><a class="anchor" href="#columns"></a>Columns</h2>
 
@@ -228,6 +228,18 @@ or by appending columns post-hoc (e.g. <code>plan$col &lt;- vals</code>).</p>
 but <code>drake</code> looks for them at various points in the workflow.</p><ul>
 <li><p><code>elapsed</code> and <code>cpu</code>: number of seconds to wait for the target to build
 before timing out (<code>elapsed</code> for elapsed time and <code>cpu</code> for CPU time).</p></li>
+<li><p><code>format</code>: set a storage format to save big targets more efficiently.
+Most formats are faster than ordinary storage, and they consume
+far less memory. Available formats:</p><ul>
+<li><p><code>"fst"</code>: save big data frames fast. The target must be a data frame,
+and you must have the <code>fst</code> package installed.</p></li>
+<li><p><code>"keras"</code>: save Keras models as HDF5 files.
+Requires the <code>keras</code> package.</p></li>
+<li><p><code>"rds"</code>: save any object. This is similar to the default storage
+except we avoid creating a serialized copy of
+the entire target in memory.
+Requires R &gt;= 3.5.0 so drake can use ALTREP.</p></li>
+</ul></li>
 <li><p><code>hpc</code>: logical values (<code>TRUE</code>/<code>FALSE</code>/<code>NA</code>) whether to send each target
 to parallel workers.
 Visit <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity'>https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity</a>

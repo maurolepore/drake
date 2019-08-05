@@ -298,7 +298,7 @@ that you specify in the <code>group</code> argument to <code><a href='drake_grap
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"networkD3"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"visNetwork"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='co'># Plot the network graph representation of the workflow.</span>
-<span class='fu'>sankey_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'100%'</span>) <span class='co'># The width is passed to visNetwork</span>
+<span class='fu'>sankey_drake_graph</span>(<span class='no'>config</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>'100%'</span>)
 <span class='co'># Show the legend separately.</span>
 <span class='kw pkg'>visNetwork</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/visNetwork/man/visNetwork.html'>visNetwork</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='kw pkg'>drake</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/drake/man/legend_nodes.html'>legend_nodes</a></span>())
 <span class='fu'><a href='make.html'>make</a></span>(<span class='no'>my_plan</span>) <span class='co'># Run the project, build the targets.</span>
