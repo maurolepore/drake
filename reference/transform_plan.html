@@ -285,20 +285,20 @@ regardless of the value you supply to this argument.</p></td>
 #&gt;  2 survey_2            survey_data(2)                                     
 #&gt;  3 download_5          download_data()                                    
 #&gt;  4 download_6          download_data()                                    
-#&gt;  5 analysis_survey_1   analyze(survey_1)                                  
-#&gt;  6 analysis_survey_2   analyze(survey_2)                                  
-#&gt;  7 analysis_download_5 analyze(download_5)                                
-#&gt;  8 analysis_download_6 analyze(download_6)                                
+#&gt;  5 analysis_download_5 analyze(download_5)                                
+#&gt;  6 analysis_download_6 analyze(download_6)                                
+#&gt;  7 analysis_survey_1   analyze(survey_1)                                  
+#&gt;  8 analysis_survey_2   analyze(survey_2)                                  
 #&gt;  9 results_download    bind_rows(analysis_download_5, analysis_download_6)
 #&gt; 10 results_survey      bind_rows(analysis_survey_1, analysis_survey_2)    </div><div class='input'><span class='fu'><a href='drake_plan_source.html'>drake_plan_source</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; drake_plan(
 #&gt;   survey_1 = survey_data(1),
 #&gt;   survey_2 = survey_data(2),
 #&gt;   download_5 = download_data(),
 #&gt;   download_6 = download_data(),
-#&gt;   analysis_survey_1 = analyze(survey_1),
-#&gt;   analysis_survey_2 = analyze(survey_2),
 #&gt;   analysis_download_5 = analyze(download_5),
 #&gt;   analysis_download_6 = analyze(download_6),
+#&gt;   analysis_survey_1 = analyze(survey_1),
+#&gt;   analysis_survey_2 = analyze(survey_2),
 #&gt;   results_download = bind_rows(analysis_download_5, analysis_download_6),
 #&gt;   results_survey = bind_rows(analysis_survey_1, analysis_survey_2)
 #&gt; )</div></pre>

@@ -133,7 +133,8 @@
 <ul>
 <li>Make <code><a href="../reference/drake_plan.html">drake_plan(transform = slice())</a></code> understand <code>.id</code> and grouping variables (<a href='https://github.com/ropensci/drake/issues/963'>#963</a>).</li>
 <li>Repair <code><a href="../reference/clean.html">clean(garbage_collection = TRUE, destroy = TRUE)</a></code>. Previously it destroyed the cache before trying to collect garbage.</li>
-<li>Ensure that <code><a href="../reference/r_make.html">r_make()</a></code> passes informative error messages back to the calling process (<a href='https://github.com/ropensci/drake/issues/969'>#969</a>),</li>
+<li>Ensure that <code><a href="../reference/r_make.html">r_make()</a></code> passes informative error messages back to the calling process (<a href='https://github.com/ropensci/drake/issues/969'>#969</a>).</li>
+<li>Retain upstream grouping variables of <code><a href="../reference/map.html">map()</a></code> and <code><a href="../reference/cross.html">cross()</a></code> on topologically side-by-side targets (<a href='https://github.com/ropensci/drake/issues/983'>#983</a>).</li>
 </ul>
 </div>
 <div id="new-features" class="section level2">
