@@ -357,18 +357,18 @@ Development
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co">#&gt; # A tibble: 12 x 10</span></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">#&gt;    target current built exists hash  command   seed runtime quiet</span></a>
 <a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;  &lt;lgl&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;lgl&gt;</span></a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt;  1 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.00300 NA   </span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt;  1 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.002   NA   </span></a>
 <a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt;  2 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.001   NA   </span></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt;  3 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.005   NA   </span></a>
-<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt;  4 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.001   NA   </span></a>
-<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;  5 hist   FALSE   2019… TRUE   10bc… create… 2.10e8 0.02    NA   </span></a>
-<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt;  6 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.00600 NA   </span></a>
-<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt;  7 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.01    NA   </span></a>
-<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.011   NA   </span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt;  3 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.004   NA   </span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt;  4 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.00200 NA   </span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;  5 hist   FALSE   2019… TRUE   10bc… create… 2.10e8 0.018   NA   </span></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt;  6 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.00500 NA   </span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt;  7 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.009   NA   </span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.01    NA   </span></a>
 <a class="sourceLine" id="cb15-14" data-line-number="14"><span class="co">#&gt;  9 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.008   NA   </span></a>
-<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt; 10 report TRUE    2019… TRUE   23db… "rmark… 1.30e9 0.961   TRUE </span></a>
-<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt; 11 report TRUE    2019… TRUE   23db… "rmark… 1.30e9 0.613   TRUE </span></a>
-<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt; 12 report TRUE    2019… TRUE   23db… "rmark… 1.30e9 0.610   TRUE </span></a>
+<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt; 10 report TRUE    2019… TRUE   621a… "rmark… 1.30e9 0.953   TRUE </span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt; 11 report TRUE    2019… TRUE   621a… "rmark… 1.30e9 0.592   TRUE </span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt; 12 report TRUE    2019… TRUE   621a… "rmark… 1.30e9 0.577   TRUE </span></a>
 <a class="sourceLine" id="cb15-18" data-line-number="18"><span class="co">#&gt; # … with 1 more variable: output_file &lt;chr&gt;</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
@@ -432,7 +432,7 @@ Development
 <a class="sourceLine" id="cb18-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb18-12" data-line-number="12"><span class="co"># When was the raw data *really* first built?</span></a>
 <a class="sourceLine" id="cb18-13" data-line-number="13"><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(raw_data)<span class="op">$</span>date</a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">#&gt; [1] "2019-08-09 13:28:43.679361 +0000 GMT"</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">#&gt; [1] "2019-08-09 16:34:34.686875 +0000 GMT"</span></a></code></pre></div>
 </div>
 <div id="renaming" class="section level3">
 <h3 class="hasAnchor">
