@@ -73,10 +73,16 @@
     <loc>https://ropensci.github.io/drake/reference/code_to_plan.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/combine.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/config.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/configure_cache.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/drake/reference/cross.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/dataframes_graph.html</loc>
@@ -346,6 +352,9 @@
     <loc>https://ropensci.github.io/drake/reference/manage_memory.html</loc>
   </url>
   <url>
+    <loc>https://ropensci.github.io/drake/reference/map.html</loc>
+  </url>
+  <url>
     <loc>https://ropensci.github.io/drake/reference/map_plan.html</loc>
   </url>
   <url>
@@ -509,6 +518,9 @@
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/show_source.html</loc>
+  </url>
+  <url>
+    <loc>https://ropensci.github.io/drake/reference/split.html</loc>
   </url>
   <url>
     <loc>https://ropensci.github.io/drake/reference/static_drake_graph.html</loc>

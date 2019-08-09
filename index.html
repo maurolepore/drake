@@ -325,28 +325,51 @@ Development
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; target hist</span></a>
 <a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; target report</span></a></code></pre></div>
 </div>
+<div id="big-data-efficiency" class="section level2">
+<h2 class="hasAnchor">
+<a href="#big-data-efficiency" class="anchor"></a>Big data efficiency</h2>
+<p>Select a secialized data format to increase speed and reduce memory consumption. In version 7.5.2.9000 and above, the available formats are <a href="https://github.com/fstpackage/fst">“fst”</a> for data frames (example below) and “keras” for <a href="https://keras.rstudio.com/">Keras</a> models (<a href="https://ropenscilabs.github.io/drake-manual/churn.html#plan">example here</a>).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(drake)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="fl">1e8</span> <span class="co"># Each target is 1.6 GB in memory.</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">plan &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_plan.html">drake_plan</a></span>(</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">  <span class="dt">data_fst =</span> <span class="kw"><a href="reference/target.html">target</a></span>(</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">    <span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(n), <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(n)),</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">    <span class="dt">format =</span> <span class="st">"fst"</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">  ),</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">data_old =</span> <span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(n), <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(n))</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="kw"><a href="reference/make.html">make</a></span>(plan)</a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; target data_fst</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; target data_old</span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="kw"><a href="reference/build_times.html">build_times</a></span>(<span class="dt">type =</span> <span class="st">"build"</span>)</a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt;   target   elapsed              user                 system    </span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt;   &lt;chr&gt;    &lt;Duration&gt;           &lt;Duration&gt;           &lt;Duration&gt;</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 1 data_fst 13.93s               37.562s              7.954s    </span></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; 2 data_old 184s (~3.07 minutes) 177s (~2.95 minutes) 4.157s</span></a></code></pre></div>
+</div>
 <div id="history-and-provenance" class="section level2">
 <h2 class="hasAnchor">
 <a href="#history-and-provenance" class="anchor"></a>History and provenance</h2>
 <p>As of version 7.5.2, <code>drake</code> tracks the history and provenance of your targets: what you built, when you built it, how you built it, the arguments you used in your function calls, and how to get the data back. (Disable with <code><a href="reference/make.html">make(history = FALSE)</a></code>)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">history &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_history.html">drake_history</a></span>(<span class="dt">analyze =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">history</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 12 x 10</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;    target current built exists hash  command   seed runtime quiet</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;  &lt;lgl&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;lgl&gt;</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;  1 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.00300 NA   </span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;  2 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.001   NA   </span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;  3 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.00500 NA   </span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  4 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.001   NA   </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  5 hist   FALSE   2019… TRUE   10bc… create… 2.10e8 0.02    NA   </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  6 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.006   NA   </span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt;  7 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.01000 NA   </span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.01000 NA   </span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt;  9 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.00900 NA   </span></a>
-<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 10 report TRUE    2019… TRUE   fdff… "rmark… 1.30e9 1.03    TRUE </span></a>
-<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 11 report TRUE    2019… TRUE   fdff… "rmark… 1.30e9 0.629   TRUE </span></a>
-<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; 12 report TRUE    2019… TRUE   fdff… "rmark… 1.30e9 0.629   TRUE </span></a>
-<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; # … with 1 more variable: output_file &lt;chr&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">history &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_history.html">drake_history</a></span>(<span class="dt">analyze =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">history</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co">#&gt; # A tibble: 12 x 10</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">#&gt;    target current built exists hash  command   seed runtime quiet</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt;    &lt;chr&gt;  &lt;lgl&gt;   &lt;chr&gt; &lt;lgl&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;   &lt;dbl&gt; &lt;lgl&gt;</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt;  1 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.00300 NA   </span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt;  2 data   TRUE    2019… TRUE   e580… raw_da… 1.29e9 0.001   NA   </span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt;  3 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.00400 NA   </span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt;  4 fit    TRUE    2019… TRUE   62a1… lm(Sep… 1.11e9 0.001   NA   </span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;  5 hist   FALSE   2019… TRUE   10bc… create… 2.10e8 0.02    NA   </span></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt;  6 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.006   NA   </span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt;  7 hist   TRUE    2019… TRUE   00fa… create… 2.10e8 0.009   NA   </span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt;  8 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.0110  NA   </span></a>
+<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="co">#&gt;  9 raw_d… TRUE    2019… TRUE   6317… "readx… 1.20e9 0.008   NA   </span></a>
+<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt; 10 report TRUE    2019… TRUE   b4a0… "rmark… 1.30e9 0.974   TRUE </span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt; 11 report TRUE    2019… TRUE   b4a0… "rmark… 1.30e9 0.604   TRUE </span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt; 12 report TRUE    2019… TRUE   b4a0… "rmark… 1.30e9 0.590   TRUE </span></a>
+<a class="sourceLine" id="cb15-18" data-line-number="18"><span class="co">#&gt; # … with 1 more variable: output_file &lt;chr&gt;</span></a></code></pre></div>
 <p>Remarks:</p>
 <ul>
 <li>The <code>quiet</code> column appears above because one of the <code><a href="reference/drake_plan.html">drake_plan()</a></code> commands has <code>knit(quiet = TRUE)</code>.</li>
@@ -354,31 +377,31 @@ Development
 <li>Advanced: if you use <code><a href="reference/make.html">make(cache_log_file = TRUE)</a></code> and put the cache log file under version control, you can match the hashes from <code><a href="reference/drake_history.html">drake_history()</a></code> with the <code>git</code> commit history of your code.</li>
 </ul>
 <p>Let’s use the history to recover the oldest histogram.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">hash &lt;-<span class="st"> </span>history <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(target <span class="op">==</span><span class="st"> "hist"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(hash) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">cache &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_cache.html">drake_cache</a></span>()</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">cache<span class="op">$</span><span class="kw">get_value</span>(hash)</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">hash &lt;-<span class="st"> </span>history <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(target <span class="op">==</span><span class="st"> "hist"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(hash) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dt">n =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">cache &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_cache.html">drake_cache</a></span>()</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">cache<span class="op">$</span><span class="kw">get_value</span>(hash)</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
 <p><img src="reference/figures/histhistory-1.png" width="700"></p>
 </div>
 <div id="reproducible-data-recovery-and-renaming" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reproducible-data-recovery-and-renaming" class="anchor"></a>Reproducible data recovery and renaming</h2>
 <p>Remember how we made that change to our histogram? What if we want to change it back? If we revert <code>create_plot()</code>, <code><a href="reference/make.html">make(plan, recover = TRUE)</a></code> restores the original plot.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">create_plot &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(data, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> Petal.Width, <span class="dt">fill =</span> Species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>()</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co"># The report still needs to run in order to restore report.html.</span></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">recover =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="co">#&gt; recover hist</span></a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"><span class="co">#&gt; target report</span></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb16-11" data-line-number="11"><span class="kw"><a href="reference/readd.html">readd</a></span>(hist) <span class="co"># old histogram</span></a>
-<a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">create_plot &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">  <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(data, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> Petal.Width, <span class="dt">fill =</span> Species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>()</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co"># The report still needs to run in order to restore report.html.</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">recover =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; recover hist</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt; target report</span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="kw"><a href="reference/readd.html">readd</a></span>(hist) <span class="co"># old histogram</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
 <p><img src="reference/figures/recoverhist-1.png" width="700"></p>
 <p><code>drake</code>’s data recovery feature is another way to avoid rerunning commands. It is useful if:</p>
 <ul>
@@ -396,56 +419,56 @@ Development
 <h3 class="hasAnchor">
 <a href="#undoing-clean" class="anchor"></a>Undoing <code>clean()</code>
 </h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Is the data really gone?</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="reference/clean.html">clean</a></span>()</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co"># Nope! You need clean(garbage_collection = TRUE) to delete stuff.</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">recover =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; recover raw_data</span></a>
-<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#&gt; recover data</span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; recover fit</span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt; recover hist</span></a>
-<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt; recover report</span></a>
-<a class="sourceLine" id="cb17-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co"># When was the raw data *really* first built?</span></a>
-<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(raw_data)<span class="op">$</span>date</a>
-<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="co">#&gt; [1] "2019-08-09 02:00:47.448261 +0000 GMT"</span></a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># Is the data really gone?</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="reference/clean.html">clean</a></span>()</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co"># Nope! You need clean(garbage_collection = TRUE) to delete stuff.</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">recover =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; recover raw_data</span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt; recover data</span></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co">#&gt; recover fit</span></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co">#&gt; recover hist</span></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co">#&gt; recover report</span></a>
+<a class="sourceLine" id="cb18-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb18-12" data-line-number="12"><span class="co"># When was the raw data *really* first built?</span></a>
+<a class="sourceLine" id="cb18-13" data-line-number="13"><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(raw_data)<span class="op">$</span>date</a>
+<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">#&gt; [1] "2019-08-09 04:18:09.052393 +0000 GMT"</span></a></code></pre></div>
 </div>
 <div id="renaming" class="section level3">
 <h3 class="hasAnchor">
 <a href="#renaming" class="anchor"></a>Renaming</h3>
 <p>You can use recovery to rename a target. The trick is to supply the random number generator seed that <code>drake</code> used with the old target name. Also, renaming a target unavoidably invalidates downstream targets.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># Get the old seed.</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">old_seed &lt;-<span class="st"> </span><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(data)<span class="op">$</span>seed</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co"># Now rename the data and supply the old seed.</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5">plan &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_plan.html">drake_plan</a></span>(</a>
-<a class="sourceLine" id="cb18-6" data-line-number="6">  <span class="dt">raw_data =</span> readxl<span class="op">::</span><span class="kw"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span>(<span class="kw"><a href="reference/file_in.html">file_in</a></span>(<span class="st">"raw_data.xlsx"</span>)),</a>
-<a class="sourceLine" id="cb18-7" data-line-number="7">  </a>
-<a class="sourceLine" id="cb18-8" data-line-number="8">  <span class="co"># Previously just named "data".</span></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9">  <span class="dt">iris_data =</span> <span class="kw"><a href="reference/target.html">target</a></span>(</a>
-<a class="sourceLine" id="cb18-10" data-line-number="10">    raw_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-11" data-line-number="11"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Species =</span> forcats<span class="op">::</span><span class="kw"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span>(Species)),</a>
-<a class="sourceLine" id="cb18-12" data-line-number="12">    <span class="dt">seed =</span> <span class="op">!!</span>old_seed</a>
-<a class="sourceLine" id="cb18-13" data-line-number="13">  ),</a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb18-15" data-line-number="15">  <span class="co"># `iris_data` will be recovered from `data`,</span></a>
-<a class="sourceLine" id="cb18-16" data-line-number="16">  <span class="co"># but `hist` and `fit` have changed commands,</span></a>
-<a class="sourceLine" id="cb18-17" data-line-number="17">  <span class="co"># so they will build from scratch.</span></a>
-<a class="sourceLine" id="cb18-18" data-line-number="18">  <span class="dt">hist =</span> <span class="kw">create_plot</span>(iris_data),</a>
-<a class="sourceLine" id="cb18-19" data-line-number="19">  <span class="dt">fit =</span> <span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Width <span class="op">+</span><span class="st"> </span>Species, iris_data),</a>
-<a class="sourceLine" id="cb18-20" data-line-number="20">  <span class="dt">report =</span> rmarkdown<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span>(</a>
-<a class="sourceLine" id="cb18-21" data-line-number="21">    <span class="kw"><a href="reference/knitr_in.html">knitr_in</a></span>(<span class="st">"report.Rmd"</span>),</a>
-<a class="sourceLine" id="cb18-22" data-line-number="22">    <span class="dt">output_file =</span> <span class="kw"><a href="reference/file_out.html">file_out</a></span>(<span class="st">"report.html"</span>),</a>
-<a class="sourceLine" id="cb18-23" data-line-number="23">    <span class="dt">quiet =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb18-24" data-line-number="24">  )</a>
-<a class="sourceLine" id="cb18-25" data-line-number="25">)</a>
-<a class="sourceLine" id="cb18-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb18-27" data-line-number="27"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">recover =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb18-28" data-line-number="28"><span class="co">#&gt; recover iris_data</span></a>
-<a class="sourceLine" id="cb18-29" data-line-number="29"><span class="co">#&gt; target fit</span></a>
-<a class="sourceLine" id="cb18-30" data-line-number="30"><span class="co">#&gt; target hist</span></a>
-<a class="sourceLine" id="cb18-31" data-line-number="31"><span class="co">#&gt; target report</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># Get the old seed.</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">old_seed &lt;-<span class="st"> </span><span class="kw"><a href="reference/diagnose.html">diagnose</a></span>(data)<span class="op">$</span>seed</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co"># Now rename the data and supply the old seed.</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">plan &lt;-<span class="st"> </span><span class="kw"><a href="reference/drake_plan.html">drake_plan</a></span>(</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">  <span class="dt">raw_data =</span> readxl<span class="op">::</span><span class="kw"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span>(<span class="kw"><a href="reference/file_in.html">file_in</a></span>(<span class="st">"raw_data.xlsx"</span>)),</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">  <span class="co"># Previously just named "data".</span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">  <span class="dt">iris_data =</span> <span class="kw"><a href="reference/target.html">target</a></span>(</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10">    raw_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="st">      </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">Species =</span> forcats<span class="op">::</span><span class="kw"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span>(Species)),</a>
+<a class="sourceLine" id="cb19-12" data-line-number="12">    <span class="dt">seed =</span> <span class="op">!!</span>old_seed</a>
+<a class="sourceLine" id="cb19-13" data-line-number="13">  ),</a>
+<a class="sourceLine" id="cb19-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb19-15" data-line-number="15">  <span class="co"># `iris_data` will be recovered from `data`,</span></a>
+<a class="sourceLine" id="cb19-16" data-line-number="16">  <span class="co"># but `hist` and `fit` have changed commands,</span></a>
+<a class="sourceLine" id="cb19-17" data-line-number="17">  <span class="co"># so they will build from scratch.</span></a>
+<a class="sourceLine" id="cb19-18" data-line-number="18">  <span class="dt">hist =</span> <span class="kw">create_plot</span>(iris_data),</a>
+<a class="sourceLine" id="cb19-19" data-line-number="19">  <span class="dt">fit =</span> <span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(Sepal.Width <span class="op">~</span><span class="st"> </span>Petal.Width <span class="op">+</span><span class="st"> </span>Species, iris_data),</a>
+<a class="sourceLine" id="cb19-20" data-line-number="20">  <span class="dt">report =</span> rmarkdown<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span>(</a>
+<a class="sourceLine" id="cb19-21" data-line-number="21">    <span class="kw"><a href="reference/knitr_in.html">knitr_in</a></span>(<span class="st">"report.Rmd"</span>),</a>
+<a class="sourceLine" id="cb19-22" data-line-number="22">    <span class="dt">output_file =</span> <span class="kw"><a href="reference/file_out.html">file_out</a></span>(<span class="st">"report.html"</span>),</a>
+<a class="sourceLine" id="cb19-23" data-line-number="23">    <span class="dt">quiet =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb19-24" data-line-number="24">  )</a>
+<a class="sourceLine" id="cb19-25" data-line-number="25">)</a>
+<a class="sourceLine" id="cb19-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb19-27" data-line-number="27"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">recover =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb19-28" data-line-number="28"><span class="co">#&gt; recover iris_data</span></a>
+<a class="sourceLine" id="cb19-29" data-line-number="29"><span class="co">#&gt; target fit</span></a>
+<a class="sourceLine" id="cb19-30" data-line-number="30"><span class="co">#&gt; target hist</span></a>
+<a class="sourceLine" id="cb19-31" data-line-number="31"><span class="co">#&gt; target report</span></a></code></pre></div>
 </div>
 </div>
 <div id="independent-replication" class="section level2">
@@ -469,28 +492,28 @@ Development
 <h1 class="hasAnchor">
 <a href="#scale-up-and-out-" class="anchor"></a>Scale up and out.</h1>
 <p>Not every project can complete in a single R session on your laptop. Some projects need more speed or computing power. Some require a few local processor cores, and some need large high-performance computing systems. But parallel computing is hard. Your tables and figures depend on your analysis results, and your analyses depend on your datasets, so some tasks must finish before others even begin. <code>drake</code> knows what to do. Parallelism is implicit and automatic. See the <a href="https://ropenscilabs.github.io/drake-manual/hpc.html">high-performance computing guide</a> for all the details.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># Use the spare cores on your local machine.</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">jobs =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co"># Or scale up to a supercomputer.</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw"><a href="reference/drake_hpc_template_file.html">drake_hpc_template_file</a></span>(<span class="st">"slurm_clustermq.tmpl"</span>) <span class="co"># https://slurm.schedmd.com/</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(</a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">  <span class="dt">clustermq.scheduler =</span> <span class="st">"clustermq"</span>,</a>
-<a class="sourceLine" id="cb19-8" data-line-number="8">  <span class="dt">clustermq.template =</span> <span class="st">"slurm_clustermq.tmpl"</span></a>
-<a class="sourceLine" id="cb19-9" data-line-number="9">)</a>
-<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">parallelism =</span> <span class="st">"clustermq"</span>, <span class="dt">jobs =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Use the spare cores on your local machine.</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">jobs =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co"># Or scale up to a supercomputer.</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="kw"><a href="reference/drake_hpc_template_file.html">drake_hpc_template_file</a></span>(<span class="st">"slurm_clustermq.tmpl"</span>) <span class="co"># https://slurm.schedmd.com/</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/options.html">options</a></span>(</a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">  <span class="dt">clustermq.scheduler =</span> <span class="st">"clustermq"</span>,</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">  <span class="dt">clustermq.template =</span> <span class="st">"slurm_clustermq.tmpl"</span></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="kw"><a href="reference/make.html">make</a></span>(plan, <span class="dt">parallelism =</span> <span class="st">"clustermq"</span>, <span class="dt">jobs =</span> <span class="dv">4</span>)</a></code></pre></div>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
 <p>You can choose among different versions of <code>drake</code>. The CRAN release often lags behind the <a href="https://ropenscilabs.github.io/drake-manual/">online manual</a> but may have fewer bugs.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Install the latest stable release from CRAN.</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"drake"</span>)</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co"># Alternatively, install the development version from GitHub.</span></a>
-<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
-<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="kw">install_github</span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># Install the latest stable release from CRAN.</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"drake"</span>)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># Alternatively, install the development version from GitHub.</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="kw">install_github</span>(<span class="st">"ropensci/drake"</span>)</a></code></pre></div>
 </div>
 <div id="function-reference" class="section level1">
 <h1 class="hasAnchor">

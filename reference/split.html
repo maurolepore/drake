@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the environment where drake builds targets — drake_envir • drake</title>
+<title>Define a target for each subset of data — split • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -43,13 +43,10 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Get the environment where drake builds targets — drake_envir" />
+<meta property="og:title" content="Define a target for each subset of data — split" />
 
-<meta property="og:description" content="Call this function inside the commands in your plan
-to get the environment where drake builds targets.
-That way, you can strategically remove targets from memory
-while make() is running. That way, you can limit the
-amount of computer memory you use." />
+<meta property="og:description" content="Similar group_map(), from dplyr, except it
+defines new targets in drake." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -125,26 +122,52 @@ amount of computer memory you use." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the environment where drake builds targets</h1>
+    <h1>Define a target for each subset of data</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/drake_plan_helpers.R'><code>R/drake_plan_helpers.R</code></a></small>
-    <div class="hidden name"><code>drake_envir.Rd</code></div>
+    <div class="hidden name"><code>split.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Call this function inside the commands in your plan
-to get the environment where <code>drake</code> builds targets.
-That way, you can strategically remove targets from memory
-while <code><a href='make.html'>make()</a></code> is running. That way, you can limit the
-amount of computer memory you use.</p>
+    <p>Similar <code>group_map()</code>, from <code>dplyr</code>, except it
+defines new targets in <code>drake</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>drake_envir</span>()</pre>
-        
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='fu'>split</span>(<span class='no'>...</span>, <span class='no'>.id</span>, <span class='no'>.tag_in</span>, <span class='no'>.tag_out</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>...</th>
+      <td><p>Grouping variables. New grouping variables must be
+supplied with their names and values, existing grouping variables
+can be given as symbols without any values assigned.</p></td>
+    </tr>
+    <tr>
+      <th>.id</th>
+      <td><p>Symbol or vector of symbols naming grouping variables
+to incorporate into target names. Useful for creating short target
+names. Set <code>.id = FALSE</code> to use integer indices as target name suffixes.</p></td>
+    </tr>
+    <tr>
+      <th>.tag_in</th>
+      <td><p>A symbol or vector of symbols. Tags assign targets
+to grouping variables. Use <code>.tag_in</code> to assign <em>untransformed</em>
+targets to grouping variables.</p></td>
+    </tr>
+    <tr>
+      <th>.tag_out</th>
+      <td><p>Just like <code>.tag_in</code>, except that <code>.tag_out</code>
+assigns <em>transformed</em> targets to grouping variables.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The environment where <code>drake</code> builds targets.</p>
+    <p>Only valid within a call to <code><a href='target.html'>target()</a></code> in
+<code><a href='drake_plan.html'>drake_plan()</a></code>. See the examples below.</p>
     
     <h2 class="hasAnchor" id="keywords"><a class="anchor" href="#keywords"></a>Keywords</h2>
 
@@ -159,7 +182,7 @@ Using <code><a href='target.html'>target()</a></code>, you can apply a transform
 supply a trigger (<a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>), # nolint
 or set any number of custom columns.</p></li>
 <li><p><code><a href='map.html'>map()</a></code>: create multiple targets. Called inside <code><a href='target.html'>target()</a></code>.</p></li>
-<li><p><code><a href='split.html'>split()</a></code>: create a target for each subset of data.
+<li><p><code>split()</code>: create a target for each subset of data.
 Called inside <code><a href='target.html'>target()</a></code>.</p></li>
 <li><p><code><a href='cross.html'>cross()</a></code>: create a target for each combination of values.
 Called inside <code><a href='target.html'>target()</a></code>.</p></li>
@@ -174,40 +197,49 @@ R Markdown (<code>*.Rmd</code>) or R LaTeX (<code>*.Rnw</code>) file.</p></li>
 do not track it for changes and do not analyze it for dependencies.</p></li>
 <li><p><code><a href='no_deps.html'>no_deps()</a></code>: tell <code>drake</code> to not track the dependencies
 of a piece of code. <code>drake</code> still tracks the code itself for changes.</p></li>
-<li><p><code>drake_envir()</code>: get the environment where drake builds targets.
+<li><p><code><a href='drake_envir.html'>drake_envir()</a></code>: get the environment where drake builds targets.
 Intended for advanced custom memory management.</p></li>
 </ul>
 
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='from_plan.html'>from_plan()</a></code></p></div>
+    <div class='dont-index'><p>map, cross, combine, drake_plan, target, drake_slice</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='isolate_example.html'>isolate_example</a></span>(<span class='st'>"contain side effects"</span>, {
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>large_data_1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span>(<span class='fl'>1e4</span>),
-  <span class='kw'>large_data_2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span>(<span class='fl'>1e4</span>),
-  <span class='kw'>subset</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>large_data_1</span>[<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fl'>10</span>)], <span class='no'>large_data_2</span>[<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fl'>10</span>)]),
-  <span class='kw'>summary</span> <span class='kw'>=</span> {
-    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>drake_envir</span>()))
-    <span class='co'># We don't need the large_data_* targets in memory anymore.</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span>(<span class='no'>large_data_1</span>, <span class='no'>large_data_2</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>drake_envir</span>())
-    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span>(<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>drake_envir</span>()))
-    <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>subset</span>)
-  }
+    <pre class="examples"><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
+  <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'>analyze</span>(<span class='no'>data</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>split</span>(<span class='no'>data</span>, <span class='kw'>slices</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  )
 )
-<span class='fu'><a href='make.html'>make</a></span>(<span class='no'>plan</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='kw pkg'>storr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/storr/man/storr_environment.html'>storr_environment</a></span>(), <span class='kw'>session_info</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-})
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 2
+#&gt;   target     command                                                            
+#&gt;   &lt;chr&gt;      &lt;expr&gt;                                                             
+#&gt; 1 analysis_1 analyze(drake_slice(data = data, slices = 3L, index = 1, margin = …
+#&gt; 2 analysis_2 analyze(drake_slice(data = data, slices = 3L, index = 2, margin = …
+#&gt; 3 analysis_3 analyze(drake_slice(data = data, slices = 3L, index = 3, margin = …</div><div class='input'><span class='fu'><a href='drake_plan_source.html'>drake_plan_source</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; drake_plan(
+#&gt;   analysis_1 = analyze(drake_slice(
+#&gt;     data = data, slices = 3L, index = 1, margin = 1L,
+#&gt;     drop = FALSE
+#&gt;   )),
+#&gt;   analysis_2 = analyze(drake_slice(
+#&gt;     data = data, slices = 3L, index = 2, margin = 1L,
+#&gt;     drop = FALSE
+#&gt;   )),
+#&gt;   analysis_3 = analyze(drake_slice(
+#&gt;     data = data, slices = 3L, index = 3, margin = 1L,
+#&gt;     drop = FALSE
+#&gt;   ))
+#&gt; )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#keywords">Keywords</a></li>
 

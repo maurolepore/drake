@@ -196,7 +196,7 @@ regardless of the value you supply to this argument.</p></td>
     <tr>
       <th>max_expand</th>
       <td><p>Positive integer, optional upper bound on the lengths
-of grouping variables for <code>map()</code> and <code>cross()</code>. Comes in handy
+of grouping variables for <code><a href='map.html'>map()</a></code> and <code><a href='cross.html'>cross()</a></code>. Comes in handy
 when you have a massive number of targets and you want to test
 on a miniature version of your workflow before you scale up
 to production.</p></td>
@@ -221,13 +221,14 @@ understands a special set of optional columns. For details, visit
 <p><code>drake_plan()</code> creates a special data frame. At minimum, that data frame
 must have columns <code>target</code> and <code>command</code> with the target names and the
 R code chunks to build them, respectively.</p>
-<p>You can add custom columns yourself, either with <code><a href='target.html'>target()</a></code>
-(e.g. <code>drake_plan(targ = target(my_cmd(), custom = "column"))</code>)
+<p>You can add custom columns yourself, either with <code><a href='target.html'>target()</a></code> (e.g.
+<code>drake_plan(y = target(f(x), transform = map(c(1, 2)), format = "fst"))</code>)
 or by appending columns post-hoc (e.g. <code>plan$col &lt;- vals</code>).</p>
 <p>Some of these custom columns are special. They are optional,
 but <code>drake</code> looks for them at various points in the workflow.</p><ul>
-<li><p><code>elapsed</code> and <code>cpu</code>: number of seconds to wait for the target to build
-before timing out (<code>elapsed</code> for elapsed time and <code>cpu</code> for CPU time).</p></li>
+<li><p><code>transform</code>: a call to <code><a href='map.html'>map()</a></code>, <code><a href='split.html'>split()</a></code>, <code><a href='cross.html'>cross()</a></code>, or
+<code><a href='combine.html'>combine()</a></code> to create and manipulate large collections of targets.
+Details: (<a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>). # nolint</p></li>
 <li><p><code>format</code>: set a storage format to save big targets more efficiently.
 Most formats are faster than ordinary storage, and they consume
 far less memory. Available formats:</p><ul>
@@ -240,6 +241,9 @@ except we avoid creating a serialized copy of
 the entire target in memory.
 Requires R &gt;= 3.5.0 so drake can use ALTREP.</p></li>
 </ul></li>
+<li><p><code>trigger</code>: rule to decide whether a target needs to run.
+It is recommended that you define this one with <code><a href='target.html'>target()</a></code>.
+Details: <a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>.</p></li>
 <li><p><code>hpc</code>: logical values (<code>TRUE</code>/<code>FALSE</code>/<code>NA</code>) whether to send each target
 to parallel workers.
 Visit <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity'>https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity</a>
@@ -248,6 +252,8 @@ to learn more.</p></li>
 See
 <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#advanced-options'>https://ropenscilabs.github.io/drake-manual/hpc.html#advanced-options</a>
 for details.</p></li>
+<li><p><code>elapsed</code> and <code>cpu</code>: number of seconds to wait for the target to build
+before timing out (<code>elapsed</code> for elapsed time and <code>cpu</code> for CPU time).</p></li>
 <li><p><code>retries</code>: number of times to retry building a target
 in the event of an error.</p></li>
 <li><p><code>seed</code>: an optional pseudo-random number generator (RNG)
@@ -256,9 +262,6 @@ unique reproducible target-specific seeds using the global seed
 (the <code>seed</code> argument to <code><a href='make.html'>make()</a></code> and <code><a href='drake_config.html'>drake_config()</a></code>)
 and the target names, but you can overwrite these automatic seeds.
 <code>NA</code> entries default back to <code>drake</code>'s automatic seeds.</p></li>
-<li><p><code>trigger</code>: rule to decide whether a target needs to run.
-It is recommended that you define this one with <code><a href='target.html'>target()</a></code>.
-Details: <a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>.</p></li>
 </ul>
 
     
@@ -269,9 +272,18 @@ Details: <a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>htt
 <p><code>drake_plan()</code> understands special keyword functions for your commands.
 With the exception of <code><a href='target.html'>target()</a></code>, each one is a proper function
 with its own help file.</p><ul>
-<li><p><code><a href='target.html'>target()</a></code>: declare more than just the command,
-e.g. assign a trigger or transform.
-Examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>. # nolint</p></li>
+<li><p><code><a href='target.html'>target()</a></code>: give the target more than just a command.
+Using <code><a href='target.html'>target()</a></code>, you can apply a transformation
+(examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>), # nolint
+supply a trigger (<a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>), # nolint
+or set any number of custom columns.</p></li>
+<li><p><code><a href='map.html'>map()</a></code>: create multiple targets. Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='split.html'>split()</a></code>: create a target for each subset of data.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='cross.html'>cross()</a></code>: create a target for each combination of values.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='combine.html'>combine()</a></code>: aggregate groups of targets into other targets.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
 <li><p><code><a href='file_in.html'>file_in()</a></code>: declare an input file dependency.</p></li>
 <li><p><code><a href='file_out.html'>file_out()</a></code>: declare an output file to be produced
 when the target is built.</p></li>
@@ -293,13 +305,17 @@ Intended for advanced custom memory management.</p></li>
 <p><code>drake</code> has special syntax for generating large plans.
 Your code will look something like
 <code>drake_plan(x = target(cmd, transform = f(y, z), group = g)</code>
-where <code>f()</code> is either <code>map()</code>, <code>cross()</code>, <code><a href='https://rdrr.io/r/base/split.html'>split()</a></code>, or <code>combine()</code>
+where <code>f()</code> is either <code><a href='map.html'>map()</a></code>, <code><a href='cross.html'>cross()</a></code>, <code><a href='split.html'>split()</a></code>, or <code><a href='combine.html'>combine()</a></code>
 (similar to <code><a href='https://purrr.tidyverse.org/reference/map2.html'>purrr::pmap()</a></code>, <code>tidy::crossing()</code>, <code><a href='https://rdrr.io/r/base/split.html'>base::split()</a></code>,
 and  <code><a href='https://dplyr.tidyverse.org/reference/summarise.html'>dplyr::summarize()</a></code>, respectively).
 These verbs mimic Tidyverse behavior to scale up
 existing plans to large numbers of targets.
 You can read about this interface at
 <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>. # nolint</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>make, drake_config, transform_plan, map, split, cross, combine</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -327,26 +343,38 @@ You can read about this interface at
 <span class='co'># are loaded in with calls to `loadd()` and `readd()`.</span>
 <span class='fu'><a href='deps_code.html'>deps_code</a></span>(<span class='st'>"report.Rmd"</span>)
 
+<span class='co'># Formats are great for big data: https://github.com/ropensci/drake/pull/977</span>
+<span class='co'># Below, each target is 1.6 GB in memory.</span>
+<span class='co'># Run make() on this plan to see how much faster fst is!</span>
+<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1e8</span>
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'>drake_plan</span>(
+  <span class='kw'>data_fst</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
+    <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>n</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>n</span>)),
+    <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"fst"</span>
+  ),
+  <span class='kw'>data_old</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>n</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>n</span>))
+)
+
 <span class='co'># Use transformations to generate large plans.</span>
 <span class='co'># Read more at</span>
 <span class='co'># &lt;https://ropenscilabs.github.io/drake-manual/plans.html#create-large-plans-the-easy-way&gt;. # nolint</span>
 <span class='fu'>drake_plan</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://rdrr.io/r/stats/simulate.html'>simulate</a></span>(<span class='no'>nrows</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>nrows</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>48</span>, <span class='fl'>64</span>)),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>nrows</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>48</span>, <span class='fl'>64</span>)),
     <span class='kw'>custom_column</span> <span class='kw'>=</span> <span class='fl'>123</span>
   ),
   <span class='kw'>reg</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
-   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='no'>data</span>)
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='cross.html'>cross</a></span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='no'>data</span>)
   ),
   <span class='kw'>summ</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>sum_fun</span>(<span class='no'>data</span>, <span class='no'>reg</span>),
-   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>sum_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>coef</span>, <span class='no'>residuals</span>), <span class='no'>reg</span>)
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='cross.html'>cross</a></span>(<span class='kw'>sum_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>coef</span>, <span class='no'>residuals</span>), <span class='no'>reg</span>)
   ),
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>summ</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>summ</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>))
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='combine.html'>combine</a></span>(<span class='no'>summ</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>))
   )
 )
 
@@ -356,11 +384,11 @@ You can read about this interface at
   <span class='kw'>slice_analysis</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='no'>large_data</span> <span class='kw'>%&gt;%</span>
       <span class='fu'>analyze</span>(),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span>(<span class='no'>large_data</span>, <span class='kw'>slices</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='split.html'>split</a></span>(<span class='no'>large_data</span>, <span class='kw'>slices</span> <span class='kw'>=</span> <span class='fl'>4</span>)
   ),
   <span class='kw'>results</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>slice_analysis</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>slice_analysis</span>)
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='combine.html'>combine</a></span>(<span class='no'>slice_analysis</span>)
   )
 )
 
@@ -368,20 +396,20 @@ You can read about this interface at
 <span class='fu'>drake_plan</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://rdrr.io/r/stats/simulate.html'>simulate</a></span>(<span class='no'>nrows</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>nrows</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>48</span>, <span class='fl'>64</span>)),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>nrows</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>48</span>, <span class='fl'>64</span>)),
     <span class='kw'>custom_column</span> <span class='kw'>=</span> <span class='fl'>123</span>
   ),
   <span class='kw'>reg</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>reg_fun</span>(<span class='no'>data</span>),
-   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='no'>data</span>)
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='cross.html'>cross</a></span>(<span class='kw'>reg_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>reg1</span>, <span class='no'>reg2</span>), <span class='no'>data</span>)
   ),
   <span class='kw'>summ</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>sum_fun</span>(<span class='no'>data</span>, <span class='no'>reg</span>),
-   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>cross</span>(<span class='kw'>sum_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>coef</span>, <span class='no'>residuals</span>), <span class='no'>reg</span>)
+   <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='cross.html'>cross</a></span>(<span class='kw'>sum_fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>coef</span>, <span class='no'>residuals</span>), <span class='no'>reg</span>)
   ),
   <span class='kw'>winners</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>summ</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>summ</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>))
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='combine.html'>combine</a></span>(<span class='no'>summ</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>data</span>, <span class='no'>sum_fun</span>))
   ),
   <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
@@ -399,7 +427,7 @@ You can read about this interface at
 
 <span class='co'># Tidy evaluation can help generate super large plans.</span>
 <span class='no'>sms</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>rlang</span><span class='kw ns'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a></span>(<span class='no'>letters</span>) <span class='co'># To sub in character args, skip this.</span>
-<span class='fu'>drake_plan</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='fu'>f</span>(<span class='no'>char</span>), <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>char</span> <span class='kw'>=</span> !!<span class='no'>sms</span>)))
+<span class='fu'>drake_plan</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(<span class='fu'>f</span>(<span class='no'>char</span>), <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>char</span> <span class='kw'>=</span> !!<span class='no'>sms</span>)))
 })
 <span class='co'># }</span></pre>
   </div>
@@ -417,6 +445,8 @@ You can read about this interface at
       <li><a href="#keywords">Keywords</a></li>
 
       <li><a href="#dsl">DSL</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -138,9 +138,9 @@ See the examples to learn why splitting is useful in drake." />
 
     <div class="ref-description">
     
-    <p><code>drake_slice()</code> is similar to <code><a href='https://rdrr.io/r/base/split.html'>split()</a></code>.
+    <p><code>drake_slice()</code> is similar to <code><a href='split.html'>split()</a></code>.
 Both functions partition data into disjoint subsets,
-but whereas <code><a href='https://rdrr.io/r/base/split.html'>split()</a></code> returns <em>all</em> the subsets, <code>drake_slice()</code>
+but whereas <code><a href='split.html'>split()</a></code> returns <em>all</em> the subsets, <code>drake_slice()</code>
 returns just <em>one</em>. In other words, <code>drake_slice(..., index = i)</code>
 returns <code>split(...)[[i]]</code>.
 Other features:
@@ -216,7 +216,7 @@ If <code>TRUE</code>,<code> the result is coerced to the lowest possible dimensi
   <span class='kw'>large_data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
   <span class='kw'>data_split</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>drake_slice</span>(<span class='no'>large_data</span>, <span class='kw'>slices</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='no'>i</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>map</span>(<span class='kw'>i</span> <span class='kw'>=</span> !!<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fl'>50</span>))
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>i</span> <span class='kw'>=</span> !!<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fl'>50</span>))
   )
 )
 <span class='no'>plan</span>

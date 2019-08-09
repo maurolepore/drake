@@ -45,8 +45,8 @@
 
 <meta property="og:title" content="Define custom columns in a <code><a href='drake_plan.html'>drake_plan()</a></code>. — target" />
 
-<meta property="og:description" content="Not a user-side function. Please use from within
-drake_plan() only." />
+<meta property="og:description" content="Not a user-side function. Must be called inside
+drake_plan()." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -129,8 +129,8 @@ drake_plan() only." />
 
     <div class="ref-description">
     
-    <p>Not a user-side function. Please use from within
-<code><a href='drake_plan.html'>drake_plan()</a></code> only.</p>
+    <p>Not a user-side function. Must be called inside
+<code><a href='drake_plan.html'>drake_plan()</a></code>.</p>
     
     </div>
 
@@ -145,8 +145,9 @@ drake_plan() only." />
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Named arguments specifying non-standard
-fields of the workflow plan.</p></td>
+      <td><p>Optional columns of the plan for a given target.
+See the Columns section of this help file for a selection
+of special columns that <code>drake</code> understands.</p></td>
     </tr>
     </table>
     
@@ -155,6 +156,57 @@ fields of the workflow plan.</p></td>
     <p>A one-row workflow plan data frame with the named
 arguments as columns.</p>
     
+    <h2 class="hasAnchor" id="columns"><a class="anchor" href="#columns"></a>Columns</h2>
+
+    
+
+<p><code><a href='drake_plan.html'>drake_plan()</a></code> creates a special data frame. At minimum, that data frame
+must have columns <code>target</code> and <code>command</code> with the target names and the
+R code chunks to build them, respectively.</p>
+<p>You can add custom columns yourself, either with <code>target()</code> (e.g.
+<code><a href='drake_plan.html'>drake_plan(y = target(f(x), transform = map(c(1, 2)), format = "fst"))</a></code>)
+or by appending columns post-hoc (e.g. <code>plan$col &lt;- vals</code>).</p>
+<p>Some of these custom columns are special. They are optional,
+but <code>drake</code> looks for them at various points in the workflow.</p><ul>
+<li><p><code>transform</code>: a call to <code><a href='map.html'>map()</a></code>, <code><a href='split.html'>split()</a></code>, <code><a href='cross.html'>cross()</a></code>, or
+<code><a href='combine.html'>combine()</a></code> to create and manipulate large collections of targets.
+Details: (<a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>). # nolint</p></li>
+<li><p><code>format</code>: set a storage format to save big targets more efficiently.
+Most formats are faster than ordinary storage, and they consume
+far less memory. Available formats:</p><ul>
+<li><p><code>"fst"</code>: save big data frames fast. The target must be a data frame,
+and you must have the <code>fst</code> package installed.</p></li>
+<li><p><code>"keras"</code>: save Keras models as HDF5 files.
+Requires the <code>keras</code> package.</p></li>
+<li><p><code>"rds"</code>: save any object. This is similar to the default storage
+except we avoid creating a serialized copy of
+the entire target in memory.
+Requires R &gt;= 3.5.0 so drake can use ALTREP.</p></li>
+</ul></li>
+<li><p><code>trigger</code>: rule to decide whether a target needs to run.
+It is recommended that you define this one with <code>target()</code>.
+Details: <a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>.</p></li>
+<li><p><code>hpc</code>: logical values (<code>TRUE</code>/<code>FALSE</code>/<code>NA</code>) whether to send each target
+to parallel workers.
+Visit <a href='https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity'>https://ropenscilabs.github.io/drake-manual/hpc.html#selectivity</a>
+to learn more.</p></li>
+<li><p><code>resources</code>: target-specific lists of resources for a computing cluster.
+See
+<a href='https://ropenscilabs.github.io/drake-manual/hpc.html#advanced-options'>https://ropenscilabs.github.io/drake-manual/hpc.html#advanced-options</a>
+for details.</p></li>
+<li><p><code>elapsed</code> and <code>cpu</code>: number of seconds to wait for the target to build
+before timing out (<code>elapsed</code> for elapsed time and <code>cpu</code> for CPU time).</p></li>
+<li><p><code>retries</code>: number of times to retry building a target
+in the event of an error.</p></li>
+<li><p><code>seed</code>: an optional pseudo-random number generator (RNG)
+seed for each target. <code>drake</code> usually comes up with its own
+unique reproducible target-specific seeds using the global seed
+(the <code>seed</code> argument to <code><a href='make.html'>make()</a></code> and <code><a href='drake_config.html'>drake_config()</a></code>)
+and the target names, but you can overwrite these automatic seeds.
+<code>NA</code> entries default back to <code>drake</code>'s automatic seeds.</p></li>
+</ul>
+
+    
     <h2 class="hasAnchor" id="keywords"><a class="anchor" href="#keywords"></a>Keywords</h2>
 
     
@@ -162,9 +214,18 @@ arguments as columns.</p>
 <p><code><a href='drake_plan.html'>drake_plan()</a></code> understands special keyword functions for your commands.
 With the exception of <code>target()</code>, each one is a proper function
 with its own help file.</p><ul>
-<li><p><code>target()</code>: declare more than just the command,
-e.g. assign a trigger or transform.
-Examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>. # nolint</p></li>
+<li><p><code>target()</code>: give the target more than just a command.
+Using <code>target()</code>, you can apply a transformation
+(examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>), # nolint
+supply a trigger (<a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>), # nolint
+or set any number of custom columns.</p></li>
+<li><p><code><a href='map.html'>map()</a></code>: create multiple targets. Called inside <code>target()</code>.</p></li>
+<li><p><code><a href='split.html'>split()</a></code>: create a target for each subset of data.
+Called inside <code>target()</code>.</p></li>
+<li><p><code><a href='cross.html'>cross()</a></code>: create a target for each combination of values.
+Called inside <code>target()</code>.</p></li>
+<li><p><code><a href='combine.html'>combine()</a></code>: aggregate groups of targets into other targets.
+Called inside <code>target()</code>.</p></li>
 <li><p><code><a href='file_in.html'>file_in()</a></code>: declare an input file dependency.</p></li>
 <li><p><code><a href='file_out.html'>file_out()</a></code>: declare an output file to be produced
 when the target is built.</p></li>
@@ -198,7 +259,53 @@ Intended for advanced custom memory management.</p></li>
 #&gt;   target       command                           trigger       custom_column
 #&gt;   &lt;chr&gt;        &lt;expr&gt;                            &lt;expr&gt;                &lt;dbl&gt;
 #&gt; 1 website_data download_data("www.your_url.com") "always"                  5
-#&gt; 2 analysis     analyze(website_data)             NA_character_            NA</div></pre>
+#&gt; 2 analysis     analyze(website_data)             NA_character_            NA</div><div class='input'><span class='no'>models</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"glm"</span>, <span class='st'>"hierarchical"</span>)
+<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>target</span>(
+    <span class='fu'>get_data</span>(<span class='no'>x</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"simulated"</span>, <span class='st'>"survey"</span>))
+  ),
+  <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'>target</span>(
+    <span class='fu'>analyze_data</span>(<span class='no'>data</span>, <span class='no'>model</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='cross.html'>cross</a></span>(<span class='no'>data</span>, <span class='kw'>model</span> <span class='kw'>=</span> !!<span class='no'>models</span>, <span class='kw'>.id</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>x</span>, <span class='no'>model</span>))
+  ),
+  <span class='kw'>summary</span> <span class='kw'>=</span> <span class='fu'>target</span>(
+    <span class='fu'>summarize_analysis</span>(<span class='no'>analysis</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='no'>analysis</span>, <span class='kw'>.id</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>x</span>, <span class='no'>model</span>))
+  ),
+  <span class='kw'>results</span> <span class='kw'>=</span> <span class='fu'>target</span>(
+    <span class='fu'>bind_rows</span>(<span class='no'>summary</span>),
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='combine.html'>combine</a></span>(<span class='no'>summary</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='no'>data</span>)
+  )
+)
+<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 12 x 2
+#&gt;    target                     command                                           
+#&gt;    &lt;chr&gt;                      &lt;expr&gt;                                            
+#&gt;  1 data_simulated             get_data("simulated")                            …
+#&gt;  2 data_survey                get_data("survey")                               …
+#&gt;  3 analysis_simulated_glm     analyze_data(data_simulated, "glm")              …
+#&gt;  4 analysis_simulated_hierar… analyze_data(data_simulated, "hierarchical")     …
+#&gt;  5 analysis_survey_glm        analyze_data(data_survey, "glm")                 …
+#&gt;  6 analysis_survey_hierarchi… analyze_data(data_survey, "hierarchical")        …
+#&gt;  7 summary_simulated_glm      summarize_analysis(analysis_simulated_glm)       …
+#&gt;  8 summary_simulated_hierarc… summarize_analysis(analysis_simulated_hierarchica…
+#&gt;  9 summary_survey_glm         summarize_analysis(analysis_survey_glm)          …
+#&gt; 10 summary_survey_hierarchic… summarize_analysis(analysis_survey_hierarchical) …
+#&gt; 11 results_data_simulated     bind_rows(summary_simulated_glm, summary_simulate…
+#&gt; 12 results_data_survey        bind_rows(summary_survey_glm, summary_survey_hier…</div><div class='input'><span class='fu'><a href='drake_plan_source.html'>drake_plan_source</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; drake_plan(
+#&gt;   data_simulated = get_data("simulated"),
+#&gt;   data_survey = get_data("survey"),
+#&gt;   analysis_simulated_glm = analyze_data(data_simulated, "glm"),
+#&gt;   analysis_simulated_hierarchical = analyze_data(data_simulated, "hierarchical"),
+#&gt;   analysis_survey_glm = analyze_data(data_survey, "glm"),
+#&gt;   analysis_survey_hierarchical = analyze_data(data_survey, "hierarchical"),
+#&gt;   summary_simulated_glm = summarize_analysis(analysis_simulated_glm),
+#&gt;   summary_simulated_hierarchical = summarize_analysis(analysis_simulated_hierarchical),
+#&gt;   summary_survey_glm = summarize_analysis(analysis_survey_glm),
+#&gt;   summary_survey_hierarchical = summarize_analysis(analysis_survey_hierarchical),
+#&gt;   results_data_simulated = bind_rows(summary_simulated_glm, summary_simulated_hierarchical),
+#&gt;   results_data_survey = bind_rows(summary_survey_glm, summary_survey_hierarchical)
+#&gt; )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,6 +313,8 @@ Intended for advanced custom memory management.</p></li>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#columns">Columns</a></li>
 
       <li><a href="#keywords">Keywords</a></li>
 

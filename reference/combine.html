@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transform a plan — transform_plan • drake</title>
+<title>Define aggregates of other targets — combine • drake</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -43,11 +43,10 @@
 <!-- ropensci -->
 <link href="../ropensci.css" rel="stylesheet">
 
-<meta property="og:title" content="Transform a plan — transform_plan" />
+<meta property="og:title" content="Define aggregates of other targets — combine" />
 
-<meta property="og:description" content="Evaluate the map(), cross(), split() and
-combine() operations in the transform column of a
-drake plan." />
+<meta property="og:description" content="Similar summarize(), from dplyr, except it
+defines new targets in drake." />
 
 <meta property="og:image" content="https://ropensci.github.io/drake/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -123,87 +122,99 @@ drake plan." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Transform a plan</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/transform_plan.R'><code>R/transform_plan.R</code></a></small>
-    <div class="hidden name"><code>transform_plan.Rd</code></div>
+    <h1>Define aggregates of other targets</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/drake/blob/master/R/drake_plan_helpers.R'><code>R/drake_plan_helpers.R</code></a></small>
+    <div class="hidden name"><code>combine.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Evaluate the <code><a href='map.html'>map()</a></code>, <code><a href='cross.html'>cross()</a></code>, <code><a href='split.html'>split()</a></code> and
-<code><a href='combine.html'>combine()</a></code> operations in the <code>transform</code> column of a
-<code>drake</code> plan.</p>
+    <p>Similar <code>summarize()</code>, from <code>dplyr</code>, except it
+defines new targets in <code>drake</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>transform_plan</span>(<span class='no'>plan</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>max_expand</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy_eval</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>combine</span>(<span class='no'>...</span>, <span class='no'>.by</span>, <span class='no'>.id</span>, <span class='no'>.tag_in</span>, <span class='no'>.tag_out</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>plan</th>
-      <td><p>A <code>drake</code> plan with a <code>transform</code> column</p></td>
+      <th>...</th>
+      <td><p>Grouping variables. New grouping variables must be
+supplied with their names and values, existing grouping variables
+can be given as symbols without any values assigned.</p></td>
     </tr>
     <tr>
-      <th>envir</th>
-      <td><p>Environment for tidy evaluation.</p></td>
+      <th>.by</th>
+      <td><p>Symbol or vector of symbols of grouping variables.
+<code>combine()</code> aggregates/groups targets by the grouping variables
+in <code>.by</code></p></td>
     </tr>
     <tr>
-      <th>trace</th>
-      <td><p>Logical, whether to add columns to show
-what happens during target transformations.</p></td>
+      <th>.id</th>
+      <td><p>Symbol or vector of symbols naming grouping variables
+to incorporate into target names. Useful for creating short target
+names. Set <code>.id = FALSE</code> to use integer indices as target name suffixes.</p></td>
     </tr>
     <tr>
-      <th>max_expand</th>
-      <td><p>Positive integer, optional upper bound on the lengths
-of grouping variables for <code><a href='map.html'>map()</a></code> and <code><a href='cross.html'>cross()</a></code>. Comes in handy
-when you have a massive number of targets and you want to test
-on a miniature version of your workflow before you scale up
-to production.</p></td>
+      <th>.tag_in</th>
+      <td><p>A symbol or vector of symbols. Tags assign targets
+to grouping variables. Use <code>.tag_in</code> to assign <em>untransformed</em>
+targets to grouping variables.</p></td>
     </tr>
     <tr>
-      <th>tidy_eval</th>
-      <td><p>Logical, whether to use tidy evaluation
-(e.g. unquoting/<code>!!</code>) when resolving commands.
-Tidy evaluation in transformations is always turned on
-regardless of the value you supply to this argument.</p></td>
+      <th>.tag_out</th>
+      <td><p>Just like <code>.tag_in</code>, except that <code>.tag_out</code>
+assigns <em>transformed</em> targets to grouping variables.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a> # nolint</p>
+    <p>Only valid within a call to <code><a href='target.html'>target()</a></code> in
+<code><a href='drake_plan.html'>drake_plan()</a></code>. See the examples below.</p>
+    
+    <h2 class="hasAnchor" id="keywords"><a class="anchor" href="#keywords"></a>Keywords</h2>
+
+    
+
+<p><code><a href='drake_plan.html'>drake_plan()</a></code> understands special keyword functions for your commands.
+With the exception of <code><a href='target.html'>target()</a></code>, each one is a proper function
+with its own help file.</p><ul>
+<li><p><code><a href='target.html'>target()</a></code>: give the target more than just a command.
+Using <code><a href='target.html'>target()</a></code>, you can apply a transformation
+(examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>), # nolint
+supply a trigger (<a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>), # nolint
+or set any number of custom columns.</p></li>
+<li><p><code><a href='map.html'>map()</a></code>: create multiple targets. Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='split.html'>split()</a></code>: create a target for each subset of data.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='cross.html'>cross()</a></code>: create a target for each combination of values.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code>combine()</code>: aggregate groups of targets into other targets.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='file_in.html'>file_in()</a></code>: declare an input file dependency.</p></li>
+<li><p><code><a href='file_out.html'>file_out()</a></code>: declare an output file to be produced
+when the target is built.</p></li>
+<li><p><code><a href='knitr_in.html'>knitr_in()</a></code>: declare a <code>knitr</code> file dependency such as an
+R Markdown (<code>*.Rmd</code>) or R LaTeX (<code>*.Rnw</code>) file.</p></li>
+<li><p><code><a href='ignore.html'>ignore()</a></code>: force <code>drake</code> to entirely ignore a piece of code:
+do not track it for changes and do not analyze it for dependencies.</p></li>
+<li><p><code><a href='no_deps.html'>no_deps()</a></code>: tell <code>drake</code> to not track the dependencies
+of a piece of code. <code>drake</code> still tracks the code itself for changes.</p></li>
+<li><p><code><a href='drake_envir.html'>drake_envir()</a></code>: get the environment where drake builds targets.
+Intended for advanced custom memory management.</p></li>
+</ul>
+
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>drake_plan, map, split, cross, combine</p></div>
+    <div class='dont-index'><p>map, split, cross, drake_plan, target</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>plan1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>f</span>(<span class='no'>x</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
-  ),
-  <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
-<span class='no'>plan2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>g</span>(<span class='no'>y</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='no'>y</span>, <span class='kw'>.id</span> <span class='kw'>=</span> <span class='no'>x</span>)
-  ),
-  <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
-<span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bind_plans.html'>bind_plans</a></span>(<span class='no'>plan1</span>, <span class='no'>plan2</span>)
-<span class='fu'>transform_plan</span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 2
-#&gt;   target command
-#&gt;   &lt;chr&gt;  &lt;expr&gt; 
-#&gt; 1 y_1    f(1)   
-#&gt; 2 y_2    f(2)   
-#&gt; 3 z_1    g(y_1) 
-#&gt; 4 z_2    g(y_2) </div><div class='input'><span class='no'>models</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"glm"</span>, <span class='st'>"hierarchical"</span>)
+    <pre class="examples"><div class='input'><span class='no'>models</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"glm"</span>, <span class='st'>"hierarchical"</span>)
 <span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>get_data</span>(<span class='no'>x</span>),
@@ -219,7 +230,7 @@ regardless of the value you supply to this argument.</p></td>
   ),
   <span class='kw'>results</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
     <span class='fu'>bind_rows</span>(<span class='no'>summary</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='combine.html'>combine</a></span>(<span class='no'>summary</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='no'>data</span>)
+    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'>combine</span>(<span class='no'>summary</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='no'>data</span>)
   )
 )
 <span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 12 x 2
@@ -249,58 +260,6 @@ regardless of the value you supply to this argument.</p></td>
 #&gt;   summary_survey_hierarchical = summarize_analysis(analysis_survey_hierarchical),
 #&gt;   results_data_simulated = bind_rows(summary_simulated_glm, summary_simulated_hierarchical),
 #&gt;   results_data_survey = bind_rows(summary_survey_glm, summary_survey_hierarchical)
-#&gt; )</div><div class='input'><span class='co'># Tags:</span>
-<span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='no'>command</span>,
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>.tag_in</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='kw'>.tag_out</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>to</span>, <span class='no'>out</span>))
-  ),
-  <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; # A tibble: 2 x 7
-#&gt;   target command y     x     from  to    out  
-#&gt;   &lt;chr&gt;  &lt;expr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-#&gt; 1 x_1    command 1     x_1   x     x_1   x_1  
-#&gt; 2 x_2    command 2     x_2   x     x_2   x_2  </div><div class='input'><span class='no'>plan</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='drake_plan.html'>drake_plan</a></span>(
-  <span class='kw'>survey</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>survey_data</span>(<span class='no'>x</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>.tag_in</span> <span class='kw'>=</span> <span class='no'>source</span>, <span class='kw'>.tag_out</span> <span class='kw'>=</span> <span class='no'>dataset</span>)
-  ),
-  <span class='kw'>download</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>download_data</span>(),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>6</span>), <span class='kw'>.tag_in</span> <span class='kw'>=</span> <span class='no'>source</span>, <span class='kw'>.tag_out</span> <span class='kw'>=</span> <span class='no'>dataset</span>)
-  ),
-  <span class='kw'>analysis</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>analyze</span>(<span class='no'>dataset</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='map.html'>map</a></span>(<span class='no'>dataset</span>)
-  ),
-  <span class='kw'>results</span> <span class='kw'>=</span> <span class='fu'><a href='target.html'>target</a></span>(
-    <span class='fu'>bind_rows</span>(<span class='no'>analysis</span>),
-    <span class='kw'>transform</span> <span class='kw'>=</span> <span class='fu'><a href='combine.html'>combine</a></span>(<span class='no'>analysis</span>, <span class='kw'>.by</span> <span class='kw'>=</span> <span class='no'>source</span>)
-  )
-)
-<span class='no'>plan</span></div><div class='output co'>#&gt; # A tibble: 10 x 2
-#&gt;    target              command                                            
-#&gt;    &lt;chr&gt;               &lt;expr&gt;                                             
-#&gt;  1 survey_1            survey_data(1)                                     
-#&gt;  2 survey_2            survey_data(2)                                     
-#&gt;  3 download_5          download_data()                                    
-#&gt;  4 download_6          download_data()                                    
-#&gt;  5 analysis_survey_1   analyze(survey_1)                                  
-#&gt;  6 analysis_survey_2   analyze(survey_2)                                  
-#&gt;  7 analysis_download_5 analyze(download_5)                                
-#&gt;  8 analysis_download_6 analyze(download_6)                                
-#&gt;  9 results_download    bind_rows(analysis_download_5, analysis_download_6)
-#&gt; 10 results_survey      bind_rows(analysis_survey_1, analysis_survey_2)    </div><div class='input'><span class='fu'><a href='drake_plan_source.html'>drake_plan_source</a></span>(<span class='no'>plan</span>)</div><div class='output co'>#&gt; drake_plan(
-#&gt;   survey_1 = survey_data(1),
-#&gt;   survey_2 = survey_data(2),
-#&gt;   download_5 = download_data(),
-#&gt;   download_6 = download_data(),
-#&gt;   analysis_survey_1 = analyze(survey_1),
-#&gt;   analysis_survey_2 = analyze(survey_2),
-#&gt;   analysis_download_5 = analyze(download_5),
-#&gt;   analysis_download_6 = analyze(download_6),
-#&gt;   results_download = bind_rows(analysis_download_5, analysis_download_6),
-#&gt;   results_survey = bind_rows(analysis_survey_1, analysis_survey_2)
 #&gt; )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -309,6 +268,8 @@ regardless of the value you supply to this argument.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#keywords">Keywords</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

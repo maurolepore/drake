@@ -149,6 +149,7 @@
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
+<li>Document DSL keywords as if they were true functions: <code><a href="../reference/target.html">target()</a></code>, <code><a href="../reference/map.html">map()</a></code>, <code><a href="../reference/split.html">split()</a></code>, <code><a href="../reference/cross.html">cross()</a></code>, and <code><a href="../reference/combine.html">combine()</a></code> (<a href='https://github.com/ropensci/drake/issues/979'>#979</a>).</li>
 <li>Do garbage collection between the unloading and loading phases of memory management.</li>
 <li>Keep <code><a href="../reference/file_out.html">file_out()</a></code> files in <code><a href="../reference/clean.html">clean()</a></code> unless <code>garbage_collection</code> is <code>TRUE</code>. That way, <code><a href="../reference/make.html">make(recover = TRUE)</a></code> is a true “undo button” for <code><a href="../reference/clean.html">clean()</a></code>. <code><a href="../reference/clean.html">clean(garbage_collection = TRUE)</a></code> still removes data in the cache, as well as any <code><a href="../reference/file_out.html">file_out()</a></code> files from targets currently being cleaned.</li>
 <li>The menu in <code><a href="../reference/clean.html">clean()</a></code> only appears if <code>garbage_collection</code> is <code>TRUE</code>. Also, this menu is added to <code><a href="../reference/rescue_cache.html">rescue_cache(garbage_collection = TRUE)</a></code>.</li>
@@ -295,10 +296,10 @@
 <ul>
 <li>Accommodate <code>rlang</code>’s new interpolation operator <code>{{</code>, which was causing <code><a href="../reference/make.html">make()</a></code> to fail when <code><a href="../reference/drake_plan.html">drake_plan()</a></code> commands are enclosed in curly braces (<a href="https://github.com/ropensci/drake/issues/864"><a href='https://github.com/ropensci/drake/issues/864'>#864</a></a>).</li>
 <li>Move “<code>config$lock_envir &lt;- FALSE</code>” from <code>loop_build()</code> to <code>backend_loop()</code>. This makes sure <code>config$envir</code> is correctly locked in <code><a href="../reference/make.html">make(parallelism = "clustermq")</a></code>.</li>
-<li>Convert factors to characters in the optional <code>.data</code> argument of <code>map()</code> and <code>cross()</code> in the DSL.</li>
-<li>In the DSL of <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, repair <code>cross(.data = !!args)</code>, where <code>args</code> is an optional data frame of grouping variables.</li>
+<li>Convert factors to characters in the optional <code>.data</code> argument of <code><a href="../reference/map.html">map()</a></code> and <code><a href="../reference/cross.html">cross()</a></code> in the DSL.</li>
+<li>In the DSL of <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, repair <code><a href="../reference/cross.html">cross(.data = !!args)</a></code>, where <code>args</code> is an optional data frame of grouping variables.</li>
 <li>Handle trailing slashes in <code><a href="../reference/file_in.html">file_in()</a></code>/<code><a href="../reference/file_out.html">file_out()</a></code> directories for Windows (<a href="https://github.com/ropensci/drake/issues/855"><a href='https://github.com/ropensci/drake/issues/855'>#855</a></a>).</li>
-<li>Make <code>.id_chr</code> work with <code>combine()</code> in the DSL (<a href="https://github.com/ropensci/drake/issues/867"><a href='https://github.com/ropensci/drake/issues/867'>#867</a></a>).</li>
+<li>Make <code>.id_chr</code> work with <code><a href="../reference/combine.html">combine()</a></code> in the DSL (<a href="https://github.com/ropensci/drake/issues/867"><a href='https://github.com/ropensci/drake/issues/867'>#867</a></a>).</li>
 <li>Do not try <code>make_spinner()</code> unless the version of <code>cli</code> is at least 1.1.0.</li>
 </ul>
 </div>
@@ -307,7 +308,7 @@
 <a href="#new-features-3" class="anchor"></a>New features</h2>
 <ul>
 <li>Add functions <code><a href="../reference/text_drake_graph.html">text_drake_graph()</a></code> (and <code><a href="../reference/r_make.html">r_text_drake_graph()</a></code> and <code><a href="../reference/render_text_drake_graph.html">render_text_drake_graph()</a></code>). Uses text art to print a dependency graph to the terminal window. Handy for when users SSH into remote machines without X Window support.</li>
-<li>Add a new <code>max_expand</code> argument to <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, an optional upper bound on the lengths of grouping variables for <code>map()</code> and <code>cross()</code> in the DSL. Comes in handy when you have a massive number of targets and you want to test on a miniature version of your workflow before you scale up to production.</li>
+<li>Add a new <code>max_expand</code> argument to <code><a href="../reference/drake_plan.html">drake_plan()</a></code>, an optional upper bound on the lengths of grouping variables for <code><a href="../reference/map.html">map()</a></code> and <code><a href="../reference/cross.html">cross()</a></code> in the DSL. Comes in handy when you have a massive number of targets and you want to test on a miniature version of your workflow before you scale up to production.</li>
 </ul>
 </div>
 <div id="enhancements-3" class="section level2">
@@ -406,7 +407,7 @@
 <li>By default, use gray arrows and a black-and-white background with no gridlines.</li>
 </ul>
 </li>
-<li>For the <code>map()</code> and <code>cross()</code> transformations in the DSL, prevent the <a href="https://github.com/ropensci/drake/issues/786">accidental sorting of targets by name</a>. Needed <code><a href="https://rdrr.io/r/base/merge.html">merge(sort = FALSE)</a></code> in <code>dsl_left_outer_join()</code>.</li>
+<li>For the <code><a href="../reference/map.html">map()</a></code> and <code><a href="../reference/cross.html">cross()</a></code> transformations in the DSL, prevent the <a href="https://github.com/ropensci/drake/issues/786">accidental sorting of targets by name</a>. Needed <code><a href="https://rdrr.io/r/base/merge.html">merge(sort = FALSE)</a></code> in <code>dsl_left_outer_join()</code>.</li>
 <li>Simplify verbosity. The <code>verbose</code> argument of <code><a href="../reference/make.html">make()</a></code> now takes values 0, 1, and 2, and maximum verbosity in the console prints targets, retries, failures, and a spinner. The console log file, on the other hand, dumps maximally verbose runtime info regardless of the <code>verbose</code> argument.</li>
 <li>In previous versions, functions generated with <code>f &lt;- Rcpp::cppFunction(...)</code> did not stay up to date from session to session because the addresses corresponding to anonymous pointers were showing up in <code><a href="https://rdrr.io/r/base/deparse.html">deparse(f)</a></code>. Now, <code>drake</code> ignores those pointers, and <code>Rcpp</code> functions compiled inline appear to stay up to date. This problem was more of an edge case than a bug.</li>
 <li>Prepend time stamps with sub-second times to the lines of the console log file.</li>

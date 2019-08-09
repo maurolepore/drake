@@ -165,9 +165,18 @@ To enforce (1) without (2), use <code><a href='no_deps.html'>no_deps()</a></code
 <p><code><a href='drake_plan.html'>drake_plan()</a></code> understands special keyword functions for your commands.
 With the exception of <code><a href='target.html'>target()</a></code>, each one is a proper function
 with its own help file.</p><ul>
-<li><p><code><a href='target.html'>target()</a></code>: declare more than just the command,
-e.g. assign a trigger or transform.
-Examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>. # nolint</p></li>
+<li><p><code><a href='target.html'>target()</a></code>: give the target more than just a command.
+Using <code><a href='target.html'>target()</a></code>, you can apply a transformation
+(examples: <a href='https://ropenscilabs.github.io/drake-manual/plans.html#large-plans'>https://ropenscilabs.github.io/drake-manual/plans.html#large-plans</a>), # nolint
+supply a trigger (<a href='https://ropenscilabs.github.io/drake-manual/triggers.html'>https://ropenscilabs.github.io/drake-manual/triggers.html</a>), # nolint
+or set any number of custom columns.</p></li>
+<li><p><code><a href='map.html'>map()</a></code>: create multiple targets. Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='split.html'>split()</a></code>: create a target for each subset of data.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='cross.html'>cross()</a></code>: create a target for each combination of values.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
+<li><p><code><a href='combine.html'>combine()</a></code>: aggregate groups of targets into other targets.
+Called inside <code><a href='target.html'>target()</a></code>.</p></li>
 <li><p><code><a href='file_in.html'>file_in()</a></code>: declare an input file dependency.</p></li>
 <li><p><code><a href='file_out.html'>file_out()</a></code>: declare an output file to be produced
 when the target is built.</p></li>
